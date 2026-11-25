@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy & Scope | Jackbox2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><p class="eyebrow">Jackbox2 Property Decision Workspace</p><h1>Privacy, Scope, and Publication Boundary</h1><p class="subtitle">Personal information privacy is the top priority. This page defines what stays internal, what may be published, and how redaction is enforced.</p></div></header>
+<div class="nav-wrap"><nav class="main-nav" aria-label="Primary">
+  <a href="index.html">Dashboard</a><a class="active" href="privacy.html">Privacy &amp; Scope</a><a href="sources.html">Source Registry</a><a href="market.html">Market &amp; Area Context</a><a href="hazards.html">Hazard Screening</a><a href="lease-tax.html">Lease, Tax &amp; Exit</a><a href="decision.html">Decision Framework</a><a href="qa.html">Q&amp;A / Missing Info</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a>
+</nav></div>
+<main id="main" class="page">
+  <div class="notice notice-danger"><strong>Mandatory rule:</strong> Any personal information contained or discovered during research must be for internal use only and must not appear in the final website product and must not appear on the website. If discovered, redact immediately and replace with a placeholder.</div>
+
+  <section class="section">
+    <div class="section-header"><h2>Privacy Controls</h2><p>Controls applied to this public repository/site.</p></div>
+    <div class="table-wrap"><table>
+      <caption>Privacy control register</caption>
+      <thead><tr><th>Control ID</th><th>Control</th><th>Applies to</th><th>Status</th><th>Implementation</th><th>Source / policy basis</th></tr></thead>
+      <tbody>
+        <tr><td>P-01</td><td>No parcel identifier published</td><td>APN, street address, legal description, parcel map, title records</td><td><span class="badge badge-ok">Applied</span></td><td>Use <code>[PARCEL-ID-REDACTED]</code> and area-level location only ("Central Los Angeles").</td><td><a href="https://www.cisa.gov/privacy">CISA Privacy Principles (general privacy handling reference)</a></td></tr>
+        <tr><td>P-02</td><td>No owner/tenant personal or financial data published</td><td>Owner name, entity principals, SSN/EIN, tax returns, bank statements, loan docs, rent roll</td><td><span class="badge badge-ok">Applied</span></td><td>Use <code>[OWNER-REDACTED]</code>, <code>[TENANT-ENTITY-REDACTED]</code>, <code>[FINANCIALS-INTERNAL-ONLY]</code>.</td><td><a href="https://www.ftc.gov/business-guidance/privacy-security">FTC Privacy &amp; Security guidance</a></td></tr>
+        <tr><td>P-03</td><td>No lease document contents published</td><td>Lease, amendments, guarantees, options, percentage rent, CAM/NNN reconciliations</td><td><span class="badge badge-ok">Applied</span></td><td>Use <code>[LEASE-DOC-REDACTED]</code>; publish only checklist/abstract fields needed for decision.</td><td><a href="https://www.ftc.gov/business-guidance/privacy-security/data-security">FTC Data Security</a></td></tr>
+        <tr><td>P-04</td><td>Internal-only secure workflow for location-specific checks</td><td>Hazard maps, tract selection, comps, insurance quotes, engineering</td><td><span class="badge badge-warn">Process required</span></td><td>Authorized advisers run checks in access-controlled environment; publish only aggregate/non-identifying findings.</td><td><a href="https://www.nist.gov/privacy-framework">NIST Privacy Framework</a></td></tr>
+        <tr><td>P-05</td><td>No fabricated values</td><td>All tables and analysis</td><td><span class="badge badge-ok">Applied</span></td><td>Unverified values left blank and flagged; sources linked.</td><td><a href="sources.html">Source Registry</a></td></tr>
+        <tr><td>P-06</td><td>Public repo hygiene</td><td>Git history, files, site assets</td><td><span class="badge badge-warn">Ongoing</span></td><td>Do not commit private docs/data; review diffs before push; use placeholders.</td><td><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository">GitHub: Removing sensitive data</a></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><h2>Redaction Placeholders</h2><p>Standard placeholders used across the workspace.</p></div>
+    <div class="table-wrap"><table>
+      <caption>Placeholder dictionary</caption>
+      <thead><tr><th>Placeholder</th><th>Meaning</th><th>Internal location</th><th>Public status</th><th>Source / reference</th></tr></thead>
+      <tbody>
+        <tr><td><code>[PARCEL-ID-REDACTED]</code></td><td>APN/legal parcel identifier</td><td>Access-controlled internal workspace only</td><td><span class="badge badge-danger">Never publish</span></td><td><a href="https://www.nist.gov/privacy-framework">NIST Privacy Framework</a></td></tr>
+        <tr><td><code>[PROPERTY-ADDRESS-REDACTED]</code></td><td>Exact site address</td><td>Access-controlled internal workspace only</td><td><span class="badge badge-danger">Never publish</span></td><td><a href="https://www.nist.gov/privacy-framework">NIST Privacy Framework</a></td></tr>
+        <tr><td><code>[OWNER-REDACTED]</code></td><td>Owner individual/entity/principals</td><td>Access-controlled internal workspace only</td><td><span class="badge badge-danger">Never publish</span></td><td><a href="https://www.ftc.gov/business-guidance/privacy-security">FTC Privacy &amp; Security</a></td></tr>
+        <tr><td><code>[LEASE-DOC-REDACTED]</code></td><td>Lease and amendments</td><td>Access-controlled internal workspace only</td><td><span class="badge badge-danger">Never publish</span></td><td><a href="https://www.ftc.gov/business-guidance/privacy-security/data-security">FTC Data Security</a></td></tr>
+        <tr><td><code>[FINANCIALS-INTERNAL-ONLY]</code></td><td>NOI, rent, tax basis, debt, returns</td><td>Access-controlled internal workspace only</td><td><span class="badge badge-danger">Never publish</span></td><td><a href="https://www.ftc.gov/business-guidance/privacy-security">FTC Privacy &amp; Security</a></td></tr>
+        <tr><td><code>[ADVISOR-REDACTED]</code></td><td>Legal/tax/broker/engineering advisor identities</td><td>Access-controlled internal workspace only</td><td><span class="badge badge-danger">Never publish</span></td><td><a href="https://www.nist.gov/privacy-framework">NIST Privacy Framework</a></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><h2>Scope Boundary</h2><p>What this public site can and cannot do.</p></div>
+    <div class="grid-2">
+      <div class="card"><h3>In scope (public)</h3><ul class="clean">
+        <li>Anonymous scenario framing and decision process.</li>
+        <li>Official-source links for area context, hazards, planning, and tax rules.</li>
+        <li>Questions, missing-information checklist, and evidence requirements.</li>
+        <li>Risk register, decision gates, and suggestions for review.</li>
+        <li>Client-side calculator that runs in-browser; no inputs transmitted by this static site.</li>
+      </ul></div>
+      <div class="card"><h3>Out of scope (public)</h3><ul class="clean">
+        <li>Publishing or inferring parcel address, owner identity, lease terms, or financials.</li>
+        <li>Making a final sell/renew decision without verified inputs.</li>
+        <li>Providing legal, tax, appraisal, engineering, or investment advice.</li>
+        <li>Fabricating market comps, rents, cap rates, taxes, or hazard determinations.</li>
+      </ul></div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="inner"><p class="small">Privacy is top priority. Public output is anonymous by design.</p></div></footer>
+</body></html>
