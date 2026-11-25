@@ -24,6 +24,8 @@ SOURCES = load("sources.json")["sources"]
 SRC = {s["id"]: s for s in SOURCES}
 
 errors = []
+NOINPUT = '<span class="src-none">input required</span>'
+DASH = '<span class="src-none">\u2014</span>'
 
 def e(x):
     return html.escape("" if x is None else str(x), quote=True)
@@ -472,5 +474,498 @@ build_sources()
 build_flagged()
 build_economy()
 print("built:", "economy.html sources.html flagged.html")
+if errors:
+    print("SOURCE ERRORS:", *errors, sep="\n  ")
+
+# ---------------------------------------------------------------- decision page
+def build_decision():
+    R = load("risks.json")
+    best = R["best_course_of_action"]
+    paths = R["decision_paths"]
+
+    path_rows = []
+    for p in paths:
+        path_rows.append(
+            f'<td class="id">{e(p["id"])}</td>'
+            f'<td><b>{e(p["path"])}</b></td>'
+            f'<td>{e(p["summary"])}</td>'
+        )
+
+    flip = "".join(f"<li>{e(x)}</li>" for x in best["what_would_flip_the_recommendation_to_hold"])
+    seq = []
+    for s in best["recommended_sequence"]:
+        seq.append(
+            f'<tr><td class="num"><b>{s["step"]}</b></td><td><b>{e(s["action"])}</b></td><td>{e(s["why"])}</td></tr>'
+        )
+
+    body = privacy_banner()
+    body += f"""
+<div class="note warn"><p><b>The honest answer today is "not yet" — and that is a real answer.</b> The question is binary: sell before the 2030–2035 expiry, or renew. The evidence below is strong enough to tell you which way the weight points, and it is not strong enough to tell you the price. Choosing a price without inputs would be worse than not choosing. So this page gives a <b>conditional</b> recommendation with an explicit sequence, not a verdict.</p></div>
+
+<div class="grid g2">
+  <div class="card">
+    <h3>What the verified evidence says</h3>
+    <ul class="tight">
+      <li><b>The area is not growing.</b> Metro employment is +1.29% versus October 2019 and +0.19% versus October 2024. City population is −0.8% since 2020. Seven of nine tracked sectors are contracting or flat.</li>
+      <li><b>The tenant is shrinking.</b> 86 closures in FY2025, guidance for 50–100 more, same-store sales −4.2% then −7.4%, 7.33× leverage, and a stated plan to sell real estate.</li>
+      <li><b>The tax code rewards acting.</b> Section 1031 deferral exists only if the owner sells a qualifying real-property interest, and it can move the effective tax on reinvested proceeds toward zero.</li>
+      <li><b>The tail is correlated.</b> A regional catastrophe stops rent, triggers repairs and closes the transaction market at the same moment, so holding a single illiquid asset through a long horizon is punished more than the base case suggests.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>What the verified evidence cannot say</h3>
+    <ul class="tight">
+      <li><b>The rent.</b> Unknown. Neither case can be priced.</li>
+      <li><b>The term.</b> A five-year range, which cannot be discounted.</li>
+      <li><b>The obligor.</b> Brand or franchisee — different balance sheets entirely.</li>
+      <li><b>The basis.</b> Unknown, so the tax layer is unknown.</li>
+      <li><b>The price.</b> No quote, no comparable, no verified spread.</li>
+      <li><b>The hazards.</b> No parcel-level zone status for seismic, flood or fire.</li>
+    </ul>
+    <p class="disclaimer">Zero of twelve decision-gate items are closed. See <a href="gates.html">decision gates</a>.</p>
+  </div>
+</div>
+
+<section class="block">
+  <h2>Recommended course of action</h2>
+  <p class="sub">{e(best["headline"])}</p>
+"""
+    body += table(
+        [("Step", "r"), ("Action", "l"), ("Why this order", "l")],
+        seq,
+    )
+    body += f"""
+  <div class="note ok"><p><b>The lean, if the owner must choose direction today.</b> {e(best["lean_if_forced_today"])}</p></div>
+  <div class="card">
+    <h3>What would flip the recommendation to hold</h3>
+    <ul class="tight">{flip}</ul>
+    <p class="disclaimer">Each of these is checkable within weeks. That is what makes the recommendation conditional rather than vague: the conditions are testable, and the tests are listed.</p>
+  </div>
+</section>
+
+<section class="block">
+  <h2>The seven paths, and why most of them lose</h2>
+  <p class="sub">A complete enumeration. Any decision the owner makes is one of these — including doing nothing.</p>
+"""
+    body += table([("ID", "l"), ("Path", "l"), ("What it actually means", "l")], path_rows)
+
+    body += """
+  <div class="note warn"><p><b>Three paths deserve particular attention.</b></p>
+  <ul class="tight">
+    <li><b>D-5, sale-leaseback to the tenant.</b> Almost nobody prices this. A tenant that owns its own rent can rationally pay more than any investor, because it is buying the elimination of its own lease obligation. The verified filing shows the tenant already acquires assets for sale-and-leaseback and has named "selling real estate" in its plan, which makes it a plausible counterparty rather than a hypothetical one.</li>
+    <li><b>D-6, 1031 exchange.</b> The largest single lever on the after-tax outcome and the easiest to botch. It must be prepared <i>before</i> listing, not after the closing.</li>
+    <li><b>D-7, do nothing.</b> The default. It looks like caution and functions as a leveraged bet on a tenant that has publicly said it is shrinking.</li>
+  </ul></div>
+</section>
+
+<section class="block">
+  <h2>Why "based on the existing economic activity" points the way it does</h2>
+  <p class="sub">The brief asks for the decision to rest on the area's economic activity. Here is that reasoning made explicit, using only verified numbers.</p>
+  <ol class="tight">
+    <li>A ground lease is a claim on a tenant's ability and willingness to pay rent. Everything else is secondary.</li>
+    <li>The tenant's willingness is measured by its own disclosures: closures up, same-store sales negative two years running, leverage above 7×, and a plan that includes selling real estate.</li>
+    <li>The tenant's ability is measured by its end market: Los Angeles is adding jobs at +0.19% over two years while the operator's wage floor rises automatically and unrestrained by local inflation of 3.7%.</li>
+    <li>The asset's alternative value is set by land use, not by the rent. That requires zoning headroom (unverified) and construction activity, which is flat at +0.2%.</li>
+    <li>Therefore the hold case rests on a renewal that the counterparty has given no indication it wants, and on a rent reset that the option mechanism may not permit.</li>
+  </ol>
+  <div class="note"><p><b>None of this makes selling correct at any price.</b> It makes selling correct <i>if the price clears the owner's threshold</i>, and the threshold is only knowable once the six blocking gates close. That is why the recommendation is a sequence and not a verdict.</p></div>
+</section>
+"""
+    page("decision.html", "Course of action", body,
+         "Sell or renew: what the verified evidence supports, what it cannot support, and the exact sequence that turns an opinion into a decision.")
+
+# ---------------------------------------------------------------- gates page
+def build_gates():
+    G = load("gates.json")
+    cur = G["current_state"]
+
+    rows = []
+    for g in G["gates"]:
+        bcls = {"blocking": "blocking", "high": "high", "medium": "medium"}.get(g["blocking"], "medium")
+        scls = "closed" if g["status"] == "closed" else "open"
+        unbl = ", ".join(g.get("unblocks", [])) or "—"
+        rows.append(
+            f'<td class="id">{e(g["id"])}</td>'
+            f'<td><b>{e(g["gate"])}</b></td>'
+            f'<td>{badge(bcls, g["blocking"])}</td>'
+            f'<td>{badge(scls, g["status"])}</td>'
+            f'<td>{e(g["evidence_required"])}</td>'
+            f'<td>{e(g["why"])}</td>'
+            f'<td class="id">{e(unbl)}</td>'
+        )
+
+    seq = []
+    for p in G["sequencing"]:
+        gl = ", ".join(p["gates"]) or "—"
+        seq.append(
+            f'<td class="num"><b>{p["phase"]}</b></td>'
+            f'<td><b>{e(p["name"])}</b></td>'
+            f'<td class="id">{e(gl)}</td>'
+            f'<td>{e(p["note"])}</td>'
+        )
+
+    pct = cur["decision_readiness_percent"]
+    body = f"""
+<div class="grid g4">
+  <div class="stat warn"><div class="k">Decision readiness</div><div class="v">{pct}<small>%</small></div><div class="n">{cur["closed"]} of {cur["gates_total"]} gates closed</div></div>
+  <div class="stat warn"><div class="k">Blocking gates open</div><div class="v">{sum(1 for g in G["gates"] if g["blocking"]=="blocking" and g["status"]=="open")}</div><div class="n">Decision cannot lawfully proceed</div></div>
+  <div class="stat info"><div class="k">Gates total</div><div class="v">{cur["gates_total"]}</div><div class="n">Each with named evidence</div></div>
+  <div class="stat info"><div class="k">Phases</div><div class="v">{len(G["sequencing"])}</div><div class="n">Evidence → market → analysis → decision</div></div>
+</div>
+
+<div class="card">
+  <h3>Progress</h3>
+  <div class="prog"><i style="width:{pct}%"></i></div>
+  <div class="proglabel"><span>{cur["closed"]} closed</span><span>{cur["open"]} open</span></div>
+  <p class="disclaimer">{e(cur["plain_readout"])}</p>
+</div>
+
+<div class="note"><p><b>How to read a gate.</b> A gate is a question that must be answered with evidence before a specific commitment is made. It is not a task on a project plan. "Blocking" means the owner must not authorise a listing, a letter of intent or a renewal negotiation while that gate is open — because doing so prices the asset from an unknown. "High" means the decision can be framed but not committed. "Medium" means it affects sizing rather than direction.</p></div>
+
+<section class="block">
+  <h2>Gate board</h2>
+  <p class="sub">Twelve gates. Each names the evidence required, why it matters, and what it unblocks.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Gate", "l"), ("Blocking", "l"), ("Status", "l"), ("Evidence required", "l"), ("Why it matters", "l"), ("Unblocks", "l")],
+        rows,
+    )
+    body += """
+</section>
+
+<section class="block">
+  <h2>Sequencing</h2>
+  <p class="sub">The order is not arbitrary. Market-testing before the evidence phase closes anchors the owner to a number produced from unknowns — the most expensive mistake available here.</p>
+"""
+    body += table([("Phase", "r"), ("Name", "l"), ("Gates", "l"), ("Note", "l")], seq)
+    body += """
+</section>
+"""
+    page("gates.html", "Decision gates", body,
+         "Twelve gates stand between the owner and a defensible decision. None are closed. Here is exactly what each one needs.")
+
+# ---------------------------------------------------------------- questions page
+def build_questions():
+    Q = load("questions.json")["questions"]
+    groups = {}
+    for q in Q:
+        groups.setdefault(q["group"], []).append(q)
+
+    body = f"""
+<div class="grid g4">
+  <div class="stat info"><div class="k">Questions registered</div><div class="v">{len(Q)}</div><div class="n">Every one with a route to an answer</div></div>
+  <div class="stat warn"><div class="k">Unanswered</div><div class="v">{sum(1 for q in Q if q["answer_state"]=="unanswered")}</div><div class="n">No verified answer yet</div></div>
+  <div class="stat info"><div class="k">Partly answered</div><div class="v">{sum(1 for q in Q if q["answer_state"]=="partly-answered")}</div><div class="n">Container level only</div></div>
+  <div class="stat ok"><div class="k">Answered</div><div class="v">{sum(1 for q in Q if q["answer_state"]=="answered")}</div><div class="n">From a Tier 1 source</div></div>
+</div>
+
+<div class="note"><p><b>Why this page exists.</b> The brief asks for a clear list of questions, information and answers that must be addressed before any decision can reasonably be made — based on what we already have and do not have. That is this page. Every open question carries a mandatory <b>route to obtain</b>, because a question with no route to an answer is just anxiety. Nothing here has been answered by inference.</p></div>
+
+<div class="note warn"><p><b>The uncomfortable summary.</b> The questions that decide the outcome — rent, term, obligor, basis, price, hazard zone — are all unanswered. The questions that are answered — employment, inflation, population, cost of capital, tenant health — all point the same direction, which is why the <a href="decision.html">course of action</a> page can lean somewhere while refusing to name a price. The direction is legible. The magnitude is not.</p></div>
+"""
+    state_badge = {"answered": ("closed", "answered"), "partly-answered": ("der", "partly"), "unanswered": ("open", "unanswered")}
+    prio_badge = {"critical": "crit", "high": "high", "medium": "medium"}
+
+    for gname, qs in groups.items():
+        rows = []
+        for q in qs:
+            sb, st = state_badge.get(q["answer_state"], ("ctx", q["answer_state"]))
+            known = q.get("known") or ""
+            ans = q.get("answer") or ""
+            rows.append(
+                f'<td class="id">{e(q["id"])}</td>'
+                f'<td><b>{e(q["question"])}</b></td>'
+                f'<td>{badge(prio_badge.get(q["priority"],"medium"), q["priority"])}</td>'
+                f'<td>{badge(sb, st)}</td>'
+                f'<td>{e(known) if known else DASH}</td>'
+                f'<td>{e(ans) if ans else DASH}</td>'
+                f'<td>{e(q["how_to_obtain"])}</td>'
+            )
+        body += f"""
+<section class="block">
+  <h2>{e(gname)}</h2>
+"""
+        body += table(
+            [("ID", "l"), ("Question", "l"), ("Priority", "l"), ("State", "l"), ("What we know", "l"), ("Answer", "l"), ("How to obtain it", "l")],
+            rows,
+        )
+        body += "</section>"
+
+    page("questions.html", "Questions to resolve before deciding", body,
+         "Thirty questions, ordered by whether they change the answer. Each open one carries the exact route to obtaining it.")
+
+# ---------------------------------------------------------------- trade area page
+def build_trade():
+    T = load("trade_area.json")
+    m = T["tract_selection_method"]
+
+    step_rows = []
+    for s in m["official_instruments"]:
+        v = badge("closed", "verified") if s["verified_this_session"] else badge("open", "not yet")
+        step_rows.append(
+            f'<td class="num"><b>{s["step"]}</b></td>'
+            f'<td>{e(s["action"])}</td>'
+            f'<td>{e(s["source_name"])}</td>'
+            f'<td>{v}</td>'
+        )
+
+    cont = []
+    for r in T["container_figures_do_not_substitute"]:
+        cont.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td>{e(r["container"])}</td>'
+            f'<td>{e(r["metric"])}</td>'
+            f'<td class="num">{e(r["value"])}</td>'
+            f'<td>{e(r["unit"])}</td>'
+            f'<td>{src_link(r["source"])}</td>'
+            f'<td class="empty">— not a trade-area figure</td>'
+        )
+
+    ta = []
+    for r in T["trade_area_rows"]:
+        ta.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td><b>{e(r["metric"])}</b></td>'
+            f'{val(r.get("value"), r.get("status"))}'
+            f'<td>{badge("unv","unverified")}</td>'
+            f'<td>{e(r["how_to_obtain"])}</td>'
+            f'<td>{e(r.get("official_source",""))}</td>'
+        )
+
+    body = f"""
+<div class="note warn"><p><b>W-01 status: addressed, gated, not executed.</b> The method for replacing city and county proxies with real trade-area figures is specified below and every official instrument is named. The execution is blocked by one thing: selecting Census tracts requires the parcel location, which is withheld under the privacy rule. Rather than substitute a city number for a trade-area number, this page leaves the trade-area column blank.</p></div>
+
+<div class="note"><p><b>Why the distinction is not pedantic.</b> A county unemployment rate describes ten million people. A quick-service restaurant's trade area is roughly a one-to-three-mile drive-time ring holding perhaps forty to one hundred twenty thousand people. Averaging across the county smooths away the only variation that determines whether this specific unit thrives. It is the most common way a ground-lease analysis goes quietly wrong: the numbers are real, correctly sourced, and about the wrong geography.</p></div>
+
+<section class="block">
+  <h2>Tract selection method</h2>
+  <p class="sub">Five steps. Step five matters more than it looks: holding the tract vintage fixed is what makes a trend comparison a trend rather than an artefact of redrawn boundaries.</p>
+"""
+    body += table([("Step", "r"), ("Action", "l"), ("Official instrument", "l"), ("Verified this session", "l")], step_rows)
+    body += f"""
+  <div class="card">
+    <h3>Blocked by</h3>
+    <p><code>{e(m["blocked_by"])}</code></p>
+    <h3>Verified environment constraint</h3>
+    <p>{e(m["verified_constraint"])} <a class="src" href="{e(m["evidence_url"])}" target="_blank" rel="noopener">evidence</a></p>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Container figures — real, sourced, and not a substitute</h2>
+  <p class="sub">These are correct official numbers about the City of Los Angeles. The final column is deliberately empty: there is no trade-area equivalent yet, and inventing one would defeat the purpose of W-01.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Container", "l"), ("Metric", "l"), ("Value", "r"), ("Unit", "l"), ("Source", "l"), ("Trade-area equivalent", "l")],
+        cont,
+    )
+    body += "</section>"
+
+    body += """
+<section class="block">
+  <h2>Trade-area and neighbourhood evidence — currently blank</h2>
+  <p class="sub">Every row the brief asks for, with the official route to each. Zoning and alternative-use headroom is on this list because it sets the reversion value, which is the largest cash flow in the hold case.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Metric", "l"), ("Value", "l"), ("Status", "l"), ("How to obtain", "l"), ("Official source", "l")],
+        ta,
+    )
+    body += """
+  <div class="note warn"><p><b>The school question, handled honestly.</b> The brief explicitly asks about school systems. No school quality figure appears on this site, because none was verified against a California Department of Education page in this session. Reporting a third-party ranking would breach the no-hallucination rule, and a school rating is exactly the kind of number a reader would assume was verified. It is flagged as I-05 instead.</p></div>
+</section>
+"""
+    page("trade-area.html", "Trade area and neighbourhood", body,
+         "W-01: replacing city and county proxies with genuine trade-area figures. The method, the official instruments, and the honest reason the column is empty.")
+
+# ---------------------------------------------------------------- hazards page
+def build_hazards():
+    H = load("hazards.json")
+    ctx = []
+    for r in H["context_only_not_parcel_findings"]:
+        ctx.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td>{e(r["statement"])}</td>'
+            f'<td>{src_link(r["basis"])}</td>'
+            f'<td>{badge("ctx","not a parcel finding")}</td>'
+            f'<td>{e(r["not_a_finding"])}</td>'
+        )
+    scr = []
+    for r in H["parcel_screening"]:
+        lookup = f'<a class="src" href="{e(r["lookup_url"])}" target="_blank" rel="noopener">lookup</a>' if r.get("lookup_url") else '<span class="src-none">—</span>'
+        meth = src_link(r.get("source")) if r.get("source") else '<span class="src-none">—</span>'
+        scr.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td><b>{e(r["hazard"])}</b></td>'
+            f'{val(r.get("value"), r.get("status"))}'
+            f'<td>{badge("unv","unverified")}</td>'
+            f'<td>{meth} {lookup}</td>'
+            f'<td>{e(r["blocked_by"])}</td>'
+            f'<td>{e(r.get("why_it_changes_the_decision",""))}</td>'
+        )
+
+    legs = []
+    for l in H["stress_test_design"]["mechanics"]:
+        legs.append(
+            f'<td><b>{e(l["leg"])}</b></td>'
+            f'<td>{e(l["driver"])}</td>'
+            f'<td>{e(l["note"])}</td>'
+        )
+
+    body = f"""
+<div class="note warn"><p><b>W-04 status: addressed, gated. No hazard zone is asserted for this parcel.</b> Three official parcel-level lookups are specified with their instruments linked. All three return blank because each requires an address, and the address is withheld under the privacy rule. A regional statement such as "Los Angeles is seismically active" is true and worthless for pricing — it is recorded below as context and explicitly labelled as <i>not</i> a parcel finding.</p></div>
+
+<div class="note"><p><b>Why this is the highest-consequence blank on the site.</b> Hazard status is not a nice-to-have disclosure item. It sets the probable maximum loss, which sets the insurance premium and deductible, which sets the owner's real cash cost of holding. It also determines whether the building can be rebuilt in kind after a loss. An owner can be perfectly right about rents and prices and still be destroyed by a liquefaction finding plus an insurance market that will not write the risk.</p></div>
+
+<section class="block">
+  <h2>Context only — explicitly not parcel findings</h2>
+  <p class="sub">Included because the brief asks about natural-disaster exposure, and excluded from any conclusion because none of it is about this parcel.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Statement", "l"), ("Official source", "l"), ("Class", "l"), ("What it explicitly does not tell you", "l")],
+        ctx,
+    )
+    body += "</section>"
+
+    body += """
+<section class="block">
+  <h2>Parcel-level screening</h2>
+  <p class="sub">Every row blank pending the address. Each names the official instrument and the exact lookup route, so this becomes a fifteen-minute exercise inside the secure workflow rather than a research project.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Hazard", "l"), ("Parcel status", "l"), ("State", "l"), ("Official instrument", "l"), ("Blocked by", "l"), ("Why it changes the decision", "l")],
+        scr,
+    )
+    body += "</section>"
+
+    body += f"""
+<section class="block">
+  <h2>Stress design — the three legs together</h2>
+  <p class="sub">{e(H["stress_test_design"]["purpose"])}</p>
+"""
+    body += table([("Leg", "l"), ("Driver", "l"), ("Note", "l")], legs)
+    body += f"""
+  <div class="note warn"><p><b>Why the legs must be treated as one event.</b> {e(H["stress_test_design"]["why_together"])}</p></div>
+  <div class="card">
+    <h3>The leg owners forget</h3>
+    <p>Exit liquidity. After a regional event, transaction volume in the affected submarket goes to near zero for an extended period. That means the owner cannot sell to escape the other two legs — the usual response to a problem is unavailable at exactly the moment it is needed. Any hold decision should be tested against that scenario before it is made, not after.</p>
+  </div>
+</section>
+"""
+    page("hazards.html", "Hazard screening", body,
+         "W-04: replacing regional hazard context with the parcel's actual zone status. Every row is blank on purpose, and each names the official lookup.")
+
+# ---------------------------------------------------------------- valuation page
+def build_valuation():
+    V = load("valuation.json")
+    rules = []
+    for r in V["after_tax_rules"]:
+        rules.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td><b>{e(r["item"])}</b></td>'
+            f'{val(r["rule"] if r.get("label")!="unverified" else "", r.get("label"))}'
+            f'<td>{label_badge(r.get("label"))}</td>'
+            f'<td>{src_link(r.get("source"))}</td>'
+            f'<td>{e(r.get("application",""))}</td>'
+        )
+
+    sale = []
+    for l in V["sale_case"]["formula"]:
+        f_ = l.get("formula") or l.get("input") or ""
+        sale.append(
+            f'<td class="num">{l["line"]}</td>'
+            f'<td><b>{e(l["item"])}</b></td>'
+            f'<td>{e(f_)}</td>'
+            f'<td class="empty">—</td>'
+            f'<td>{src_link(l.get("source")) if l.get("source") else NOINPUT}</td>'
+        )
+
+    renew = []
+    for l in V["renewal_case"]["formula"]:
+        f_ = l.get("formula") or l.get("input") or ""
+        note = l.get("note", "")
+        renew.append(
+            f'<td class="num">{l["line"]}</td>'
+            f'<td><b>{e(l["item"])}</b></td>'
+            f'<td>{e(f_)}</td>'
+            f'<td class="empty">—</td>'
+            f'<td>{e(note)}</td>'
+        )
+
+    sl = V["short_lease_discount"]
+    howto = "".join(f"<li>{e(x)}</li>" for x in sl["how_to_obtain"])
+
+    body = f"""
+<div class="note warn"><p><b>Nothing on this page is a valuation.</b> There is no verified rent, no verified basis, no verified term and no verified comparable. What follows is (a) verified statements of tax law, and (b) worked formula templates with the inputs left as placeholders. W-02 and R-04 require the comparison to be <i>built</i> without selecting a winner until verified inputs exist — which is exactly what this is.</p></div>
+
+<div class="note"><p><b>The one rule this page follows.</b> Every line of the sale template has an empty value column. Not zero, not an estimate, not a range. Empty. A reader can see precisely which numbers are known (the tax rates) and which are not (everything else).</p></div>
+
+<section class="block">
+  <h2>Verified after-tax rules</h2>
+  <p class="sub">These are statements of law from Tier 1 sources. They are the only numbers on this page that are real.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Item", "l"), ("Rule", "l"), ("Class", "l"), ("Source", "l"), ("Application to this property", "l")],
+        rules,
+    )
+    body += """
+  <div class="note warn"><p><b>The stacking that surprises owners.</b> Gains on this asset can be taxed in three layers at once: up to 25% federal on the unrecaptured section 1250 portion, up to 20% federal on the rest, 3.8% net investment income tax on top, and then California at up to 12.3% with <i>no</i> capital-gain preference. The combined marginal rate on the recapture layer can exceed 40%. This is why the section 1031 question is not a detail — it is often the difference between two very different outcomes for the same sale price.</p></div>
+</section>
+
+<section class="block">
+  <h2>Sale case — template</h2>
+  <p class="sub">Line by line. The value column stays empty until the owner's advisers supply the inputs.</p>
+"""
+    body += table(
+        [("Line", "r"), ("Item", "l"), ("Formula or required input", "l"), ("Value", "l"), ("Source", "l")],
+        sale,
+    )
+    body += f"""
+  <div class="note ok"><p><b>R-19 is line 12.</b> "Net after-tax sale proceeds" is the single number the brief asks for — one figure the owner can compare against the hold case. It is deliberately blank. Filling it with an assumed price would produce a confident, precise, wrong answer, which is the failure mode this entire project is designed to avoid. The <a href="calculator.html">calculator</a> will produce it the moment the owner supplies real inputs.</p></div>
+</section>
+
+<section class="block">
+  <h2>Renewal case — template</h2>
+  <p class="sub">The hold case, expressed as something that can be compared against line 12 of the sale case.</p>
+"""
+    body += table([("Line", "r"), ("Item", "l"), ("Formula or required input", "l"), ("Value", "l"), ("Note", "l")], renew)
+    body += """
+  <div class="note"><p><b>Two assumptions deserve to be named as assumptions.</b> The escalation rate and the renewal probability. The escalation is testable against the verified 3.79% LA CPI-U compound growth. The renewal probability can be anchored on the tenant's own disclosures — 86 closures, guidance for 50–100 more, 7.33× leverage, same-store sales −4.2% — and on that anchor a probability above roughly 50% is hard to defend. Neither number is invented here; both are left blank with the anchoring evidence stated.</p></div>
+</section>
+
+<section class="block">
+  <h2>Hold case — why it is not the "safe" option</h2>
+  <p class="sub">The residual path is also a bet, and it is worth naming the three things it requires.</p>
+  <ul class="tight">
+"""
+    for n in V["hold_case"]["notes"]:
+        body += f"<li>{e(n)}</li>"
+    body += """
+  </ul>
+</section>
+
+<section class="block">
+  <h2>Short-lease discount — unverified, and here is how to fix it</h2>
+  <p class="sub">The most powerful valuation input for this asset, and the one no official dataset publishes.</p>
+  <div class="card">
+    <p><b>What it should measure.</b> {}</p>
+    <p><b>What happened when we looked.</b> {}</p>
+    <p><b>Status.</b> {} — flagged as <a href="flagged.html">{}</a>. No value is published.</p>
+    <h3>Three routes to a real number</h3>
+    <ol class="tight">{}</ol>
+    <div class="note ok"><p><b>The free route.</b> {}</p></div>
+  </div>
+</section>
+""".format(e(sl["what_it_should_measure"]), e(sl["attempted_sources"]),
+           badge("unv", "unverified"), e(sl["flag"]), howto, e(sl["official_comp_route"]))
+    page("valuation.html", "Sell versus hold", body,
+         "W-02: the private worksheet extended to a full sell-versus-hold comparison, with no winner chosen until verified inputs exist.")
+
+build_decision()
+build_gates()
+build_questions()
+build_trade()
+build_hazards()
+build_valuation()
+print("built: decision gates questions trade-area hazards valuation")
 if errors:
     print("SOURCE ERRORS:", *errors, sep="\n  ")
