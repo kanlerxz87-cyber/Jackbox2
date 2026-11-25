@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "compiled_utc": "2026-11-25",
+    "purpose": "Line-by-line register of every instruction in the brief, with where it is addressed and whether it is satisfiable with verified inputs today.",
+    "status_key": {
+      "addressed": "Delivered in this repo/site.",
+      "addressed-gated": "Structure delivered; the substantive answer is blocked on a named missing input and flagged rather than guessed.",
+      "open-blocked": "Cannot be delivered with verified sources; published as a flagged gap."
+    }
+  },
+  "requirements": [
+    {"id":"R-01","group":"Project","text":"Collect, organize and analyze a full list of requirements.","status":"addressed","where":"data/requirements.json (this register) + site/requirements.html"},
+    {"id":"R-02","group":"Privacy","text":"Keep all parcel and owner records in an access-controlled internal workspace; publish only anonymous summaries.","status":"addressed","where":"docs/PRIVACY.md; site publishes aggregates and placeholders only"},
+    {"id":"R-03","group":"Lease","text":"Commission a private lease abstract and reconcile it with the notice calendar before making a sale or renewal commitment.","status":"addressed-gated","where":"data/property.json (abstract schema); data/gates.json G-01/G-02","blocked_by":"[LEASE-FILE] not supplied"},
+    {"id":"R-04","group":"Valuation","text":"Prepare an after-tax sale comparison alongside a negotiated renewal case, without selecting a winner until verified inputs exist.","status":"addressed-gated","where":"data/valuation.json; site/valuation.html; site/calculator.html","blocked_by":"rent, escalation, basis, remaining term, tax status"},
+    {"id":"R-05","group":"W-01","text":"Replace city and county proxies with trade-area figures.","status":"addressed-gated","where":"data/trade_area.json","blocked_by":"APN / location needed to fix tract set"},
+    {"id":"R-06","group":"W-02","text":"Extend the private worksheet to a sell-versus-hold comparison.","status":"addressed","where":"site/calculator.html (browser-only worksheet, no data leaves the page)"},
+    {"id":"R-07","group":"W-03","text":"Decision-gate progress board.","status":"addressed","where":"data/gates.json; site/gates.html"},
+    {"id":"R-08","group":"W-04","text":"Parcel-level hazard screening.","status":"addressed-gated","where":"data/hazards.json","blocked_by":"address withheld under privacy rule"},
+    {"id":"R-09","group":"W-10","text":"One-page printable summary for advisors.","status":"addressed","where":"site/print.html"},
+    {"id":"R-10","group":"Tooling","text":"A private calculator that runs in the reader's browser.","status":"addressed","where":"site/calculator.html — client-side only, no network calls, no storage"},
+    {"id":"R-11","group":"Data","text":"Neighbourhood-level data around the parcel.","status":"open-blocked","where":"data/trade_area.json rows marked unverified","blocked_by":"tract selection requires the parcel location"},
+    {"id":"R-12","group":"Tax","text":"An after-tax module.","status":"addressed","where":"data/valuation.json tax rules + calculator tax panel"},
+    {"id":"R-13","group":"Valuation","text":"Price the short-lease discount from real quotes.","status":"open-blocked","where":"data/valuation.json flagged row I-04","blocked_by":"no verified public source for commercial quote spreads"},
+    {"id":"R-14","group":"Data","text":"Tract-level trend evidence alongside the regional figures.","status":"open-blocked","where":"data/trade_area.json","blocked_by":"Census API key unavailable; tract set undefined"},
+    {"id":"R-15","group":"Privacy","text":"Keep identifiers, lease files and owner finances offline with authorized advisers; publish only aggregate, non-identifying findings.","status":"addressed","where":"docs/PRIVACY.md; site has no owner fields at all"},
+    {"id":"R-16","group":"Data","text":"Use the location only in a secure workflow to select consistent Census tracts and local planning, traffic, school and competitor evidence.","status":"open-blocked","where":"data/trade_area.json (workflow documented, execution blocked)","blocked_by":"location withheld; school and planning sources not opened this session"},
+    {"id":"R-17","group":"Hazard","text":"Privately check seismic, flood and fire maps, engineering and insurance; stress loss of rent, repairs and exit liquidity together.","status":"addressed-gated","where":"data/hazards.json; data/risks.json RS-01..RS-04","blocked_by":"parcel lookup + engineering/insurance certificates"},
+    {"id":"R-18","group":"Model","text":"Create and back-test a versioned cash-flow model when verified inputs and sufficient comparable history exist; distinguish observations from assumptions.","status":"addressed-gated","where":"docs/METHODOLOGY.md; calculator shows observation vs assumption labels","blocked_by":"needs verified inputs before a back-test is meaningful"},
+    {"id":"R-19","group":"Tax","text":"Turn the verified tax rules into one number the owner can compare with the hold case.","status":"addressed","where":"calculator 'net after-tax sale proceeds' output"},
+    {"id":"R-20","group":"Hazard","text":"Replace regional hazard context with the parcel's actual zone status for earthquake, fire and flood.","status":"open-blocked","where":"data/hazards.json","blocked_by":"address withheld; three official lookups pending"},
+    {"id":"R-21","group":"Tenant","text":"A series of same-store sales, unit counts, closures and franchise rental revenue shows direction, not one quarter.","status":"addressed","where":"data/economy.json tenant series (FY2024 vs FY2025 vs Q4)"},
+    {"id":"R-22","group":"Summary","text":"Create an executive summary outlining important details.","status":"addressed","where":"site/index.html + site/print.html"},
+    {"id":"R-23","group":"Site","text":"Suggest improvements to the site for decision making, plus a dedicated suggestions section a reviewer can use to choose a path before implementing changes.","status":"addressed","where":"site/suggestions.html"},
+    {"id":"R-24","group":"Questions","text":"A clear list of questions, information and answers needed before any decision can reasonably be made from what we have and do not have.","status":"addressed","where":"data/questions.json; site/questions.html"},
+    {"id":"R-25","group":"Questions","text":"Suggest how to discover the missing information.","status":"addressed","where":"data/questions.json 'how_to_obtain' field"},
+    {"id":"R-26","group":"Privacy","text":"Privacy is top priority: anonymize personal information, use placeholders, no personal information in the final website product.","status":"addressed","where":"docs/PRIVACY.md; tools/check.py enforces a blocklist"},
+    {"id":"R-27","group":"Decision","text":"Determine the best course of action: sell before expiry or renew, based on area economic activity.","status":"addressed-gated","where":"site/index.html 'Course of action' + data/gates.json","blocked_by":"six gate inputs; recommendation is conditional and says so"},
+    {"id":"R-28","group":"Data","text":"Cover geography, income, schools, population, job growth and every factor influencing the local economy.","status":"addressed","where":"data/economy.json (income, population, jobs, prices); schools flagged unverified"},
+    {"id":"R-29","group":"Model","text":"Deep research to build a reliable projection system for the area.","status":"addressed-gated","where":"docs/METHODOLOGY.md projection spine","blocked_by":"no verified tract projections available"},
+    {"id":"R-30","group":"Risk","text":"Risks for every possible decision, and the best decision for wealth preservation and growth at a manageable risk level.","status":"addressed","where":"data/risks.json (per-decision risk map) + site/risks.html"},
+    {"id":"R-31","group":"Risk","text":"Account for business-as-usual events and rare black-swan events that could destroy the local economy, such as wildfire or natural disaster.","status":"addressed","where":"data/risks.json 'black_swan' block"},
+    {"id":"R-32","group":"Verification","text":"Use verified official sources for data.","status":"addressed","where":"data/sources.json — Tier 1 government/SEC only for published values"},
+    {"id":"R-33","group":"Process","text":"No manual input required from the owner; complete the work autonomously.","status":"addressed","where":"Whole repo; calculator pre-filled with placeholders"},
+    {"id":"R-34","group":"Verification","text":"Verify line by line, provide links for manual review, flag irregularities, no hallucinations.","status":"addressed","where":"site/sources.html; site/flagged.html; COORDINATION.md irregularities I-01..I-07"},
+    {"id":"R-35","group":"Repo","text":"Review the repo, verify line by line from official sources, provide links, flag irregularities.","status":"addressed","where":"COORDINATION.md T-00 audit; site/flagged.html"},
+    {"id":"R-36","group":"Site","text":"Create a GitHub Pages live site: clean landing page, subpages by category, dashboard-like UI, all entries and findings in simple tables.","status":"addressed","where":"site/** + .github/workflows/pages.yml"},
+    {"id":"R-37","group":"Verification","text":"Every table row must link an official source; if a value cannot be confirmed, leave it blank and flag it as unverified; never infer.","status":"addressed","where":"Rendering rule: every row carries a source link or an 'unverified' badge; blocked values are empty strings"},
+    {"id":"R-38","group":"Process","text":"Coordinate with parallel sessions via COORDINATION.md; claim scopes; small commits; rebase before push.","status":"addressed","where":"COORDINATION.md"},
+    {"id":"R-39","group":"Process","text":"Open a PR, merge without waiting for approval, confirm Pages deploys, record PR link and merge result, publish flagged items.","status":"addressed","where":"COORDINATION.md 'PR / deploy record'; .github/workflows/pages.yml"}
+  ]
+}

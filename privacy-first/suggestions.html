@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suggestions | Jackbox2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><p class="eyebrow">Jackbox2 Property Decision Workspace</p><h1>Suggestions for Review (No Changes Auto-Implemented)</h1><p class="subtitle">Improvement ideas to strengthen decision quality. Each suggestion is reviewable and should be approved before implementation.</p></div></header>
+<div class="nav-wrap"><nav class="main-nav" aria-label="Primary">
+  <a href="index.html">Dashboard</a><a href="privacy.html">Privacy &amp; Scope</a><a href="sources.html">Source Registry</a><a href="market.html">Market &amp; Area Context</a><a href="hazards.html">Hazard Screening</a><a href="lease-tax.html">Lease, Tax &amp; Exit</a><a href="decision.html">Decision Framework</a><a href="qa.html">Q&amp;A / Missing Info</a><a class="active" href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a>
+</nav></div>
+<main id="main" class="page">
+  <div class="notice notice-info"><strong>Review gate:</strong> Suggestions below are proposals, not implemented changes beyond this report. Reviewers should pick the best path based on verified inputs, cost, privacy, and decision value.</div>
+
+  <section class="section">
+    <div class="section-header"><h2>Suggestion Register</h2><p>Prioritized improvements for decision-making quality and site usability.</p></div>
+    <div class="table-wrap"><table>
+      <caption>Suggestions for review</caption>
+      <thead><tr><th>ID</th><th>Suggestion</th><th>Why it improves decision quality</th><th>Prerequisites / inputs</th><th>Privacy impact</th><th>Priority</th><th>Status</th><th>Reference</th></tr></thead>
+      <tbody>
+        <tr><td>SG-01</td><td>Build a private lease-abstract database (access-controlled)</td><td>Converts lease PDF ambiguity into structured fields for valuation, notices, and risk.</td><td>Lease docs, attorney review, secure storage.</td><td>High sensitivity - internal only.</td><td><span class="badge badge-danger">High</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="lease-tax.html">Lease/Tax</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-02</td><td>Obtain two independent NNN broker opinions and short-lease discount quotes</td><td>Replaces assumptions with real market pricing evidence; tests sell-before-expiry case.</td><td>Lease abstract, rent roll, property info (internal).</td><td>High sensitivity - internal only.</td><td><span class="badge badge-danger">High</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="qa.html">Q-04</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-03</td><td>Create CPA-reviewed after-tax sell/renew/1031 model</td><td>Compares net outcomes, not gross price; prevents tax-driven mistakes.</td><td>Tax basis, depreciation, debt, entity profile.</td><td>High sensitivity - internal only.</td><td><span class="badge badge-danger">High</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="https://www.irs.gov/publications/p544">IRS Pub 544</a></td></tr>
+        <tr><td>SG-04</td><td>Run parcel-level hazard/insurance package</td><td>Reveals uninsurable or high-deductible risks that change hold/sell economics.</td><td>Exact parcel (internal), insurer, engineers.</td><td>High sensitivity - parcel internal.</td><td><span class="badge badge-danger">High</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="hazards.html">Hazards</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-05</td><td>Replace county proxies with anonymized trade-area statistics</td><td>Improves relevance of demand/income/population analysis to actual site.</td><td>Internal parcel selection, tract mapping, ACS pulls.</td><td>Medium - publish aggregates only.</td><td><span class="badge badge-warn">Medium</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="market.html">W-01</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-06</td><td>Build versioned private cash-flow model with back-test module</td><td>Separates observations from assumptions and tests model stability.</td><td>Verified historical inputs, comp history, model governance.</td><td>High sensitivity - internal only.</td><td><span class="badge badge-warn">Medium</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="qa.html">Q-12</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-07</td><td>Add a decision log and assumption register (versioned)</td><td>Makes reasoning auditable; prevents silent assumption drift.</td><td>Git/versioned internal doc process.</td><td>Low if anonymized.</td><td><span class="badge badge-warn">Medium</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="decision.html">Decision Framework</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-08</td><td>Add sensitivity dashboard (cap rate, vacancy, rent reset, capex, tax rate)</td><td>Shows breakpoints where sell/hold flips; improves risk visibility.</td><td>Verified base case, scenario ranges.</td><td>Low if anonymized.</td><td><span class="badge badge-warn">Medium</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="decision.html#calculator">Calculator</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-09</td><td>Create advisor packet export (print/PDF) with redaction check</td><td>Speeds review while preserving privacy controls.</td><td>Finalize verified fields; run redaction review.</td><td>Medium - requires redaction check.</td><td><span class="badge badge-info">Low</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="decision.html#print-summary">Printable summary</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+        <tr><td>SG-10</td><td>Add data provenance metadata (source date, vintage, retrieval date, verifier)</td><td>Improves auditability and prevents stale-source decisions.</td><td>Editorial discipline; optional JSON metadata.</td><td>Low.</td><td><span class="badge badge-info">Low</span></td><td><span class="badge badge-warn">Proposed</span></td><td><a href="sources.html">Source Registry</a> · <a href="https://www.nist.gov/risk-management">NIST risk-management context</a></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><h2>Suggested Implementation Order</h2><p>Best path before any transaction decision.</p></div>
+    <div class="card">
+      <ol>
+        <li><strong>Lock privacy and internal workspace</strong> (P-01–P-06, SG-01). No public parcel data.</li>
+        <li><strong>Resolve critical unknowns</strong> (Q-01 to Q-07): lease abstract, market quotes, after-tax model, hazard/insurance.</li>
+        <li><strong>Run stress tests</strong> (R-01–R-07): combined downside scenarios, not single-point estimates.</li>
+        <li><strong>Only then compare sell vs. renew/hold</strong> at G7 with advisor-reviewed evidence.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="inner"><p class="small">Suggestions are for reviewer selection; none are a final recommendation.</p></div></footer>
+</body></html>

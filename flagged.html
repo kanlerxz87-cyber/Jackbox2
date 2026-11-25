@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for Review — Unverified Items</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Flagged for Review</small></div>
+<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a class="active" href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<div class="wrap">
+<h1>Flagged for Review</h1>
+<p>Every row below is <b>blank by design</b> — the value could not be confirmed from an official source without private parcel/owner data. Review manually, then request changes. Flagged items do not block publication.</p>
+<table><thead><tr><th>#</th><th>Item</th><th>Value</th><th>Why flagged</th><th>How to verify (private)</th></tr></thead><tbody>
+<tr><td>F1</td><td>Exact parcel address / APN</td><td><span class="pill blank">Withheld</span></td><td>Privacy — never published.</td><td>Secure workflow only.</td></tr>
+<tr><td>F2</td><td>Exact lease expiry / options / notice dates</td><td><span class="pill blank">Blank</span></td><td>Requires lease abstract.</td><td>Private abstract (Gate 1).</td></tr>
+<tr><td>F3</td><td>Current NNN rent &amp; escalations</td><td><span class="pill blank">Blank</span></td><td>Requires lease/rent roll.</td><td>Private documents.</td></tr>
+<tr><td>F4</td><td>Tract-level income / population / education</td><td><span class="pill blank">Blank</span></td><td>Requires APN → Census ACS.</td><td>Secure workflow → ACS.</td></tr>
+<tr><td>F5</td><td>Parcel seismic / flood / fire zone</td><td><span class="pill blank">Blank</span></td><td>Requires parcel lookup.</td><td>FEMA MSC / USGS / CAL FIRE.</td></tr>
+<tr><td>F6</td><td>Short-lease discount (%)</td><td><span class="pill blank">Blank</span></td><td>Requires broker quotes.</td><td>Broker opinions (private).</td></tr>
+<tr><td>F7</td><td>Owner basis / depreciation / CA tax</td><td><span class="pill blank">Blank</span></td><td>Owner finances — private.</td><td>CPA (private).</td></tr>
+<tr><td>F8</td><td>School / traffic / competitor detail</td><td><span class="pill blank">Blank</span></td><td>Requires APN + field survey.</td><td>LAUSD / Caltrans / survey.</td></tr>
+<tr><td>F9</td><td>FY2025 franchise rental revenue (segment)</td><td><span class="pill blank">Blank</span></td><td>Only FY2024 segment figure verified in this pass; FY2025 10-K not yet line-verified.</td><td>SEC 10-K line check.</td></tr>
+<tr><td>F10</td><td>“NNN lease” characterisation</td><td><span class="pill warn">Per brief — unverified</span></td><td>Taken from brief; lease not yet abstracted.</td><td>Lease abstract.</td></tr>
+</tbody></table>
+<div class="callout"><b>Irregularities noted:</b> (1) Census QuickFacts fetch failed in this environment — QuickFacts rows cite the official URL for manual review. (2) CAL FIRE OSFM deep link returned 404 — cite <a href="https://www.fire.ca.gov/">fire.ca.gov</a> instead. (3) Third-party ACS aggregators disagreed on LA County median income — only Census/FRED figures are used; aggregator numbers are excluded.</div>
+</div>
+<footer><a href="index.html">← Dashboard</a></footer>
+</body></html>

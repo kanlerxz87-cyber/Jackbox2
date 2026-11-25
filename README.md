@@ -1,30 +1,51 @@
-# Jackbox2
+# Jack in the Box — Central LA Decision Dashboard
 
-Privacy-first, source-cited decision workspace for a **Central Los Angeles NNN lease property scenario**.
+Anonymous sell-vs-hold decision workspace for one Central Los Angeles Jack in the Box NNN parcel (expiry 2030–2035, per brief).
 
-## Live Site
+**Privacy:** No personal identifiers, APN, lease files, or owner finances are published. Placeholders only (`[PARCEL — WITHHELD]`). Publish only aggregate, non-identifying findings.
 
-- GitHub Pages (after deployment): `https://kanlerxz87-cyber.github.io/Jackbox2/`
-- Site source: [`docs/`](docs/)
+**Verification:** Every table row links to an official source (SEC, Census, BLS, FRED, IRS, USGS, FEMA, CAL FIRE). Unverified values are blank and listed on `flagged.html`. Never inferred.
 
-## What This Repo Contains
+## Site map (GitHub Pages, static — no build step)
 
-- `docs/` — static GitHub Pages site (dashboard, source registry, market/hazard context, lease/tax framework, decision gates, Q&A, suggestions, flagged review).
-- `COORDINATION.md` — shared task board and session log.
-- No personal information, parcel identifiers, lease documents, or owner financials are published.
+| Page | Purpose |
+|------|---------|
+| `index.html` | Landing dashboard + key verified findings |
+| `executive-summary.html` | Bottom line, knowns/unknowns, recommended path |
+| `decision-gates.html` | W-03 progress board (no commitment until gates clear) |
+| `trade-area.html` | W-01 county context + blank tract table (pending APN) |
+| `hazards.html` | W-04 parcel hazard screening framework |
+| `sell-vs-hold.html` | W-02 after-tax comparison + private browser calculator |
+| `risks.html` | Risks per decision + black-swan stress tests |
+| `questions.html` | Open questions + missing-info discovery plan |
+| `suggestions.html` | Suggestions backlog (review before implementing) |
+| `flagged.html` | Flagged for Review (blank/unverified + irregularities) |
+| `printable-summary.html` | W-10 one-page printable advisor summary |
+| `sources.html` | Official source list |
 
-## Privacy
+See `COORDINATION.md` for the shared task board and session log.
 
-Personal information privacy is top priority. Any parcel, owner, tenant, lease, tax-basis, or financial data must remain in an access-controlled internal workspace and must not appear in the public site or repo.
+---
 
-## Decision Status
+## This repository contains five dashboards
 
-**No sell/renew winner is selected.** The site documents required evidence, risks, and decision gates. A decision should only be made after verified property-specific inputs and qualified advisor review.
+Multiple parallel sessions built dashboards before seeing the others' branches. Rather than
+delete work, all are retained. They do not contradict each other on any verified figure; they
+differ in structure and depth.
 
-## Local Preview
+| Dashboard | Entry point | Character |
+|---|---|---|
+| Root dashboard | `index.html` | Entry point. Six decision gates, executive summary, key findings. |
+| **Analytical dashboard** | `site/index.html` | Depth. Twelve gates, full evidence ledger, after-tax templates, browser calculator, 12 flagged items. Generated from `data/` by `tools/build.py`. |
+| Alternative research | `alternative-research/index.html` | Independently researched second pass. |
+| Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
+| Privacy-first workflow | `privacy-first/index.html` | Conservative no-fabrication framework: redaction controls, empty/flagged inputs, seven decision gates, risk/Q&A/suggestions registers. |
 
-Open `docs/index.html` in a browser, or serve the repo root with any static file server.
+The analytical dashboard presents a **later** reporting period than the root dashboard: the
+tenant filed Q4 and full-year FY2025 results on 19 November 2025, disclosing same-store sales
+of −7.4% in Q4 and −4.2% for the year. Both are flagged as I-11 on the analytical dashboard's
+Flagged for Review page.
 
-## Verification
+No figure in any dashboard is estimated. Where an official value could not be obtained it is
+blank and flagged.
 
-Every table row is intended to include a source link to an official source. Unverified values are left blank and flagged on the "Flagged for Review" page. Do not infer missing values.

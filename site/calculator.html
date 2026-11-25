@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Private calculator — Jack in the Box ground lease</title>
+<meta name="description" content="A sell-versus-hold and after-tax calculator that runs entirely in your browser. No network calls, no storage, nothing transmitted.">
+<meta name="robots" content="noindex,nofollow">
+<!-- Deliberately: no external fonts, no CDN, no analytics, no favicon request. -->
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .calcwrap{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:20px;align-items:start}
+  .fld input[type=range]{padding:0}
+  .hint{font-size:11.5px;color:#6b7885;grid-column:1/-1;margin-top:-4px}
+  .rowline{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px solid #1e3444;font-size:13px}
+  .rowline:last-child{border-bottom:none}
+  .rowline span:last-child{font-variant-numeric:tabular-nums;color:#fff}
+  .neg{color:#ff9aa5 !important}
+  .pos{color:#7ee2b0 !important}
+  .verdict{background:#122c3d;border-radius:8px;padding:12px 14px;margin-top:12px;font-size:13px;color:#cfe0eb}
+  @media(max-width:900px){.calcwrap{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header class="site"><div class="wrap bar">
+  <div class="brand">Jack in the Box <span>/ Central LA ground lease</span></div>
+  <nav class="main">
+    <a href="index.html">Overview</a>
+    <a href="decision.html">Decision</a>
+    <a href="gates.html">Gates</a>
+    <a href="valuation.html">Sell vs hold</a>
+    <a href="tax.html">After tax</a>
+    <a href="calculator.html" class="on">Calculator</a>
+    <a href="print.html">1-page</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+<div class="hero">
+  <p class="eyebrow">Private — runs in your browser only</p>
+  <h1>Sell-versus-hold worksheet</h1>
+  <p class="lede">W-02 and R-19: the private worksheet extended to a full after-tax sale comparison against a probability-weighted renewal case. Nothing is transmitted, nothing is stored, and no value you type leaves this tab.</p>
+</div>
+
+<div class="privacy"><span class="lock">🔒</span><div>
+<b>This page has no network capability.</b> There is no form action, no fetch, no XMLHttpRequest, no local storage, no cookie, and no third-party script. Every calculation happens in the JavaScript on this page, in your browser. Close the tab and everything you typed is gone. It ships with placeholder values on purpose — do not type a real address or parcel number into it; you do not need to.
+</div></div>
+
+<div class="note warn"><p><b>Read this before trusting a number.</b> This worksheet is arithmetic, not analysis. It will happily compute a confident answer from invented inputs. Its only defence is that every input is visible, labelled as verified or assumed, and pre-filled with a placeholder of <b>1</b> so that an untouched page produces an obviously meaningless result rather than a plausible-looking one. Real figures for the tax rates are verified and linked on the <a href="tax.html">after-tax page</a>; the property figures are not known yet.</p></div>
+
+<div class="calcwrap">
+
+<div>
+  <fieldset>
+    <legend>1 · Property and lease <span style="color:#a8071a;font-weight:700">assumed</span></legend>
+    <div class="fld"><label>Gross sale price ($)</label><input id="price" type="number" min="0" step="10000" value="1"></div>
+    <div class="fld"><label>Selling costs (% of price)</label><input id="sellcost" type="number" min="0" max="15" step="0.1" value="1"></div>
+    <div class="fld"><label>Adjusted basis ($)</label><input id="basis" type="number" min="0" step="10000" value="1"></div>
+    <div class="fld"><label>Accumulated depreciation — recapture layer ($)</label><input id="depr" type="number" min="0" step="10000" value="1"></div>
+    <div class="hint">Basis and depreciation are unknowable until the owner's accountant extracts them. Recapture is computed on depreciation allowed or allowable, whether or not claimed.</div>
+  </fieldset>
+
+  <fieldset>
+    <legend>2 · Federal tax <span style="color:#0d7a4d;font-weight:700">verified rules</span></legend>
+    <div class="fld"><label>Recapture rate (§1250 max 25%)</label><input id="rate1250" type="number" min="0" max="37" step="0.1" value="25"></div>
+    <div class="fld"><label>Capital gain rate</label>
+      <select id="ratecg">
+        <option value="0">0%</option>
+        <option value="15">15%</option>
+        <option value="20" selected>20%</option>
+      </select>
+    </div>
+    <div class="fld"><label>NIIT applies (3.8%)</label>
+      <select id="niit"><option value="1" selected>Yes</option><option value="0">No</option></select>
+    </div>
+    <div class="fld"><label>§1031 exchange — deferred share (%)</label><input id="exch" type="number" min="0" max="100" step="5" value="0"></div>
+    <div class="hint">Verified: 25% maximum on unrecaptured §1250 gain; capital gain 0/15/20%; NIIT 3.8% above $200k single / $250k MFJ. A §1031 deferral applies only to reinvested proceeds.</div>
+  </fieldset>
+
+  <fieldset>
+    <legend>3 · California tax <span style="color:#0d7a4d;font-weight:700">verified schedule</span></legend>
+    <div class="fld"><label>State marginal rate</label>
+      <select id="rateca">
+        <option value="9.3" selected>9.3%</option>
+        <option value="10.3">10.3%</option>
+        <option value="11.3">11.3%</option>
+        <option value="12.3">12.3%</option>
+      </select>
+    </div>
+    <div class="hint">California has no capital-gain preference; gain is taxed as ordinary income. Brackets 9.3 / 10.3 / 11.3 / 12.3 per the 2025 FTB schedule.</div>
+  </fieldset>
+
+  <fieldset>
+    <legend>4 · Hold case <span style="color:#a8071a;font-weight:700">assumed</span></legend>
+    <div class="fld"><label>Current annual rent ($)</label><input id="rent" type="number" min="0" step="1000" value="1"></div>
+    <div class="fld"><label>Remaining firm term (years)</label><input id="term" type="number" min="0" max="30" step="1" value="1"></div>
+    <div class="fld"><label>Annual escalation (%)</label><input id="esc" type="number" min="0" max="10" step="0.1" value="1"></div>
+    <div class="fld"><label>Discount rate (%)</label><input id="disc" type="number" min="0" max="25" step="0.1" value="1"></div>
+    <div class="fld"><label>Reversion value at expiry ($)</label><input id="rev" type="number" min="0" step="10000" value="0"></div>
+    <div class="fld"><label>Probability of renewal (%)</label><input id="prenew" type="number" min="0" max="100" step="5" value="50"></div>
+    <div class="hint">Verified anchors to test these against: LA CPI-U compound growth 3.79%/yr (2019–2025); 10-year Treasury 4.92% (23 Nov 2026). The discount rate must be the Treasury <i>plus</i> a spread, and that spread is not verified anywhere.</div>
+  </fieldset>
+</div>
+
+<div>
+  <div class="out">
+    <div class="k">Net after-tax sale proceeds</div>
+    <div class="big" id="netout">—</div>
+    <div class="sm">R-19: the one number to compare against the hold case</div>
+    <div id="salelines"></div>
+  </div>
+
+  <div class="out">
+    <div class="k">Probability-weighted hold value</div>
+    <div class="big" id="holdout">—</div>
+    <div class="sm">Present value of renewal rent plus expected reversion</div>
+    <div id="holdlines"></div>
+  </div>
+
+  <div class="out" style="background:#16323f">
+    <div class="k">Comparison</div>
+    <div class="big" id="diffout">—</div>
+    <div class="sm">Sale proceeds minus hold value. Positive favours selling, on these inputs.</div>
+    <div class="verdict" id="verdict"></div>
+  </div>
+
+  <div class="card noprint">
+    <h3>Why this is deliberately unhelpful right now</h3>
+    <p>The page opens with every property input set to 1. That produces a meaningless comparison on purpose. A calculator that pre-filled a "typical" rent or a "market" cap rate would be doing the one thing this project refuses to do — inventing a number and then treating it as data.</p>
+    <p>What this worksheet does well is show you the <b>shape</b> of the decision: how much the after-tax number moves when the §1031 share changes, and how quickly the hold value collapses when the renewal probability falls. Those relationships are true regardless of the missing inputs, and they are the part an adviser should be thinking about while the gate items are collected.</p>
+    <p style="margin-bottom:0"><a href="gates.html">See the twelve gates that must close first →</a></p>
+  </div>
+
+  <div class="card noprint">
+    <h3>Formulas used</h3>
+    <ul class="tight" style="font-size:12.5px">
+      <li>Net sale price = price × (1 − selling costs)</li>
+      <li>Recapture gain = min(accumulated depreciation, total gain)</li>
+      <li>Remaining gain = total gain − recapture gain</li>
+      <li>Federal = recapture × 25% + remaining × CG rate</li>
+      <li>NIIT = (recapture + remaining) × 3.8%, if applicable</li>
+      <li>California = total gain × state rate</li>
+      <li>Deferred share reduces each of the above proportionally, per §1031</li>
+      <li>Hold = Σ rent×(1+g)^t ÷ (1+d)^t for t = 1…term, plus reversion ÷ (1+d)^term</li>
+      <li>Weighted hold = hold × renewal probability</li>
+    </ul>
+    <p class="disclaimer" style="margin-bottom:0">This is a simplification of the tax code, not an implementation of it. It ignores phase-outs, the interaction of the NIIT threshold with other income, state adjustments, and the taxpayer's actual bracket. Use it to see the shape of the trade-off, then hand the inputs to an adviser.</p>
+  </div>
+</div>
+
+</div>
+</main>
+
+<footer class="site"><div class="wrap">
+  <p><b>Privacy:</b> this page makes no network requests and stores nothing. See <a href="privacy.html">the privacy policy</a>.</p>
+  <p>Not tax, legal or investment advice. <a href="index.html">Back to the overview</a>.</p>
+</div></footer>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var ids = ["price","sellcost","basis","depr","rate1250","ratecg","niit","exch",
+             "rateca","rent","term","esc","disc","rev","prenew"];
+
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : 0; }
+
+  function money(x) {
+    if (!isFinite(x)) return "—";
+    var neg = x < 0;
+    var s = Math.round(Math.abs(x)).toLocaleString("en-US");
+    return (neg ? "−$" : "$") + s;
+  }
+
+  function line(label, value, cls) {
+    return '<div class="rowline"><span>' + label + '</span><span class="' + (cls || '') + '">' + value + "</span></div>";
+  }
+
+  function calc() {
+    // ---- sale side
+    var price   = num("price");
+    var sellc   = num("sellcost") / 100;
+    var basis   = num("basis");
+    var depr    = num("depr");
+    var r1250   = num("rate1250") / 100;
+    var rcg     = num("ratecg") / 100;
+    var niitOn  = num("niit") === 1;
+    var exch    = Math.min(100, Math.max(0, num("exch"))) / 100;
+    var rca     = num("rateca") / 100;
+
+    var net       = price * (1 - sellc);
+    var totalGain = net - basis;
+    var recapture = Math.max(0, Math.min(depr, Math.max(0, totalGain)));
+    var remaining = Math.max(0, totalGain - recapture);
+
+    var fedRecap  = recapture * r1250;
+    var fedCap    = remaining * rcg;
+    var niit      = niitOn ? (recapture + remaining) * 0.038 : 0;
+    var ca        = Math.max(0, totalGain) * rca;
+    var taxGross  = fedRecap + fedCap + niit + ca;
+
+    // Deferred share of the gain (1031) removes that share of the tax on reinvested proceeds only.
+    var tax       = taxGross * (1 - exch);
+    var netAfter  = net - tax;
+
+    $("netout").textContent = money(netAfter);
+    $("salelines").innerHTML =
+      line("Net sale price", money(net)) +
+      line("Total gain", money(totalGain)) +
+      line("of which recapture (§1250)", money(recapture)) +
+      line("Federal on recapture", money(-fedRecap), "neg") +
+      line("Federal on capital gain", money(-fedCap), "neg") +
+      line("Net investment income tax", money(-niit), "neg") +
+      line("California", money(-ca), "neg") +
+      line("Tax deferred under §1031", money(taxGross - tax), "pos") +
+      line("Total tax payable", money(-tax), "neg");
+
+    // ---- hold side
+    var rent = num("rent");
+    var term = Math.max(0, Math.round(num("term")));
+    var g    = num("esc") / 100;
+    var d    = num("disc") / 100;
+    var rev  = num("rev");
+    var pr   = Math.min(100, Math.max(0, num("prenew"))) / 100;
+
+    var pv = 0;
+    for (var t = 1; t <= term && t <= 40; t++) {
+      pv += rent * Math.pow(1 + g, t - 1) / Math.pow(1 + d, t);
+    }
+    var pvRev = rev / Math.pow(1 + d, Math.max(term, 1));
+    var holdFull = pv + pvRev;
+    var hold = holdFull * pr;
+
+    $("holdout").textContent = money(hold);
+    $("holdlines").innerHTML =
+      line("PV of rent over " + term + " yr", money(pv)) +
+      line("PV of reversion", money(pvRev)) +
+      line("Full hold value", money(holdFull)) +
+      line("Times renewal probability " + Math.round(pr * 100) + "%", money(hold));
+
+    // ---- comparison
+    var diff = netAfter - hold;
+    $("diffout").textContent = money(diff);
+    $("diffout").className = "big " + (diff > 0 ? "pos" : diff < 0 ? "neg" : "");
+
+    var v;
+    if (price <= 1 || rent <= 1) {
+      v = "Inputs are still the placeholders (1), so this output means nothing. That is intentional: fill in real figures or leave it unread.";
+    } else if (Math.abs(diff) < Math.max(1, 0.02 * Math.max(netAfter, hold))) {
+      v = "The two cases are within a couple of percent of each other on these inputs — which means the decision turns on something this worksheet cannot see: hazard exposure, obligor credit, and the owner's own objective. Do not let a near-tie be decided by rounding.";
+    } else if (diff > 0) {
+      v = "On these inputs the sale case wins by " + money(diff) + ". Check that the discount rate and renewal probability you used are defensible against the verified anchors before relying on this.";
+    } else {
+      v = "On these inputs the hold case wins by " + money(-diff) + ". A hold result here is unusually sensitive to the renewal probability — test it at 30% and 70% before concluding anything.";
+    }
+    $("verdict").textContent = v;
+  }
+
+  ids.forEach(function (id) {
+    var el = $(id);
+    if (el) { el.addEventListener("input", calc); el.addEventListener("change", calc); }
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
