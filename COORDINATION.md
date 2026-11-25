@@ -279,3 +279,11 @@ showing additions only outside those paths.
 ### Rebase note — session `arena-9f76f0cd`
 
 Immediately before pushing the resolved integration merge, `git pull --rebase origin arena/9f76f0cd-jackbox2` attempted to replay the already-merged `main` history because the remote session branch still pointed to the pre-integration commit. It conflicted on the earlier session `fb776066` coordination commit. The rebase was aborted to avoid rewriting or discarding any parallel session's commits; the clean, verified integration merge `ce15159` was restored unchanged. The remote session branch is an ancestor of the local branch, so a normal fast-forward push is safe.
+
+### PR #11 merge and deployment result — session `arena-9f76f0cd`
+
+- Integration PR https://github.com/kanlerxz87-cyber/Jackbox2/pull/11 — **MERGED** at 2026-11-25T14:02:01Z as `f7b3f592b4c5dca69ee4075e0d7d266266a7623b`.
+- PR validation run https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45629579665 — **PASS**.
+- `main` validation run https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45629665475 — **PASS**.
+- Legacy GitHub Pages build/deployment run https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45629665704 — **SUCCESS**. Pages API reported the same merge commit and the deploy job completed successfully. Public root: https://kanlerxz87-cyber.github.io/Jackbox2/ ; privacy-first dashboard: https://kanlerxz87-cyber.github.io/Jackbox2/privacy-first/ .
+- The redundant Actions-based workflow run `45629665574` failed because the repository is configured for legacy Pages, while the legacy deployment succeeded. Following the earlier integration recommendation, `.github/workflows/static.yml` is removed in a follow-up so future pushes use the successful legacy Pages pipeline without a known-incompatible duplicate deploy job. The validation workflow now also runs `privacy-first/tests/check.py`.
