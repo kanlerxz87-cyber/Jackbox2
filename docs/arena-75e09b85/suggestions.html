@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suggestions &amp; Decision Gates | Jackbox2</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="title">Jackbox2 Property Decision Workspace</div>
+        <div class="subtitle">Anonymized public dashboard &middot; Official-source linked &middot; No personal data</div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Dashboard</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="market-research.html">Market Research</a>
+        <a href="risk-analysis.html">Risk Analysis</a>
+        <a href="decision-framework.html">Decision Framework</a>
+        <a href="questions.html">Questions &amp; Missing Info</a>
+        <a href="suggestions.html" aria-current="page">Suggestions</a>
+        <a href="flagged-review.html">Flagged for Review</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="hero">
+      <h1>Suggestions &amp; Decision Gates</h1>
+      <p>Improvement suggestions for the site and the decision process. Includes W-03 decision-gate progress board. Suggestions are reviewable and should not be implemented without human/adviser review where appropriate.</p>
+      <div class="meta">
+        <span class="pill info">Review before implementation</span>
+        <span class="pill warn">No decision selected</span>
+      </div>
+    </section>
+
+    <section class="section" id="w03">
+      <h2>W-03: Decision-Gate Progress Board</h2>
+      <p class="lead">A decision may proceed only when required gates are complete with verified evidence. This board is a template; evidence links for internal items must remain in secure workspace.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Gate</th>
+              <th>Decision question</th>
+              <th>Required evidence</th>
+              <th>Status</th>
+              <th>Owner (role)</th>
+              <th>Blocker</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DG-001 Privacy</td>
+              <td>Is all personal/parcel/financial data protected?</td>
+              <td>Anonymization review; no identifiers in public repo/site; secure internal storage confirmed.</td>
+              <td><span class="status partial">In progress</span></td>
+              <td>Repo maintainer / security reviewer</td>
+              <td>Ongoing discipline required for future updates.</td>
+              <td><a href="privacy.html">Privacy</a></td>
+            </tr>
+            <tr>
+              <td>DG-002 Lease abstract</td>
+              <td>Are lease economics and deadlines verified?</td>
+              <td>Executed lease, amendments, abstract, option/notice calendar.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>Real estate attorney / asset manager</td>
+              <td>Missing verified lease documents.</td>
+              <td><a href="questions.html#lease">Q-001–Q-004</a></td>
+            </tr>
+            <tr>
+              <td>DG-003 Financials</td>
+              <td>Is NOI/cash flow verified?</td>
+              <td>Rent roll, T-12, NNN reconciliations, reserves, debt terms.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>Owner / CPA / property manager</td>
+              <td>Missing verified financial records.</td>
+              <td><a href="questions.html#financial">Q-005–Q-008</a></td>
+            </tr>
+            <tr>
+              <td>DG-004 After-tax</td>
+              <td>Is sell-vs-hold after-tax comparison verified?</td>
+              <td>CPA/tax counsel model with basis, recapture, taxes, costs, reinvestment assumptions.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>CPA / tax counsel</td>
+              <td>Missing tax inputs and professional review.</td>
+              <td><a href="decision-framework.html#after-tax">After-tax module</a></td>
+            </tr>
+            <tr>
+              <td>DG-005 Market quotes</td>
+              <td>Is short-lease discount priced from real quotes?</td>
+              <td>3+ BOVs/buyer indications, lender feedback, comparable closed sales.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>Investment sales broker / lender</td>
+              <td>No real quotes available.</td>
+              <td><a href="questions.html#pricing">Q-009–Q-011</a></td>
+            </tr>
+            <tr>
+              <td>DG-006 Parcel hazards</td>
+              <td>Are parcel earthquake/fire/flood/insurance risks screened?</td>
+              <td>FEMA MSC, OSFM/CAL FIRE/local fire, seismic/engineering, insurance quotes.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>Risk adviser / engineer / insurance broker</td>
+              <td>Parcel-specific secure workflow not completed.</td>
+              <td><a href="risk-analysis.html#w04">W-04</a></td>
+            </tr>
+            <tr>
+              <td>DG-007 Stress test</td>
+              <td>Does the strategy survive combined downside?</td>
+              <td>Scenario model stressing loss of rent + repairs + insurance + illiquidity.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>Analyst / CPA / adviser team</td>
+              <td>Missing inputs and model.</td>
+              <td><a href="risk-analysis.html">Risk Analysis</a></td>
+            </tr>
+            <tr>
+              <td>DG-008 Decision meeting</td>
+              <td>Can sell/renew be selected?</td>
+              <td>Completed gates, verified evidence package, adviser review, owner objectives/risk tolerance documented.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td>Owner + advisers</td>
+              <td>All prior gates incomplete.</td>
+              <td><a href="decision-framework.html">Decision Framework</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Site &amp; Process Improvement Suggestions</h2>
+      <p class="lead">Review these suggestions before implementation. Prioritize privacy, verification, and decision quality over feature complexity.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Suggestion</th>
+              <th>Expected benefit</th>
+              <th>Risk / caution</th>
+              <th>Priority</th>
+              <th>Review status</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SUG-001</td>
+              <td>Create a secure internal "evidence locker" index (not in public repo) mapping each decision-gate item to verified documents.</td>
+              <td>Makes audit trail clear; prevents missing-input drift.</td>
+              <td>Must never be committed to public repo; access control required.</td>
+              <td>High</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="privacy.html">Privacy</a></td>
+            </tr>
+            <tr>
+              <td>SUG-002</td>
+              <td>Add a versioned assumption register for any cash-flow model (date, author, assumption, range, source, confidence).</td>
+              <td>Separates observations from assumptions; improves back-testing discipline.</td>
+              <td>Assumptions can be mistaken for facts if not labeled.</td>
+              <td>High</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="decision-framework.html#model">Model governance</a></td>
+            </tr>
+            <tr>
+              <td>SUG-003</td>
+              <td>Build a private parcel-screening checklist workflow for FEMA, OSFM/CAL FIRE, USGS/seismic, insurance, and local planning.</td>
+              <td>Completes W-04 with reproducible evidence.</td>
+              <td>Parcel-specific outputs must remain internal.</td>
+              <td>High</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="risk-analysis.html#w04">W-04</a></td>
+            </tr>
+            <tr>
+              <td>SUG-004</td>
+              <td>Add a broker/lender quote comparison table (anonymized) with date, term remaining, cap rate, financing assumptions, and confidence.</td>
+              <td>Prices short-lease discount from real quotes instead of heuristics.</td>
+              <td>Quotes may be stale or biased; require multiple sources.</td>
+              <td>High</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="questions.html#pricing">Q-009</a></td>
+            </tr>
+            <tr>
+              <td>SUG-005</td>
+              <td>Add automated link-check and "last verified" date badges to source rows in the static site.</td>
+              <td>Reduces link rot and stale-source risk.</td>
+              <td>Automation should not overwrite human verification status.</td>
+              <td>Medium</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="sources.html">Source registry</a></td>
+            </tr>
+            <tr>
+              <td>SUG-006</td>
+              <td>Create a redacted advisor packet export (PDF/print) generated from verified internal data only.</td>
+              <td>Supports W-10 while keeping public site anonymized.</td>
+              <td>Export pipeline must have privacy checks; no accidental identifier leakage.</td>
+              <td>Medium</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="executive-summary.html#w10">W-10</a></td>
+            </tr>
+            <tr>
+              <td>SUG-007</td>
+              <td>Add scenario sliders to the browser calculator for cap rate, vacancy/loss-of-rent, repair cost, and hold period.</td>
+              <td>Improves sensitivity understanding for users.</td>
+              <td>Can create false precision; keep "illustrative only" warnings prominent.</td>
+              <td>Medium</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="decision-framework.html#calculator">Calculator</a></td>
+            </tr>
+            <tr>
+              <td>SUG-008</td>
+              <td>Add a change log/data provenance section showing when each source was checked and by whom (session/role).</td>
+              <td>Improves accountability and auditability.</td>
+              <td>Do not include personal names/contact details in public log.</td>
+              <td>Medium</td>
+              <td><span class="status pending">Needs review</span></td>
+              <td><a href="sources.html">Sources</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <p>Suggestions are for review; no implementation should bypass privacy or verification controls. <a href="flagged-review.html">Flagged for Review</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

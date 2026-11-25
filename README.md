@@ -49,3 +49,12 @@ Flagged for Review page.
 
 No figure in any dashboard is estimated. Where an official value could not be obtained it is
 blank and flagged.
+<<<<<<< HEAD
+
+---
+
+## Session 75e09b85 Addendum
+
+This session added an anonymized, static decision workspace at [`docs/arena-75e09b85/`](docs/arena-75e09b85/index.html). It includes executive summary, market research, risk analysis, decision framework with a client-side calculator, questions/missing-info, suggestions/decision-gate board, flagged review, privacy, and source registry pages. All claimed values are linked to official sources; unverified/missing inputs are left blank and flagged. No personal or parcel-identifying information is published.
+=======
+>>>>>>> origin/main

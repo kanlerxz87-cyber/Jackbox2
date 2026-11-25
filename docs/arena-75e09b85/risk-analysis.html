@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Risk Analysis | Jackbox2</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="title">Jackbox2 Property Decision Workspace</div>
+        <div class="subtitle">Anonymized public dashboard &middot; Official-source linked &middot; No personal data</div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Dashboard</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="market-research.html">Market Research</a>
+        <a href="risk-analysis.html" aria-current="page">Risk Analysis</a>
+        <a href="decision-framework.html">Decision Framework</a>
+        <a href="questions.html">Questions &amp; Missing Info</a>
+        <a href="suggestions.html">Suggestions</a>
+        <a href="flagged-review.html">Flagged for Review</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="hero">
+      <h1>Risk Analysis</h1>
+      <p>Risk inventory for a Central Los Angeles QSR NNN lease property. Includes business-as-usual risks and black-swan/downside scenarios. Parcel-specific hazard status is not published; it must be screened privately in a secure workflow.</p>
+      <div class="meta">
+        <span class="pill danger">Black-swan scenarios included</span>
+        <span class="pill warn">Parcel hazard status: internal required</span>
+      </div>
+    </section>
+
+    <div class="notice danger">
+      <strong>W-04 status (Parcel-level hazard screening):</strong> <span class="status unverified">Unverified / Internal required</span>. Regional hazard context below is from official sources, but it does <strong>not</strong> replace parcel-specific earthquake, fire, flood, insurance, or engineering determinations. Do not infer parcel zone status from regional data.
+    </div>
+
+    <section class="section" id="w04">
+      <h2>W-04: Parcel-Level Hazard Screening</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hazard</th>
+              <th>Regional official context (verified)</th>
+              <th>Parcel-specific required determination</th>
+              <th>Public status</th>
+              <th>Official source / tool</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Earthquake</td>
+              <td>USGS/UCERF3: In the Los Angeles region, within 30 years there is a 60% probability of M&ge;6.7, 46% of M&ge;7, and 31% of M&ge;7.5.</td>
+              <td>Site-specific fault rupture, liquefaction, landslide, ground shaking amplification, building structural condition, retrofit history, insurance/loss-of-rent terms.</td>
+              <td><span class="status unverified">Parcel status unknown</span></td>
+              <td><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS FAQ</a>; <a href="https://pubs.usgs.gov/fs/2015/3009/">UCERF3 FS 2015-3009</a></td>
+            </tr>
+            <tr>
+              <td>Wildfire / Fire Hazard Severity Zone</td>
+              <td>CAL FIRE/OSFM maintains FHSZ mapping for State and Local Responsibility Areas; classifications include Moderate, High, Very High.</td>
+              <td>Parcel FHSZ/LRA designation, local fire district requirements, defensible space, ember exposure, insurance availability/cost, building-code impacts.</td>
+              <td><span class="status unverified">Parcel status unknown</span></td>
+              <td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">OSFM FHSZ</a></td>
+            </tr>
+            <tr>
+              <td>Flood</td>
+              <td>FEMA Flood Map Service Center is the official public source for NFIP flood hazard products/FIRMs.</td>
+              <td>Parcel FIRM/NFHL flood zone, base flood elevation where applicable, flood insurance requirement, drainage/localized flood exposure, lender condition.</td>
+              <td><span class="status unverified">Parcel status unknown</span></td>
+              <td><a href="https://msc.fema.gov/portal/home">FEMA MSC</a>; <a href="https://www.fema.gov/flood-maps">FEMA Flood Maps</a></td>
+            </tr>
+            <tr>
+              <td>Insurance &amp; loss of rent</td>
+              <td>Hazard exposure can affect insurability, premiums, deductibles, exclusions, and lender requirements; must be evaluated with actual policy quotes.</td>
+              <td>Obtain property, liability, earthquake, flood (if needed), and business-interruption/loss-of-rent quotes; stress deductibles and exclusions.</td>
+              <td><span class="status unverified">Missing</span></td>
+              <td><a href="https://www.insurance.ca.gov/">CA Dept. of Insurance (official portal)</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Risk Register: Business-as-Usual and Black-Swan Scenarios</h2>
+      <p class="lead">Likelihood/impact are qualitative until verified inputs exist. No row should be read as a precise forecast.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Risk ID</th>
+              <th>Scenario</th>
+              <th>Type</th>
+              <th>Potential impact on sell/renew decision</th>
+              <th>Mitigation / evidence needed</th>
+              <th>Status</th>
+              <th>Source / reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>RK-001</td>
+              <td>Lease rollover / short remaining term</td>
+              <td>Business-as-usual</td>
+              <td>As 2030–2035 window approaches, buyers may apply short-lease discount; financing and cap rate may worsen if renewal not secured.</td>
+              <td>Verify exact lease expiration, options, notice deadlines, tenant credit, renewal probability; obtain real broker/lender quotes.</td>
+              <td><span class="status unverified">Unverified</span></td>
+              <td><a href="questions.html#lease">Lease questions</a></td>
+            </tr>
+            <tr>
+              <td>RK-002</td>
+              <td>Tenant/brand performance deterioration</td>
+              <td>Business-as-usual / downside</td>
+              <td>NNN income depends on tenant paying rent and maintaining operations; closure or weak sales reduce renewal leverage and value.</td>
+              <td>Review tenant/entity financials, unit performance if available, franchise/brand health, guarantees, co-tenancy/assignment clauses.</td>
+              <td><span class="status unverified">Unverified</span></td>
+              <td><a href="questions.html#lease">Tenant questions</a></td>
+            </tr>
+            <tr>
+              <td>RK-003</td>
+              <td>Interest-rate / cap-rate shock</td>
+              <td>Downside</td>
+              <td>Higher rates can reduce buyer leverage and property value; refinancing risk if debt exists.</td>
+              <td>Model rate/cap-rate sensitivity in private worksheet; obtain current lender quotes.</td>
+              <td><span class="status unverified">Unverified</span></td>
+              <td><a href="decision-framework.html#w02">W-02</a></td>
+            </tr>
+            <tr>
+              <td>RK-004</td>
+              <td>Major earthquake</td>
+              <td>Black swan / severe downside</td>
+              <td>Physical damage, business interruption, loss of rent, repair cost, insurance deductible/exclusion, impaired exit liquidity.</td>
+              <td>Parcel seismic/engineering review; earthquake and loss-of-rent insurance quotes; stress test repair + vacancy + financing simultaneously.</td>
+              <td><span class="status partial">Regional verified / parcel unknown</span></td>
+              <td><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS</a></td>
+            </tr>
+            <tr>
+              <td>RK-005</td>
+              <td>Wildfire/smoke/insurance shock</td>
+              <td>Black swan / downside</td>
+              <td>Even if parcel is not directly burned, regional wildfire can affect insurance availability, access, air quality, customer traffic, and valuations.</td>
+              <td>Parcel FHSZ/local hazard review; insurance market check; defensible-space/mitigation assessment.</td>
+              <td><span class="status partial">Program verified / parcel unknown</span></td>
+              <td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">OSFM FHSZ</a></td>
+            </tr>
+            <tr>
+              <td>RK-006</td>
+              <td>Flood/drainage event</td>
+              <td>Downside / localized black swan</td>
+              <td>Property damage, cleanup, downtime, insurance gaps, lender-required flood insurance.</td>
+              <td>Parcel FEMA FIRM/NFHL determination; drainage/site inspection; insurance quote.</td>
+              <td><span class="status partial">Tool verified / parcel unknown</span></td>
+              <td><a href="https://msc.fema.gov/portal/home">FEMA MSC</a></td>
+            </tr>
+            <tr>
+              <td>RK-007</td>
+              <td>Local economic contraction / demand shift</td>
+              <td>Business-as-usual / downside</td>
+              <td>Reduced QSR demand, pressure on tenant sales, weaker lease renewal terms.</td>
+              <td>Track BLS/Census/EDD/ACS trends; build trade-area demand model in secure workflow.</td>
+              <td><span class="status partial">Proxy verified</span></td>
+              <td><a href="https://www.bls.gov/web/metro/laulrgma.htm">BLS</a>; <a href="https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/LND110210">Census</a></td>
+            </tr>
+            <tr>
+              <td>RK-008</td>
+              <td>Liquidity/exit timing risk</td>
+              <td>Downside</td>
+              <td>Property may be marketable in normal conditions but illiquid during credit crunch, post-disaster period, or near lease expiry.</td>
+              <td>Test exit windows; obtain real buyer/lender feedback; avoid relying on single point-in-time valuation.</td>
+              <td><span class="status unverified">Unverified</span></td>
+              <td><a href="questions.html#pricing">Pricing questions</a></td>
+            </tr>
+            <tr>
+              <td>RK-009</td>
+              <td>Regulatory/tax/insurance policy change</td>
+              <td>Downside</td>
+              <td>Changes in property tax, transfer costs, insurance regulation, building requirements, or environmental rules can alter net returns.</td>
+              <td>Use CPA/legal/adviser review; scenario test before commitment.</td>
+              <td><span class="status unverified">Unverified</span></td>
+              <td><a href="decision-framework.html#after-tax">After-tax module</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Stress-Test Rule (Required)</h2>
+      <div class="notice warn">
+        <strong>Required combined stress test.</strong> Do not evaluate hazards independently. Stress <strong>loss of rent + repairs/capex + insurance deductible/exclusion + exit liquidity/financing constraints</strong> together. A scenario that is survivable on one dimension may be unacceptable when combined.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <p>Risk analysis is decision support, not a prediction. Parcel-specific hazards remain internal/unverified. <a href="flagged-review.html">Flagged items</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
