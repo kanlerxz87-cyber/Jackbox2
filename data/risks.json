@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "compiled_utc": "2026-11-25",
+    "purpose": "R-30 and R-31. Risk for every decision path, including business-as-usual events and black-swan events, and a view on which path best preserves wealth at a manageable level of risk.",
+    "scoring_key": {
+      "likelihood":"Qualitative, anchored on verified evidence where any exists. Not a probability.",
+      "impact":"Share of the asset's value at risk, expressed qualitatively until G-01 and G-08 close.",
+      "preventability":"Can the owner eliminate this by acting? Yes / Partly / No."
+    },
+    "honesty_note": "No probability is assigned to any event. Assigning one would be a fabrication in the absence of an insured loss model. The comparisons below are ordinal, not cardinal."
+  },
+  "decision_paths": [
+    {"id":"D-1","path":"Sell now, before the lease term shortens further","summary":"Convert an illiquid, single-tenant, deteriorating-credit asset into cash at today's pricing."},
+    {"id":"D-2","path":"Market now, close after the tenant's written renewal indication","summary":"Use a live market test to discover the price while holding an option to change course."},
+    {"id":"D-3","path":"Renew / extend, then hold","summary":"Trade liquidity for term certainty, wage the bet that the tenant stays and the rent resets."},
+    {"id":"D-4","path":"Hold to expiry, then re-let or redevelop","summary":"Accept a vacancy period to capture land-value upside at reversion."},
+    {"id":"D-5","path":"Sale-leaseback to the tenant","summary":"Sell the parcel to the tenant and lease it back, or sell subject to its own lease; removes the tenant's rent and can support a higher price."},
+    {"id":"D-6","path":"1031 exchange into diversified net-lease assets","summary":"Defer tax and exchange single-asset concentration for a portfolio of smaller exposures."},
+    {"id":"D-7","path":"Do nothing","summary":"Also a decision, and the one most likely to be taken by default."}
+  ],
+  "risks": [
+    {"id":"RS-01","risk":"Tenant closes this unit before lease expiry","category":"Business as usual","evidence":"86 Jack in the Box closures in FY2025, 38 under JACK on Track; FY2026 guidance of 50-100 further closures (S-02). Same-store sales -4.2% FY2025 and -7.4% in Q4 (S-02).","affects":["D-3","D-4","D-7"],"likelihood":"Material and evidenced, not speculative","impact":"High — rent may continue but the box goes dark, re-letting leverage at expiry collapses, and the buyer pool narrows to land buyers","preventability":"No for the closure itself; Partly for the consequences, via lease covenants at renewal","mitigation":"Obtain a written renewal indication before renewing. Negotiate a go-dark restriction and a recapture right at first opportunity."},
+    {"id":"RS-02","risk":"Rent has lost real value and the option rent resets below market","category":"Business as usual","evidence":"LA CPI-U grew at 3.79%/yr over 2019-2025 (S-07). A 2% fixed bump against that is roughly a 1.8 point real decline per year, compounding.","affects":["D-3","D-4"],"likelihood":"Depends entirely on the escalation clause — unknown (G-05)","impact":"Medium to high over a 5 to 9 year window","preventability":"Only at renewal, by negotiating a market reset","mitigation":"Close G-05 before renewing; do not renew on the existing mechanism without testing it."},
+    {"id":"RS-03","risk":"Buyer pool for sub-10-year ground leases is thin and prices a wide spread","category":"Market","evidence":"No verified public data. This is a structural feature of net-lease markets, stated here as a reasoned expectation and flagged unverified (I-04).","affects":["D-1","D-2","D-4"],"likelihood":"High by construction of the asset","impact":"High — this spread is the dominant valuation input","preventability":"Partly — selling sooner rather than later keeps the term longer","mitigation":"Get three written quotes (G-08) before assuming a price. Selling with more term remaining is generally cheaper than selling with less."},
+    {"id":"RS-04","risk":"Seismic event damages the building and the land cannot be rebuilt in kind","category":"Black swan","evidence":"The parcel's zone status is unknown (HZ-01 to HZ-04). The region is seismically active; USGS NSHM 2023 is the current model (S-22).","affects":["D-3","D-4","D-7"],"likelihood":"Low frequency, high consequence","impact":"Severe — loss of rent, uninsured repair, and exit liquidity all at once","preventability":"Partly — retrofit before the event, insure properly, and avoid holding through a long horizon uninsured","mitigation":"Complete HZ-01 to HZ-04, obtain PML, and hold insurance where the deductible is survivable. This risk is the strongest argument against unconditional long-term hold."},
+    {"id":"RS-05","risk":"California fast-food wage floor rises again and accelerates closures","category":"Regulatory","evidence":"Fast-food minimum wage $20.00/hr since 2024-04-01 under AB 1228, with a Fast Food Council empowered to raise it further (S-18). State minimum wage $16.90 from 2026-01-01, indexed to CPI-W capped at 3.5%/yr (S-17). CPI-W 12-month change is 4.1% (S-05).","affects":["D-3","D-4"],"likelihood":"High — the mechanism exists and CPI-W currently runs above the 3.5% cap","impact":"Medium — hits the operator's margin, which feeds closure decisions","preventability":"No","mitigation":"Treat the operator's cost trend as a leading indicator of closure risk and price it into any renewal."},
+    {"id":"RS-06","risk":"Insurance becomes unavailable or unaffordable","category":"Market / climate","evidence":"Not verified this session (HZ-09). Stated as a known structural pressure on California property insurance, flagged as an assumption.","affects":["D-1","D-3","D-4"],"likelihood":"Unknown","impact":"High — an uninsurable building is priced as land","preventability":"No","mitigation":"Obtain three written insurance indications before marketing (HZ-09)."},
+    {"id":"RS-07","risk":"1031 replacement is rushed and the owner buys a worse asset","category":"Execution","evidence":"Statutory identification and acquisition clocks apply (S-15).","affects":["D-6"],"likelihood":"Moderate whenever the exchange decision is made after the sale","impact":"Medium to high — a tax-motivated purchase can destroy more value than the tax saved","preventability":"Yes","mitigation":"Identify replacement candidates before listing. Treat 1031 as optional, never as a reason to accept a bad price."},
+    {"id":"RS-08","risk":"Tax bill arrives larger than expected","category":"Execution","evidence":"Unrecaptured section 1250 gain at up to 25% (S-12), NIIT 3.8% (S-13), California top marginal 12.3% with no capital-gain preference (S-16).","affects":["D-1","D-2","D-5"],"likelihood":"High if basis is low and depreciation was taken","impact":"High — can be a fifth or more of gross proceeds","preventability":"Yes, by design","mitigation":"Close G-03 and run the calculator before signing anything."},
+    {"id":"RS-09","risk":"The tenant buys competing supply into the same window","category":"Market","evidence":"The tenant's FY2026 guidance explicitly names 'selling real estate' as part of JACK on Track (S-02).","affects":["D-1","D-2"],"likelihood":"Material","impact":"Medium — more supply, same thin buyer pool","preventability":"No","mitigation":"This cuts both ways: it also means the tenant may be a BUYER (D-5). Price that path."},
+    {"id":"RS-10","risk":"Regional economic stagnation persists","category":"Business as usual","evidence":"MSA nonfarm employment +1.29% versus 2019 and +0.19% versus 2024 (derived from S-06). City population -0.8% since 2020 (S-08). Information -2.1%, Financial Activities -1.6%, Manufacturing -1.2% (S-05).","affects":["D-3","D-4"],"likelihood":"This is the observed state, not a forecast","impact":"Medium — caps the growth the hold case depends on","preventability":"No","mitigation":"Do not underwrite rent growth above verified local inflation."},
+    {"id":"RS-11","risk":"Vacancy at expiry longer than modelled","category":"Business as usual","evidence":"Zoning and re-letting flexibility unknown (TA-18).","affects":["D-4"],"likelihood":"Moderate to high for a single-purpose box","impact":"High — a dark box with a drive-thru is only re-lettable to another QSR until the use is re-permitted","preventability":"Partly","mitigation":"Close G-11. If the zoning is single-purpose, the hold case loses most of its reversion argument."},
+    {"id":"RS-12","risk":"Concentration risk is never resolved","category":"Portfolio","evidence":"The owner's other holdings are unknown and not requested. Stated as a structural point.","affects":["D-3","D-4","D-7"],"likelihood":"Depends on the owner's balance sheet","impact":"Potentially the largest unmodelled risk in the whole analysis","preventability":"Yes","mitigation":"State the objective function (G-12). If this asset is a large share of net worth, concentration alone can justify a sale regardless of price."}
+  ],
+  "black_swan_block": {
+    "summary": "Rare events that could destroy the local economy, and what each does to the three stress legs.",
+    "events": [
+      {"event":"Major regional earthquake","rent_leg":"Rent may continue under the lease but collection is impaired if the operator is displaced.","repair_leg":"Uninsured deductible plus code-triggered upgrades.","liquidity_leg":"Transaction market effectively closes for an extended period.","net":"The worst combination for a leveraged single asset: cannot sell, must repair, may not collect."},
+      {"event":"Urban wildfire reaching dense commercial corridors","rent_leg":"Closure and possible total loss.","repair_leg":"Rebuild under current code, if the use is permitted at all.","liquidity_leg":"Insurance withdrawal across the region compresses all values, not just damaged ones.","net":"Correlated with RS-06, so the insurance leg fails at the same time as the loss."},
+      {"event":"Sustained regional economic depression","rent_leg":"Operator insolvency; rent becomes a claim, not a payment.","repair_leg":"Deferred maintenance accumulates with no rent to fund it.","liquidity_leg":"Buyers require distressed pricing.","net":"Slow-moving but the most likely of the three to actually occur."},
+      {"event":"Regulatory shock to the QSR model","rent_leg":"Operator margin collapses, closures accelerate.","repair_leg":"None directly.","liquidity_leg":"The asset class re-rates.","net":"Partly observable already through the AB 1228 wage mechanism (S-18)."}
+    ],
+    "design_principle": "Do not hold a single, illiquid, uninsured-tail asset in a seismic region for a horizon longer than the lease term that justifies it. That is the risk-management conclusion, and it is independent of the price."
+  },
+  "best_course_of_action": {
+    "headline": "Conditional, and the condition is sequencing — not a target price.",
+    "reasoning": [
+      "The economic evidence does not support a growth hold. Jobs are +1.29% versus 2019, population is -0.8% since 2020, and only one of nine tracked sectors is clearly growing (Q-25, Q-26, IM-01 to IM-09).",
+      "The tenant's own verified disclosures point the wrong way for a renewal: 86 closures, guidance for 50-100 more, same-store sales -4.2% then -7.4%, 7.33x leverage, and a stated plan to sell real estate (TH-01 to TH-22).",
+      "The tax code gives a large lever — section 1031 — that only exists if the owner sells while the asset is still a qualifying real-property interest (TX-06).",
+      "The black-swan structure penalises a long hold far more than a sale, because it correlates the rent, repair and liquidity legs (RS-04, black_swan_block).",
+      "Against all that, the owner's price is unknown and the short-lease discount is unverified (G-08, I-04). Selling without a price is as irresponsible as holding without a plan."
+    ],
+    "recommended_sequence": [
+      {"step":1,"action":"Close every blocking gate (G-01, G-02, G-03, G-04, G-07, G-12). Nothing else happens first.","why":"Six unknowns entirely govern the answer."},
+      {"step":2,"action":"Obtain written quotes from three buyers AND a written renewal indication from the tenant, in the same 30-day window.","why":"This is the only way to compare a real sale price against a real renewal case rather than two templates."},
+      {"step":3,"action":"Ask the tenant, through the broker, whether it will buy the parcel.","why":"D-5 is the path most likely to produce the highest price and the fewest surprises, and it is almost never tested."},
+      {"step":4,"action":"Run the after-tax number with and without a section 1031 exchange, and identify replacement candidates before listing.","why":"The tax difference is large enough to change the decision, and the exchange must not be improvised."},
+      {"step":5,"action":"Decide against the owner's written objective function (G-12).","why":"Sell and hold optimise different things. That trade-off belongs to the owner and cannot be delegated to an analysis."}
+    ],
+    "lean_if_forced_today": "On the verified evidence, the weight of argument favours selling — but only after gates 1 and 2, and only with the 1031 path prepared in advance. If the objective statement prioritises income over liquidity and the lease has 8+ years of firm term with a strong obligor and a market-reset option, hold becomes defensible. Those two facts are unknown today, which is precisely why the answer is 'not yet'.",
+    "what_would_flip_the_recommendation_to_hold": [
+      "A firm term extending meaningfully past 2032, with no tenant termination right.",
+      "A corporate or well-capitalised guaranty behind the rent.",
+      "A renewal option with a fair-market-value reset rather than a fixed bump.",
+      "Parcel-level hazard findings that are benign, plus affordable insurance.",
+      "Zoning headroom that gives the land a credible alternative use.",
+      "Three written quotes that come in materially above the owner's hold-case present value."
+    ]
+  }
+}

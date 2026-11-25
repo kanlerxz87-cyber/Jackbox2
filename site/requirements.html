@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Requirement register — Jack in the Box ground lease, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision support for a single-tenant NNN Jack in the Box ground lease in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap bar">
+  <div class="brand">Jack in the Box <span>/ Central LA ground lease</span></div>
+  <nav class="main">
+<a href="index.html">Overview</a>
+<a href="decision.html">Decision</a>
+<a href="gates.html">Decision gates</a>
+<a href="questions.html">Questions</a>
+<a href="economy.html">Local economy</a>
+<a href="trade-area.html">Trade area</a>
+<a href="hazards.html">Hazards</a>
+<a href="valuation.html">Sell vs hold</a>
+<a href="tax.html">After tax</a>
+<a href="risks.html">Risks</a>
+<a href="calculator.html">Calculator</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="requirements.html" class="on">Requirements</a>
+<a href="suggestions.html">Suggestions</a>
+<a href="print.html">1-page summary</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only</p>
+  <h1>Requirement register</h1>
+  <p class="lede">The brief, decomposed line by line, with an honest status for each item.</p>
+  
+</div>
+
+<div class="grid g4">
+  <div class="stat info"><div class="k">Requirements</div><div class="v">39</div><div class="n">Line by line from the brief</div></div>
+  <div class="stat ok"><div class="k">Delivered</div><div class="v">26</div><div class="n">Complete as specified</div></div>
+  <div class="stat info"><div class="k">Delivered, gated</div><div class="v">8</div><div class="n">Structure built; answer blocked</div></div>
+  <div class="stat warn"><div class="k">Blocked</div><div class="v">5</div><div class="n">Cannot be answered without new inputs</div></div>
+</div>
+<div class="note"><p><b>How to read the status column.</b> <b>Addressed</b> means the requirement is met in this repository. <b>Addressed · gated</b> means the structure, method and template are complete but the substantive answer depends on a named missing input — the work is not pretended to be finished. <b>Open · blocked</b> means it cannot be delivered with verified official sources in this environment, and it is published as a flagged gap rather than filled with an estimate.</p></div>
+<section class="block">
+  <h2>Requirement register</h2>
+  <p class="sub">Every instruction from the brief, its status, where it is addressed, and what blocks it.</p>
+<div class="twrap"><table class=""><thead><tr><th>ID</th><th>Group</th><th>Requirement</th><th>Status</th><th>Where addressed</th><th>Blocked by</th></tr></thead><tbody><tr><td class="id">R-01</td><td>Project</td><td>Collect, organize and analyze a full list of requirements.</td><td><span class="b b-closed">addressed</span></td><td>data/requirements.json (this register) + site/requirements.html</td><td>—</td></tr>
+<tr><td class="id">R-02</td><td>Privacy</td><td>Keep all parcel and owner records in an access-controlled internal workspace; publish only anonymous summaries.</td><td><span class="b b-closed">addressed</span></td><td>docs/PRIVACY.md; site publishes aggregates and placeholders only</td><td>—</td></tr>
+<tr><td class="id">R-03</td><td>Lease</td><td>Commission a private lease abstract and reconcile it with the notice calendar before making a sale or renewal commitment.</td><td><span class="b b-der">addressed · gated</span></td><td>data/property.json (abstract schema); data/gates.json G-01/G-02</td><td>[LEASE-FILE] not supplied</td></tr>
+<tr><td class="id">R-04</td><td>Valuation</td><td>Prepare an after-tax sale comparison alongside a negotiated renewal case, without selecting a winner until verified inputs exist.</td><td><span class="b b-der">addressed · gated</span></td><td>data/valuation.json; site/valuation.html; site/calculator.html</td><td>rent, escalation, basis, remaining term, tax status</td></tr>
+<tr><td class="id">R-05</td><td>W-01</td><td>Replace city and county proxies with trade-area figures.</td><td><span class="b b-der">addressed · gated</span></td><td>data/trade_area.json</td><td>APN / location needed to fix tract set</td></tr>
+<tr><td class="id">R-06</td><td>W-02</td><td>Extend the private worksheet to a sell-versus-hold comparison.</td><td><span class="b b-closed">addressed</span></td><td>site/calculator.html (browser-only worksheet, no data leaves the page)</td><td>—</td></tr>
+<tr><td class="id">R-07</td><td>W-03</td><td>Decision-gate progress board.</td><td><span class="b b-closed">addressed</span></td><td>data/gates.json; site/gates.html</td><td>—</td></tr>
+<tr><td class="id">R-08</td><td>W-04</td><td>Parcel-level hazard screening.</td><td><span class="b b-der">addressed · gated</span></td><td>data/hazards.json</td><td>address withheld under privacy rule</td></tr>
+<tr><td class="id">R-09</td><td>W-10</td><td>One-page printable summary for advisors.</td><td><span class="b b-closed">addressed</span></td><td>site/print.html</td><td>—</td></tr>
+<tr><td class="id">R-10</td><td>Tooling</td><td>A private calculator that runs in the reader&#x27;s browser.</td><td><span class="b b-closed">addressed</span></td><td>site/calculator.html — client-side only, no network calls, no storage</td><td>—</td></tr>
+<tr><td class="id">R-11</td><td>Data</td><td>Neighbourhood-level data around the parcel.</td><td><span class="b b-unv">open · blocked</span></td><td>data/trade_area.json rows marked unverified</td><td>tract selection requires the parcel location</td></tr>
+<tr><td class="id">R-12</td><td>Tax</td><td>An after-tax module.</td><td><span class="b b-closed">addressed</span></td><td>data/valuation.json tax rules + calculator tax panel</td><td>—</td></tr>
+<tr><td class="id">R-13</td><td>Valuation</td><td>Price the short-lease discount from real quotes.</td><td><span class="b b-unv">open · blocked</span></td><td>data/valuation.json flagged row I-04</td><td>no verified public source for commercial quote spreads</td></tr>
+<tr><td class="id">R-14</td><td>Data</td><td>Tract-level trend evidence alongside the regional figures.</td><td><span class="b b-unv">open · blocked</span></td><td>data/trade_area.json</td><td>Census API key unavailable; tract set undefined</td></tr>
+<tr><td class="id">R-15</td><td>Privacy</td><td>Keep identifiers, lease files and owner finances offline with authorized advisers; publish only aggregate, non-identifying findings.</td><td><span class="b b-closed">addressed</span></td><td>docs/PRIVACY.md; site has no owner fields at all</td><td>—</td></tr>
+<tr><td class="id">R-16</td><td>Data</td><td>Use the location only in a secure workflow to select consistent Census tracts and local planning, traffic, school and competitor evidence.</td><td><span class="b b-unv">open · blocked</span></td><td>data/trade_area.json (workflow documented, execution blocked)</td><td>location withheld; school and planning sources not opened this session</td></tr>
+<tr><td class="id">R-17</td><td>Hazard</td><td>Privately check seismic, flood and fire maps, engineering and insurance; stress loss of rent, repairs and exit liquidity together.</td><td><span class="b b-der">addressed · gated</span></td><td>data/hazards.json; data/risks.json RS-01..RS-04</td><td>parcel lookup + engineering/insurance certificates</td></tr>
+<tr><td class="id">R-18</td><td>Model</td><td>Create and back-test a versioned cash-flow model when verified inputs and sufficient comparable history exist; distinguish observations from assumptions.</td><td><span class="b b-der">addressed · gated</span></td><td>docs/METHODOLOGY.md; calculator shows observation vs assumption labels</td><td>needs verified inputs before a back-test is meaningful</td></tr>
+<tr><td class="id">R-19</td><td>Tax</td><td>Turn the verified tax rules into one number the owner can compare with the hold case.</td><td><span class="b b-closed">addressed</span></td><td>calculator &#x27;net after-tax sale proceeds&#x27; output</td><td>—</td></tr>
+<tr><td class="id">R-20</td><td>Hazard</td><td>Replace regional hazard context with the parcel&#x27;s actual zone status for earthquake, fire and flood.</td><td><span class="b b-unv">open · blocked</span></td><td>data/hazards.json</td><td>address withheld; three official lookups pending</td></tr>
+<tr><td class="id">R-21</td><td>Tenant</td><td>A series of same-store sales, unit counts, closures and franchise rental revenue shows direction, not one quarter.</td><td><span class="b b-closed">addressed</span></td><td>data/economy.json tenant series (FY2024 vs FY2025 vs Q4)</td><td>—</td></tr>
+<tr><td class="id">R-22</td><td>Summary</td><td>Create an executive summary outlining important details.</td><td><span class="b b-closed">addressed</span></td><td>site/index.html + site/print.html</td><td>—</td></tr>
+<tr><td class="id">R-23</td><td>Site</td><td>Suggest improvements to the site for decision making, plus a dedicated suggestions section a reviewer can use to choose a path before implementing changes.</td><td><span class="b b-closed">addressed</span></td><td>site/suggestions.html</td><td>—</td></tr>
+<tr><td class="id">R-24</td><td>Questions</td><td>A clear list of questions, information and answers needed before any decision can reasonably be made from what we have and do not have.</td><td><span class="b b-closed">addressed</span></td><td>data/questions.json; site/questions.html</td><td>—</td></tr>
+<tr><td class="id">R-25</td><td>Questions</td><td>Suggest how to discover the missing information.</td><td><span class="b b-closed">addressed</span></td><td>data/questions.json &#x27;how_to_obtain&#x27; field</td><td>—</td></tr>
+<tr><td class="id">R-26</td><td>Privacy</td><td>Privacy is top priority: anonymize personal information, use placeholders, no personal information in the final website product.</td><td><span class="b b-closed">addressed</span></td><td>docs/PRIVACY.md; tools/check.py enforces a blocklist</td><td>—</td></tr>
+<tr><td class="id">R-27</td><td>Decision</td><td>Determine the best course of action: sell before expiry or renew, based on area economic activity.</td><td><span class="b b-der">addressed · gated</span></td><td>site/index.html &#x27;Course of action&#x27; + data/gates.json</td><td>six gate inputs; recommendation is conditional and says so</td></tr>
+<tr><td class="id">R-28</td><td>Data</td><td>Cover geography, income, schools, population, job growth and every factor influencing the local economy.</td><td><span class="b b-closed">addressed</span></td><td>data/economy.json (income, population, jobs, prices); schools flagged unverified</td><td>—</td></tr>
+<tr><td class="id">R-29</td><td>Model</td><td>Deep research to build a reliable projection system for the area.</td><td><span class="b b-der">addressed · gated</span></td><td>docs/METHODOLOGY.md projection spine</td><td>no verified tract projections available</td></tr>
+<tr><td class="id">R-30</td><td>Risk</td><td>Risks for every possible decision, and the best decision for wealth preservation and growth at a manageable risk level.</td><td><span class="b b-closed">addressed</span></td><td>data/risks.json (per-decision risk map) + site/risks.html</td><td>—</td></tr>
+<tr><td class="id">R-31</td><td>Risk</td><td>Account for business-as-usual events and rare black-swan events that could destroy the local economy, such as wildfire or natural disaster.</td><td><span class="b b-closed">addressed</span></td><td>data/risks.json &#x27;black_swan&#x27; block</td><td>—</td></tr>
+<tr><td class="id">R-32</td><td>Verification</td><td>Use verified official sources for data.</td><td><span class="b b-closed">addressed</span></td><td>data/sources.json — Tier 1 government/SEC only for published values</td><td>—</td></tr>
+<tr><td class="id">R-33</td><td>Process</td><td>No manual input required from the owner; complete the work autonomously.</td><td><span class="b b-closed">addressed</span></td><td>Whole repo; calculator pre-filled with placeholders</td><td>—</td></tr>
+<tr><td class="id">R-34</td><td>Verification</td><td>Verify line by line, provide links for manual review, flag irregularities, no hallucinations.</td><td><span class="b b-closed">addressed</span></td><td>site/sources.html; site/flagged.html; COORDINATION.md irregularities I-01..I-07</td><td>—</td></tr>
+<tr><td class="id">R-35</td><td>Repo</td><td>Review the repo, verify line by line from official sources, provide links, flag irregularities.</td><td><span class="b b-closed">addressed</span></td><td>COORDINATION.md T-00 audit; site/flagged.html</td><td>—</td></tr>
+<tr><td class="id">R-36</td><td>Site</td><td>Create a GitHub Pages live site: clean landing page, subpages by category, dashboard-like UI, all entries and findings in simple tables.</td><td><span class="b b-closed">addressed</span></td><td>site/** + .github/workflows/pages.yml</td><td>—</td></tr>
+<tr><td class="id">R-37</td><td>Verification</td><td>Every table row must link an official source; if a value cannot be confirmed, leave it blank and flag it as unverified; never infer.</td><td><span class="b b-closed">addressed</span></td><td>Rendering rule: every row carries a source link or an &#x27;unverified&#x27; badge; blocked values are empty strings</td><td>—</td></tr>
+<tr><td class="id">R-38</td><td>Process</td><td>Coordinate with parallel sessions via COORDINATION.md; claim scopes; small commits; rebase before push.</td><td><span class="b b-closed">addressed</span></td><td>COORDINATION.md</td><td>—</td></tr>
+<tr><td class="id">R-39</td><td>Process</td><td>Open a PR, merge without waiting for approval, confirm Pages deploys, record PR link and merge result, publish flagged items.</td><td><span class="b b-closed">addressed</span></td><td>COORDINATION.md &#x27;PR / deploy record&#x27;; .github/workflows/pages.yml</td><td>—</td></tr></tbody></table></div></section>
+</main>
+<footer class="site"><div class="wrap">
+  <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built 2026-11-25 13:48 UTC from the data layer in <code>data/</code>.</p>
+  <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
+</div></footer>
+</body>
+</html>

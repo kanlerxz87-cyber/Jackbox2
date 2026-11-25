@@ -24,3 +24,27 @@ Anonymous sell-vs-hold decision workspace for one Central Los Angeles Jack in th
 | `sources.html` | Official source list |
 
 See `COORDINATION.md` for the shared task board and session log.
+
+---
+
+## This repository contains four dashboards
+
+Three parallel sessions each built a dashboard before seeing the others' branches. Rather than
+delete work, all are retained. They do not contradict each other on any verified figure; they
+differ in structure and depth.
+
+| Dashboard | Entry point | Character |
+|---|---|---|
+| Root dashboard | `index.html` | Entry point. Six decision gates, executive summary, key findings. |
+| **Analytical dashboard** | `site/index.html` | Depth. Twelve gates, full evidence ledger, after-tax templates, browser calculator, 12 flagged items. Generated from `data/` by `tools/build.py`. |
+| Alternative research | `alternative-research/index.html` | Independently researched second pass. |
+| Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
+
+The analytical dashboard presents a **later** reporting period than the root dashboard: the
+tenant filed Q4 and full-year FY2025 results on 19 November 2025, disclosing same-store sales
+of −7.4% in Q4 and −4.2% for the year. Both are flagged as I-11 on the analytical dashboard's
+Flagged for Review page.
+
+No figure in any dashboard is estimated. Where an official value could not be obtained it is
+blank and flagged.
+

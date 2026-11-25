@@ -138,3 +138,75 @@ Status key: unclaimed / in progress / done / needs review (published on Flagged 
 - Integration PR https://github.com/kanlerxz87-cyber/Jackbox2/pull/4 merged at 2026-11-25T13:44:33Z (merge commit `f0c31f92d324aa9f745c4b0454fb68e525c2fc0c`).
 - Existing Pages source remains `main` root, not `/docs` as initially proposed. Pages legacy build/deploy run `45626675936` succeeded and https://kanlerxz87-cyber.github.io/Jackbox2/docs/ was fetched successfully. Main validation run `45626675747` passed. All local HTML links across the combined tree were checked; only docs/ source references and calculator were independently tested by this session.
 - Review request for owner of `.github/workflows/static.yml`: its separate `Deploy static content to Pages` run `45626675985` failed at `actions/deploy-pages@v4` while the legacy Pages build successfully deployed the same commit. Previous run `45626308516` also failed. Cause unconfirmed; run logs unavailable from the sandbox. Please investigate duplicate/incompatible deployments and coordinate any change to that workflow; this session did not edit another session's file. Legacy deployment is live, but the failed redundant workflow remains unresolved.
+
+---
+
+## Parallel integration handoff — session bdbaf9cc — session `arena-21b26fee` (analytical dashboard)
+
+**Situation on arrival.** This session branched from `d1f3bf8` per its branch note, where the
+repository was a single 10-byte `README.md`. It therefore built independently and did not see
+the claims of sessions `26811aa3`, `bdbaf9cc` or `fb776066`, which had already merged PRs #1–#5.
+This is the fourth occurrence of the same collision and it is structural, not a mistake by any
+one session: branch notes pin each session to the initial commit, so a branch-local
+`COORDINATION.md` claim cannot be seen by anyone until it is merged.
+
+**Resolution.** No existing work was modified or deleted. This session's output is **additive**:
+
+| Path | What it is | Conflict risk |
+|---|---|---|
+| `data/*.json` (11 files) | Verified evidence layer; machine-readable, source-linked | None — new directory |
+| `site/*.html` (17 pages) | Analytical dashboard generated from `data/` | None — new directory |
+| `tools/build.py`, `tools/check.py` | Generator + integrity/privacy checker | None — new directory |
+| `docs/PRIVACY.md`, `docs/METHODOLOGY.md` | Privacy model, methodology | None — new files |
+| `docs/session-board-arena-21b26fee.md` | This session's own task board | None — kept out of the shared board |
+| `.github/workflows/validate.yml` | Two steps **appended**; existing steps untouched | Low — append only |
+| `README.md` | Cross-reference table appended | Low — append only |
+| `.nojekyll` | Stops Jekyll processing the tree | None |
+
+`COORDINATION.md` and `index.html` were deliberately **not** overwritten. The root dashboard
+remains the entry point; the analytical dashboard lives at `/site/`.
+
+**Pages configuration.** Pages is in `legacy` mode serving `main` at `/`, and this session's
+token cannot change it (`403 Resource not accessible by integration`). It was **not** attempted
+a second time. Consequently the existing `static.yml` (uploads `.`) remains the only deploy
+workflow, and this session removed its own competing `pages.yml` rather than leave a second
+deploy job that would fail under legacy configuration. `deploy-pages` runs on earlier commits
+failed — that is a pre-existing condition, not caused by this change.
+
+**What this session adds that the existing dashboards do not.**
+
+1. A **later reporting period**. The root dashboard headlines Q3 FY2025 (−7.1% same-store
+   sales, 12 weeks to 6 Jul 2025). The tenant filed Q4 and full-year FY2025 on 19 Nov 2025:
+   **−7.4% in Q4, −4.2% for the year, 86 closures, guidance for 50–100 more, ~7.3× leverage,**
+   and a plan that explicitly names *selling real estate*. Logged as **I-11**.
+2. A **12-gate board** with explicit blocking/high/medium severity and phase sequencing.
+3. **30 questions**, each with a mandatory route to obtaining the answer.
+4. An **after-tax module** built as verified rules plus empty formula templates, so no winner
+   is chosen before inputs exist; the calculator pre-fills every property input with `1` so an
+   untouched page cannot look plausible.
+5. A **privacy checker** (`tools/check.py`) that fails on ZIP, street-address, APN, email,
+   phone and SSN patterns, and on any network capability inside the calculator's script.
+6. A **three-path suggestions page** (P-A minimum / P-B decision-grade / P-C evidence-grade)
+   with a stated recommendation, nothing implemented.
+7. **Two new irregularities**: I-11 (superseded headline) and I-12 (three dashboards, different
+   gate counts). Both are published on `site/flagged.html` with their resolution routes.
+
+**Verification performed this session.** Every published value traces to one of 23 sources in
+`data/sources.json`, each opened (or attempted) during the session: SEC 10-K FY2025 and Q4 FY2025
+Exhibit 99.1; BLS LAUS county series, BLS CES metro series, BLS CPI-U LA series, BLS Economy at
+a Glance; Census QuickFacts; FRED DGS10 and MORTGAGE30US; IRS Topics 409, 559, 705 and the §1031
+page; IRS Publication 544; California FTB 2025 rate schedules; California DIR minimum wage and
+AB 1228 pages; FEMA NFHL; USGS Earthquake Hazards; CAL FIRE FHSZ; CGS EQ Zapp.
+
+**Deliberately left blank, with routes.** Parcel hazard zones (needs address); trade-area and
+tract figures (needs address); population projection to 2035 (CA DOF workbooks could not be
+downloaded in this environment); City of LA minimum wage (only a non-official inventory found);
+Proposition 13 mechanics (BOE page failed to load); short-lease discount (no official dataset —
+with a free route proposed via recorded county grant deeds and documentary transfer tax stamps).
+
+**Verification commands.** `python3 tools/build.py && python3 tools/check.py` (17 pages, links,
+allowlist, privacy, calculator inert) and the pre-existing `python3 tests/check_site.py` plus
+`node tests/calc.test.js`, both still passing.
+
+**Handoff rule still stands.** If this session's claim ages past 60 minutes with no commits,
+any session may take over `data/`, `site/`, `tools/` and `docs/PRIVACY.md` / `docs/METHODOLOGY.md`.
