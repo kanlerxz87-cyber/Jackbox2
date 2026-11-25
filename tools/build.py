@@ -432,6 +432,11 @@ def build_flagged():
          "The California Department of Finance publishes official county and state projections to 2070, and the programme is linked in the ledger. The .xlsx workbooks could not be downloaded in this session, so no projection figure is published. This is a gap in the projection spine (R-29), not a reason to substitute a private forecast.",
          "Download P-2A_County_Total.xlsx and read the Los Angeles County 2030 and 2035 rows.",
          ["S-09"]),
+        ("I-10", "Local minimum wage for the City of Los Angeles not confirmed",
+         "medium",
+         "The state DIR page states that some cities set higher minimum wages and links a UC Berkeley inventory, which is not an official government source. The City of Los Angeles rate is therefore blank rather than filled from a secondary list.",
+         "Check the City of Los Angeles Office of Wage Standards page directly.",
+         ["S-17"]),
         ("I-11", "Existing dashboards on main headline an older quarter",
          "medium",
          "The landing pages already on main present Q3 FY2025 same-store sales (-7.1%, twelve weeks ended 6 July 2025) as the brand-health headline. The tenant has since filed Q4 and full-year FY2025 results on 19 November 2025 showing -7.4% in Q4 and -4.2% for the full year, plus 86 closures. Those later figures are used throughout this dashboard. The earlier page is not wrong, it is superseded.",
@@ -442,11 +447,6 @@ def build_flagged():
          "Three independent sessions each built a dashboard before seeing the others' branches, which is expected under the parallel-session instruction. They do not contradict each other on any figure, but they use different structures: this dashboard defines 12 decision gates, the root dashboard defines 6, and the alternative and docs dashboards define their own. A reader moving between them could reasonably ask which is authoritative.",
          "Treat the root dashboard as the entry point and this one as the analytical depth behind it. Add a single cross-reference note so the relationship is explicit rather than implied.",
          []),
-        ("I-10", "Local minimum wage for the City of Los Angeles not confirmed",
-         "medium",
-         "The state DIR page states that some cities set higher minimum wages and links a UC Berkeley inventory, which is not an official government source. The City of Los Angeles rate is therefore blank rather than filled from a secondary list.",
-         "Check the City of Los Angeles Office of Wage Standards page directly.",
-         ["S-17"]),
     ]
     rows = []
     for fid, title, sev, detail, fix, srcs in flags:
