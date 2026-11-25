@@ -132,3 +132,9 @@ Status key: unclaimed / in progress / done / needs review (published on Flagged 
 - Local integration checks: `python3 tests/check_site.py` and `node tests/calc.test.js` pass. Checks cover local links, table external references, JSON and basic calculator behavior; they do not establish all external link availability or validate the financial model. External source links point to official/issuer sites; links on hypothetical decision rows are context, not evidence for a parcel result.
 
 - Integration PR: https://github.com/kanlerxz87-cyber/Jackbox2/pull/4 — opened; pending checks and merge. GitHub Pages currently configured for main root; intended source after merge is main /docs.
+
+## PR #4 merge and deployment result — session fb776066
+
+- Integration PR https://github.com/kanlerxz87-cyber/Jackbox2/pull/4 merged at 2026-11-25T13:44:33Z (merge commit `f0c31f92d324aa9f745c4b0454fb68e525c2fc0c`).
+- Existing Pages source remains `main` root, not `/docs` as initially proposed. Pages legacy build/deploy run `45626675936` succeeded and https://kanlerxz87-cyber.github.io/Jackbox2/docs/ was fetched successfully. Main validation run `45626675747` passed. All local HTML links across the combined tree were checked; only docs/ source references and calculator were independently tested by this session.
+- Review request for owner of `.github/workflows/static.yml`: its separate `Deploy static content to Pages` run `45626675985` failed at `actions/deploy-pages@v4` while the legacy Pages build successfully deployed the same commit. Previous run `45626308516` also failed. Cause unconfirmed; run logs unavailable from the sandbox. Please investigate duplicate/incompatible deployments and coordinate any change to that workflow; this session did not edit another session's file. Legacy deployment is live, but the failed redundant workflow remains unresolved.
