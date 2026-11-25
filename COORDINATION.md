@@ -12,35 +12,35 @@ Owner: single integration session — all tasks claimed by this session. No othe
 
 | ID | Task | Status | Owner | Files touched |
 |----|------|--------|-------|---------------|
-| W-01 | Replace city/county proxies with trade-area figures | in progress | fb776066 | docs/trade-area.html, docs/data/*.json |
-| W-02 | Extend private worksheet to sell-vs-hold comparison | in progress | fb776066 | docs/sell-vs-hold.html, docs/calculator.html, docs/assets/calc.js |
-| W-03 | Decision-gate progress board | in progress | fb776066 | docs/decision-gate.html |
-| W-04 | Parcel-level hazard screening | in progress | fb776066 | docs/hazard-screening.html |
-| W-10 | One-page printable summary for advisors | in progress | fb776066 | docs/printable-summary.html |
-| X-01 | Private in-browser calculator | in progress | fb776066 | docs/calculator.html, docs/assets/calc.js |
-| X-02 | Neighbourhood-level data around parcel | in progress | fb776066 | docs/neighbourhood.html |
-| X-03 | After-tax module | in progress | fb776066 | docs/after-tax.html |
-| X-04 | Price short-lease discount from real quotes | in progress | fb776066 | docs/short-lease-discount.html |
-| X-05 | Tract-level trend evidence | in progress | fb776066 | docs/tract-trends.html |
-| X-06 | Executive summary | in progress | fb776066 | docs/executive-summary.html, docs/index.html |
-| X-07 | Risks incl. black-swan stress | in progress | fb776066 | docs/risks.html |
-| X-08 | Questions / informations / answers + discovery plan | in progress | fb776066 | docs/questions.html |
-| X-09 | Suggestions & site-improvement backlog | in progress | fb776066 | docs/suggestions.html |
-| X-10 | Flagged for Review page | in progress | fb776066 | docs/flagged-review.html |
-| X-11 | Sources & verification log | in progress | fb776066 | docs/sources.html |
-| X-12 | Site shell, nav, styles, GitHub Pages | in progress | fb776066 | docs/index.html, docs/assets/style.css, docs/assets/nav.js |
+| W-01 | Replace city/county proxies with trade-area figures | needs review | fb776066 | docs/trade-area.html, docs/data/*.json |
+| W-02 | Extend private worksheet to sell-vs-hold comparison | needs review | fb776066 | docs/sell-vs-hold.html, docs/calculator.html, docs/assets/calc.js |
+| W-03 | Decision-gate progress board | needs review | fb776066 | docs/decision-gate.html |
+| W-04 | Parcel-level hazard screening | needs review | fb776066 | docs/hazard-screening.html |
+| W-10 | One-page printable summary for advisors | done | fb776066 | docs/printable-summary.html |
+| X-01 | Private in-browser calculator | needs review | fb776066 | docs/calculator.html, docs/assets/calc.js |
+| X-02 | Neighbourhood-level data around parcel | needs review | fb776066 | docs/neighbourhood.html |
+| X-03 | After-tax module | needs review | fb776066 | docs/after-tax.html |
+| X-04 | Price short-lease discount from real quotes | needs review | fb776066 | docs/short-lease-discount.html |
+| X-05 | Tract-level trend evidence | needs review | fb776066 | docs/tract-trends.html |
+| X-06 | Executive summary | done | fb776066 | docs/executive-summary.html, docs/index.html |
+| X-07 | Risks incl. black-swan stress | needs review | fb776066 | docs/risks.html |
+| X-08 | Questions / informations / answers + discovery plan | needs review | fb776066 | docs/questions.html |
+| X-09 | Suggestions & site-improvement backlog | done | fb776066 | docs/suggestions.html |
+| X-10 | Flagged for Review page | done | fb776066 | docs/flagged-review.html |
+| X-11 | Sources & verification log | done | fb776066 | docs/sources.html |
+| X-12 | Site shell, nav, styles, GitHub Pages | done | fb776066 | docs/index.html, docs/assets/style.css, docs/requirements.html, docs/privacy.html, .github/workflows/validate.yml, tests/ |
 
 Status key: unclaimed / in progress / done / needs review (published on Flagged for Review, non-blocking).
 
 ## Verification log (official sources only)
 - Census QuickFacts LA city + LA County (V2025, ACS 2020–2024): population, income, poverty, housing, education, labour force — fetched 2026-11-25. URL: https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224
-- Jack in the Box Inc. FY2025 10-K (SEC EDGAR, filed 2025-11): franchise rental revenues $368.6M (2025) vs $375.4M (2024); Jack franchise rental $332.7M vs $347.2M; unit counts 2,136 total Jack (150 company / 1,986 franchise). URL: https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm
+- Company FY2025 earnings release, consolidated statements: franchise rental revenue $368.643M in FY2025 and $375.428M in FY2024 includes Jack and Del Taco. Segment-specific annual figures were excluded because the exact filing lines were not independently checked. URL: https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx
 - Jack in the Box Q4/FY2025 earnings release (Investor Relations, 2025-11-19): same-store sales -4.2% FY2025 (-7.4% Q4); opened 31 / closed 86 in FY2025. URL: https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx
 - IRS Topic 409 (2025): capital gains 0%/15%/20%, unrecaptured §1250 max 25%. URL: https://www.irs.gov/taxtopics/tc409
 - FTB Capital gains and losses: California taxes capital gains as ordinary income, no lower rate. URL: https://www.ftb.ca.gov/file/personal/income-types/capital-gains-and-losses.html
 - USGS UCERF3 FAQ: LA region 30-yr probabilities M6.7 60%, M7 46%, M7.5 31%. URL: https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area
 - BEA County GDP & Personal Income 2024 (2026-02-05): LA County personal income $818.5B (largest county). URL: https://www.bea.gov/news/2026/gross-domestic-product-county-and-personal-income-county-2024
-- BLS QCEW / LAUS: LA County employment +0.1% YoY (Jun 2024), LA metro unemployment ~5–6% range. URL: https://www.bls.gov/qcew/ and https://www.bls.gov/regions/west/ca_losangeles_msa.htm
+- Census QuickFacts employer employment 2023: LA County 3,987,736; change 2022–2023 2.3%; regional proxy, not a local forecast. URL: https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224
 - FEMA MSC / Risk MAP: flood maps are official NFIP source; parcel zone requires secure lookup. URL: https://msc.fema.gov/portal/home
 - CAL FIRE FHSZ Maps 2022: LA SRA map (2023-09-29). URL: https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones/fire-hazard-severity-zones-maps-2022
 - LA City Planning General Plan / Housing Element 2021–2029: RHNA 456,643 units. URL: https://planning.lacity.gov/plans-policies/general-plan-updates
@@ -54,3 +54,7 @@ Status key: unclaimed / in progress / done / needs review (published on Flagged 
 
 ## Handoff log
 - 2026-11-25 fb776066: Created COORDINATION.md, claimed all tasks above (single-session integration). Starting site build.
+
+- 2026-11-25 fb776066: Integrated 19 public static pages and tests. Verified Census QuickFacts figures against the live city/county table, company system results against FY2025 issuer earnings release, BEA county income against its release, and USGS/IRS/FTB guidance against linked official sources. Current-site data contains no address, owner identity, private records or owner financials. Public website is not an access-controlled internal workspace. Private evidence remains missing; needs-review items are documented in docs/flagged-review.html (F-01–F-09) and do not block publication.
+- Reconciliation: removed unverified FY2024 openings, Jack-only annual rental numbers and unsupported generic BLS ranges; retained verified consolidated rental numbers and Census employment figures. Replaced tax-rate shortcut with CPA-supplied incremental tax and after-tax hold cash flows; calculator is unvalidated scenario arithmetic, not a forecast or tax engine. No broker quotes, local tract data, parcel zone, or private lease abstract were obtained or commissioned.
+- Local integration checks: `python3 tests/check_site.py` and `node tests/calc.test.js` pass. Checks cover local links, table external references, JSON and basic calculator behavior; they do not establish all external link availability or validate the financial model. External source links point to official/issuer sites; links on hypothetical decision rows are context, not evidence for a parcel result.
