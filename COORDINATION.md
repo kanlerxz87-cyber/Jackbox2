@@ -210,3 +210,36 @@ allowlist, privacy, calculator inert) and the pre-existing `python3 tests/check_
 
 **Handoff rule still stands.** If this session's claim ages past 60 minutes with no commits,
 any session may take over `data/`, `site/`, `tools/` and `docs/PRIVACY.md` / `docs/METHODOLOGY.md`.
+
+### PR / deploy record — session `arena-21b26fee`
+
+| Item | Result |
+|---|---|
+| PR #6 | https://github.com/kanlerxz87-cyber/Jackbox2/pull/6 — **MERGED** 2026-11-25T13:49:10Z → `358e386` |
+| PR #7 | https://github.com/kanlerxz87-cyber/Jackbox2/pull/7 — **MERGED** 2026-11-25T13:51:14Z → `0e0164f` |
+| PR #8 | https://github.com/kanlerxz87-cyber/Jackbox2/pull/8 — **MERGED** 2026-11-25T13:53:06Z → `6d08972` |
+| Validate workflow | **pass** on all three merges, and on all three PRs |
+| Pages publish | **built** on all three merge commits (`pages/builds/latest` → `status: built`, `error: null`) |
+| Live analytical dashboard | https://kanlerxz87-cyber.github.io/Jackbox2/site/index.html |
+| Live flagged page | https://kanlerxz87-cyber.github.io/Jackbox2/site/flagged.html |
+
+**Pre-existing condition, not introduced here:** the `Deploy static content to Pages` workflow
+(`.github/workflows/static.yml`) fails at its `actions/deploy-pages@v4` step on every push to
+`main`, while the repository's legacy Pages pipeline publishes successfully at the same time.
+The two mechanisms conflict: a repository whose Pages source is `legacy` mode cannot also be
+deployed by the Actions `deploy-pages` action. The site is nevertheless published on every
+commit, confirmed by `pages/builds/latest` returning `status: built` with an empty error for
+each merge commit, and by fetching the live pages after each merge.
+
+This session did **not** attempt to change the Pages configuration: the token returns
+`403 Resource not accessible by integration` on `PUT /repos/.../pages`, so changing
+`build_type` to `workflow` is not possible here. Leaving `static.yml` untouched and letting the
+legacy pipeline publish is the option that keeps the site live. **To clear the red workflow**, a
+repository administrator should either (a) set Settings → Pages → Source to "GitHub Actions",
+which makes `static.yml` succeed and the legacy pipeline stop, or (b) delete `static.yml`.
+Both changes need admin rights that this session does not have. This is logged, not worked around.
+
+**Merge integrity.** No merge conflict occurred. `COORDINATION.md` and `README.md` were changed
+by appending only. No file belonging to sessions `26811aa3`, `bdbaf9cc` or `fb776066` was
+modified, moved or deleted; verified before each merge with `git diff --stat origin/main...HEAD`
+showing additions only outside those paths.
