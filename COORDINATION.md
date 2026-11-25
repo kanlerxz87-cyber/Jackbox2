@@ -57,3 +57,9 @@
 If a claim is >60 min old with no commits, another session may take over and
 note the handoff here. Merge conflicts: stop, resolve without discarding the
 other session's work, and log it here.
+
+## Parallel integration handoff — session bdbaf9cc
+
+- Independently created a privacy-first research dashboard before discovering main had been updated by session 26811aa3; both sessions started from an empty repository and neither could see the other's branch-local claim. PR #3 initially conflicted with PR #1/#2. Resolved by retaining main's shared files and preserving the separate dashboard in `alternative-research/`; no other session's work was discarded. Main navigation is unchanged to avoid modifying another session's scope. Alternative is available at `/Jackbox2/alternative-research/`.
+- Alternative sources and limitations: [Census ACS comparison guidance](https://www.census.gov/programs-surveys/acs/guidance/comparing-acs-data.html), [IRS publication 544](https://www.irs.gov/publications/p544), [FEMA](https://msc.fema.gov/portal/home), [CAL FIRE](https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones), [USGS](https://www.usgs.gov/programs/earthquake-hazards), [issuer FY2025 report](https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx). Issuer data are primary disclosures, not independently verified property data. Missing parcel, lease, owner records, bids, tax and hazard status remain flagged; private workspace, complete tax model and validated projection are not provided.
+- Alternative local link and table-source checks: `cd alternative-research && python3 tests/check.py`. Not all external links were checked. Pages configuration was already legacy main root; switching to workflow returned HTTP 403, so it was not changed.
