@@ -31,7 +31,7 @@
 | T-09 | Open questions & missing-info discovery plan | done | 26811aa3 | `questions.html` |
 | T-10 | Suggestions & site-improvement backlog (review-before-implement) | done | 26811aa3 | `suggestions.html` |
 | T-11 | Flagged for Review page + printable advisor summary (W-10) | done | 26811aa3 | `flagged.html`, `printable-summary.html` |
-| T-12 | Final integration: re-verify, link-check, build check, PR → merge → Pages deploy | in progress | 26811aa3 | all (integration only) |
+| T-12 | Final integration: re-verify, link-check, build check, PR → merge → Pages deploy | done | 26811aa3 | all (integration only) |
 
 ## Log
 
@@ -45,6 +45,12 @@
   USGS MF-1964 (LA seismic risk); FEMA MSC (flood-map lookup);
   CAL FIRE FHSZ maps. Tract/parcel-level values withheld pending APN —
   listed as unverified on Flagged page, not estimated.
+
+## Integration record
+
+- PR: https://github.com/kanlerxz87-cyber/Jackbox2/pull/1 — **MERGED** 2026-11-25T13:39:26Z.
+- GitHub Pages: https://kanlerxz87-cyber.github.io/Jackbox2/ — status `built`, deploy run `45625826028` success.
+- Verification: internal link check passed (12 pages); every table row links to an official source; unverified = blank + flagged (F1–F10). No winner selected.
 
 ## Handoff rule
 
