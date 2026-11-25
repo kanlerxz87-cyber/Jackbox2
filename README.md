@@ -1,37 +1,51 @@
-# Central Los Angeles NNN QSR (Jack in the Box) — Decision Dashboard
+# Jack in the Box — Central LA Decision Dashboard
 
-**Live GitHub Pages Dashboard:** `https://kanlerxz87-cyber.github.io/Jackbox2/`
+Anonymous sell-vs-hold decision workspace for one Central Los Angeles Jack in the Box NNN parcel (expiry 2030–2035, per brief).
 
-An anonymous, verification-first research and decision-support dashboard built to evaluate strategic paths for a Central Los Angeles single-tenant Jack in the Box NNN lease expiring in the **2030–2035** window (sell taxable, IRC §1031 exchange, negotiated early renewal / blend-and-extend, hold to expiration / re-tenant, or transit-corridor redevelopment).
+**Privacy:** No personal identifiers, APN, lease files, or owner finances are published. Placeholders only (`[PARCEL — WITHHELD]`). Publish only aggregate, non-identifying findings.
 
-## Privacy & Anonymization Mandate
-- **Zero Personal Information Published:** All parcel identifiers (APN, street address), owner entity names, private lease terms, store sales, debt balances, and tax basis records are strictly excluded from this repository and replaced with anonymized placeholders.
-- **100% Client-Side Private Calculator (W-02):** All calculations execute locally in the reader's browser with zero external CDNs, zero analytics, and zero network transmission.
-- **No Winner Selected Without Verified Inputs:** Public official research establishes benchmarks and risk structure; binding decisions remain gated until offline legal, CPA, engineering, and brokerage verification completes.
+**Verification:** Every table row links to an official source (SEC, Census, BLS, FRED, IRS, USGS, FEMA, CAL FIRE). Unverified values are blank and listed on `flagged.html`. Never inferred.
 
-## Dashboard Pages & Workstreams
-| Page | Workstream | Purpose |
-| --- | --- | --- |
-| `index.html` | Executive Summary | Verified KPI benchmarks, synthesis, 6 strategic decision options with BAU + Black Swan risk matrix |
-| `tenant-analysis.html` | SEC EDGAR Series | Multi-year Jack in the Box Inc. (`NASDAQ: JACK`, CIK `0000807882`) SSS, unit counts, closures, franchise rental revenue, debt & governance |
-| `market-trade-area.html` | **W-01** | Regional baselines vs. offline Census tract trade-area workflow, schools, jobs, AB 1228, Metro D Line, zoning & 2026–2035 projection system |
-| `hazards-risk.html` | **W-04** | Parcel-level hazard screening framework (CGS EQ Zapp, FEMA, CAL FIRE 2025 LRA, FAIR Plan) & joint rent-loss/repair/liquidity stress tests |
-| `lease-calendar.html` | Gate 1 Legal & Tax | Private lease abstract checklist, local-only Notice Calendar reconciliation tool & verified IRS/FTB/BOE/LA Finance Measure ULA rules |
-| `calculator.html` | **W-02** | Private local browser Sell-vs-Hold & After-Tax Calculator, Short-Lease BOV discount pricer & versioned 10-yr cash-flow model (`v1.0.0-2026.11`) |
-| `decision-gates.html` | **W-03** | Interactive Decision-Gate Progress Board (Gate 0 &rarr; Gate 5) |
-| `questions-gaps.html` | Missing Info Q&A | Decision-blocking questions contrasting verified knowledge vs. missing private data + safe discovery plan |
-| `suggestions.html` | Site Roadmap | Dedicated suggestions review section to evaluate and select enhancements before implementation |
-| `advisor-summary.html` | **W-10** | Print-optimized one-page summary for real estate counsel, CPA, insurance broker, and NNN brokers |
-| `flagged-review.html` | Audit Log | All unverified/blank fields, pending filings (e.g., FY2026 10-K), and cross-agency divergences with official source links |
+## Site map (GitHub Pages, static — no build step)
 
-## Verification & Local Development
-Rebuild the offline-compatible data bundle from `data/*.json` and run full automated link, source, data, and privacy checks:
-```bash
-node scripts/build_data_bundle.mjs
-node scripts/verify_site.mjs
-```
-To preview locally (or simply open `index.html` offline in a browser):
-```bash
-python3 -m http.server 8000 --bind 0.0.0.0
-```
-See `COORDINATION.md` for the shared task board, verification log, official source register, and PR/deployment history.
+| Page | Purpose |
+|------|---------|
+| `index.html` | Landing dashboard + key verified findings |
+| `executive-summary.html` | Bottom line, knowns/unknowns, recommended path |
+| `decision-gates.html` | W-03 progress board (no commitment until gates clear) |
+| `trade-area.html` | W-01 county context + blank tract table (pending APN) |
+| `hazards.html` | W-04 parcel hazard screening framework |
+| `sell-vs-hold.html` | W-02 after-tax comparison + private browser calculator |
+| `risks.html` | Risks per decision + black-swan stress tests |
+| `questions.html` | Open questions + missing-info discovery plan |
+| `suggestions.html` | Suggestions backlog (review before implementing) |
+| `flagged.html` | Flagged for Review (blank/unverified + irregularities) |
+| `printable-summary.html` | W-10 one-page printable advisor summary |
+| `sources.html` | Official source list |
+
+See `COORDINATION.md` for the shared task board and session log.
+
+---
+
+## This repository contains six dashboards
+
+Multiple parallel sessions built dashboards before seeing the others' branches. Rather than
+delete work, all are retained. They do not contradict each other on any verified figure; they
+differ in structure, depth, and filing cutoff date.
+
+| Dashboard | Entry point | Character |
+|---|---|---|
+| Root dashboard | `index.html` | Entry point. Six decision gates, executive summary, key findings. |
+| **Analytical dashboard** | `site/index.html` | Depth. Twelve gates, full evidence ledger, after-tax templates, browser calculator, 12 flagged items. Generated from `data/` by `tools/build.py`. |
+| Alternative research | `alternative-research/index.html` | Independently researched second pass. |
+| Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
+| Privacy-first workflow | `privacy-first/index.html` | Conservative no-fabrication framework: redaction controls, empty/flagged inputs, seven decision gates, risk/Q&A/suggestions registers. |
+| **Central LA 2026 Refresh (Nov 2026 verified)** | `central-la-2026/index.html` | Latest filing cutoff (verified 2026-11-25): 11-page W-01–W-10 dashboard incorporating Jack in the Box FY2022–Q3 FY2026 SEC series (Del Taco sale Dec 2025, `$500M` Series 2026-1 `7.624%` refinancing, Nov 17, 2026 C-suite 8-K), post-June 30, 2026 Measure ULA `$5.4M/$10.9M` cliff detector, May 2026 CA DOF E-1 & Metro D Line Sec. 1 opening, Jan 2025 LA wildfire / CDI FAIR Plan orders, Notice Calendar tool, and 100% client-side W-02 calculator (`v1.0.0-2026.11`). |
+
+The analytical dashboard presents a **later** reporting period than the root dashboard: the
+tenant filed Q4 and full-year FY2025 results on 19 November 2025, disclosing same-store sales
+of −7.4% in Q4 and −4.2% for the year. Both are flagged as I-11 on the analytical dashboard's
+Flagged for Review page.
+
+No figure in any dashboard is estimated. Where an official value could not be obtained it is
+blank and flagged.

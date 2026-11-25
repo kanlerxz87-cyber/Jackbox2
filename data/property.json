@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "compiled_utc": "2026-11-25",
+    "privacy_class": "INTERNAL-ONLY SCHEMA. This file contains a lease-abstract *schema*, not lease data. Every substantive field is empty by design and must be filled by a named authorised adviser working from the executed documents, never from this public repository.",
+    "placeholder_key": {
+      "[OWNER-ENTITY]": "legal owner / borrowing entity - withheld",
+      "[APN]": "assessor's parcel number - withheld",
+      "[STREET-ADDRESS]": "street address - withheld",
+      "[LEASE-FILE]": "executed ground/space lease - offline, authorised advisers only",
+      "[SITE-PLAN]": "survey and site plan - offline",
+      "[TITLE-REPORT]": "title commitment - offline",
+      "[SURVEY]": "ALTA survey - offline",
+      "[INSURANCE-POLICY]": "certificate of insurance - offline",
+      "[TAX-RETURNS]": "owner tax returns - offline, never in this repo",
+      "[BROKER-QUOTE-1..3]": "written market quotes - offline"
+    }
+  },
+  "property": [
+    {"field":"Property type","value":"Single-tenant quick-service restaurant on a ground lease","status":"described-only","note":"The brief states a NNN lease. Whether the interest is a ground lease (owner owns land, tenant owns box) or a building lease materially changes the exit. Not verified."},
+    {"field":"Tenant","value":"Jack in the Box","status":"observation","source":"S-02","url":"https://www.sec.gov/Archives/edgar/data/807882/000080788225000070/ex991-q425earningsrelease.htm","note":"Tenant corporate credit verified; the specific franchisee/operating entity behind this unit is NOT verified. In a franchise system the credit may be the franchisee, not the brand. This is the single most important credit question and it is currently unanswered."},
+    {"field":"Street address","value":"[STREET-ADDRESS]","status":"withheld","note":"Required for parcel-level hazard, tract and planning lookups. Not published."},
+    {"field":"Assessor's parcel number","value":"[APN]","status":"withheld"},
+    {"field":"Submarket","value":"Central Los Angeles","status":"described-only","note":"No official definition of 'Central LA' applies to a parcel. Trade-area definition remains open (W-01)."},
+    {"field":"Land area","value":"","status":"unverified","note":"To resolve: [SURVEY]."},
+    {"field":"Building area (GLA)","value":"","status":"unverified","note":"To resolve: [SITE-PLAN]."},
+    {"field":"Year built","value":"","status":"unverified","note":"Drives seismic code vintage, roof/equipment reserve and remaining economic life. To resolve: [SITE-PLAN] and building records."},
+    {"field":"Drive-thru configuration","value":"","status":"unverified","note":"Drive-thru share of QSR sales is decisive for site value; a box without a functioning drive-thru re-lets at a materially different rent. To resolve: [SITE-PLAN]."}
+  ],
+  "lease_abstract": [
+    {"field":"Lease commencement date","value":"","status":"unverified"},
+    {"field":"Expiration date","value":"2030 to 2035","status":"range-as-given","note":"The brief gives a five-year window, not a date. Every projection in this repo is therefore run as a range. FLAG I-02."},
+    {"field":"Remaining firm term at 2026-11-25","value":"","status":"derived-pending","formula":"expiration date minus 2026-11-25, once the date is known","note":"Cannot be computed from a range without inventing a date."},
+    {"field":"Base rent, current","value":"","status":"unverified","note":"The central missing number. Neither the sale case nor the hold case can be priced without it."},
+    {"field":"Rent escalation mechanism","value":"","status":"unverified","note":"Fixed bumps vs CPI-indexed changes the present value materially. Compare any fixed bump against the verified 3.79%/yr LA CPI-U CAGR (PI-04)."},
+    {"field":"Renewal options - number and term","value":"","status":"unverified","note":"An option held by the tenant is a call the owner has written; it caps upside and is priced by buyers."},
+    {"field":"Renewal option rent mechanism","value":"","status":"unverified","note":"Fair-market-value vs fixed vs CPI. The single largest driver of the renewal case."},
+    {"field":"Assignment / subletting rights","value":"","status":"unverified"},
+    {"field":"Permitted use and exclusivity","value":"","status":"unverified"},
+    {"field":"Go-dark / continuous-operation covenant","value":"","status":"unverified","note":"If the tenant may go dark and still pay, the rent stream is closer to an unsecured bond. If not, a closure creates a live lease with no operator."},
+    {"field":"Guaranty - entity and scope","value":"","status":"unverified","note":"Franchisee personal guaranty vs brand corporate guaranty is the difference between investment grade and speculative credit."},
+    {"field":"NNN expense allocation","value":"","status":"unverified","note":"Confirm the tenant bears property tax, insurance and structural repairs. Verify the exclusions - roof, structure, parking lot and HVAC are commonly carved back to the landlord and are the real cost of a 'NNN' lease."},
+    {"field":"Landlord repair / replacement obligations","value":"","status":"unverified"},
+    {"field":"Estoppel and SNDA requirements","value":"","status":"unverified"},
+    {"field":"Notice and cure periods","value":"","status":"unverified","note":"Required to build the notice calendar (R-03)."},
+    {"field":"Early-termination rights (tenant)","value":"","status":"unverified","note":"A tenant termination right inside the 2030-2035 window would be a material defect in the income stream."},
+    {"field":"Co-tenancy or sales-based kick-out","value":"","status":"unverified"},
+    {"field":"Security deposit / letter of credit","value":"","status":"unverified"}
+  ],
+  "notice_calendar": [
+    {"item":"Renewal-option notice window opens","trigger":"expiration date minus notice period","value":"","status":"unverified","note":"Until the expiration date and notice period are known, no calendar date can be produced. Producing one would be a fabrication."},
+    {"item":"Renewal-option notice deadline","trigger":"expiration date minus notice period","value":"","status":"unverified"},
+    {"item":"Estoppel delivery deadline","trigger":"per lease","value":"","status":"unverified"},
+    {"item":"First date the owner may market the property without triggering tenant rights","trigger":"per lease","value":"","status":"unverified"},
+    {"item":"Insurance certificate renewal","trigger":"annual","value":"","status":"unverified"}
+  ],
+  "reconciliation_notes": [
+    "R-03 requires the lease abstract to be reconciled against the notice calendar BEFORE any sale or renewal commitment is made. That reconciliation is represented here as a schema with an empty calendar. It cannot be executed without [LEASE-FILE].",
+    "The correct sequencing is: abstract the lease -> build the calendar -> confirm every dated obligation -> only then authorise a broker to market or a letter of intent to be signed. Skipping the calendar is how owners lose a renewal option by a few days."
+  ]
+}

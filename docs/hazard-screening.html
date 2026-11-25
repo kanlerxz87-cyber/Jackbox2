@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hazard Screening (W-04) — Jack in the Box</title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="top"><div class="wrap"><div><h1>W-04 · Parcel-Level Hazard Screening</h1><p>Regional context verified · Parcel zone status UNVERIFIED pending secure lookup</p></div></div></header>
+<nav class="main"><div class="wrap"><a href="index.html">Dashboard</a><a href="trade-area.html">Trade Area</a><a class="active" href="hazard-screening.html">Hazards</a><a href="risks.html">Risks</a><a href="decision-gate.html">Decision Gates</a><a href="sources.html">Sources</a></div></nav>
+<div class="wrap">
+<div class="privacy">Do not treat regional context as parcel status. Parcel flood / fire / seismic zones require address/APN in a secure workflow (offline). This page replaces regional context with parcel status once that lookup is done.</div>
+<div class="card"><h2>Regional context (verified)</h2>
+<table><thead><tr><th>Hazard</th><th>Regional fact</th><th>Source</th><th>Parcel status</th></tr></thead><tbody>
+<tr><td>Earthquake</td><td>USGS UCERF3 LA region 30-yr: M6.7 60%, M7 46%, M7.5 31%</td><td><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS</a></td><td><span class="badge flag">UNVERIFIED</span></td></tr>
+<tr><td>Flood</td><td>FEMA FIRMs are official NFIP flood maps; SFHA = 1%-annual-chance floodplain</td><td><a href="https://msc.fema.gov/portal/home">FEMA MSC</a></td><td><span class="badge flag">UNVERIFIED</span></td></tr>
+<tr><td>Fire</td><td>CAL FIRE FHSZ maps classify Moderate / High / Very High (SRA + LRA)</td><td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones/fire-hazard-severity-zones-maps-2022">CAL FIRE</a></td><td><span class="badge flag">UNVERIFIED</span></td></tr>
+</tbody></table></div>
+<div class="card"><h2>Secure parcel checklist (offline)</h2><ol><li>FEMA MSC: enter address → record Flood Zone (AE/X/etc.), BFE, SFHA Y/N.</li><li>CAL FIRE FHSZ + City of LA: record SRA/LRA zone, defensible-space / Chapter 7A requirements.</li><li>USGS / CGS: fault rupture, liquefaction, landslide zones; building age / retrofit / soft-story.</li><li>Engineering + insurance: Phase I, seismic retrofit, earthquake / flood / fire premiums and deductibles.</li><li>Stress together: rent loss + repairs + exit illiquidity (see <a href="risks.html">Risks</a>).</li></ol></div>
+<div class="card"><h2>Parcel result table (populate after lookup)</h2>
+<table><thead><tr><th>Zone</th><th>Result</th><th>Map / date</th><th>Implication</th></tr></thead><tbody>
+<tr><td>FEMA Flood Zone</td><td></td><td></td><td> <small>(<a href="https://msc.fema.gov/portal/home">official context</a>; not parcel evidence)</small></td></tr>
+<tr><td>CAL FIRE FHSZ</td><td></td><td></td><td> <small>(<a href="https://msc.fema.gov/portal/home">official context</a>; not parcel evidence)</small></td></tr>
+<tr><td>Seismic / fault / liquefaction</td><td></td><td></td><td> <small>(<a href="https://msc.fema.gov/portal/home">official context</a>; not parcel evidence)</small></td></tr>
+</tbody></table></div>
+</div><footer><div class="wrap">Anonymous · <a href="sources.html">Sources</a></div></footer></body></html>

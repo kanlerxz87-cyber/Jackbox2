@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions and a path to choose — Jack in the Box ground lease, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision support for a single-tenant NNN Jack in the Box ground lease in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap bar">
+  <div class="brand">Jack in the Box <span>/ Central LA ground lease</span></div>
+  <nav class="main">
+<a href="index.html">Overview</a>
+<a href="decision.html">Decision</a>
+<a href="gates.html">Decision gates</a>
+<a href="questions.html">Questions</a>
+<a href="economy.html">Local economy</a>
+<a href="trade-area.html">Trade area</a>
+<a href="hazards.html">Hazards</a>
+<a href="valuation.html">Sell vs hold</a>
+<a href="tax.html">After tax</a>
+<a href="risks.html">Risks</a>
+<a href="calculator.html">Calculator</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="requirements.html">Requirements</a>
+<a href="suggestions.html" class="on">Suggestions</a>
+<a href="print.html">1-page summary</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only</p>
+  <h1>Suggestions and a path to choose</h1>
+  <p class="lede">Proposed improvements to this site and to the decision process, none implemented, each with a recommendation so a path can be chosen first.</p>
+  
+</div>
+
+<div class="note ok"><p><b>Nothing on this page has been implemented.</b> That is deliberate. The brief asks for a dedicated section where a reviewer can see suggested improvements and choose a path before anything changes. Every proposal below is a recommendation with its reasoning attached, so the choice can be made on the merits rather than on vibes.</p></div>
+<div class="note"><p><b>Two suggestions matter more than the rest.</b> SG-07 (the hard verified/unverified visual rule) protects against the failure mode where a polished site becomes a source of false confidence. SG-05 (a comparable-transactions tracker built from public county records) is the only route to a defensible price that does not require buying commercial data. If only two things are done, do those.</p></div>
+<section class="block">
+  <h2>Proposed improvements</h2>
+  <p class="sub">Ten proposals. Each one names the problem it solves, so a proposal can be rejected on the same basis it was made.</p>
+<div class="twrap"><table class=""><thead><tr><th>ID</th><th>Improvement</th><th>Problem it solves</th><th>Proposal</th><th>Effort</th><th>Decision it enables</th><th>Recommendation</th></tr></thead><tbody><tr><td class="id">SG-01</td><td><b>Add a live price-discovery module driven by the three written quotes</b></td><td>The site can show a formula but not a price. Price is the dock the whole decision turns on.</td><td>Once G-08 closes, add a page where each of the three quotes is entered with its assumed cap rate and term, and the site ranks them against the hold case automatically. Results stay browser-only so no confidential bid ever reaches the repo.</td><td>Medium</td><td>Turns &#x27;what are we offered&#x27; into &#x27;which offer beats holding&#x27;</td><td><span class="b b-closed">Adopt after G-08</span></td></tr>
+<tr><td class="id">SG-02</td><td><b>Add a document register with hashes, not documents</b></td><td>R-03 needs a lease abstract but the lease cannot live here.</td><td>Publish only a register: document type, date, verified/unverified, and a SHA-256 hash of the offline file so an adviser can prove which version was abstracted. The hash proves integrity without disclosing content.</td><td>Low</td><td>Auditability without disclosure</td><td><span class="b b-closed">Adopt now</span></td></tr>
+<tr><td class="id">SG-03</td><td><b>Turn the notice calendar into the site&#x27;s clock</b></td><td>The single cheapest way to lose money on a ground lease is to miss a notice window.</td><td>A page that counts down to each dated obligation once the lease date is known, with the guard that it renders nothing until G-01 closes rather than guessing a date.</td><td>Low</td><td>Prevents a self-inflicted loss</td><td><span class="b b-closed">Adopt now</span></td></tr>
+<tr><td class="id">SG-04</td><td><b>Add a scenario comparison matrix (base / adverse / severe)</b></td><td>The site states risks but does not let a reviewer see three futures side by side.</td><td>Three columns built entirely from the verified observations already in this repo — for example base case uses the observed +0.19% two-year job change, adverse uses the 2020 unemployment peak of 18.9% as a shock, severe adds the correlated hazard legs. All inputs are already sourced; no new data needed.</td><td>Medium</td><td>Makes the tail visible without inventing probabilities</td><td><span class="b b-closed">Adopt in phase 3</span></td></tr>
+<tr><td class="id">SG-05</td><td><b>Add a comparable-transactions tracker against the County recorder</b></td><td>I-04 says no verified comp set exists. The County recorder makes one possible for free.</td><td>A table of recorded grant deeds for single-tenant QSR parcels in Los Angeles County, with the documentary transfer tax implied price, each row linked to the recorder&#x27;s index. Populated manually as research proceeds.</td><td>High</td><td>Replaces the unverified short-lease discount with real transactions</td><td><span class="b b-closed">Adopt — highest value per unit of effort on this list</span></td></tr>
+<tr><td class="id">SG-06</td><td><b>Add a sensitivity tornado chart to the calculator</b></td><td>The owner cannot see which input actually matters.</td><td>Rank each input&#x27;s swing on the net after-tax number, so it becomes obvious that term and basis dominate and that small rent differences do not.</td><td>Low</td><td>Focuses advisers on the gates that matter</td><td><span class="b b-closed">Adopt now</span></td></tr>
+<tr><td class="id">SG-07</td><td><b>Separate &#x27;verified&#x27; from &#x27;reasoned&#x27; with a hard visual rule</b></td><td>Everything on a decision site looks equally trustworthy.</td><td>Two visual states only: a green VERIFIED badge with a Tier 1 link, or a red UNVERIFIED badge with an empty value. Never a third, softer state. Already applied by convention; make it a build-time check.</td><td>Low</td><td>Prevents the site itself from becoming a source of false confidence</td><td><span class="b b-closed">Adopt now — already partially enforced by tools/check.py</span></td></tr>
+<tr><td class="id">SG-08</td><td><b>Add a red-team page that argues against the current lean</b></td><td>A single lean written by one analyst is fragile.</td><td>A dedicated page presenting the strongest possible case for the opposite conclusion, with sources, so the owner sees the counter-argument without having to ask for it.</td><td>Low</td><td>Guards against anchor bias on a large irreversible decision</td><td><span class="b b-closed">Adopt now</span></td></tr>
+<tr><td class="id">SG-09</td><td><b>Add an access-controlled internal companion, separate from this repo</b></td><td>This repo must stay public-safe, which means it can never hold the real records.</td><td>A private, access-logged workspace for [LEASE-FILE], [TAX-RETURNS] and quotes, with this site linking to nothing but a policy statement. Keep the public site aggregate-only, permanently.</td><td>Medium</td><td>Lets the analysis use real documents without publishing them</td><td><span class="b b-closed">Adopt before any document is shared</span></td></tr>
+<tr><td class="id">SG-10</td><td><b>Add a decision log</b></td><td>After six months nobody remembers why a choice was made.</td><td>An append-only page recording each decision, the date, the gates that were closed at the time, and the evidence relied on. Nothing is ever edited, only appended.</td><td>Low</td><td>Makes the reasoning auditable and reversible</td><td><span class="b b-closed">Adopt now</span></td></tr></tbody></table></div>
+</section>
+<section class="block">
+  <h2>Choose a path</h2>
+  <p class="sub">Pick one of the three paths below. They are ordered by effort, and each is independent of the others.</p>
+<div class="twrap"><table class=""><thead><tr><th>ID</th><th>Path</th><th>Includes</th><th>Effort</th><th>What you get</th><th>What you do not get</th></tr></thead><tbody><tr><td class="id">P-A</td><td><b>Minimum responsible build</b></td><td class="id">SG-02 · SG-03 · SG-06 · SG-07 · SG-08 · SG-10</td><td>A few hours</td><td>A trustworthy, auditable, non-misleading site that cannot be mistaken for a valuation.</td><td>A price.</td></tr>
+<tr><td class="id">P-B</td><td><b>Decision-grade build</b></td><td class="id">P-A · SG-01 · SG-04 · SG-09</td><td>One to two weeks of adviser time plus build</td><td>A site that can actually host the sell-versus-hold decision once the gates close.</td><td>Verified comparables.</td></tr>
+<tr><td class="id">P-C</td><td><b>Evidence-grade build</b></td><td class="id">P-B · SG-05</td><td>One to two months of record research at the County recorder</td><td>Real transaction evidence replacing the unverified short-lease discount. This is the only path that produces a defensible price without buying commercial data.</td><td>Speed.</td></tr></tbody></table></div>
+  <div class="note ok"><p><b>Recommendation.</b> Take P-A immediately — it costs almost nothing and prevents the most damaging failure mode, which is a confident-looking site built on unknowns. Commit to P-C in parallel, because the comparable-transactions tracker is the only route to a verified price that does not require purchasing data. P-B is the natural landing point while P-C accumulates.</p></div>
+</section>
+
+</main>
+<footer class="site"><div class="wrap">
+  <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built 2026-11-25 13:52 UTC from the data layer in <code>data/</code>.</p>
+  <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
+</div></footer>
+</body>
+</html>

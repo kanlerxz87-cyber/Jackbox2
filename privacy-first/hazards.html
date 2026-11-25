@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hazard Screening | Jackbox2</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><p class="eyebrow">Jackbox2 Property Decision Workspace</p><h1>Hazard Screening &amp; Resilience Stress Test</h1><p class="subtitle">Regional hazard context and a parcel-level screening workflow. No parcel-level hazard determination is published because the exact parcel is withheld for privacy.</p></div></header>
+<div class="nav-wrap"><nav class="main-nav" aria-label="Primary">
+  <a href="index.html">Dashboard</a><a href="privacy.html">Privacy &amp; Scope</a><a href="sources.html">Source Registry</a><a href="market.html">Market &amp; Area Context</a><a class="active" href="hazards.html">Hazard Screening</a><a href="lease-tax.html">Lease, Tax &amp; Exit</a><a href="decision.html">Decision Framework</a><a href="qa.html">Q&amp;A / Missing Info</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a>
+</nav></div>
+<main id="main" class="page">
+  <div class="notice notice-danger"><strong>W-04 gate:</strong> Regional context is not parcel status. Before any decision, privately check exact parcel flood, fire, seismic, liquefaction/fault/ground-shaking context as applicable, insurance availability/cost, and engineering. Publish only non-identifying aggregate findings.</div>
+
+  <section class="section">
+    <div class="section-header"><h2>Hazard Screening Matrix</h2><p>Official tools and required evidence for parcel-level screening.</p></div>
+    <div class="table-wrap"><table>
+      <caption>Hazard screening checklist</caption>
+      <thead><tr><th>Hazard</th><th>Regional context (official)</th><th>Parcel-level question</th><th>Required evidence (internal)</th><th>Status</th><th>Official source</th></tr></thead>
+      <tbody>
+        <tr><td>Earthquake / seismic shaking</td><td>Los Angeles region has significant seismic hazard; USGS NSHM/UHT provides hazard data.</td><td>What are site ground motion, fault proximity, retrofit needs, and insurance/lender implications?</td><td>USGS UHT output, geotechnical/engineering review, insurance quote, retrofit history.</td><td><span class="badge badge-danger">Blocked - parcel needed</span></td><td><a href="https://earthquake.usgs.gov/hazards/interactive/">USGS Unified Hazard Tool</a></td></tr>
+        <tr><td>Flood</td><td>FEMA NFHL/FIRM provides official flood hazard data where effective.</td><td>Is parcel in SFHA/Zone A/AE/V? Any LOMC? Is flood insurance required/available?</td><td>FEMA MSC FIRMette, NFHL lookup, LOMC search, insurer quote.</td><td><span class="badge badge-danger">Blocked - parcel needed</span></td><td><a href="https://msc.fema.gov/portal/home">FEMA Map Service Center</a></td></tr>
+        <tr><td>Wildfire / urban conflagration exposure</td><td>CAL FIRE/OSFM FHSZ maps identify fire hazard severity zones; local responsibility areas also matter.</td><td>What is parcel FHSZ/LRA designation and insurance/defensible-space implication?</td><td>OSFM/CAL FIRE address lookup, local fire authority confirmation, insurer quote.</td><td><span class="badge badge-danger">Blocked - parcel needed</span></td><td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">CAL FIRE OSFM FHSZ</a></td></tr>
+        <tr><td>Liquefaction / landslide / geologic</td><td>Regional geologic hazards vary; local and state maps/engineering needed.</td><td>Any liquefaction, landslide, or site instability affecting repair cost or downtime?</td><td>CGS/geologic review, geotechnical report, prior reports/disclosures.</td><td><span class="badge badge-danger">Blocked - parcel needed</span></td><td><a href="https://www.conservation.ca.gov/cgs">California Geological Survey</a></td></tr>
+        <tr><td>Environmental/site contamination</td><td>Prior commercial use can create environmental risk; screen before acquisition/sale assumptions.</td><td>Any recognized environmental condition, UST, cleanup, or deed restriction?</td><td>Phase I ESA, EnviroStor/GeoTracker screen, regulatory closure docs.</td><td><span class="badge badge-danger">Blocked - parcel needed</span></td><td><a href="https://www.envirostor.dtsc.ca.gov/public/">DTSC EnviroStor</a></td></tr>
+        <tr><td>Insurance availability/cost shock</td><td>California insurance market conditions can change; hazard exposure affects premiums/deductibles.</td><td>Can property be insured at manageable cost with acceptable exclusions?</td><td>Current insurance declarations, renewal quotes, catastrophe deductible analysis.</td><td><span class="badge badge-danger">Blocked - owner/parcel needed</span></td><td><a href="https://www.insurance.ca.gov/">CA Dept of Insurance</a></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><h2>Black Swan / Tail-Risk Stress Tests</h2><p>Scenario tests to run in the private model. No probabilities fabricated.</p></div>
+    <div class="table-wrap"><table>
+      <caption>Tail-risk stress scenarios</caption>
+      <thead><tr><th>Scenario</th><th>Transmission channel</th><th>Metrics to stress</th><th>Evidence needed</th><th>Status</th><th>Reference source</th></tr></thead>
+      <tbody>
+        <tr><td>Major earthquake</td><td>Physical damage, business interruption, tenant closure, insurance deductible, liquidity freeze.</td><td>Repair capex, downtime months, rent loss, exit cap rate expansion, insurance recovery lag.</td><td>Engineering, insurance terms, lease/business interruption clauses.</td><td><span class="badge badge-warn">Template</span></td><td><a href="https://www.usgs.gov/programs/earthquake-hazards">USGS Earthquake Hazards</a></td></tr>
+        <tr><td>Wildfire/smoke/regional disruption</td><td>Access disruption, demand shock, insurance cost increase, supply chain interruption.</td><td>Sales decline, rent coverage, insurance premium, vacancy/re-tenant time.</td><td>Insurer quotes, tenant sales reporting (if available), market rent evidence.</td><td><span class="badge badge-warn">Template</span></td><td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">CAL FIRE OSFM FHSZ</a></td></tr>
+        <tr><td>Flood/localized infrastructure failure</td><td>Closure, repair, contamination, lender/insurance requirements.</td><td>Downtime, capex, deductible, rent abatement, financing availability.</td><td>FIRMette, insurance, lease force majeure/repair clauses.</td><td><span class="badge badge-warn">Template</span></td><td><a href="https://msc.fema.gov/portal/home">FEMA MSC</a></td></tr>
+        <tr><td>Tenant non-renewal / bankruptcy at lease end</td><td>Income cliff, releasing cost, dark period, cap rate penalty for short lease.</td><td>Vacancy, TI/LC, downtime, re-tenant rent, residual land value.</td><td>Lease abstract, tenant credit, broker opinion, comps.</td><td><span class="badge badge-warn">Template</span></td><td><a href="lease-tax.html">Lease/Tax page</a> · <a href="https://www.sec.gov/edgar/browse/?CIK=807882&owner=exclude">SEC issuer filings</a></td></tr>
+        <tr><td>Interest-rate/liquidity shock</td><td>Buyer pool shrinks, cap rates widen, refinance/sale proceeds lower.</td><td>Exit cap rate, time on market, discount rate, debt service coverage.</td><td>Broker quotes, lender quotes, current comps.</td><td><span class="badge badge-warn">Template</span></td><td><a href="https://www.federalreserve.gov/">Federal Reserve (macro context)</a></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><h2>Resilience Rule</h2><p>Stress loss of rent, repairs, and exit liquidity together.</p></div>
+    <div class="notice notice-info">A single hazard event can simultaneously reduce rent, increase capex, raise insurance deductibles, and widen exit cap rates. The private model must run combined scenarios, not isolated best-case sensitivities. No combined-scenario output is published here because property inputs are unverified.</div>
+  </section>
+</main>
+<footer class="site-footer"><div class="inner"><p class="small">Hazard screening is process guidance only; parcel determinations require authorized internal checks and qualified professionals.</p></div></footer>
+</body></html>

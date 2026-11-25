@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trade area and neighbourhood — Jack in the Box ground lease, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision support for a single-tenant NNN Jack in the Box ground lease in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap bar">
+  <div class="brand">Jack in the Box <span>/ Central LA ground lease</span></div>
+  <nav class="main">
+<a href="index.html">Overview</a>
+<a href="decision.html">Decision</a>
+<a href="gates.html">Decision gates</a>
+<a href="questions.html">Questions</a>
+<a href="economy.html">Local economy</a>
+<a href="trade-area.html" class="on">Trade area</a>
+<a href="hazards.html">Hazards</a>
+<a href="valuation.html">Sell vs hold</a>
+<a href="tax.html">After tax</a>
+<a href="risks.html">Risks</a>
+<a href="calculator.html">Calculator</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="requirements.html">Requirements</a>
+<a href="suggestions.html">Suggestions</a>
+<a href="print.html">1-page summary</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only</p>
+  <h1>Trade area and neighbourhood</h1>
+  <p class="lede">W-01: replacing city and county proxies with genuine trade-area figures. The method, the official instruments, and the honest reason the column is empty.</p>
+  
+</div>
+
+<div class="note warn"><p><b>W-01 status: addressed, gated, not executed.</b> The method for replacing city and county proxies with real trade-area figures is specified below and every official instrument is named. The execution is blocked by one thing: selecting Census tracts requires the parcel location, which is withheld under the privacy rule. Rather than substitute a city number for a trade-area number, this page leaves the trade-area column blank.</p></div>
+
+<div class="note"><p><b>Why the distinction is not pedantic.</b> A county unemployment rate describes ten million people. A quick-service restaurant's trade area is roughly a one-to-three-mile drive-time ring holding perhaps forty to one hundred twenty thousand people. Averaging across the county smooths away the only variation that determines whether this specific unit thrives. It is the most common way a ground-lease analysis goes quietly wrong: the numbers are real, correctly sourced, and about the wrong geography.</p></div>
+
+<section class="block">
+  <h2>Tract selection method</h2>
+  <p class="sub">Five steps. Step five matters more than it looks: holding the tract vintage fixed is what makes a trend comparison a trend rather than an artefact of redrawn boundaries.</p>
+<div class="twrap"><table class=""><thead><tr><th style="text-align:right">Step</th><th>Action</th><th>Official instrument</th><th>Verified this session</th></tr></thead><tbody><tr><td class="num"><b>1</b></td><td>Geocode the parcel to latitude/longitude using the County&#x27;s own parcel layer, not a commercial geocoder</td><td>Los Angeles County parcel data</td><td><span class="b b-open">not yet</span></td></tr>
+<tr><td class="num"><b>2</b></td><td>Assign the containing 2020 Census tract and all tracts whose centroid falls inside the drive-time ring</td><td>U.S. Census Bureau TIGER/Line and 2020 tract boundaries</td><td><span class="b b-open">not yet</span></td></tr>
+<tr><td class="num"><b>3</b></td><td>Pull ACS 5-year estimates for the selected tracts; use 5-year not 1-year because a 1-3 mile ring of tracts will fall below the 65,000 population threshold for 1-year estimates</td><td>U.S. Census Bureau ACS 5-year</td><td><span class="b b-open">not yet</span></td></tr>
+<tr><td class="num"><b>4</b></td><td>Weight each tract by the share of its population inside the ring, not by tract area</td><td>method note</td><td><span class="b b-open">not yet</span></td></tr>
+<tr><td class="num"><b>5</b></td><td>Hold the 2020 tract vintage fixed for the whole analysis so that trend comparisons are not contaminated by boundary changes</td><td>method note</td><td><span class="b b-open">not yet</span></td></tr></tbody></table></div>
+  <div class="card">
+    <h3>Blocked by</h3>
+    <p><code>[STREET-ADDRESS] and [APN]</code></p>
+    <h3>Verified environment constraint</h3>
+    <p>The Census data API returned &#x27;Missing Key&#x27; when queried without a key during this session, so no programmatic ACS pull is available. Figures must be read from published tables. <a class="src" href="https://api.census.gov/data/2023/acs/acs5?get=NAME,B19013_001E&amp;for=county:037&amp;in=state:06" target="_blank" rel="noopener">evidence</a></p>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Container figures — real, sourced, and not a substitute</h2>
+  <p class="sub">These are correct official numbers about the City of Los Angeles. The final column is deliberately empty: there is no trade-area equivalent yet, and inventing one would defeat the purpose of W-01.</p>
+<div class="twrap"><table class=""><thead><tr><th>ID</th><th>Container</th><th>Metric</th><th style="text-align:right">Value</th><th>Unit</th><th>Source</th><th>Trade-area equivalent</th></tr></thead><tbody><tr><td class="id">TA-01</td><td>Los Angeles city</td><td>Median household income</td><td class="num">81,939</td><td>USD, 2024 dollars</td><td><a class="src" href="https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/PST045224" target="_blank" rel="noopener" title="U.S. Census Bureau — QuickFacts — Los Angeles city, California (V2025 population estimates; 2020-2024 ACS 5-year characteristics; 2022 Economic Census)">S-08</a></td><td class="empty">— not a trade-area figure</td></tr>
+<tr><td class="id">TA-02</td><td>Los Angeles city</td><td>Poverty rate</td><td class="num">16.5</td><td>percent</td><td><a class="src" href="https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/PST045224" target="_blank" rel="noopener" title="U.S. Census Bureau — QuickFacts — Los Angeles city, California (V2025 population estimates; 2020-2024 ACS 5-year characteristics; 2022 Economic Census)">S-08</a></td><td class="empty">— not a trade-area figure</td></tr>
+<tr><td class="id">TA-03</td><td>Los Angeles city</td><td>Population change 2020 to 2025</td><td class="num">-0.8</td><td>percent</td><td><a class="src" href="https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/PST045224" target="_blank" rel="noopener" title="U.S. Census Bureau — QuickFacts — Los Angeles city, California (V2025 population estimates; 2020-2024 ACS 5-year characteristics; 2022 Economic Census)">S-08</a></td><td class="empty">— not a trade-area figure</td></tr></tbody></table></div></section>
+<section class="block">
+  <h2>Trade-area and neighbourhood evidence — currently blank</h2>
+  <p class="sub">Every row the brief asks for, with the official route to each. Zoning and alternative-use headroom is on this list because it sets the reversion value, which is the largest cash flow in the hold case.</p>
+<div class="twrap"><table class=""><thead><tr><th>ID</th><th>Metric</th><th>Value</th><th>Status</th><th>How to obtain</th><th>Official source</th></tr></thead><tbody><tr><td class="id">TA-10</td><td><b>Trade-area population (1 / 2 / 3 mile ring)</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>Execute tract_selection_method steps 1-4 against ACS table B01003.</td><td>U.S. Census Bureau ACS 5-year</td></tr>
+<tr><td class="id">TA-11</td><td><b>Trade-area median household income</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>ACS table B19013 over the selected tract set.</td><td>U.S. Census Bureau ACS 5-year</td></tr>
+<tr><td class="id">TA-12</td><td><b>Trade-area income distribution (share below $50k, above $100k)</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>ACS table B19001 or B19025. The distribution matters more than the median for a value QSR.</td><td>U.S. Census Bureau ACS 5-year</td></tr>
+<tr><td class="id">TA-13</td><td><b>Daytime employment within the ring</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>LEHD OnTheMap workplace-area characteristics for the tract set.</td><td>U.S. Census Bureau LEHD</td></tr>
+<tr><td class="id">TA-14</td><td><b>Households without a vehicle (walk-in trade potential)</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>ACS table B25044 over the tract set.</td><td>U.S. Census Bureau ACS 5-year</td></tr>
+<tr><td class="id">TA-15</td><td><b>Traffic counts on the abutting street</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>City of Los Angeles or Caltrans published annual average daily traffic (AADT) for the specific segment.</td><td>LADOT / Caltrans traffic volume maps</td></tr>
+<tr><td class="id">TA-16</td><td><b>School system quality indicators serving the ring</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>California Department of Education DataQuest for the assigned schools; California School Dashboard for accountability indicators.</td><td>California Department of Education</td></tr>
+<tr><td class="id">TA-17</td><td><b>Competing QSR units within the ring</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>Brand locator counts cross-checked against municipal business-licence data. Brand locators are commercial, not official, so they can only generate a lead to be confirmed against a public record.</td><td>city business licence / planning records</td></tr>
+<tr><td class="id">TA-18</td><td><b>Zoning and permitted-use status of the parcel</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>Los Angeles City Planning ZIMAS parcel report.</td><td>City of Los Angeles ZIMAS</td></tr>
+<tr><td class="id">TA-19</td><td><b>Overlay / specific plan / community plan designation</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>ZIMAS and the applicable community plan.</td><td>City of Los Angeles City Planning</td></tr>
+<tr><td class="id">TA-20</td><td><b>Planned public investment within the ring (transit stations, street projects)</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>Metro project pages and the City capital programme.</td><td>LA Metro / City of Los Angeles</td></tr>
+<tr><td class="id">TA-21</td><td><b>Tract-level trend evidence (income, population, employment over time)</b></td><td class="empty">—</td><td><span class="b b-unv">unverified</span></td><td>ACS 5-year 2015-2019, 2016-2020, 2017-2021, 2018-2022, 2019-2023 for the same tract set, compared on constant 2020 boundaries.</td><td>U.S. Census Bureau ACS 5-year</td></tr></tbody></table></div>
+  <div class="note warn"><p><b>The school question, handled honestly.</b> The brief explicitly asks about school systems. No school quality figure appears on this site, because none was verified against a California Department of Education page in this session. Reporting a third-party ranking would breach the no-hallucination rule, and a school rating is exactly the kind of number a reader would assume was verified. It is flagged as I-05 instead.</p></div>
+</section>
+
+</main>
+<footer class="site"><div class="wrap">
+  <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built 2026-11-25 13:52 UTC from the data layer in <code>data/</code>.</p>
+  <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
+</div></footer>
+</body>
+</html>

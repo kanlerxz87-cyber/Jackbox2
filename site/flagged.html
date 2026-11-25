@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for review — Jack in the Box ground lease, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision support for a single-tenant NNN Jack in the Box ground lease in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap bar">
+  <div class="brand">Jack in the Box <span>/ Central LA ground lease</span></div>
+  <nav class="main">
+<a href="index.html">Overview</a>
+<a href="decision.html">Decision</a>
+<a href="gates.html">Decision gates</a>
+<a href="questions.html">Questions</a>
+<a href="economy.html">Local economy</a>
+<a href="trade-area.html">Trade area</a>
+<a href="hazards.html">Hazards</a>
+<a href="valuation.html">Sell vs hold</a>
+<a href="tax.html">After tax</a>
+<a href="risks.html">Risks</a>
+<a href="calculator.html">Calculator</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html" class="on">Flagged for review</a>
+<a href="requirements.html">Requirements</a>
+<a href="suggestions.html">Suggestions</a>
+<a href="print.html">1-page summary</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only</p>
+  <h1>Flagged for review</h1>
+  <p class="lede">Every irregularity, gap and unverified value found in this project, published openly with the route to fixing it.</p>
+  
+</div>
+
+<div class="note warn"><p><b>These items do not block publication — they block the <i>decision</i>.</b> Everything on this page is published deliberately, with its source links, so it can be reviewed after the site is live. Nothing here has been quietly dropped or filled in with an estimate. Three of the twelve are critical, and one of those (I-01, no address) is the root cause of most of the blanks elsewhere on the site.</p></div>
+<div class="grid g3">
+  <div class="stat warn"><div class="k">Critical</div><div class="v">3</div><div class="n">I-01, I-02, I-07</div></div>
+  <div class="stat warn"><div class="k">High</div><div class="v">3</div><div class="n">I-03, I-04, I-08</div></div>
+  <div class="stat info"><div class="k">Medium</div><div class="v">6</div><div class="n">I-05, I-06, I-09, I-10, I-11, I-12</div></div>
+</div>
+<section class="block">
+  <h2>Flagged for review</h2>
+  <p class="sub">Each item states what is missing, how severe it is, and the exact route to obtain it.</p>
+<div class="twrap"><table class=""><thead><tr><th>ID</th><th>Irregularity</th><th>Severity</th><th>Detail</th><th>Route to resolution</th><th>Related sources</th></tr></thead><tbody><tr><td class="id">I-01</td><td><b>No subject address or APN supplied</b></td><td><span class="b b-blocking">critical</span></td><td>The brief describes a Jack in the Box in Central Los Angeles but supplies no street address, parcel number or lease. Parcel-level hazard screening (W-04), tract selection (W-01) and any numeric valuation are therefore blocked. Only methodology and container-level evidence can be published.</td><td>Release the address into the secure workflow only. Nothing else unblocks this.</td><td><a class="src" href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones" target="_blank" rel="noopener" title="CAL FIRE — Office of the State Fire Marshal — Fire Hazard Severity Zones (FHSZ)">S-19</a> <a class="src" href="https://www.conservation.ca.gov/cgs/geohazards/eq-zapp" target="_blank" rel="noopener" title="California Geological Survey (Department of Conservation) — EQ Zapp — California Earthquake Hazards Zone Application">S-20</a> <a class="src" href="https://www.fema.gov/flood-maps/national-flood-hazard-layer" target="_blank" rel="noopener" title="Federal Emergency Management Agency — National Flood Hazard Layer (NFHL) — Flood Data Viewers and Geospatial Data">S-21</a></td></tr>
+<tr><td class="id">I-02</td><td><b>Lease expiry given as a five-year range (2030-2035)</b></td><td><span class="b b-blocking">critical</span></td><td>A range cannot be discounted. It also means the option notice window is unknown, which is the single most common way an owner loses value on a ground lease. Every projection in this repository is run as a range because of this.</td><td>Read the term clause in the lease and fix the date, plus any option already exercised.</td><td><span class="src-none">no source — item is an absence</span></td></tr>
+<tr><td class="id">I-03</td><td><b>Census data API unavailable without a key</b></td><td><span class="b b-high">high</span></td><td>Queries to api.census.gov returned &#x27;Missing Key&#x27;. Tract-level ACS figures could not be pulled programmatically, and direct curl to census.gov is blocked in this environment. Figures must therefore be read from published tables, or left blank.</td><td>Either obtain a Census API key for the secure workflow, or read the published ACS tables manually.</td><td><a class="src" href="https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/PST045224" target="_blank" rel="noopener" title="U.S. Census Bureau — QuickFacts — Los Angeles city, California (V2025 population estimates; 2020-2024 ACS 5-year characteristics; 2022 Economic Census)">S-08</a></td></tr>
+<tr><td class="id">I-04</td><td><b>No verified comparable sales or rent quotes exist for the short-lease discount</b></td><td><span class="b b-high">high</span></td><td>The short-lease discount is the dominant valuation input for this asset and it is not observable in any official dataset. CoStar, Reonomy, Crexi and RCA hold the data but are commercial and paywalled, so they cannot satisfy the verification rule. No value is published.</td><td>Build a comp set from Los Angeles County recorded grant deeds plus documentary transfer tax stamps — public record, no purchase required. In parallel, obtain three written bid indications.</td><td><span class="src-none">no source — item is an absence</span></td></tr>
+<tr><td class="id">I-05</td><td><b>School system evidence not verified</b></td><td><span class="b b-medium">medium</span></td><td>The brief explicitly asks for school systems. No school quality figure is published because none was verified against a California Department of Education page in this session. Reporting a third-party ranking would breach the no-hallucination rule.</td><td>Pull DataQuest and the California School Dashboard for the schools assigned to the tract once the tract is known.</td><td><span class="src-none">no source — item is an absence</span></td></tr>
+<tr><td class="id">I-06</td><td><b>Proposition 13 assessment rule could not be verified</b></td><td><span class="b b-medium">medium</span></td><td>The State Board of Equalization FAQ page failed to load. The widely repeated &#x27;1% levy with a 2% annual inflation cap&#x27; rule is asserted by many secondary sources but was not confirmed on an official page here, so no property-tax figure is published anywhere on this site.</td><td>Open boe.ca.gov proposition13 FAQ or the LA County Assessor page directly and quote it, then populate the property-tax line.</td><td><a class="src" href="https://www.boe.ca.gov/proptaxes/faqs/proposition13.htm" target="_blank" rel="noopener" title="California State Board of Equalization — Proposition 13 — property tax assessment (FAQ page)">S-23</a></td></tr>
+<tr><td class="id">I-07</td><td><b>Obligor identity unverified — brand vs franchisee</b></td><td><span class="b b-blocking">critical</span></td><td>The tenant brand is Jack in the Box Inc. and its corporate credit is verified from SEC filings. But the obligor on this specific lease may be a franchisee. All the tenant-health analysis on this site is about the brand; if the obligor is a franchisee, that analysis describes a different balance sheet.</td><td>Read the tenant-identity and guaranty clauses. Obtain franchisee financials.</td><td><a class="src" href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/0000807882-25-000072-index.htm" target="_blank" rel="noopener" title="U.S. Securities and Exchange Commission (EDGAR) — Jack in the Box Inc. — Form 10-K, fiscal year ended 2025-09-28 (accession 0000807882-25-000072, filed 2025-11-19)">S-01</a> <a class="src" href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000070/ex991-q425earningsrelease.htm" target="_blank" rel="noopener" title="U.S. Securities and Exchange Commission (EDGAR) — Jack in the Box Inc. — Q4 and Full-Year 2025 Earnings Release, Exhibit 99.1 (2025-11-19)">S-02</a></td></tr>
+<tr><td class="id">I-08</td><td><b>Tenant-health analysis is brand-level, not unit-level</b></td><td><span class="b b-high">high</span></td><td>System-wide same-store sales and closure counts describe 2,136 restaurants. This unit&#x27;s own sales, traffic and closure status are unknown and are not public. The brand-level series is used as the best available evidence, clearly labelled as such.</td><td>Request unit-level sales reporting under the lease&#x27;s reporting clause.</td><td><a class="src" href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000070/ex991-q425earningsrelease.htm" target="_blank" rel="noopener" title="U.S. Securities and Exchange Commission (EDGAR) — Jack in the Box Inc. — Q4 and Full-Year 2025 Earnings Release, Exhibit 99.1 (2025-11-19)">S-02</a></td></tr>
+<tr><td class="id">I-09</td><td><b>Population projections could not be extracted</b></td><td><span class="b b-medium">medium</span></td><td>The California Department of Finance publishes official county and state projections to 2070, and the programme is linked in the ledger. The .xlsx workbooks could not be downloaded in this session, so no projection figure is published. This is a gap in the projection spine (R-29), not a reason to substitute a private forecast.</td><td>Download P-2A_County_Total.xlsx and read the Los Angeles County 2030 and 2035 rows.</td><td><a class="src" href="https://dof.ca.gov/forecasting/demographics/projections/" target="_blank" rel="noopener" title="State of California, Department of Finance (Demographic Research Unit) — Population Projections — Baseline 2024 (P-1, P-2, P-3 series)">S-09</a></td></tr>
+<tr><td class="id">I-10</td><td><b>Local minimum wage for the City of Los Angeles not confirmed</b></td><td><span class="b b-medium">medium</span></td><td>The state DIR page states that some cities set higher minimum wages and links a UC Berkeley inventory, which is not an official government source. The City of Los Angeles rate is therefore blank rather than filled from a secondary list.</td><td>Check the City of Los Angeles Office of Wage Standards page directly.</td><td><a class="src" href="https://www.dir.ca.gov/dlse/faq_minimumwage.htm" target="_blank" rel="noopener" title="California Department of Industrial Relations (Labor Commissioner&#x27;s Office) — Minimum Wage Frequently Asked Questions">S-17</a></td></tr>
+<tr><td class="id">I-11</td><td><b>Existing dashboards on main headline an older quarter</b></td><td><span class="b b-medium">medium</span></td><td>The landing pages already on main present Q3 FY2025 same-store sales (-7.1%, twelve weeks ended 6 July 2025) as the brand-health headline. The tenant has since filed Q4 and full-year FY2025 results on 19 November 2025 showing -7.4% in Q4 and -4.2% for the full year, plus 86 closures. Those later figures are used throughout this dashboard. The earlier page is not wrong, it is superseded.</td><td>Refresh the Q3 headline to the Q4/FY2025 figures already filed, citing the newer SEC exhibit.</td><td><a class="src" href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000070/ex991-q425earningsrelease.htm" target="_blank" rel="noopener" title="U.S. Securities and Exchange Commission (EDGAR) — Jack in the Box Inc. — Q4 and Full-Year 2025 Earnings Release, Exhibit 99.1 (2025-11-19)">S-02</a></td></tr>
+<tr><td class="id">I-12</td><td><b>Three parallel dashboards exist on main with different gate counts</b></td><td><span class="b b-medium">medium</span></td><td>Three independent sessions each built a dashboard before seeing the others&#x27; branches, which is expected under the parallel-session instruction. They do not contradict each other on any figure, but they use different structures: this dashboard defines 12 decision gates, the root dashboard defines 6, and the alternative and docs dashboards define their own. A reader moving between them could reasonably ask which is authoritative.</td><td>Treat the root dashboard as the entry point and this one as the analytical depth behind it. Add a single cross-reference note so the relationship is explicit rather than implied.</td><td><span class="src-none">no source — item is an absence</span></td></tr></tbody></table></div></section>
+</main>
+<footer class="site"><div class="wrap">
+  <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built 2026-11-25 13:52 UTC from the data layer in <code>data/</code>.</p>
+  <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
+</div></footer>
+</body>
+</html>

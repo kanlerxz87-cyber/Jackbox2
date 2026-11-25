@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "compiled_utc": "2026-11-25",
+    "warning": "NOTHING IN THIS FILE IS A PROPERTY VALUATION. There is no verified rent, no verified basis, no verified term and no verified comparable. Every numeric output below is either (a) a verified rule of law, or (b) a worked formula template with the inputs left as placeholders. W-02 and R-04 require the comparison to be BUILT without selecting a winner until verified inputs exist. That is exactly what this file does.",
+    "label_key": {
+      "rule": "Verified statement of law from a Tier 1 source.",
+      "template": "Formula the calculator applies once the owner supplies inputs.",
+      "unverified": "Required input not obtained."
+    }
+  },
+  "after_tax_rules": [
+    {
+      "id": "TX-01",
+      "item": "Holding period for long-term treatment",
+      "rule": "More than one year",
+      "source": "S-12",
+      "url": "https://www.irs.gov/taxtopics/tc409",
+      "label": "rule",
+      "application": "Any sale of a held ground-lease interest will be long-term. This is the easy part."
+    },
+    {
+      "id": "TX-02",
+      "item": "Long-term capital gain rates",
+      "rule": "0% / 15% / 20% by taxable income. For 2025, 0% up to $48,350 single and $96,700 MFJ; 15% up to $533,400 single and $600,050 MFJ; 20% above.",
+      "source": "S-12",
+      "url": "https://www.irs.gov/taxtopics/tc409",
+      "label": "rule",
+      "application": "The 20% band is reached at $533,400 of taxable income for a single filer. A sale of a commercial parcel in Central LA will very often land in the 20% band, so the calculator defaults to 20% and lets the owner lower it."
+    },
+    {
+      "id": "TX-03",
+      "item": "Unrecaptured section 1250 gain",
+      "rule": "The portion of gain attributable to straight-line depreciation is taxed at a maximum rate of 25%.",
+      "source": "S-12",
+      "url": "https://www.irs.gov/taxtopics/tc409",
+      "label": "rule",
+      "application": "This is the layer most owners forget. It is computed on depreciation ALLOWED OR ALLOWABLE, whether or not actually claimed. In a ground lease the owner may have depreciated the building, not the land - land is not depreciable."
+    },
+    {
+      "id": "TX-04",
+      "item": "Net investment income tax",
+      "rule": "3.8% on the lesser of net investment income or MAGI above $250,000 MFJ / $200,000 single or HoH / $125,000 MFS. Applies to net gains from disposition of real estate.",
+      "source": "S-13",
+      "url": "https://www.irs.gov/taxtopics/tc559",
+      "label": "rule",
+      "application": "NIIT is an ADDITIONAL 3.8% on top of the capital gain rate. Combined with California tax this is why the after-tax number surprises owners. Note the exception: it does not apply to income from an active trade or business - a triple-net ground lease is normally passive, so NIIT normally applies."
+    },
+    {
+      "id": "TX-05",
+      "item": "Installment sale",
+      "rule": "Gain is reported as payments are received unless the taxpayer elects out. Depreciation-recapture ordinary income must be recognised in the year of sale regardless.",
+      "source": "S-14",
+      "url": "https://www.irs.gov/taxtopics/tc705",
+      "label": "rule",
+      "application": "If the owner sells on seller financing, the 25% recapture layer is still due up front while the capital gain is spread. That is a cash-flow trap worth modelling."
+    },
+    {
+      "id": "TX-06",
+      "item": "Section 1031 like-kind exchange",
+      "rule": "Post-TCJA, only real property qualifies. Boot is recognised. Reported on Form 8824. U.S. real property is not like-kind to non-U.S. real property.",
+      "source": "S-15",
+      "url": "https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips",
+      "label": "rule",
+      "application": "This is the single largest lever on the sale case. A fully deferred exchange can move the effective tax rate on reinvested proceeds toward zero. It also imports risk: the replacement property must be identified and acquired on a statutory clock, so the owner can be forced to buy a worse asset to avoid tax. The calculator models both the deferral and the 'boot' residual."
+    },
+    {
+      "id": "TX-07",
+      "item": "California marginal income tax",
+      "rule": "2025 brackets: 9.3% from $72,724 (single) / $145,448 (MFJ) up to $371,479 / $742,958; 10.3%, 11.3% and a top marginal rate of 12.3%. California does not conform to federal capital-gain preferential rates - gain is taxed as ordinary income for state purposes.",
+      "source": "S-16",
+      "url": "https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf",
+      "label": "rule",
+      "application": "A large one-year gain can push the owner into the 12.3% state bracket. Combined marginal federal+state on the recapture layer can exceed 40%. This is the number that decides whether 1031 is optional or essential."
+    },
+    {
+      "id": "TX-08",
+      "item": "Estimated tax",
+      "rule": "A taxable capital gain may require estimated tax payments.",
+      "source": "S-12",
+      "url": "https://www.irs.gov/taxtopics/tc409",
+      "label": "rule",
+      "application": "Cash planning, not tax planning. Do not spend the gross proceeds."
+    },
+    {
+      "id": "TX-09",
+      "item": "Owner's basis and depreciation history",
+      "rule": "Adjusted basis equals cost plus improvements less allowed or allowable depreciation (concept as set out in IRS Publication 544, along with the partial-disposition and inherited-property adjustments).",
+      "source": "S-12",
+      "url": "https://www.irs.gov/publications/p544",
+      "label": "unverified",
+      "application": "PUBLICATION 551 STATUS: not opened this session, so no basis rule is quoted from it. The adjusted-basis concept is quoted from IRS Publication 544, which was opened. Basis itself is unknown: [TAX-RETURNS]. Every after-tax figure is therefore a template, not an answer.",
+      "required_input": "[TAX-RETURNS]"
+    },
+    {
+      "id": "TX-10",
+      "item": "Owner's filing status, other income, state residency",
+      "rule": "Needed to place the gain in the correct bracket and to determine NIIT.",
+      "source": "S-12 / S-13 / S-16",
+      "url": "https://www.irs.gov/taxtopics/tc559",
+      "label": "unverified",
+      "required_input": "owner profile - offline, adviser only",
+      "note": "The calculator exposes these as sliders so the owner can see the sensitivity without disclosing anything."
+    }
+  ],
+  "sale_case": {
+    "status": "template",
+    "formula": [
+      {
+        "line": 1,
+        "item": "Gross sale price",
+        "input": "owner input / [BROKER-QUOTE-1..3]",
+        "value": ""
+      },
+      {
+        "line": 2,
+        "item": "Less selling costs (commission, escrow, title)",
+        "input": "owner input, typical range not verified",
+        "value": ""
+      },
+      {
+        "line": 3,
+        "item": "Net sale price",
+        "formula": "line 1 - line 2",
+        "value": ""
+      },
+      {
+        "line": 4,
+        "item": "Less adjusted basis",
+        "input": "[TAX-RETURNS]",
+        "value": ""
+      },
+      {
+        "line": 5,
+        "item": "Total gain",
+        "formula": "line 3 - line 4",
+        "value": ""
+      },
+      {
+        "line": 6,
+        "item": "Less unrecaptured section 1250 portion",
+        "input": "[TAX-RETURNS] depreciation history",
+        "value": ""
+      },
+      {
+        "line": 7,
+        "item": "Remaining long-term capital gain",
+        "formula": "line 5 - line 6",
+        "value": ""
+      },
+      {
+        "line": 8,
+        "item": "Federal tax on line 6 at 25% (or owner marginal rate if lower)",
+        "formula": "line 6 x 0.25",
+        "value": "",
+        "source": "S-12"
+      },
+      {
+        "line": 9,
+        "item": "Federal tax on line 7 at 0/15/20%",
+        "formula": "line 7 x applicable rate",
+        "value": "",
+        "source": "S-12"
+      },
+      {
+        "line": 10,
+        "item": "Net investment income tax at 3.8%",
+        "formula": "(line 6 + line 7) x 0.038 where MAGI is above threshold",
+        "value": "",
+        "source": "S-13"
+      },
+      {
+        "line": 11,
+        "item": "California tax on total gain",
+        "formula": "gain x applicable CA marginal rate, up to 12.3%",
+        "value": "",
+        "source": "S-16"
+      },
+      {
+        "line": 12,
+        "item": "Net after-tax sale proceeds",
+        "formula": "line 3 - line 8 - line 9 - line 10 - line 11",
+        "value": ""
+      },
+      {
+        "line": 13,
+        "item": "Of which deferrable under section 1031",
+        "formula": "the portion of lines 8 to 11 attributable to reinvested proceeds",
+        "value": "",
+        "source": "S-15"
+      }
+    ],
+    "honest_note": "Line 12 is the one number R-19 asks for: a single figure the owner can compare against the hold case. It is deliberately blank until lines 1 and 4 are real."
+  },
+  "renewal_case": {
+    "status": "template",
+    "formula": [
+      {
+        "line": 1,
+        "item": "Current contract rent",
+        "input": "[LEASE-FILE]",
+        "value": ""
+      },
+      {
+        "line": 2,
+        "item": "Option rent mechanism",
+        "input": "[LEASE-FILE]",
+        "value": "",
+        "note": "Fair market value, fixed, or CPI. Unknown."
+      },
+      {
+        "line": 3,
+        "item": "Renewal term proposed",
+        "input": "negotiation",
+        "value": ""
+      },
+      {
+        "line": 4,
+        "item": "Escalation assumption",
+        "input": "assumption",
+        "value": "",
+        "note": "ASSUMPTION, not verified. Test it against the verified 3.79%/yr LA CPI-U CAGR (PI-04) and against verified 10-year Treasury 4.92% (CM-02)."
+      },
+      {
+        "line": 5,
+        "item": "Probability of renewal",
+        "input": "assumption",
+        "value": "",
+        "note": "ASSUMPTION. Anchor it on tenant evidence: FY2025 closures 86 units, FY2026 guidance 50 to 100 more, leverage 7.33x, same-store sales -4.2% (TH-09, TH-11, TH-19, TH-01). A renewal probability above roughly 50% is hard to defend on that evidence."
+      },
+      {
+        "line": 6,
+        "item": "Present value of the renewal stream",
+        "formula": "sum of rent x (1+g)^t / (1+d)^t over the term",
+        "value": ""
+      },
+      {
+        "line": 7,
+        "item": "Discount rate",
+        "input": "assumption",
+        "value": "",
+        "note": "ASSUMPTION, must be built as 10-year Treasury (verified 4.92%) plus a spread the broker must justify with a comparable single-tenant QSR trade. No verified comp set exists in this session."
+      },
+      {
+        "line": 8,
+        "item": "Value of the reversion at expiry",
+        "input": "assumption",
+        "note": "Depends on HZ-08 engineering condition and TA-18 zoning. Unknown."
+      },
+      {
+        "line": 9,
+        "item": "Probability-weighted renewal case value",
+        "formula": "line 6 x line 5 + reversion x (1 - line 5)",
+        "value": ""
+      }
+    ]
+  },
+  "hold_case": {
+    "status": "template",
+    "notes": [
+      "Hold is not the residual option. It is a bet that (a) the tenant renews, (b) the rent resets upward at a real rate, and (c) the land's alternative use value rises.",
+      "Verified against evidence: (a) is doubtful on the tenant's own disclosures, (b) is constrained by whatever the option mechanism says, and (c) requires zoning headroom (TA-18) plus construction activity, which is flat at +0.2% 12-month change (IM-08).",
+      "Hold also carries the non-financial costs: another 5 to 9 years of single-tenant concentration, another cycle of California insurance availability risk, and the illiquidity of a small commercial asset."
+    ]
+  },
+  "short_lease_discount": {
+    "status": "unverified-blocked",
+    "what_it_should_measure": "The percentage spread a buyer demands on a ground lease with under 10 years of term versus the same lease with 20+ years. It is the single most powerful valuation input for this asset and it is not observable in any official dataset.",
+    "attempted_sources": "Commercial data providers (CoStar, Reonomy, Crexi, RCA) hold the quote data but are paywalled and are not official government sources, so they cannot satisfy the verification rule.",
+    "value": "",
+    "flag": "I-04",
+    "how_to_obtain": [
+      "Request written bid indications from three net-lease buyers on this specific asset, not verbal guidance.",
+      "Ask two brokers with QSR net-lease books for anonymised spread data behind a confidentiality undertaking, then have the owner's adviser confirm it against closed sales in the same county.",
+      "Check the county recorder for recorded transfers of comparable Jack in the Box parcels and pull the documentary transfer tax, which reveals the recorded price. That is an official route to a real comp."
+    ],
+    "official_comp_route": "Los Angeles County Registrar-Recorder/County Clerk grant deed index plus the documentary transfer tax stamp. This is public record and is the only way to build a verified comp set without buying data."
+  }
+}
