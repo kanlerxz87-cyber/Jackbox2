@@ -1,0 +1,18 @@
+'use strict';
+const assert = require('node:assert/strict');
+let handlers = {};
+let data = {price:'1000000',cost:'50000',debt:'200000',tax:'100000',cash:'50000',terminal:'700000',years:'2',rate:'10'};
+let rows = [];
+const heading={textContent:''}, description={textContent:''};
+const results={replaceChildren(){rows=[]}, append(row){rows.push(row)}};
+const form={addEventListener(name, fn){handlers[name]=fn}, reportValidity(){return true}};
+global.document={querySelector(s){if(s==='#calculator') return form;if(s==='#results')return results;if(s==='.result-box')return {querySelector(s){return s==='h3'?heading:description}}}, createElement(){return {className:'',children:[],append(x){this.children.push(x)}}},createTextNode(t){return {textContent:t}}};
+global.FormData=class {entries(){return Object.entries(data)}};
+require('../assets/app.js');
+handlers.submit({preventDefault(){}});
+assert.equal(rows[0].children[1].textContent, '$650,000');
+assert.equal(rows[1].children[1].textContent, '$665,289');
+assert.equal(rows[2].children[1].textContent, '$15,289');
+data.rate='0'; handlers.submit({preventDefault(){}}); assert.equal(rows[1].children[1].textContent, '$800,000');
+handlers.reset(); assert.equal(rows.length,0); assert.equal(heading.textContent, 'Awaiting verified inputs');
+console.log('PASS: calculator arithmetic, zero-rate case and reset');
