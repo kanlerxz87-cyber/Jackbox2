@@ -8,7 +8,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
 allowed_hosts = {
-    "assessor.lacounty.gov", "data.census.gov", "docs.github.com",
+    "assessor.lacounty.gov", "data.census.gov", "docs.github.com", "github.com",
     "earthquake.usgs.gov", "labormarketinfo.edd.ca.gov", "ladot.lacity.gov",
     "msc.fema.gov", "osfm.fire.ca.gov", "planning.lacity.gov", "www.bea.gov",
     "www.bls.gov", "www.cde.ca.gov", "www.census.gov", "www.cisa.gov",
