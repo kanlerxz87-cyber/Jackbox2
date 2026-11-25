@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missing Information, Q&amp;A &amp; Discovery Plan — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Decision Blockers &amp; Information Discovery Roadmap</div>
+          <h2>Questions, Known Facts, Missing Information &amp; Private Discovery Plan</h2>
+          <p class="page-lead">
+            A clear, structured inventory of every essential question that must be answered before a reasonable
+            sell-versus-renew decision can be made — explicitly contrasting <strong>what official sources already confirm</strong>
+            against <strong>what remains unknown</strong> and providing concrete, privacy-safe methods to discover each missing input.
+          </p>
+        </div>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Master Pre-Decision Questions &amp; Discovery Register</h3>
+              <p class="card-sub">Filter by domain or search keywords. Execute all discovery steps privately offline with NDA-bound advisors.</p>
+            </div>
+            <a class="btn btn-primary" href="advisor-summary.html">Print W-10 Advisor Brief</a>
+          </div>
+          <div class="table-controls">
+            <input type="search" id="qa-search" class="search-input" placeholder="Search guaranty, Measure ULA, store sales, ZIMAS, earthquake, basis...">
+            <select id="qa-domain-filter" class="select-input" aria-label="Filter by question domain">
+              <option value="">All Domains</option>
+              <option value="Lease & Legal">Lease &amp; Legal</option>
+              <option value="Tenant & Store Economics">Tenant &amp; Store Economics</option>
+              <option value="Property & Trade Area (W-01)">Property &amp; Trade Area (W-01)</option>
+              <option value="Property & Redevelopment">Property &amp; Redevelopment</option>
+              <option value="Tax & Wealth Structure">Tax &amp; Wealth Structure</option>
+              <option value="Capital Markets & Pricing (W-02)">Capital Markets &amp; Pricing (W-02)</option>
+              <option value="Hazards, Engineering & Insurance (W-04)">Hazards, Engineering &amp; Insurance (W-04)</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table id="qa-table">
+              <thead>
+                <tr>
+                  <th>ID &amp; Domain</th>
+                  <th>Decision-Blocking Question</th>
+                  <th>What We Already Know (Verified)</th>
+                  <th>What We Do NOT Know (Missing)</th>
+                  <th>Decision Impact</th>
+                  <th>How to Discover Safely &amp; Privately</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="qa-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>Discovery Plan Verified Against Official Agencies (2026-11-25)</span>
+          <span><a href="suggestions.html">Next: Site Improvement Suggestions &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const Q = window.JACKBOX_DATA && window.JACKBOX_DATA.qaSuggestions;
+      if (!Q) return;
+
+      document.getElementById('qa-tbody').innerHTML = Q.missingInfoQA.map((item) => `
+        <tr data-category="${App.escapeHtml(item.domain)}">
+          <td><strong>${App.escapeHtml(item.id)}</strong><br><span class="badge badge-neutral">${App.escapeHtml(item.domain)}</span></td>
+          <td><strong>${App.escapeHtml(item.question)}</strong></td>
+          <td>${App.escapeHtml(item.whatWeKnow)}</td>
+          <td><span class="blank-cell">MISSING</span><br>${App.escapeHtml(item.whatWeDoNotKnow)}</td>
+          <td>${App.escapeHtml(item.decisionImpact)}</td>
+          <td>${App.escapeHtml(item.discoveryMethod)}</td>
+          <td>${App.renderSourceLink(item.sourceUrl, 'Official Ref')}</td>
+        </tr>
+      `).join('');
+      App.wireTableFilter('qa-search', 'qa-domain-filter', 'qa-table');
+    });
+  </script>
+</body>
+</html>

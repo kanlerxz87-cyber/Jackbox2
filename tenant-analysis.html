@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenant Performance Series (NASDAQ: JACK) — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Tenant Credit &amp; Multi-Year Performance · SEC EDGAR CIK 0000807882</div>
+          <h2>Jack in the Box Inc. (NASDAQ: JACK) — Multi-Year Time Series</h2>
+          <p class="page-lead">
+            A multi-year series of same-store sales, restaurant unit counts, closures, and franchise rental revenues
+            shows structural direction rather than single-quarter noise. All standalone Jack in the Box brand metrics below
+            are isolated from Del Taco (divested December 22, 2025) and linked directly to official SEC EDGAR filings.
+          </p>
+        </div>
+
+        <div class="banner banner-warn">
+          <strong>Filing Cutoff Notice (2026-11-25):</strong>
+          Fiscal year 2026 ended September 27, 2026, but the audited FY2026 Form 10-K had not yet been indexed on SEC EDGAR
+          as of our verification date. Full-year FY2026 and Q4 FY2026 actual cells are intentionally left <strong>BLANK</strong> and
+          logged on the <a href="flagged-review.html">Flagged for Review</a> page (<code>FLG-01</code>).
+        </div>
+
+        <!-- Trend Charts (Pure Client-Side SVG) -->
+        <section class="grid-2" style="margin-bottom:20px;">
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header">
+              <div>
+                <h3>System Same-Store Sales Trajectory (FY22–Q3 FY26)</h3>
+                <p class="card-sub">Clear inflection from +7.3% (FY23) into multi-quarter negative territory post-AB 1228.</p>
+              </div>
+            </div>
+            <div class="chart-box" id="chart-sss"></div>
+            <div class="chart-caption">Source: Jack in the Box Inc. SEC Forms 10-K (FY23, FY25) &amp; Form 8-K/10-Q (Q1–Q3 FY26).</div>
+          </div>
+          <div class="card" style="margin-bottom:0;">
+            <div class="card-header">
+              <div>
+                <h3>System Units &amp; Standalone Franchise Rental Revenue</h3>
+                <p class="card-sub">Block closures ("JACK on Track") reduced store count from 2,191 (FY24) to 2,115 (Q3 FY26).</p>
+              </div>
+            </div>
+            <div class="chart-box" id="chart-units"></div>
+            <div class="chart-caption">Source: SEC Form 10-K (FY23, FY25) &amp; Q3 FY2026 Form 10-Q. FY26 full-year pending 10-K.</div>
+          </div>
+        </section>
+
+        <!-- Annual Multi-Year Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Annual Jack in the Box Brand Time Series (FY2022–FY2026)</h3>
+              <p class="card-sub">Standalone Jack in the Box segment (excludes Del Taco discontinued operations). Dollars in thousands ($K).</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="annual-table">
+              <thead>
+                <tr>
+                  <th>Fiscal Period</th>
+                  <th class="num">Co. SSS</th>
+                  <th class="num">Fran. SSS</th>
+                  <th class="num">System SSS</th>
+                  <th class="num">Co. Units</th>
+                  <th class="num">Fran. Units</th>
+                  <th class="num">Total Units</th>
+                  <th class="num">Open / Close (Net)</th>
+                  <th class="num">Franchise Rental Rev ($K)</th>
+                  <th class="num">Franchise Royalties ($K)</th>
+                  <th>Status</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="annual-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Quarterly Progression Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Quarterly Progression (Q1 FY2025 – Q4 FY2026)</h3>
+              <p class="card-sub">Tracks the onset of negative SSS, the April 2025 "JACK on Track" block closure program, and sequential FY26 stabilization.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Quarter</th>
+                  <th class="num">Company SSS</th>
+                  <th class="num">Franchise SSS</th>
+                  <th class="num">System SSS</th>
+                  <th class="num">Ending Units</th>
+                  <th class="num">Opened</th>
+                  <th class="num">Closed</th>
+                  <th class="num">JIB Fran. Rental Rev ($K)</th>
+                  <th>Status</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="quarterly-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Credit, Debt, Lease Ownership & Governance Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Corporate Credit, Refinancing Wall, Lease Ownership Structure &amp; Governance</h3>
+              <p class="card-sub">Key landlord-critical facts verified directly from FY2025 10-K, Q3 FY2026 10-Q, June 2026 debt 8-K, and Nov 17, 2026 executive 8-K.</p>
+            </div>
+          </div>
+          <div class="table-controls">
+            <input type="search" id="credit-search" class="search-input" placeholder="Filter credit, debt, California, or lease facts...">
+          </div>
+          <div class="table-wrap">
+            <table id="credit-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Metric / Disclosure</th>
+                  <th>Verified Official Value</th>
+                  <th>Landlord Decision Implication</th>
+                  <th>Status</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="credit-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>SEC EDGAR Primary Verification (CIK 0000807882) · Verified 2026-11-25</span>
+          <span><a href="lease-calendar.html">Next: Lease Abstract &amp; Notice Calendar &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const T = window.JACKBOX_DATA && window.JACKBOX_DATA.tenant;
+      if (!T) return;
+
+      // Annual Table
+      document.getElementById('annual-tbody').innerHTML = T.annualSeries.map((r) => `
+        <tr>
+          <td><strong>${App.escapeHtml(r.period)}</strong><br><span class="field-hint">${App.escapeHtml(r.notes)}</span></td>
+          <td class="num">${App.renderValueOrBlank(r.sssCompany, 'PENDING')}</td>
+          <td class="num">${App.renderValueOrBlank(r.sssFranchise, 'PENDING')}</td>
+          <td class="num"><strong>${App.renderValueOrBlank(r.sssSystem, 'PENDING')}</strong></td>
+          <td class="num">${r.companyUnitsEnd !== '' ? r.companyUnitsEnd.toLocaleString() : App.renderValueOrBlank('', 'PENDING')}</td>
+          <td class="num">${r.franchiseUnitsEnd !== '' ? r.franchiseUnitsEnd.toLocaleString() : App.renderValueOrBlank('', 'PENDING')}</td>
+          <td class="num"><strong>${r.totalUnitsEnd !== '' ? r.totalUnitsEnd.toLocaleString() : App.renderValueOrBlank('', 'PENDING')}</strong></td>
+          <td class="num">${r.openings !== '' ? `${r.openings} / ${r.closures} (${r.netUnitChange >= 0 ? '+' : ''}${r.netUnitChange})` : App.renderValueOrBlank('', 'PENDING')}</td>
+          <td class="num">${r.jibFranchiseRentalRevK !== '' ? '$' + r.jibFranchiseRentalRevK.toLocaleString() : App.renderValueOrBlank('', 'PENDING')}</td>
+          <td class="num">${r.jibFranchiseRoyaltiesK !== '' ? '$' + r.jibFranchiseRoyaltiesK.toLocaleString() : App.renderValueOrBlank('', 'PENDING')}</td>
+          <td>${App.renderStatusBadge(r.status)}</td>
+          <td>${App.renderSourceLink(r.sourceUrl, r.sourceLabel)}</td>
+        </tr>
+      `).join('');
+
+      // Quarterly Table
+      document.getElementById('quarterly-tbody').innerHTML = T.quarterlySeriesFY25_26.map((q) => `
+        <tr>
+          <td><strong>${App.escapeHtml(q.quarter)}</strong>${q.notes ? `<br><span class="field-hint">${App.escapeHtml(q.notes)}</span>` : ''}</td>
+          <td class="num">${App.renderValueOrBlank(q.sssCompany, 'BLANK')}</td>
+          <td class="num">${App.renderValueOrBlank(q.sssFranchise, 'BLANK')}</td>
+          <td class="num"><strong>${App.renderValueOrBlank(q.sssSystem, 'PENDING')}</strong></td>
+          <td class="num">${q.totalUnitsEnd !== '' ? q.totalUnitsEnd.toLocaleString() : App.renderValueOrBlank('', 'PENDING')}</td>
+          <td class="num">${q.openings !== '' ? q.openings : App.renderValueOrBlank('', 'BLANK')}</td>
+          <td class="num">${q.closures !== '' ? q.closures : App.renderValueOrBlank('', 'BLANK')}</td>
+          <td class="num">${q.jibFranchiseRentalRevK !== '' ? '$' + q.jibFranchiseRentalRevK.toLocaleString() : App.renderValueOrBlank('', 'BLANK')}</td>
+          <td>${App.renderStatusBadge(q.status)}</td>
+          <td>${App.renderSourceLink(q.sourceUrl, q.sourceLabel)}</td>
+        </tr>
+      `).join('');
+
+      // Credit Table
+      document.getElementById('credit-tbody').innerHTML = T.creditAndCorporateFacts.map((c) => `
+        <tr>
+          <td><strong>${App.escapeHtml(c.category)}</strong></td>
+          <td>${App.escapeHtml(c.metric)}</td>
+          <td>${App.renderValueOrBlank(c.value, 'BLANK — PRIVATE VERIFICATION REQUIRED')}</td>
+          <td>${App.escapeHtml(c.landlordImplication)}</td>
+          <td>${App.renderStatusBadge(c.status)}</td>
+          <td>${App.renderSourceLink(c.sourceUrl, c.sourceLabel)}</td>
+        </tr>
+      `).join('');
+      App.wireTableFilter('credit-search', null, 'credit-table');
+
+      // Pure SVG Chart 1: SSS Bars (Annual FY22-25 + Quarterly FY26 Q1-Q3)
+      const sssPts = [
+        { lbl: 'FY22', v: 0.9 },
+        { lbl: 'FY23', v: 7.3 },
+        { lbl: 'FY24', v: -1.3 },
+        { lbl: 'FY25', v: -4.2 },
+        { lbl: 'Q1\'26', v: -6.7 },
+        { lbl: 'Q2\'26', v: -3.8 },
+        { lbl: 'Q3\'26', v: -1.1 }
+      ];
+      const W = 500, H = 200, zeroY = 100, scale = 9.5;
+      let bars = `<line x1="32" y1="${zeroY}" x2="${W - 12}" y2="${zeroY}" stroke="#64748b" stroke-width="1"/>`;
+      sssPts.forEach((p, idx) => {
+        const x = 44 + idx * 64;
+        const bh = Math.abs(p.v) * scale;
+        const y = p.v >= 0 ? zeroY - bh : zeroY;
+        const fill = p.v >= 0 ? '#059669' : '#dc2626';
+        const txtY = p.v >= 0 ? y - 5 : y + bh + 13;
+        bars += `<rect x="${x}" y="${y.toFixed(1)}" width="38" height="${bh.toFixed(1)}" rx="3" fill="${fill}" opacity="0.88"/>`;
+        bars += `<text x="${x + 19}" y="${txtY.toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="${fill}">${p.v > 0 ? '+' : ''}${p.v.toFixed(1)}%</text>`;
+        bars += `<text x="${x + 19}" y="${H - 6}" text-anchor="middle" font-size="11" fill="#334155">${p.lbl}</text>`;
+      });
+      document.getElementById('chart-sss').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Jack in the Box System Same-Store Sales Chart">${bars}</svg>`;
+
+      // Pure SVG Chart 2: Ending Units Trajectory
+      const unitPts = [
+        { lbl: 'FY22', u: 2181 },
+        { lbl: 'FY23', u: 2186 },
+        { lbl: 'FY24', u: 2191 },
+        { lbl: 'FY25', u: 2136 },
+        { lbl: 'Q1\'26', u: 2128 },
+        { lbl: 'Q2\'26', u: 2128 },
+        { lbl: 'Q3\'26', u: 2115 }
+      ];
+      const minU = 2090, maxU = 2210;
+      const ptsStr = unitPts.map((p, idx) => {
+        const x = 52 + idx * 66;
+        const y = 165 - ((p.u - minU) / (maxU - minU)) * 130;
+        return `${x},${y.toFixed(1)}`;
+      }).join(' ');
+      let dots = `<polyline fill="none" stroke="#1e40af" stroke-width="2.5" points="${ptsStr}"/>`;
+      unitPts.forEach((p, idx) => {
+        const x = 52 + idx * 66;
+        const y = 165 - ((p.u - minU) / (maxU - minU)) * 130;
+        dots += `<circle cx="${x}" cy="${y.toFixed(1)}" r="4.5" fill="#1e40af"/>`;
+        dots += `<text x="${x}" y="${(y - 10).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">${p.u.toLocaleString()}</text>`;
+        dots += `<text x="${x}" y="192" text-anchor="middle" font-size="11" fill="#334155">${p.lbl}</text>`;
+      });
+      document.getElementById('chart-units').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Jack in the Box Ending Restaurant Count Chart">${dots}</svg>`;
+    });
+  </script>
+</body>
+</html>

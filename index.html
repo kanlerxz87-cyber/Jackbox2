@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Summary — Central LA NNN QSR Decision Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Executive Summary &amp; Strategic Decision Workspace</div>
+          <h2>Central Los Angeles Jack in the Box (NNN) — Sell vs. Renew Decision Dashboard</h2>
+          <p class="page-lead">
+            Evidence-based, privacy-preserving analysis evaluating whether to sell prior to lease expiration
+            (<strong>2030–2035 placeholder window</strong>), execute an IRC §1031 exchange, negotiate an early
+            renewal/blend-and-extend, or hold through expiration for re-tenanting or transit-corridor redevelopment.
+            All verified figures are traced line-by-line to official SEC, Census, BLS, IRS, CA FTB, LA City, CGS, FEMA, CAL FIRE, and U.S. Treasury sources.
+          </p>
+        </div>
+
+        <div class="banner banner-privacy">
+          <strong>Strict Privacy &amp; Anonymization Protocol:</strong>
+          Subject parcel APN, street address, owner entity, actual contract rent, tax basis, and lease files are
+          <strong>strictly excluded</strong> from this published site (replaced by placeholders such as <code>[PARCEL_ID_REDACTED]</code>
+          and <code>[OWNER_ENTITY_REDACTED]</code>). Keep all identifiers and documents offline in an access-controlled internal workspace
+          with authorized legal, CPA, and brokerage advisors.
+        </div>
+
+        <div class="banner banner-warn">
+          <strong>Strategic Posture — No Winner Selected Yet:</strong>
+          Public official data reveals meaningful <em>tenant headwinds</em> (JACK FY25 SSS -4.2%, 86 store closures, 7.624% refinancing,
+          Nov 2026 C-suite turnover) and <em>LA macro friction</em> (CA AB 1228 $20/hr wage, Measure ULA 4%–5.5% above $5.4M, 4.91% 10-Yr Treasury,
+          60% 30-yr ≥M6.7 earthquake risk), balanced against <em>Central LA transit/land optionality</em> (Metro D Line Sec. 1 opened May 2026,
+          TOC / AB 2011) and <em>heavy taxable-sale tax drag</em>. <strong>Do not commit to selling or renewing</strong> until Gates 1–4 verify the
+          private lease abstract (Corporate vs. Franchisee guaranty), exact store sales, Measure ULA boundary, CPA basis, and 3 written broker BOV quotes.
+        </div>
+
+        <!-- Top Verified KPI Strip -->
+        <section class="kpi-grid" aria-label="Verified Official Benchmarks">
+          <div class="kpi-card">
+            <div class="kpi-label">JACK System SSS (FY25 / Q3 FY26)</div>
+            <div class="kpi-value neg">-4.2% / -1.1%</div>
+            <div class="kpi-sub">Sequential improvement in FY26, still negative · <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm" target="_blank" rel="noopener noreferrer">SEC Q3 FY26 &#8599;</a></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">JACK System Units &amp; FY25 Closures</div>
+            <div class="kpi-value warn">2,115 (-86 in FY25)</div>
+            <div class="kpi-sub">Down from 2,191 (FY24); 51 FY25 'JACK on Track' closures · <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm" target="_blank" rel="noopener noreferrer">SEC 10-K &#8599;</a></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">U.S. 10-Yr Treasury Yield</div>
+            <div class="kpi-value">4.91%</div>
+            <div class="kpi-sub">As of Nov 24, 2026 (5Y: 4.69% / 30Y: 5.30%) · <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611" target="_blank" rel="noopener noreferrer">U.S. Treasury &#8599;</a></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">LA City Measure ULA (Eff. Jul 2026)</div>
+            <div class="kpi-value neg">4.0% &gt; $5.4M</div>
+            <div class="kpi-sub">5.5% ≥ $10.9M on GROSS value (LA City only) · <a href="https://finance.lacity.gov/faq/measure-ula" target="_blank" rel="noopener noreferrer">LA Finance &#8599;</a></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">CA Fast-Food Wage / LA CPI-U</div>
+            <div class="kpi-value">$20.00/hr · +3.7%</div>
+            <div class="kpi-sub">AB 1228 fast-food floor; LA CPI Sep 2026 YoY · <a href="https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm" target="_blank" rel="noopener noreferrer">CA DIR &#8599;</a></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Unverified / Flagged Audit Items</div>
+            <div class="kpi-value neg" id="kpi-flagged-count">10</div>
+            <div class="kpi-sub">All parcel-private &amp; pending items logged · <a href="flagged-review.html">Review Audit &#8599;</a></div>
+          </div>
+        </section>
+
+        <!-- Executive Summary Synthesis -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Executive Summary: What Official Evidence Shows Today (Nov 25, 2026)</h3>
+              <p class="card-sub">Synthesizing verified public facts across tenant credit, LA macroeconomics, taxes, and catastrophic tail risk.</p>
+            </div>
+            <a class="btn btn-primary" href="advisor-summary.html">Open W-10 1-Page Printable Brief</a>
+          </div>
+          <div class="grid-2">
+            <div>
+              <h4 style="margin:0 0 8px;color:#1e3a8a;">1. Tenant Trajectory &amp; Refinancing Risk (SEC Verified)</h4>
+              <ul style="margin:0 0 14px;padding-left:18px;font-size:14px;">
+                <li><strong>Multi-year sales &amp; unit contraction:</strong> System same-store sales fell from +7.3% (FY23) to -1.3% (FY24), -4.2% (FY25), and stayed negative in FY26 (Q1 -6.7%, Q2 -3.8%, Q3 -1.1%). Total units shrank from 2,191 (FY24) to 2,115 (Q3 FY26) under the "JACK on Track" closure plan.</li>
+                <li><strong>Franchise rental revenue declining:</strong> Standalone Jack in the Box franchise rental revenue dropped from $351.3M (FY23) to $332.7M (FY25), and 40-wk YTD FY26 fell -6.8% YoY ($242.5M vs. $260.3M).</li>
+                <li><strong>Higher debt cost colliding with 2030–2035 lease window:</strong> After selling Del Taco (Dec 22, 2025) for $119.1M net proceeds, JACK issued $500M of Series 2026-1 notes at <strong>7.624%</strong> (vs. 3.445%–4.476% repaid debt) with an Anticipated Repayment Date of <strong>May 2031</strong>, while Senior ABS leverage &gt;5.25x triggered $23.3M mandatory cash sweeps.</li>
+                <li><strong>Leadership transition:</strong> Interim CEO Mark King replaced Lance Tucker in May 2026; CFO, Chief Legal Officer, and CTO departures were announced Nov 17, 2026 (Form 8-K).</li>
+              </ul>
+              <h4 style="margin:0 0 8px;color:#1e3a8a;">2. Central LA Economic &amp; Regulatory Reality</h4>
+              <ul style="margin:0;padding-left:18px;font-size:14px;">
+                <li><strong>Population &amp; jobs:</strong> CA DOF estimates LA City fell -0.9% YoY to 3,806,201 and LA County lost 64,000 residents (-0.6%) to 9,837,286 by Jan 2026; BLS Sep 2026 MSA payroll growth was +0.5% YoY (statistically flat).</li>
+                <li><strong>Operating cost pressure:</strong> CA AB 1228 imposes a $20.00/hr fast-food wage (44.1% of JACK stores are in California: 941 units), while LA City general minimum wage rose to $18.42/hr (Jul 2026).</li>
+                <li><strong>Structural land-value upside:</strong> Metro D Line Section 1 (Wilshire/La Brea, Fairfax, La Cienega) opened May 8, 2026, with Sections 2–3 forecast 2027 ahead of the 2028 Olympics — reinforcing Central LA transit-corridor zoning value (TOC Tiers 1–4 &amp; CA AB 2011).</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="margin:0 0 8px;color:#1e3a8a;">3. Tax Friction &amp; Wealth Preservation Math</h4>
+              <ul style="margin:0 0 14px;padding-left:18px;font-size:14px;">
+                <li><strong>Taxable sale leakage is steep:</strong> Up to 20% Federal LTCG + 25% Unrecaptured Sec. 1250 + 3.8% NIIT + 13.3% California ordinary/BHST (no CA LTCG preference) + 0.11% LA County DTT + 0.45% LA City base + <strong>4.0% (&gt;$5.4M) or 5.5% (≥$10.9M) Measure ULA</strong> on gross value if inside LA City.</li>
+                <li><strong>§1031 vs. Blend-and-Extend:</strong> An IRC §1031 exchange defers federal &amp; CA income/recapture tax (not transfer/ULA tax) while diversifying away from single-site LA risk; a negotiated blend-and-extend avoids immediate tax &amp; ULA but preserves single-tenant &amp; LA seismic exposure.</li>
+                <li><strong>Prop 19 estate constraint:</strong> California Prop 19 eliminated parent-child property tax reassessment exclusions for commercial rental properties — critical for multi-generational hold planning.</li>
+              </ul>
+              <h4 style="margin:0 0 8px;color:#1e3a8a;">4. Catastrophic Black Swan &amp; Insurance Stress</h4>
+              <ul style="margin:0;padding-left:18px;font-size:14px;">
+                <li><strong>Seismic tail risk:</strong> USGS UCERF3 places 30-year Los Angeles earthquake probabilities at <strong>60% (≥M6.7)</strong>, <strong>46% (≥M7.0)</strong>, and <strong>31% (≥M7.5)</strong>.</li>
+                <li><strong>Wildfire &amp; insurance shock:</strong> Jan 2025 Palisades (6,845 structures destroyed) and Eaton (9,414 destroyed) fires prompted CDI Order 2025-1 ($1B FAIR Plan assessment) and Order 2026-1 ($600M credit line). Commercial property insurance availability &amp; deductibles must be audited privately.</li>
+                <li><strong>Immediate next steps:</strong> Complete <a href="decision-gates.html">Gates 0–4</a> (Attorney Lease Abstract, Offline W-01/W-04 Parcel Checks, Store Sales Review, 3 Broker BOVs + CPA Tax Run) before selecting a winning path.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Workstream Quick Directory -->
+        <section style="margin-bottom:22px;">
+          <h3 style="margin:0 0 12px;font-size:17px;">Workstreams &amp; Dashboard Modules</h3>
+          <div class="grid-3">
+            <a class="workstream-card" href="market-trade-area.html">
+              <div>
+                <div class="ws-code">W-01 · Local Economics</div>
+                <div class="ws-title">Trade-Area Figures &amp; Projection System</div>
+                <p class="ws-desc">Replaces LA City/County proxies with offline Census tract workflow, schools, jobs, transit, AB 1228 &amp; zoning.</p>
+              </div>
+              <span class="badge badge-proxy">Regional Verified · Parcel Blank</span>
+            </a>
+            <a class="workstream-card" href="calculator.html">
+              <div>
+                <div class="ws-code">W-02 · Private Browser Engine</div>
+                <div class="ws-title">Sell-vs-Hold &amp; After-Tax Calculator</div>
+                <p class="ws-desc">100% local-only short-lease BOV pricer, Measure ULA cliff detector, after-tax waterfall &amp; versioned 10-yr DCF.</p>
+              </div>
+              <span class="badge badge-verified">Interactive · Zero Telemetry</span>
+            </a>
+            <a class="workstream-card" href="decision-gates.html">
+              <div>
+                <div class="ws-code">W-03 · Governance</div>
+                <div class="ws-title">Decision-Gate Progress Board</div>
+                <p class="ws-desc">Gate 0 through Gate 5 readiness board blocking binding commitments until legal, parcel, tax &amp; BOV inputs exist.</p>
+              </div>
+              <span class="badge badge-flagged">Gates 1–5 Pending</span>
+            </a>
+            <a class="workstream-card" href="hazards-risk.html">
+              <div>
+                <div class="ws-code">W-04 · Physical &amp; Tail Risk</div>
+                <div class="ws-title">Parcel Hazard Screening &amp; Black Swans</div>
+                <p class="ws-desc">CGS EQ Zapp, FEMA Flood, CAL FIRE 2025 LRA, FAIR Plan Orders &amp; joint rent-loss/repair/liquidity stress tests.</p>
+              </div>
+              <span class="badge badge-unverified">Parcel Zones Blank</span>
+            </a>
+            <a class="workstream-card" href="tenant-analysis.html">
+              <div>
+                <div class="ws-code">SEC EDGAR · NASDAQ: JACK</div>
+                <div class="ws-title">Multi-Year Tenant Performance Series</div>
+                <p class="ws-desc">FY2022–Q3 FY2026 same-store sales, unit closures, franchise rental revenue, 7.624% debt &amp; lease guaranty structure.</p>
+              </div>
+              <span class="badge badge-verified">Verified Thru Q3 FY26</span>
+            </a>
+            <a class="workstream-card" href="advisor-summary.html">
+              <div>
+                <div class="ws-code">W-10 · Printable Brief</div>
+                <div class="ws-title">One-Page Advisor Summary</div>
+                <p class="ws-desc">Print-optimized 1-page anonymous executive briefing for attorney, CPA, and broker alignment meetings.</p>
+              </div>
+              <span class="badge badge-verified">Print / PDF Ready</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Complete Decision Options & Risk Comparison Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Strategic Decision Options: Wealth Preservation, Growth &amp; Risk Matrix</h3>
+              <p class="card-sub">Every realistic course of action evaluated for both Business-as-Usual (BAU) and rare Black Swan risks. No single winner is declared until verified private inputs are tested in W-02.</p>
+            </div>
+          </div>
+          <div class="table-controls">
+            <input type="search" id="opt-search" class="search-input" placeholder="Filter options, risks, or conditions...">
+          </div>
+          <div class="table-wrap">
+            <table id="options-table">
+              <thead>
+                <tr>
+                  <th>ID &amp; Course of Action</th>
+                  <th>Wealth Preservation</th>
+                  <th>Growth Opportunity</th>
+                  <th>Business-as-Usual (BAU) Risks</th>
+                  <th>Rare Black Swan Risks</th>
+                  <th>Strongest Conditional Fit</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="options-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Master Key Findings Verification Summary Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Master Verified Benchmarks vs. Required Private Inputs</h3>
+              <p class="card-sub">Every row carries an official verifiable link. Parcel-specific or unfiled values are intentionally left BLANK and flagged.</p>
+            </div>
+            <a class="btn btn-secondary" href="flagged-review.html">View All Flagged Items &#8594;</a>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>Metric / Parameter</th>
+                  <th>Verified Official Value</th>
+                  <th>Parcel / Private Value</th>
+                  <th>Status</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="master-summary-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>Anonymous Public Dashboard · Keep all parcel &amp; owner PII strictly offline in access-controlled internal workspace.</span>
+          <span><a href="questions-gaps.html">Missing Info Q&amp;A</a> · <a href="suggestions.html">Site Suggestions</a> · <a href="flagged-review.html">Flagged Audit</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const D = window.JACKBOX_DATA;
+      if (!D) return;
+
+      const flagCountEl = document.getElementById('kpi-flagged-count');
+      if (flagCountEl) flagCountEl.textContent = String(D.flagged.items.length);
+
+      const optBody = document.getElementById('options-tbody');
+      if (optBody) {
+        optBody.innerHTML = D.qaSuggestions.decisionOptions.map((o) => `
+          <tr>
+            <td><strong>${App.escapeHtml(o.id)}</strong><br>${App.escapeHtml(o.option)}</td>
+            <td>${App.escapeHtml(o.wealthPreservation)}</td>
+            <td>${App.escapeHtml(o.growthOpportunity)}</td>
+            <td>${App.escapeHtml(o.bauRisks)}</td>
+            <td>${App.escapeHtml(o.blackSwanRisks)}</td>
+            <td>${App.escapeHtml(o.bestWhen)}</td>
+            <td>${App.renderSourceLink(o.sourceUrl, o.sourceLabel)}</td>
+          </tr>
+        `).join('');
+        App.wireTableFilter('opt-search', null, 'options-table');
+      }
+
+      const masterRows = [
+        { domain: 'Tenant (JACK)', metric: 'FY2025 System SSS & Unit Closures', official: '-4.2% SSS; 86 closures (51 block closures); 2,136 ending units', priv: '', status: 'verified', url: 'https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm', label: 'SEC FY25 10-K' },
+        { domain: 'Tenant (JACK)', metric: 'Q3 FY2026 System SSS, Units & Refinancing', official: '-1.1% SSS; 2,115 units; $500M 2026-1 Notes @ 7.624% (ARD May 2031)', priv: '', status: 'verified', url: 'https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm', label: 'SEC Q3 FY26 Release' },
+        { domain: 'Tenant (JACK)', metric: 'FY2026 Audited Full-Year Form 10-K', official: '', priv: '', status: 'unverified', url: 'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=10-K&dateb=&owner=include&count=20', label: 'SEC EDGAR Index' },
+        { domain: 'LA Demographics', metric: 'City & County Population (Jan 1, 2026)', official: 'City: 3,806,201 (-0.9% YoY) · County: 9,837,286 (-0.6% YoY)', priv: '', status: 'verified_proxy_only', url: 'https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf', label: 'CA DOF E-1 2026' },
+        { domain: 'LA Economy', metric: 'Median HH Income (2020–2024 ACS) & MSA Jobs (Sep 2026)', official: 'LA City $81,939 / LA County $90,112 · MSA Jobs 6,282,100 (+0.5% YoY)', priv: '', status: 'verified_proxy_only', url: 'https://www.bls.gov/web/metro/metro_oty_change.htm', label: 'BLS / Census' },
+        { domain: 'Labor & Wages', metric: 'CA Fast Food Minimum Wage (AB 1228) & LA City Wage', official: 'Fast Food: $20.00/hr (Apr 2024) · LA City General: $18.42/hr (Jul 2026)', priv: '', status: 'verified', url: 'https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm', label: 'CA DIR / Wages LA' },
+        { domain: 'Tax & Transfer', metric: 'Measure ULA Thresholds (Post-Jun 30, 2026) & CA/Fed Rates', official: 'ULA: 4.0% >$5.4M / 5.5% ≥$10.9M (LA City) · Fed 20%+25% 1250+3.8% · CA 13.3%', priv: '', status: 'verified', url: 'https://finance.lacity.gov/faq/measure-ula', label: 'LA Finance / IRS / FTB' },
+        { domain: 'Capital Markets', metric: 'U.S. Treasury 10-Yr Yield vs. Broker BOV Cap Quotes', official: '10-Yr Treasury: 4.91% (Nov 24, 2026) · 5-Yr: 4.69% · 30-Yr: 5.30%', priv: '', status: 'unverified', url: 'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611', label: 'U.S. Treasury' },
+        { domain: 'Hazards (W-04)', metric: 'LA Seismic Probability & Jan 2025 Wildfires / FAIR Plan', official: '60% 30-yr ≥M6.7 EQ; 16,259 structures lost Jan 2025; $1B FAIR Plan assessment', priv: '', status: 'unverified_parcel', url: 'https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area', label: 'USGS / CAL FIRE / CDI' }
+      ];
+      const masterBody = document.getElementById('master-summary-tbody');
+      if (masterBody) {
+        masterBody.innerHTML = masterRows.map((r) => `
+          <tr>
+            <td><strong>${App.escapeHtml(r.domain)}</strong></td>
+            <td>${App.escapeHtml(r.metric)}</td>
+            <td>${App.renderValueOrBlank(r.official, 'PENDING OFFICIAL FILING')}</td>
+            <td>${App.renderValueOrBlank(r.priv, 'PRIVATE — OFFLINE ONLY')}</td>
+            <td>${App.renderStatusBadge(r.status)}</td>
+            <td>${App.renderSourceLink(r.url, r.label)}</td>
+          </tr>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

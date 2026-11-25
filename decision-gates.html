@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W-03 Decision-Gate Progress Board — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Workstream W-03 · Governance &amp; Sequential Readiness</div>
+          <h2>Decision-Gate Progress Board (Gate 0 &rarr; Gate 5)</h2>
+          <p class="page-lead">
+            Enforces disciplined decision sequencing: no listing agreement, §1031 commitment, or lease renewal amendment
+            should be signed until privacy, legal lease abstracting, parcel trade-area &amp; hazard verification,
+            store-level economics, and CPA/BOV after-tax pricing gates are closed.
+          </p>
+        </div>
+
+        <div id="gate5-readiness-banner" class="banner banner-warn"></div>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Overall Readiness Progress (Saved Locally in Your Browser Only)</h3>
+              <p class="card-sub" id="gates-progress-label">Loading progress...</p>
+            </div>
+            <button type="button" class="btn btn-secondary" id="btn-reset-gates">Reset Board to Public Baseline</button>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="gates-progress-fill" style="width:0%;"></div>
+          </div>
+
+          <div class="table-wrap" style="margin-top:16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gate</th>
+                  <th>Phase &amp; Responsible Role</th>
+                  <th>Status (Local Selector)</th>
+                  <th>Blocking Requirements &amp; Work Items</th>
+                  <th>Exit / Verification Criteria</th>
+                  <th>Official Anchor Link</th>
+                </tr>
+              </thead>
+              <tbody id="gates-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>W-03 Decision-Gate Progress Board · Status updates persist only in local browser storage</span>
+          <span><a href="questions-gaps.html">Next: Questions, Missing Information &amp; Discovery Plan &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/gates.js"></script>
+</body>
+</html>

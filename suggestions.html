@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Improvement Suggestions — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Decision-Making Enhancement Proposals · Review Before Implementing</div>
+          <h2>Site Improvement Suggestions &amp; Roadmap Selector</h2>
+          <p class="page-lead">
+            Dedicated workspace listing concrete, prioritized suggestions to strengthen this site's analytical precision,
+            offline privacy security, and advisor workflow. Review each proposal, evaluate its privacy guardrails and
+            prerequisites, and select your preferred path below <strong>before implementing any changes</strong>.
+          </p>
+        </div>
+
+        <div class="banner banner-privacy">
+          <strong>Advisory-Only Selection Scratchpad:</strong>
+          Choosing <em>Approve</em>, <em>Defer</em>, or <em>Do Not Implement</em> saves your review selections strictly inside
+          your local browser and lets you export a clean JSON decision roadmap — nothing is auto-implemented without explicit approval.
+        </div>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Proposed Enhancements for Decision-Making Quality</h3>
+              <p class="card-sub" id="suggestions-summary">Loading review tally...</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button type="button" class="btn btn-primary" id="btn-export-suggestions">Export Selected Roadmap JSON</button>
+              <button type="button" class="btn btn-secondary" id="btn-reset-suggestions">Reset Selections</button>
+            </div>
+          </div>
+
+          <div class="table-controls">
+            <input type="search" id="sug-search" class="search-input" placeholder="Search encryption, Monte Carlo, Census, Measure ULA, SEC...">
+            <select id="sug-cat-filter" class="select-input" aria-label="Filter suggestions by category">
+              <option value="">All Categories</option>
+              <option value="Privacy & Offline Security">Privacy &amp; Offline Security</option>
+              <option value="W-01 Trade-Area Automation">W-01 Trade-Area Automation</option>
+              <option value="W-02 Financial Modeling">W-02 Financial Modeling</option>
+              <option value="W-02 Market Comps & Back-Testing">W-02 Market Comps &amp; Back-Testing</option>
+              <option value="Tenant Credit Monitoring">Tenant Credit Monitoring</option>
+              <option value="Tax & 1031 Comparison">Tax &amp; 1031 Comparison</option>
+              <option value="Advisor Collaboration (W-10)">Advisor Collaboration (W-10)</option>
+              <option value="W-04 Hazard & Insurance">W-04 Hazard &amp; Insurance</option>
+              <option value="Governance & Decision Hygiene">Governance &amp; Decision Hygiene</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table id="suggestions-table">
+              <thead>
+                <tr>
+                  <th>ID &amp; Category</th>
+                  <th>Suggested Enhancement &amp; Scope</th>
+                  <th>Decision Benefit &amp; Privacy Guardrail</th>
+                  <th>Effort &amp; Prerequisites</th>
+                  <th>Review Decision (Local)</th>
+                  <th>Reference Anchor</th>
+                </tr>
+              </thead>
+              <tbody id="suggestions-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>All suggestions are optional proposals pending owner review and selection.</span>
+          <span><a href="flagged-review.html">Next: Flagged for Review &amp; Audit Log &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/gates.js"></script>
+</body>
+</html>

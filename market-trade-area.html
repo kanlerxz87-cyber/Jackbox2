@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W-01 Trade Area &amp; Local Economy — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Workstream W-01 · Replace City &amp; County Proxies With Trade-Area Figures</div>
+          <h2>Central Los Angeles Economic Factors, Trade-Area Evidence &amp; Projection System</h2>
+          <p class="page-lead">
+            Comprehensive evaluation of geography, population, income, housing, jobs, inflation, school systems,
+            fast-food wage law (AB 1228), Metro transit expansion, and zoning optionality — pairing verified regional
+            baselines with a secure offline workflow to pull consistent parcel-level Census tracts and local evidence.
+          </p>
+        </div>
+
+        <div class="banner banner-privacy">
+          <strong>Secure Offline Trade-Area Workflow (Zero Parcel Identifiers Published):</strong>
+          City and County figures below are <em>regional proxies only</em>. Use the confidential parcel APN/address
+          <strong>exclusively offline</strong> to select consistent 1-, 3-, and 5-mile Census tracts (comparing 2015–2019 vs. 2020–2024 ACS
+          tract-level trends), LA City ZIMAS zoning/TOC/AB 2011 status, Caltrans/LADOT arterial AADT, nearest LAUSD schools,
+          and competing drive-thru QSRs. All parcel-specific trade-area cells remain intentionally <strong>BLANK</strong> below.
+        </div>
+
+        <!-- Secure Offline Step-by-Step Guide -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>4-Step Offline Protocol to Replace Regional Proxies With Trade-Area Evidence</h3>
+              <p class="card-sub">Follow privately on an access-controlled workstation; publish only aggregate, non-identifying summaries if ever shared.</p>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="print-box">
+              <h4>Step 1 · Jurisdiction &amp; Zoning Check (Offline)</h4>
+              <ul>
+                <li>Confirm whether confidential APN sits inside incorporated <strong>City of Los Angeles</strong> (triggers Measure ULA &gt;$5.4M &amp; LA City $18.42/hr wage) or adjacent city/unincorporated LA County.</li>
+                <li>Check <strong>LA City ZIMAS</strong> for Zoning Code, Community Plan Area, Measure JJJ <strong>TOC Tier (1–4)</strong>, <strong>AB 2011</strong> commercial corridor eligibility, and grandfathered drive-thru status.</li>
+              </ul>
+            </div>
+            <div class="print-box">
+              <h4>Step 2 · Tract-Level Trend Evidence (Offline)</h4>
+              <ul>
+                <li>Geocode confidential address privately via U.S. Census Geocoder to identify the home Census tract and contiguous 1-mile / 3-mile tracts.</li>
+                <li>Pull <strong>2015–2019 vs. 2020–2024 ACS 5-Year</strong> tables (B01003 Population, B19013 Median HH Income, B25003 Tenure, B25064 Gross Rent, B17001 Poverty) to verify whether the immediate neighborhood is gentrifying/densifying or contracting relative to LA City.</li>
+              </ul>
+            </div>
+            <div class="print-box">
+              <h4>Step 3 · Traffic, Transit &amp; School Catchment</h4>
+              <ul>
+                <li>Verify arterial AADT via <strong>Caltrans Traffic Census</strong> / <strong>LADOT NavigateLA</strong>, corner signalization, curb cuts, and drive-thru lane stacking depth.</li>
+                <li>Measure distance to nearest <strong>LA Metro rail station</strong> (D/B/E/A/K Lines) and check assigned local <strong>LAUSD</strong> schools on CA Dept. of Education Dashboard.</li>
+              </ul>
+            </div>
+            <div class="print-box">
+              <h4>Step 4 · QSR Competitor &amp; Cannibalization Audit</h4>
+              <ul>
+                <li>Map all drive-thru QSRs within 1.5 miles (McDonald's, In-N-Out, Taco Bell, Chick-fil-A, Raising Cane's, Burger King, Carl's Jr.) AND other nearby Jack in the Box units (cannibalization risk under "JACK on Track").</li>
+                <li>Pair with offline store sales / broker foot-traffic data before Gate-4 renewal or sale pricing.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Master W-01 Indicators Table -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Verified Regional Baselines vs. Blank Parcel Trade-Area Indicators</h3>
+              <p class="card-sub">Every regional metric is linked to an official government agency. Every parcel trade-area cell is explicitly BLANK &amp; flagged until verified offline.</p>
+            </div>
+          </div>
+          <div class="table-controls">
+            <input type="search" id="w01-search" class="search-input" placeholder="Search population, income, LAUSD, AB 1228, Metro, zoning...">
+            <select id="w01-domain-filter" class="select-input" aria-label="Filter by economic domain">
+              <option value="">All Domains</option>
+              <option value="Population & Migration">Population &amp; Migration</option>
+              <option value="Income & Affordability">Income &amp; Affordability</option>
+              <option value="Labor Market & Jobs">Labor Market &amp; Jobs</option>
+              <option value="Labor Regulation & Wages">Labor Regulation &amp; Wages</option>
+              <option value="School Systems">School Systems</option>
+              <option value="Transit & Infrastructure">Transit &amp; Infrastructure</option>
+              <option value="Zoning & Redevelopment">Zoning &amp; Redevelopment</option>
+              <option value="Traffic & Site Visibility">Traffic &amp; Site Visibility</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table id="w01-table">
+              <thead>
+                <tr>
+                  <th>Domain &amp; Indicator</th>
+                  <th>LA County / MSA (Verified Proxy)</th>
+                  <th>City of LA (Verified Proxy)</th>
+                  <th>Parcel Trade Area (1–3 Mi / Tract)</th>
+                  <th>Property Value Implication</th>
+                  <th>Status</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="w01-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Area Economic Projection System -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Central Los Angeles Area Projection System (2026–2035 Horizon)</h3>
+              <p class="card-sub">Distinguishes official public agency forecasts (CA DOF, CA EDD, SCAG, LA Metro, SEC debt schedules) from qualitative upside/downside scenario envelopes.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Horizon &amp; Dimension</th>
+                  <th>Verified Official Agency Baseline</th>
+                  <th>Upside Scenario Envelope</th>
+                  <th>Downside Scenario Envelope</th>
+                  <th>Classification</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="proj-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>W-01 Trade-Area &amp; Macroeconomic Verification · Verified 2026-11-25</span>
+          <span><a href="hazards-risk.html">Next: W-04 Parcel Hazard Screening &amp; Black Swan Risks &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const M = window.JACKBOX_DATA && window.JACKBOX_DATA.market;
+      if (!M) return;
+
+      document.getElementById('w01-tbody').innerHTML = M.indicators.map((r) => `
+        <tr data-category="${App.escapeHtml(r.domain)}">
+          <td><span class="badge badge-neutral">${App.escapeHtml(r.domain)}</span><br><strong>${App.escapeHtml(r.indicator)}</strong></td>
+          <td>${App.escapeHtml(r.countyLA)}</td>
+          <td>${App.escapeHtml(r.cityLA)}</td>
+          <td>${App.renderValueOrBlank(r.parcelTradeArea, 'BLANK — OFFLINE PARCEL WORKFLOW')}</td>
+          <td>${App.escapeHtml(r.impact)}</td>
+          <td>${App.renderStatusBadge(r.status)}</td>
+          <td>${App.renderSourceLink(r.sourceUrl, r.sourceLabel)}</td>
+        </tr>
+      `).join('');
+      App.wireTableFilter('w01-search', 'w01-domain-filter', 'w01-table');
+
+      document.getElementById('proj-tbody').innerHTML = M.projectionFramework.map((p) => `
+        <tr>
+          <td><strong>${App.escapeHtml(p.horizon)}</strong><br><span class="field-hint">${App.escapeHtml(p.metric)}</span></td>
+          <td>${App.escapeHtml(p.baseProjection)}</td>
+          <td>${App.escapeHtml(p.upsideCase)}</td>
+          <td>${App.escapeHtml(p.downsideCase)}</td>
+          <td><span class="badge badge-proxy">${App.escapeHtml(p.classification)}</span></td>
+          <td>${App.renderSourceLink(p.sourceUrl, p.sourceLabel)}</td>
+        </tr>
+      `).join('');
+    });
+  </script>
+</body>
+</html>

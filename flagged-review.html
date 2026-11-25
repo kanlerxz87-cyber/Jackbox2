@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flagged for Review &amp; Verification Audit — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Line-by-Line Verification Audit · Zero Hallucinations Policy</div>
+          <h2>Flagged for Review: Unverified Values, Pending Filings &amp; Data Irregularities</h2>
+          <p class="page-lead">
+            Every figure on this site was checked line by line against official primary sources as of <strong>2026-11-25</strong>.
+            Where an official filing is pending, where two government agencies diverge methodologically, where an official table
+            leaves a cell blank, or where confidential parcel/owner records cannot be published, values are intentionally left
+            <strong>BLANK</strong> and surfaced below with official links for manual review.
+          </p>
+        </div>
+
+        <div class="banner banner-danger">
+          <strong>Strict Zero-Inference Rule:</strong>
+          No blank value listed below was estimated, interpolated, or inferred. Reviewers should verify each item manually
+          via the linked official source or through their confidential offline advisor workflow.
+        </div>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Flagged Items &amp; Irregularities Ledger</h3>
+              <p class="card-sub" id="flagged-count-sub">Loading flagged audit entries...</p>
+            </div>
+          </div>
+          <div class="table-controls">
+            <input type="search" id="flag-search" class="search-input" placeholder="Search 10-K, Census, BLS, Measure ULA, parcel, BOV...">
+            <select id="flag-sev-filter" class="select-input" aria-label="Filter by severity">
+              <option value="">All Severities</option>
+              <option value="Critical">Critical</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table id="flagged-table">
+              <thead>
+                <tr>
+                  <th>Flag ID &amp; Severity</th>
+                  <th>Category</th>
+                  <th>Flagged Item / Field</th>
+                  <th>Current Site Status</th>
+                  <th>Verification Findings &amp; Irregularity Notes</th>
+                  <th>Recommended Manual Review Action</th>
+                  <th>Official Source Link</th>
+                </tr>
+              </thead>
+              <tbody id="flagged-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>Line-by-Line Verification Audit Completed 2026-11-25 · Also logged in COORDINATION.md</span>
+          <span><a href="index.html">Return to Executive Summary &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const F = window.JACKBOX_DATA && window.JACKBOX_DATA.flagged;
+      if (!F) return;
+
+      document.getElementById('flagged-count-sub').textContent =
+        `${F.items.length} flagged items documented for manual review (zero fabricated or inferred values).`;
+
+      document.getElementById('flagged-tbody').innerHTML = F.items.map((it) => {
+        const sevCls = it.severity === 'Critical' || it.severity === 'High'
+          ? 'badge-unverified'
+          : (it.severity === 'Medium' ? 'badge-flagged' : 'badge-neutral');
+        return `
+          <tr data-category="${App.escapeHtml(it.severity)}">
+            <td><strong>${App.escapeHtml(it.flagId)}</strong><br><span class="badge ${sevCls}">${App.escapeHtml(it.severity)}</span></td>
+            <td>${App.escapeHtml(it.category)}</td>
+            <td><strong>${App.escapeHtml(it.item)}</strong></td>
+            <td><span class="blank-cell">${App.escapeHtml(it.currentStatus)}</span></td>
+            <td>${App.escapeHtml(it.details)}</td>
+            <td>${App.escapeHtml(it.manualReviewAction)}</td>
+            <td>${App.renderSourceLink(it.sourceUrl, 'Verify Officially')}</td>
+          </tr>
+        `;
+      }).join('');
+      App.wireTableFilter('flag-search', 'flag-sev-filter', 'flagged-table');
+    });
+  </script>
+</body>
+</html>

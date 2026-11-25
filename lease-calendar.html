@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lease Abstract, Notice Calendar &amp; Tax Rules — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Gate 1 · Private Lease Abstract, Notice Calendar &amp; Verified Tax Law</div>
+          <h2>Lease Abstract Commissioning, Notice Calendar &amp; Statutory Tax Rules</h2>
+          <p class="page-lead">
+            Commission a private attorney-prepared lease abstract and reconcile it against the contractual notice calendar
+            <strong>before</strong> making any sale, §1031, or renewal commitment. Below are the exact clauses to extract
+            offline, a 100% browser-local Notice Calendar generator, and every verified Federal, California, and Los Angeles
+            tax rule affecting net proceeds.
+          </p>
+        </div>
+
+        <div class="banner banner-privacy">
+          <strong>Offline Legal Vault Rule:</strong>
+          Keep executed leases, amendments, estoppels, rent rolls, and entity/trust documents strictly offline with authorized legal
+          and CPA counsel. All private lease values below remain intentionally <strong>BLANK</strong> in this public site.
+        </div>
+
+        <!-- Local-Only Notice Calendar Reconciliation Tool -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Local-Only Notice Calendar Reconciliation Tool</h3>
+              <p class="card-sub">Runs strictly in your browser memory (zero transmission). Enter your private expiration date (within 2030–2035) and required option notice days from your attorney abstract.</p>
+            </div>
+          </div>
+          <div class="form-grid" style="margin-bottom:16px;">
+            <div class="field">
+              <label for="nc-expiration-date">Primary Lease Expiration Date <span class="tag-priv">PRIVATE INPUT</span></label>
+              <input type="date" id="nc-expiration-date" min="2027-01-01" max="2040-12-31">
+              <span class="field-hint">Placeholder window: 2030–2035 (leave blank if unverified).</span>
+            </div>
+            <div class="field">
+              <label for="nc-notice-days">Contractual Option Notice Window (Days Prior) <span class="tag-priv">PRIVATE INPUT</span></label>
+              <input type="number" id="nc-notice-days" placeholder="e.g., 180 or 365" min="30" max="730">
+              <span class="field-hint">Exact written notice period specified in renewal clause.</span>
+            </div>
+          </div>
+          <div id="nc-output"></div>
+        </section>
+
+        <!-- Private Lease Abstract Clause Checklist -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Private Lease Abstract Checklist (Commission Offline With CA Real Estate Counsel)</h3>
+              <p class="card-sub">Every clause below directly changes sale price, financing eligibility, Measure ULA/Prop 13 exposure, or renewal leverage.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Clause ID</th>
+                  <th>Lease Provision to Abstract</th>
+                  <th>Verified Private Value</th>
+                  <th>Why It Moves the Decision</th>
+                  <th>Status</th>
+                  <th>Official Context Link</th>
+                </tr>
+              </thead>
+              <tbody id="lease-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Verified Federal, California, LA County & LA City Tax Rules -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Verified Federal, California &amp; Los Angeles Tax &amp; Transfer Rules</h3>
+              <p class="card-sub">Statutory rates and thresholds verified directly from IRS, CA FTB, CA BOE, LA County Assessor, LA County RRCC, LA City Finance, and U.S. Treasury.</p>
+            </div>
+            <a class="btn btn-primary" href="calculator.html">Open W-02 After-Tax Calculator &#8594;</a>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Jurisdiction</th>
+                  <th>Tax / Statutory Rule</th>
+                  <th>Verified Official Rule &amp; Thresholds</th>
+                  <th>Application in W-02 Model</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="tax-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>Statutory Verification Only — Not Legal or Tax Advice · Review offline with CA Real Estate Counsel &amp; CPA</span>
+          <span><a href="calculator.html">Next: W-02 Private Sell-vs-Hold &amp; After-Tax Calculator &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/gates.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const TL = window.JACKBOX_DATA && window.JACKBOX_DATA.taxLease;
+      if (!TL) return;
+
+      document.getElementById('lease-tbody').innerHTML = TL.leaseAbstractChecklist.map((c) => `
+        <tr>
+          <td><strong>${App.escapeHtml(c.clauseId)}</strong></td>
+          <td><strong>${App.escapeHtml(c.clause)}</strong></td>
+          <td>${App.renderValueOrBlank(c.privateValue, 'BLANK — PRIVATE ABSTRACT REQUIRED')}</td>
+          <td>${App.escapeHtml(c.whyItMatters)}</td>
+          <td>${App.renderStatusBadge(c.status)}</td>
+          <td>${App.renderSourceLink(c.sourceUrl, c.sourceLabel)}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('tax-tbody').innerHTML = TL.taxRules.map((t) => `
+        <tr>
+          <td><strong>${App.escapeHtml(t.jurisdiction)}</strong></td>
+          <td><strong>${App.escapeHtml(t.rule)}</strong></td>
+          <td>${App.escapeHtml(t.verifiedRule)}</td>
+          <td>${App.escapeHtml(t.calculatorDefault)}</td>
+          <td>${App.renderSourceLink(t.sourceUrl, t.sourceLabel)}</td>
+        </tr>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
