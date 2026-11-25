@@ -287,3 +287,35 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 - `main` validation run https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45629665475 — **PASS**.
 - Legacy GitHub Pages build/deployment run https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45629665704 — **SUCCESS**. Pages API reported the same merge commit and the deploy job completed successfully. Public root: https://kanlerxz87-cyber.github.io/Jackbox2/ ; privacy-first dashboard: https://kanlerxz87-cyber.github.io/Jackbox2/privacy-first/ .
 - The redundant Actions-based workflow run `45629665574` failed because the repository is configured for legacy Pages, while the legacy deployment succeeded. Following the earlier integration recommendation, `.github/workflows/static.yml` is removed in a follow-up so future pushes use the successful legacy Pages pipeline without a known-incompatible duplicate deploy job. The validation workflow now also runs `privacy-first/tests/check.py`.
+
+---
+
+## Session 75e09b85 Addendum (arena/75e09b85-jackbox2)
+
+- **Session ID:** `75e09b85`
+- **Branch:** `arena/75e09b85-jackbox2` (branched from `main` @ `d1f3bf8b6c453a009ac95b51862a5f9d37d66a5c`, integrated onto main @ 5c7ea6f)
+- **Status:** in_progress (final integration)
+- **Scope:** `docs/arena-75e09b85/**`, `COORDINATION.md`, `README.md`, `.gitignore`
+
+### Tasks (75e09b85)
+| Task ID | Task | Status | Owner | File scope | Notes |
+|---|---|---|---|---|---|
+| T75-001 | Coordination baseline | done | 75e09b85 | `COORDINATION.md`, `README.md`, `.gitignore` | Claimed and pushed. |
+| T75-002 | Static site skeleton | done | 75e09b85 | `docs/arena-75e09b85/**` | Static HTML/CSS; no build step. |
+| T75-003 | Verified official-source research tables | done | 75e09b85 | `docs/arena-75e09b85/market-research.html`, `risk-analysis.html`, `sources.html` | Census QuickFacts, BLS LAUS, USGS UCERF3, FEMA MSC, OSFM FHSZ cited. |
+| T75-004 | Decision framework, questions, suggestions, executive summary | done | 75e09b85 | `docs/arena-75e09b85/decision-framework.html`, `questions.html`, `suggestions.html`, `executive-summary.html` | No sell/renew winner selected; decision gates defined. |
+| T75-005 | Privacy/anonymization + flagged review + verification | done | 75e09b85 | `docs/arena-75e09b85/privacy.html`, `flagged-review.html`, all docs | No personal identifiers published; link/anchor check performed. |
+| T75-006 | Final integration, PR, merge, Pages deploy | in_progress | 75e09b85 | repo-wide | Integrated onto main without discarding other sessions' work. |
+
+### Verification Log (75e09b85)
+| Time (UTC) | Artifact | Verification | Sources | Result |
+|---|---|---|---|---|
+| 2026-11-25T13:37:00Z | `docs/arena-75e09b85/market-research.html` | Checked LA city QuickFacts values and BLS LA-Long Beach-Anaheim Sep 2026 preliminary against fetched official pages. | https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/LND110210 ; https://www.bls.gov/web/metro/laulrgma.htm | Verified cited aggregate values; trade-area/tract/parcel left unverified/internal. |
+| 2026-11-25T13:37:00Z | `docs/arena-75e09b85/risk-analysis.html` | Verified USGS LA earthquake probabilities and UCERF3 source; verified FEMA MSC/OSFM FHSZ official program pages. | https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area ; https://pubs.usgs.gov/fs/2015/3009/ ; https://msc.fema.gov/portal/home ; https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones | Regional context verified; parcel-specific statuses unverified by design. |
+| 2026-11-25T13:37:00Z | `docs/arena-75e09b85/**` | Internal href/anchor check; privacy scan for obvious identifiers. Fixed `questions.html#tenant` -> `#lease`. | Local script/review | Missing anchor fixed; no personal identifiers published. |
+| 2026-11-25T13:37:00Z | OSFM source check | Attempted old OSFM map URLs; both returned 404. | https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones-maps ; https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones-maps-2022 | Flagged F-011; used current OSFM FHSZ program page. |
+
+### Incidents (75e09b85)
+| Time (UTC) | Event | Detail |
+|---|---|---|
+| 2026-11-25T13:37:00Z | Rebase conflict | Initial rebase onto origin/main conflicted on COORDINATION/README/docs overlap. Aborted rebase, reset branch to origin/main, restored non-conflicting `docs/arena-75e09b85/` artifact. No other session work discarded. |

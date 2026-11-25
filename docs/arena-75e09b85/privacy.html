@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy &amp; Data Handling | Jackbox2</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="title">Jackbox2 Property Decision Workspace</div>
+        <div class="subtitle">Anonymized public dashboard &middot; Official-source linked &middot; No personal data</div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Dashboard</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="market-research.html">Market Research</a>
+        <a href="risk-analysis.html">Risk Analysis</a>
+        <a href="decision-framework.html">Decision Framework</a>
+        <a href="questions.html">Questions &amp; Missing Info</a>
+        <a href="suggestions.html">Suggestions</a>
+        <a href="flagged-review.html">Flagged for Review</a>
+        <a href="privacy.html" aria-current="page">Privacy</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="hero">
+      <h1>Privacy &amp; Data Handling</h1>
+      <p>Personal information privacy is the top priority. This page defines what is excluded from the public site, how anonymization is applied, and what must remain in secure internal workflows.</p>
+      <div class="meta">
+        <span class="pill danger">No personal data published</span>
+        <span class="pill info">Aggregate/non-identifying only</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Public-Site Privacy Rules</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Data category</th>
+              <th>Public site treatment</th>
+              <th>Internal handling</th>
+              <th>Status</th>
+              <th>Policy basis / note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Property address, APN/parcel ID, legal description, coordinates</td>
+              <td>Never published. Replaced by anonymized placeholder: "[SUBJECT PROPERTY - INTERNAL ONLY]".</td>
+              <td>Access-controlled internal workspace only; authorized advisers only.</td>
+              <td><span class="status verified">Required control</span></td>
+              <td class="small">User instruction: anonymize any personal information; no personal information on final website product.</td>
+            </tr>
+            <tr>
+              <td>Owner name, entity, contact details, tax IDs, account numbers</td>
+              <td>Never published. No placeholders containing real values.</td>
+              <td>Secure internal workflow only; do not commit to repo.</td>
+              <td><span class="status verified">Required control</span></td>
+              <td class="small">User instruction: personal information privacy top priority/highest urgency.</td>
+            </tr>
+            <tr>
+              <td>Lease documents, rent roll, tenant financials, owner financials, tax returns</td>
+              <td>Never published. Only anonymized decision-framework templates may be shown.</td>
+              <td>Offline/secure internal storage with authorized advisers; use private lease abstract.</td>
+              <td><span class="status verified">Required control</span></td>
+              <td class="small">User instruction: keep all parcel and owner records in access-controlled internal workspace; publish only anonymous summaries.</td>
+            </tr>
+            <tr>
+              <td>Parcel-level hazard screening outputs</td>
+              <td>Public site provides official tool links and regional context only. No parcel-specific zone determination published.</td>
+              <td>Run privately in secure workflow using parcel location; share only with authorized advisers.</td>
+              <td><span class="status internal">Internal workflow required</span></td>
+              <td class="small">Parcel-level hazard status can be location-revealing when combined with property description.</td>
+            </tr>
+            <tr>
+              <td>Neighbourhood/tract-level analysis</td>
+              <td>Public site uses aggregate city/county/regional data. No tract IDs or maps tied to subject property.</td>
+              <td>Select consistent Census tracts and local evidence in secure workflow; publish only non-identifying aggregates.</td>
+              <td><span class="status internal">Internal workflow required</span></td>
+              <td class="small">User instruction: use location only in secure workflow to select consistent Census tracts and local evidence.</td>
+            </tr>
+            <tr>
+              <td>Broker quotes, appraisals, lender terms, insurance quotes</td>
+              <td>Never published if identifiable. Public site may describe required quote types only.</td>
+              <td>Obtain and review privately; summarize only anonymized ranges if approved by owner/advisers.</td>
+              <td><span class="status internal">Internal workflow required</span></td>
+              <td class="small">Quotes can contain identifying property/party details.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Anonymization Conventions Used on This Site</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Public representation</th>
+              <th>Reason</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Subject property</td>
+              <td>"Subject Property (anonymized): QSR, NNN lease, Central Los Angeles area"</td>
+              <td>Avoids parcel-level identification.</td>
+              <td><span class="status verified">Applied</span></td>
+            </tr>
+            <tr>
+              <td>Lease expiration</td>
+              <td>"2030–2035 (exact date withheld; internal only)"</td>
+              <td>Exact date may be identifying in combination with other facts; user provided a window.</td>
+              <td><span class="status verified">Applied</span></td>
+            </tr>
+            <tr>
+              <td>Location-specific analysis</td>
+              <td>City/county/regional official data with explicit note that parcel/tract selection is internal.</td>
+              <td>Prevents location leakage while preserving useful context.</td>
+              <td><span class="status verified">Applied</span></td>
+            </tr>
+            <tr>
+              <td>Financial/tax inputs</td>
+              <td>Blank placeholders and templates only.</td>
+              <td>No verified private financial data available; prevents fabrication.</td>
+              <td><span class="status verified">Applied</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Incident Handling</h2>
+      <p class="lead">If personal information is discovered during research or repo review, it must not be published, copied into site pages, or included in commit messages. Record the existence of the issue only in a secure internal channel/adviser workflow; on the public site, log a redacted "privacy risk flagged - handled internally" entry if needed.</p>
+      <div class="notice warn">
+        <strong>Repository scan note (2026-11-25):</strong> A line-by-line review of tracked files at initialization found only <code>README.md</code> in the initial commit and no personal identifiers. This statement applies to tracked repo content reviewed at that time, not to external systems or untracked local files.
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <p><strong>Privacy first.</strong> No personal information is published on this site. <a href="index.html">Back to dashboard</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

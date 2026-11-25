@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Framework | Jackbox2</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="title">Jackbox2 Property Decision Workspace</div>
+        <div class="subtitle">Anonymized public dashboard &middot; Official-source linked &middot; No personal data</div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Dashboard</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="market-research.html">Market Research</a>
+        <a href="risk-analysis.html">Risk Analysis</a>
+        <a href="decision-framework.html" aria-current="page">Decision Framework</a>
+        <a href="questions.html">Questions &amp; Missing Info</a>
+        <a href="suggestions.html">Suggestions</a>
+        <a href="flagged-review.html">Flagged for Review</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="hero">
+      <h1>Decision Framework</h1>
+      <p>Structured sell-before-expiry vs. renew/hold framework for the anonymized Central Los Angeles QSR NNN property. This page provides templates, decision gates, and a private browser calculator. It does <strong>not</strong> select a winner until verified inputs exist.</p>
+      <div class="meta">
+        <span class="pill danger">No winner selected</span>
+        <span class="pill warn">Verified inputs required</span>
+        <span class="pill info">Calculator runs locally in browser</span>
+      </div>
+    </section>
+
+    <div class="notice danger">
+      <strong>Decision rule.</strong> Do not select sell or renew/hold until verified lease, rent/NOI, tenant credit, tax basis, debt, capex, insurance, hazard, market quote, and legal inputs are available. The "best course of action" depends on those inputs and the owner's risk tolerance, liquidity needs, and tax situation.
+    </div>
+
+    <section class="section" id="recommendation-status">
+      <h2>Current Recommendation Status (Conditional)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Current evidence-based answer</th>
+              <th>What would change it</th>
+              <th>Status</th>
+              <th>Source / control</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Should the owner sell before lease expiry or renew/hold?</td>
+              <td><strong>No decision selected.</strong> There is insufficient verified property-specific information to recommend sell or renew/hold.</td>
+              <td>Verified lease abstract, current NOI/rent schedule, tenant credit/sales, tax basis, debt, market quotes, parcel hazard/insurance, and after-tax comparison.</td>
+              <td><span class="status unverified">Blocked</span></td>
+              <td><a href="questions.html">Questions &amp; Missing Info</a></td>
+            </tr>
+            <tr>
+              <td>What is the best course of action now?</td>
+              <td>Run the decision-gate process: preserve privacy, commission lease abstract, gather verified financial/tax inputs, obtain real market quotes, complete parcel hazard/insurance screening in secure workflow, then compare after-tax sell vs. hold scenarios.</td>
+              <td>Completion of decision gates DG-001 through DG-008 with verified evidence.</td>
+              <td><span class="status partial">Process recommended</span></td>
+              <td><a href="suggestions.html#w03">W-03 Decision Gate Board</a></td>
+            </tr>
+            <tr>
+              <td>Can regional market data alone justify a decision?</td>
+              <td>No. Regional/city data is context only. Property-specific lease economics, tenant quality, tax impact, and parcel hazards can dominate the outcome.</td>
+              <td>Trade-area and parcel-specific verified evidence.</td>
+              <td><span class="status verified">Method control</span></td>
+              <td><a href="market-research.html#w01">W-01</a>; <a href="risk-analysis.html#w04">W-04</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="w02">
+      <h2>W-02: Sell vs. Hold / Renew Private Worksheet (Template)</h2>
+      <p class="lead">Template only. All values below are placeholders until verified in a secure internal workflow. Do not infer values.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Input / metric</th>
+              <th>Sell case (verified input required)</th>
+              <th>Hold / renew case (verified input required)</th>
+              <th>Status</th>
+              <th>Evidence source required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lease expiration / option dates</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Executed lease abstract / lease documents (internal only)</td>
+            </tr>
+            <tr>
+              <td>Current base rent / NOI / NNN recoveries</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Rent roll, T-12, lease, NNN reconciliations (internal only)</td>
+            </tr>
+            <tr>
+              <td>Tenant credit / guarantee / sales health</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Tenant financials/credit package, guarantee docs (internal only)</td>
+            </tr>
+            <tr>
+              <td>Market sale price / cap rate (real quotes)</td>
+              <td></td>
+              <td>N/A</td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Broker BOVs, buyer indications, comparable closed sales (internal)</td>
+            </tr>
+            <tr>
+              <td>Short-lease discount assumption</td>
+              <td></td>
+              <td>N/A</td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Real market quotes; do not use generic assumption without support</td>
+            </tr>
+            <tr>
+              <td>Renewal rent / downtime / TI / leasing cost</td>
+              <td>N/A</td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Lease negotiation terms, broker/adviser input, market comps (internal)</td>
+            </tr>
+            <tr>
+              <td>Capex / deferred maintenance / seismic-fire-flood mitigation</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Inspection reports, engineering, insurance, contractor quotes (internal)</td>
+            </tr>
+            <tr>
+              <td>After-tax net proceeds / after-tax hold value</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>CPA/tax counsel model; see after-tax module</td>
+            </tr>
+            <tr>
+              <td>Risk-adjusted decision score</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Completed decision gates and stress tests</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="after-tax">
+      <h2>After-Tax Module (Template)</h2>
+      <p class="lead">Turns verified tax rules into one comparable number for the owner. This is a template only; it is not tax advice. Use CPA/tax counsel.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>After-tax component</th>
+              <th>Sell case</th>
+              <th>Hold / renew case</th>
+              <th>Status</th>
+              <th>Verification required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Adjusted basis / depreciation recapture</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Tax returns, depreciation schedules, CPA calculation</td>
+            </tr>
+            <tr>
+              <td>Federal/state capital gains &amp; surtaxes</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>CPA/tax counsel; owner-specific tax profile</td>
+            </tr>
+            <tr>
+              <td>Debt payoff / prepayment / closing costs</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Lender payoff, settlement estimate, broker/legal fees</td>
+            </tr>
+            <tr>
+              <td>1031/exchange or reinvestment assumptions</td>
+              <td></td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Qualified intermediary/CPA/legal advice; real replacement options</td>
+            </tr>
+            <tr>
+              <td>After-tax annual cash flow (hold)</td>
+              <td>N/A</td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Verified NOI, debt service, reserves, tax treatment</td>
+            </tr>
+            <tr>
+              <td>After-tax exit/reversion value (hold)</td>
+              <td>N/A</td>
+              <td></td>
+              <td><span class="status unverified">Missing</span></td>
+              <td>Scenario-based exit assumptions; no single-point forecast</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="calculator">
+      <h2>Private Browser Calculator (Client-Side Template)</h2>
+      <p class="lead">This calculator runs only in your browser. It does not submit data to a server by itself. Use verified inputs only. Outputs are illustrative and not tax, legal, or investment advice.</p>
+      <div class="notice info">
+        <strong>Privacy note:</strong> Do not enter personal identifiers. Use anonymized/internal values only. For sensitive decisions, use the secure internal worksheet with authorized advisers.
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Inputs (placeholders)</h3>
+          <label class="small" for="salePrice">Estimated gross sale price ($)</label><br>
+          <input id="salePrice" type="number" min="0" step="1000" value="0" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <label class="small" for="saleCosts">Sale costs ($)</label><br>
+          <input id="saleCosts" type="number" min="0" step="1000" value="0" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <label class="small" for="debtPayoff">Debt payoff ($)</label><br>
+          <input id="debtPayoff" type="number" min="0" step="1000" value="0" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <label class="small" for="taxOnSale">Estimated taxes on sale ($)</label><br>
+          <input id="taxOnSale" type="number" min="0" step="1000" value="0" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <label class="small" for="annualNoi">Annual NOI / cash flow (hold, $)</label><br>
+          <input id="annualNoi" type="number" min="0" step="1000" value="0" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <label class="small" for="holdYears">Hold period (years)</label><br>
+          <input id="holdYears" type="number" min="0" step="1" value="5" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <label class="small" for="holdExit">Estimated hold exit net after tax ($)</label><br>
+          <input id="holdExit" type="number" min="0" step="1000" value="0" style="width:100%;padding:.55rem;margin:.2rem 0 .7rem;border:1px solid var(--border);border-radius:8px;">
+          <button type="button" onclick="runCalc()" style="background:var(--primary);color:#fff;border:0;padding:.65rem 1rem;border-radius:8px;font-weight:600;cursor:pointer;">Calculate (local only)</button>
+        </div>
+        <div class="card" aria-live="polite">
+          <h3>Illustrative outputs</h3>
+          <div class="kv">
+            <dt>Sell net (illustrative)</dt><dd id="sellNet">$0</dd>
+            <dt>Hold cumulative cash flow</dt><dd id="holdCash">$0</dd>
+            <dt>Hold total illustrative value</dt><dd id="holdTotal">$0</dd>
+            <dt>Difference (Hold - Sell)</dt><dd id="diff">$0</dd>
+            <dt>Decision status</dt><dd id="decisionStatus"><span class="status unverified">No decision - unverified inputs</span></dd>
+          </div>
+          <p class="small" style="margin-top:.75rem;">This is arithmetic only. It does not model risk, vacancy, lease rollover, cap-rate movement, taxes accurately, insurance shocks, or black-swan events. Do not use as a decision-grade result.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="model">
+      <h2>Model Governance / Back-Test Requirements</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Requirement</th>
+              <th>Rule</th>
+              <th>Status</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Versioned cash-flow model</td>
+              <td>Create and back-test only when verified inputs and sufficient comparable history exist. Every run must be versioned with date, inputs, assumptions, and source links.</td>
+              <td><span class="status unverified">Not started - missing verified inputs</span></td>
+              <td><a href="questions.html#model-inputs">Model input questions</a></td>
+            </tr>
+            <tr>
+              <td>Observations vs. assumptions</td>
+              <td>Separate observed facts (sourced) from assumptions (explicitly labeled). Never present assumptions as facts.</td>
+              <td><span class="status verified">Required control</span></td>
+              <td><a href="privacy.html">Privacy / controls</a></td>
+            </tr>
+            <tr>
+              <td>Scenario coverage</td>
+              <td>Include base, downside, severe downside/black-swan, and early-exit/liquidity stress scenarios. Stress loss of rent, repairs, and exit liquidity together.</td>
+              <td><span class="status partial">Template defined</span></td>
+              <td><a href="risk-analysis.html">Risk Analysis</a></td>
+            </tr>
+            <tr>
+              <td>No winner before verification</td>
+              <td>Do not select sell or renew/hold until verified inputs exist and decision gates pass.</td>
+              <td><span class="status verified">Required control</span></td>
+              <td><a href="suggestions.html#w03">W-03</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <p>Decision framework is a template. No tax/legal/investment advice. <a href="flagged-review.html">Flagged items</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    function fmt(n) {
+      const v = Number(n || 0);
+      return v.toLocaleString(undefined, {style:'currency', currency:'USD', maximumFractionDigits:0});
+    }
+    function runCalc() {
+      const salePrice = Number(document.getElementById('salePrice').value || 0);
+      const saleCosts = Number(document.getElementById('saleCosts').value || 0);
+      const debtPayoff = Number(document.getElementById('debtPayoff').value || 0);
+      const taxOnSale = Number(document.getElementById('taxOnSale').value || 0);
+      const annualNoi = Number(document.getElementById('annualNoi').value || 0);
+      const holdYears = Number(document.getElementById('holdYears').value || 0);
+      const holdExit = Number(document.getElementById('holdExit').value || 0);
+      const sellNet = salePrice - saleCosts - debtPayoff - taxOnSale;
+      const holdCash = annualNoi * holdYears;
+      const holdTotal = holdCash + holdExit;
+      const diff = holdTotal - sellNet;
+      document.getElementById('sellNet').textContent = fmt(sellNet);
+      document.getElementById('holdCash').textContent = fmt(holdCash);
+      document.getElementById('holdTotal').textContent = fmt(holdTotal);
+      document.getElementById('diff').textContent = fmt(diff);
+      document.getElementById('decisionStatus').innerHTML = '<span class="status unverified">Illustrative only - no decision</span>';
+    }
+  </script>
+</body>
+</html>

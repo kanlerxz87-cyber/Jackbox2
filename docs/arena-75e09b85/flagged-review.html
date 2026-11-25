@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flagged for Review | Jackbox2</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="title">Jackbox2 Property Decision Workspace</div>
+        <div class="subtitle">Anonymized public dashboard &middot; Official-source linked &middot; No personal data</div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Dashboard</a>
+        <a href="executive-summary.html">Executive Summary</a>
+        <a href="market-research.html">Market Research</a>
+        <a href="risk-analysis.html">Risk Analysis</a>
+        <a href="decision-framework.html">Decision Framework</a>
+        <a href="questions.html">Questions &amp; Missing Info</a>
+        <a href="suggestions.html">Suggestions</a>
+        <a href="flagged-review.html" aria-current="page">Flagged for Review</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="hero">
+      <h1>Flagged for Review</h1>
+      <p>Unverified items, missing inputs, source limitations, and irregularities are published here for review. These items do not block publication of the site, but they <strong>do block any sell/renew decision</strong>.</p>
+      <div class="meta">
+        <span class="pill danger">Decision blocked pending verification</span>
+        <span class="pill warn">No values inferred</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Flagged Items</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Flag ID</th>
+              <th>Item</th>
+              <th>Why flagged</th>
+              <th>Impact</th>
+              <th>Required action</th>
+              <th>Status</th>
+              <th>Source / reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>F-001</td>
+              <td>Subject property identity and exact location</td>
+              <td>Address, APN, coordinates, and owner identity are intentionally withheld from public site for privacy.</td>
+              <td>Parcel-specific analysis cannot be published; trade-area, hazard, tax, and comps require secure internal workflow.</td>
+              <td>Maintain location/identity only in access-controlled internal workspace; use anonymized IDs in public artifacts.</td>
+              <td><span class="status internal">Controlled / by design</span></td>
+              <td><a href="privacy.html">Privacy policy</a></td>
+            </tr>
+            <tr>
+              <td>F-002</td>
+              <td>Lease expiration exact date and lease terms</td>
+              <td>User provided window 2030–2035; no executed lease abstract or verified lease document available in repo.</td>
+              <td>Cannot model lease rollover timing, option windows, rent bumps, renewal rights, or short-lease discount accurately.</td>
+              <td>Commission private lease abstract; reconcile with notice calendar and option deadlines before any commitment.</td>
+              <td><span class="status unverified">Unverified - missing</span></td>
+              <td><a href="questions.html#lease">Questions: Lease</a></td>
+            </tr>
+            <tr>
+              <td>F-003</td>
+              <td>NOI, rent schedule, tenant credit/sales, NNN expense pass-throughs</td>
+              <td>No verified financial documents in repository; public site must not contain private financials.</td>
+              <td>Cannot compute valuation, debt service coverage, cap rate, or sell-vs-hold cash flows.</td>
+              <td>Collect verified rent roll, T-12/NOI, lease, tenant/entity credit, and NNN reconciliations in secure workspace.</td>
+              <td><span class="status unverified">Unverified - missing</span></td>
+              <td><a href="decision-framework.html#w02">W-02 worksheet</a></td>
+            </tr>
+            <tr>
+              <td>F-004</td>
+              <td>Tax basis, depreciation, debt, sale costs, after-tax assumptions</td>
+              <td>No tax/CPA inputs available; tax outcomes are owner-specific.</td>
+              <td>Cannot produce a reliable after-tax sell-vs-hold number.</td>
+              <td>Engage CPA/tax counsel; populate after-tax module with verified inputs only.</td>
+              <td><span class="status unverified">Unverified - missing</span></td>
+              <td><a href="decision-framework.html#after-tax">After-tax module</a></td>
+            </tr>
+            <tr>
+              <td>F-005</td>
+              <td>Parcel-level flood zone (FEMA FIRM/NFHL)</td>
+              <td>Parcel lookup not performed publicly to avoid location disclosure.</td>
+              <td>Flood insurance, lender requirements, physical risk, and exit liquidity may be materially affected.</td>
+              <td>Run FEMA MSC/NFHL parcel lookup in secure internal workflow; retain evidence.</td>
+              <td><span class="status unverified">Unverified - internal required</span></td>
+              <td><a href="https://msc.fema.gov/portal/home">FEMA MSC</a></td>
+            </tr>
+            <tr>
+              <td>F-006</td>
+              <td>Parcel-level fire hazard severity zone (CAL FIRE/OSFM/local)</td>
+              <td>Parcel lookup not performed publicly to avoid location disclosure. OSFM program page verified; specific older map URLs returned 404 during review.</td>
+              <td>Wildfire exposure, insurance availability/cost, defensible-space and building-code obligations may change.</td>
+              <td>Run OSFM/CAL FIRE FHSZ and local LRA review in secure internal workflow; retain dated evidence.</td>
+              <td><span class="status unverified">Unverified - internal required</span></td>
+              <td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">OSFM FHSZ</a></td>
+            </tr>
+            <tr>
+              <td>F-007</td>
+              <td>Parcel-level seismic/site-specific engineering risk</td>
+              <td>Regional USGS UCERF3 probabilities are verified, but site-specific fault rupture, liquefaction, landslide, retrofit, and building condition are unknown.</td>
+              <td>Earthquake downside may dominate value; insurance/loss-of-rent assumptions may be wrong.</td>
+              <td>Order site-specific seismic/engineering/insurance review in secure workflow.</td>
+              <td><span class="status unverified">Unverified - internal required</span></td>
+              <td><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS LA probability FAQ</a></td>
+            </tr>
+            <tr>
+              <td>F-008</td>
+              <td>Trade-area / neighbourhood / tract-level evidence</td>
+              <td>Public site uses city/county aggregates; parcel-centered trade area and Census tracts would be location-revealing.</td>
+              <td>City/county proxies may misstate demand, competition, income, traffic, and growth relevant to the actual parcel.</td>
+              <td>In secure workflow, define trade area, select consistent Census tracts, and collect local planning/traffic/school/competitor evidence.</td>
+              <td><span class="status unverified">Unverified - internal required</span></td>
+              <td><a href="market-research.html#w01">W-01</a></td>
+            </tr>
+            <tr>
+              <td>F-009</td>
+              <td>Short-lease discount / real market quotes</td>
+              <td>No broker opinions, buyer indications, lender quotes, or actual comp quotes available.</td>
+              <td>Cannot price short-lease discount; sell-now vs. wait decision may be materially wrong.</td>
+              <td>Obtain multiple broker BOVs, buyer/lender indications, and recent comparable sale terms in secure workflow.</td>
+              <td><span class="status unverified">Missing</span></td>
+              <td><a href="questions.html#pricing">Pricing questions</a></td>
+            </tr>
+            <tr>
+              <td>F-010</td>
+              <td>Cash-flow model back-test / versioned assumptions</td>
+              <td>No verified inputs or sufficient comparable history assembled in this session.</td>
+              <td>Any projection would be speculative; cannot be used as decision-grade forecast.</td>
+              <td>Create versioned model only after verified inputs; back-test against sufficient comparable history; separate observations from assumptions.</td>
+              <td><span class="status unverified">Missing</span></td>
+              <td><a href="decision-framework.html#model">Model governance</a></td>
+            </tr>
+            <tr>
+              <td>F-011</td>
+              <td>OSFM FHSZ old map URLs returned 404 during review</td>
+              <td>Previously searched OSFM map URLs (`.../fire-hazard-severity-zones-maps`, `.../fire-hazard-severity-zones-maps-2022`) returned Page not found on 2026-11-25.</td>
+              <td>Link rot can cause stale citations; users may be unable to reach older map pages.</td>
+              <td>Use current OSFM FHSZ program page and verify before relying on specific map-file URLs.</td>
+              <td><span class="status partial">Observed / mitigated</span></td>
+              <td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">OSFM FHSZ program</a></td>
+            </tr>
+            <tr>
+              <td>F-012</td>
+              <td>Repo line-by-line review scope</td>
+              <td>Initial tracked repo contained only README.md before this session's work; review is limited to tracked files inspected.</td>
+              <td>Untracked/local external artifacts outside repo are out of scope of this public audit statement.</td>
+              <td>Maintain secure internal records outside repo; do not commit sensitive files.</td>
+              <td><span class="status partial">Scope limitation</span></td>
+              <td><a href="privacy.html">Privacy</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <p>Flagged items are intentionally visible. Do not infer missing values. <a href="questions.html">Questions &amp; Missing Info</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
