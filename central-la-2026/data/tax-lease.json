@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "verifiedAsOf": "2026-11-25",
+    "disclaimer": "Statutory tax rates and thresholds verified from official IRS, CA FTB, CA BOE, LA County Assessor, LA County RRCC, and City of LA Office of Finance publications. Individual tax liability depends on private filing status, holding entity, adjusted basis, depreciation schedule, and CPA review."
+  },
+  "taxRules": [
+    {
+      "jurisdiction": "Federal (IRS)",
+      "rule": "Long-Term Capital Gains (LTCG) Tax Rates (Assets Held > 1 Year)",
+      "verifiedRule": "0%, 15%, or 20% depending on taxable income. (2025 thresholds: 20% applies above $533,400 Single / $600,050 MFJ / $300,000 MFS / $566,700 HoH.)",
+      "calculatorDefault": "20.0% (top bracket; user-adjustable in W-02)",
+      "sourceLabel": "IRS Topic No. 409 (Updated Sep 2026)",
+      "sourceUrl": "https://www.irs.gov/taxtopics/tc409"
+    },
+    {
+      "jurisdiction": "Federal (IRS)",
+      "rule": "Unrecaptured Section 1250 Depreciation Recapture",
+      "verifiedRule": "Maximum 25% federal rate on real property gain attributable to prior straight-line depreciation deductions (limited to total realized gain).",
+      "calculatorDefault": "25.0% on cumulative depreciation",
+      "sourceLabel": "IRS Topic No. 409 & Publication 550 (2025)",
+      "sourceUrl": "https://www.irs.gov/publications/p550"
+    },
+    {
+      "jurisdiction": "Federal (IRS)",
+      "rule": "Net Investment Income Tax (NIIT — IRC §1411)",
+      "verifiedRule": "3.8% surtax on lesser of Net Investment Income or MAGI above statutory thresholds ($200,000 Single / $250,000 MFJ — not inflation indexed).",
+      "calculatorDefault": "3.8% (user-toggleable depending on active/passive status)",
+      "sourceLabel": "IRS NIIT Q&A",
+      "sourceUrl": "https://www.irs.gov/newsroom/questions-and-answers-on-the-net-investment-income-tax"
+    },
+    {
+      "jurisdiction": "Federal (IRS)",
+      "rule": "IRC Section 1031 Like-Kind Exchange (Real Property Only)",
+      "verifiedRule": "Defers federal (and generally conforming CA) capital gain & depreciation recapture on investment/business real property if replacement real property is identified in writing within 45 days and received within 180 days (or tax return due date with extensions, if earlier) using a Qualified Intermediary.",
+      "calculatorDefault": "0% current income tax on deferred gain (transfer taxes & closing costs still apply!)",
+      "sourceLabel": "IRS Form 8824 Instructions (2026)",
+      "sourceUrl": "https://www.irs.gov/pub/irs-pdf/i8824.pdf"
+    },
+    {
+      "jurisdiction": "California (FTB)",
+      "rule": "California Capital Gains & Behavioral Health Services Tax",
+      "verifiedRule": "California has NO preferential capital gains rate; all capital gains are taxed as ordinary income (brackets 1% to 12.3%) plus 1.0% Behavioral Health Services Tax (renamed from Mental Health Services Tax eff. Jan 1, 2025) on taxable income > $1,000,000 = 13.3% top combined rate. Non-CA partnerships/sellers face 3.33% gross sale price or 12.3% gain withholding.",
+      "calculatorDefault": "13.3% (user-adjustable in W-02)",
+      "sourceLabel": "CA FTB Capital Gains & Pub 1067 (2025)",
+      "sourceUrl": "https://www.ftb.ca.gov/file/personal/income-types/capital-gains-and-losses.html"
+    },
+    {
+      "jurisdiction": "Los Angeles County (RRCC)",
+      "rule": "County Documentary Transfer Tax (R&T Code §11911)",
+      "verifiedRule": "$0.55 per $500 ($1.10 per $1,000 = 0.11%) on consideration/value conveyed (exclusive of assumed liens). Full $1.10/$1,000 applies in City of Los Angeles.",
+      "calculatorDefault": "0.11% of net consideration",
+      "sourceLabel": "LA County Registrar-Recorder/County Clerk",
+      "sourceUrl": "https://www.lavote.gov/home/recorder/property-document-recording/documentary-transfer-taxes/general-info"
+    },
+    {
+      "jurisdiction": "City of Los Angeles (Office of Finance)",
+      "rule": "City Base Real Property Transfer Tax + Measure ULA Special Tax",
+      "verifiedRule": "City Base Rate: $2.25 per $500 (0.45%) on net value. Measure ULA (eff. for closings after June 30, 2026): 4.0% on GROSS value > $5,400,000 and < $10,900,000 (4.45% total city); 5.5% on GROSS value ≥ $10,900,000 (5.95% total city). Thresholds adjust annually by BLS Chained CPI. Applies ONLY inside incorporated City of Los Angeles.",
+      "calculatorDefault": "Auto-calculated in W-02 with City-of-LA toggle & exact $5.4M / $10.9M cliff check",
+      "sourceLabel": "City of Los Angeles Office of Finance Measure ULA FAQ",
+      "sourceUrl": "https://finance.lacity.gov/faq/measure-ula"
+    },
+    {
+      "jurisdiction": "California (BOE / LA Assessor)",
+      "rule": "Proposition 13 Assessment Cap & Proposition 19 Commercial Exclusion",
+      "verifiedRule": "Prop 13 limits general property tax levy to 1% + local voted bonds and caps annual assessed value growth at ≤2%/yr until change of ownership or new construction. Prop 19 (eff. 2021) eliminated parent-child reassessment exclusions for commercial/rental investment properties (only principal residences & family farms qualify).",
+      "calculatorDefault": "Hold/estate factor: selling resets buyer's taxes; passing commercial property to heirs triggers reassessment under Prop 19 unless structured with estate counsel.",
+      "sourceLabel": "CA BOE Pub 29 / Prop 19 & LA County Assessor",
+      "sourceUrl": "https://assessor.lacounty.gov/real-estate-toolkit/proposition-13"
+    },
+    {
+      "jurisdiction": "Capital Markets Benchmark (U.S. Treasury / FRED)",
+      "rule": "Risk-Free Opportunity Cost Benchmark (Nov 24, 2026)",
+      "verifiedRule": "U.S. Treasury Par Yield Curve (11/24/2026): 5-Yr = 4.69%, 7-Yr = 4.79%, 10-Yr = 4.91% (FRED DGS10 11/23/2026 = 4.92%), 30-Yr = 5.30%.",
+      "calculatorDefault": "4.91% risk-free benchmark in W-02 calculator",
+      "sourceLabel": "U.S. Dept. of the Treasury Daily Par Yield Curve (Nov 2026)",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611"
+    }
+  ],
+  "leaseAbstractChecklist": [
+    {
+      "clauseId": "LA-01",
+      "clause": "Exact Legal Tenant & Corporate Guaranty",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "SEC FY2025 10-K shows 1,585 of 2,136 JACK sites (74.2%) are leased by Jack in the Box from third-party landlords (mostly subleased to franchisees) vs. 387 (18.1%) direct franchisee sites. Determines whether landlord relies on Corporate/SPV credit or independent franchisee credit.",
+      "sourceLabel": "JACK FY2025 10-K (Item 2 Properties)",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "clauseId": "LA-02",
+      "clause": "Fee Simple vs. Ground Lease Structure",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "565 of 2,136 JACK stores sit on ground-leased land (company-owned building). Ground leases have distinct depreciation, surrender/demolition, and renewal economics vs. fee-simple NNN building+land leases.",
+      "sourceLabel": "JACK FY2025 10-K (Item 2 Properties)",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "clauseId": "LA-03",
+      "clause": "Primary Term Expiration Date (2030–2035 Window) & Remaining WALT",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "Exact date governs remaining WALT and when buyer/lender short-lease cap rate discounts accelerate (verify spread via real broker BOV quotes).",
+      "sourceLabel": "Private Lease Abstract Required (Placeholder: 2030–2035)",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "clauseId": "LA-04",
+      "clause": "Renewal Options, Option Rent Formula & Notice Deadlines",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "JACK leases generally grant 1–20 years of unilateral tenant renewal options. Must reconcile exact exercise window, fixed vs. CPI vs. Fair Market Value (FMV) reset, and strict written notice mechanics.",
+      "sourceLabel": "JACK FY2025 10-K (Note on Leases)",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "clauseId": "LA-05",
+      "clause": "Base Rent, Scheduled Escalations & Percentage Rent Clauses",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "Approximately 13% of JACK leases include contingent percentage rent (1%–10% of gross sales over breakpoint). Verify whether escalations are fixed or CPI-linked (LA CPI-U was +3.7% YoY in Sep 2026).",
+      "sourceLabel": "JACK FY2025 10-K & BLS LA CPI",
+      "sourceUrl": "https://www.bls.gov/regions/west/data/xg-tables/ro9xg01.htm"
+    },
+    {
+      "clauseId": "LA-06",
+      "clause": "Absolute NNN vs. NN Expense & Prop 13 Reassessment Pass-Through",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "Verify roof/structure/parking lot obligations AND whether the lease contains a Prop 13 reassessment cap or carve-out on sale (if tenant does not pay reassessed taxes after sale, buyer reduces bid).",
+      "sourceLabel": "LA County Assessor Prop 13 Guide",
+      "sourceUrl": "https://assessor.lacounty.gov/real-estate-toolkit/proposition-13"
+    },
+    {
+      "clauseId": "LA-07",
+      "clause": "ROFR / ROFO (Right of First Refusal / Offer) & Assignment / Subletting",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "A tenant ROFR can deter buyers and complicate IRC §1031 45-day/180-day deadlines; verify whether subleasing to a franchisee releases original corporate lessee liability.",
+      "sourceLabel": "IRS Form 8824 (1031 Timing Constraints)",
+      "sourceUrl": "https://www.irs.gov/pub/irs-pdf/i8824.pdf"
+    },
+    {
+      "clauseId": "LA-08",
+      "clause": "Go-Dark, Continuous Operation, Store Sales Reporting & Casualty/Condemnation",
+      "status": "unverified",
+      "privateValue": "",
+      "whyItMatters": "Determines whether landlord can audit store sales (vital under 'JACK on Track' closures), recapture if tenant goes dark, and how rent abatement/rebuild works after an earthquake or fire.",
+      "sourceLabel": "USGS UCERF3 & JACK Q3 FY26 10-Q",
+      "sourceUrl": "https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W-04 Parcel Hazards &amp; Black Swan Risks — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Workstream W-04 · Parcel-Level Hazard Screening &amp; Tail-Risk Stress Framework</div>
+          <h2>Seismic, Wildfire, Flood, Environmental &amp; Black Swan Risk Analysis</h2>
+          <p class="page-lead">
+            Replaces generic regional hazard commentary with an auditable parcel-level verification table for earthquake,
+            fire, flood, environmental, and insurance coverage — and stress-tests <strong>loss of rent, repairs, and exit
+            liquidity together</strong> across both Business-as-Usual and rare Black Swan scenarios.
+          </p>
+        </div>
+
+        <div class="banner banner-danger">
+          <strong>Parcel Zone Status Unverified (Privacy Guardrail):</strong>
+          Every parcel-specific zone cell below is intentionally <strong>BLANK</strong> and flagged for offline verification
+          using the confidential APN on official California Geological Survey (CGS EQ Zapp), FEMA Flood Map Service Center,
+          CAL FIRE 2025 LRA Fire Hazard Severity Zone maps, and a confidential Phase I ESA / insurance audit.
+        </div>
+
+        <!-- W-04 Parcel Hazard Matrix -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>W-04 Parcel-Level Hazard Screening Table</h3>
+              <p class="card-sub">Regional Los Angeles official baseline paired with direct official parcel lookup portals and lease/insurance impact.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hazard / Engineering Layer</th>
+                  <th>Verified Regional LA Baseline</th>
+                  <th>Subject Parcel Zone Status</th>
+                  <th>Lease, Capex &amp; Insurance Implication</th>
+                  <th>Status</th>
+                  <th>Official Lookup / Source</th>
+                </tr>
+              </thead>
+              <tbody id="hazard-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Verified Jan 2025 LA Wildfire Case Study -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Real-World Black Swan Evidence: January 2025 Los Angeles County Wildfires</h3>
+              <p class="card-sub">Even properties outside burn perimeters experienced indirect regional fallout: CA DOF reported -64,000 LA County residents in 2025–2026 and CDI issued Order 2025-1 approving a $1.0B FAIR Plan insurer assessment.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Official CAL FIRE Incident</th>
+                  <th class="num">Acres Burned</th>
+                  <th class="num">Structures Destroyed</th>
+                  <th class="num">Structures Damaged</th>
+                  <th class="num">Confirmed Civilian Fatalities</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="wildfire-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Joint Stress Matrix: Loss of Rent + Repairs + Exit Liquidity -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>Joint Stress-Testing Matrix: Loss of Rent + Repairs + Exit Liquidity Together</h3>
+              <p class="card-sub">Accounts for both Business-as-Usual (BAU) headwinds and low-probability, high-severity Black Swan shocks.</p>
+            </div>
+          </div>
+          <div class="table-controls">
+            <input type="search" id="stress-search" class="search-input" placeholder="Search earthquake, wildfire, AB 1228, bankruptcy, rate...">
+            <select id="stress-type-filter" class="select-input" aria-label="Filter by scenario type">
+              <option value="">All Scenario Types</option>
+              <option value="Business as Usual (BAU)">Business as Usual (BAU)</option>
+              <option value="Black Swan Event">Black Swan Event</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table id="stress-table">
+              <thead>
+                <tr>
+                  <th>Type &amp; Scenario</th>
+                  <th>Loss of Rent Impact</th>
+                  <th>Repair / Capex Shock</th>
+                  <th>Exit Liquidity &amp; Valuation Impact</th>
+                  <th>Wealth Preservation Mitigation</th>
+                  <th>Official Source</th>
+                </tr>
+              </thead>
+              <tbody id="stress-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="footer-note">
+          <span>W-04 Parcel Hazard &amp; Tail-Risk Audit · Verified 2026-11-25</span>
+          <span><a href="lease-calendar.html">Next: Lease Abstract, Notice Calendar &amp; Tax Rules &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const H = window.JACKBOX_DATA && window.JACKBOX_DATA.hazards;
+      if (!H) return;
+
+      document.getElementById('hazard-tbody').innerHTML = H.hazardMatrix.map((r) => `
+        <tr>
+          <td><strong>${App.escapeHtml(r.hazard)}</strong></td>
+          <td>${App.escapeHtml(r.regionalBaseline)}</td>
+          <td>${App.renderValueOrBlank(r.parcelZoneStatus, 'BLANK — CHECK OFFLINE WITH APN')}</td>
+          <td>${App.escapeHtml(r.leaseAndInsuranceImpact)}</td>
+          <td>${App.renderStatusBadge(r.status)}</td>
+          <td>${App.renderSourceLink(r.lookupPortalUrl, r.lookupPortalName)}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('wildfire-tbody').innerHTML = H.wildfire2025OfficialStats.map((w) => `
+        <tr>
+          <td><strong>${App.escapeHtml(w.incident)}</strong></td>
+          <td class="num">${App.escapeHtml(w.acres)}</td>
+          <td class="num"><strong>${App.escapeHtml(w.structuresDestroyed)}</strong></td>
+          <td class="num">${App.escapeHtml(w.structuresDamaged)}</td>
+          <td class="num">${App.escapeHtml(w.civilianFatalities)}</td>
+          <td>${App.renderSourceLink(w.sourceUrl, w.sourceLabel)}</td>
+        </tr>
+      `).join('');
+
+      document.getElementById('stress-tbody').innerHTML = H.stressScenarios.map((s) => `
+        <tr data-category="${App.escapeHtml(s.type)}">
+          <td>
+            <span class="badge ${s.type.includes('Black Swan') ? 'badge-unverified' : 'badge-flagged'}">${App.escapeHtml(s.type)}</span><br>
+            <strong>${App.escapeHtml(s.scenario)}</strong>
+          </td>
+          <td>${App.escapeHtml(s.lossOfRent)}</td>
+          <td>${App.escapeHtml(s.repairCapex)}</td>
+          <td>${App.escapeHtml(s.exitLiquidity)}</td>
+          <td>${App.escapeHtml(s.wealthMitigation)}</td>
+          <td>${App.renderSourceLink(s.sourceUrl, s.sourceLabel)}</td>
+        </tr>
+      `).join('');
+      App.wireTableFilter('stress-search', 'stress-type-filter', 'stress-table');
+    });
+  </script>
+</body>
+</html>

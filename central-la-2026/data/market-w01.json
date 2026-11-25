@@ -1,0 +1,196 @@
+{
+  "metadata": {
+    "workstream": "W-01 · Replace city and county proxies with trade-area figures",
+    "subjectGeography": "Central Los Angeles (Exact Parcel / APN / Street Address Redacted — Internal Workspace Only)",
+    "verifiedAsOf": "2026-11-25"
+  },
+  "indicators": [
+    {
+      "domain": "Population & Migration",
+      "indicator": "Total Population — Latest State Official Estimate (Jan 1, 2026)",
+      "countyLA": "9,837,286 (-0.6% YoY; -64,000 vs. Jan 2025)",
+      "cityLA": "3,806,201 (-0.9% YoY vs. 3,839,536 Jan 2025)",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "CA DOF attributes LA County's 2025–2026 loss to Palisades/Eaton wildfire displacement, Inland Empire out-migration, and deportations. Contracting macro population caps organic QSR traffic growth unless local infill densifies the trade area.",
+      "sourceLabel": "CA Dept. of Finance E-1 Report (May 2026)",
+      "sourceUrl": "https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf"
+    },
+    {
+      "domain": "Population & Migration",
+      "indicator": "Total Population — U.S. Census Bureau Estimates (V2025 / V2024 vs. 2020 Census)",
+      "countyLA": "9,694,934 (Jul 2025, -3.2% vs. 2020 base 10,017,414)",
+      "cityLA": "3,878,704 (Jul 2024, -0.5% vs. 2020; V2025 NA)",
+      "parcelTradeArea": "",
+      "status": "flagged_reconcile",
+      "impact": "Irregularity flagged: Census V2025 county estimate is 142K lower than CA DOF Jan 2026 estimate due to differing methodologies; both confirm net contraction since 2020.",
+      "sourceLabel": "U.S. Census Bureau QuickFacts",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/BZA010220"
+    },
+    {
+      "domain": "Geography & Density",
+      "indicator": "Population Density & Land Area (2020 Census)",
+      "countyLA": "2,466.9 persons/sq mi (4,059.28 sq mi)",
+      "cityLA": "8,304.2 persons/sq mi (469.49 sq mi)",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "City of LA density is 3.4x the county average; high urban density underpins land scarcity for Central LA commercial corridors, though parcel-level tract density must be verified offline.",
+      "sourceLabel": "U.S. Census Bureau QuickFacts",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescountycalifornia,losangelescitycalifornia/POP060210"
+    },
+    {
+      "domain": "Income & Affordability",
+      "indicator": "Median Household Income (2020–2024 ACS 5-Yr, 2024 dollars)",
+      "countyLA": "$90,112 (2025 1-Yr ACS: $92,404)",
+      "cityLA": "$81,939 (vs. CA $99,122; US $80,734)",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "City of LA median income trails California by 17.3% while housing costs remain elevated — pressuring discretionary dining-out budgets among lower- and middle-income households.",
+      "sourceLabel": "U.S. Census Bureau QuickFacts & Profile",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia,CA/PST045222"
+    },
+    {
+      "domain": "Income & Affordability",
+      "indicator": "Per Capita Income & Poverty Rate (2020–2024 ACS)",
+      "countyLA": "$45,792 per capita; 13.9% poverty (2018–22 QuickFacts)",
+      "cityLA": "$47,685 per capita; 16.5% poverty (vs. CA 11.8%)",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Elevated city poverty rate (16.5%) increases price sensitivity for value-oriented QSR chains following menu price hikes.",
+      "sourceLabel": "U.S. Census Bureau QuickFacts",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,CA/PST045221"
+    },
+    {
+      "domain": "Housing & Tenure",
+      "indicator": "Owner-Occupancy, Median Home Value & Households (2020–2024 / 2018–2022 ACS)",
+      "countyLA": "45.9% owner-occupied; $834,200 median value; 3,726,923 housing units (2025)",
+      "cityLA": "36.6% owner-occupied (2018–22); 1,439,097 households; 2.61 persons/HH",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Nearly two-thirds of LA City households are renters, creating rent-cost pressure on consumer spending while sustaining long-term multifamily redevelopment demand on transit corridors.",
+      "sourceLabel": "U.S. Census Bureau QuickFacts",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescountycalifornia/BZA115223"
+    },
+    {
+      "domain": "Labor Market & Jobs",
+      "indicator": "MSA Nonfarm Payroll Employment (Sep 2026 Preliminary, NSA)",
+      "countyLA": "LA-Long Beach-Anaheim MSA: 6,282,100 (+30,200 / +0.5% YoY; not stat. significant)",
+      "cityLA": "City-level workplace mix spans Healthcare, Retail, Professional Services & Hospitality",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Regional payroll growth slowed to +0.5% YoY (statistically unchanged at 90% CI per BLS). Prior sector data (Jun 2025 YoY) showed gains led by Education & Health (+5.5%) while Manufacturing (-3.8%), Financial Activities (-2.3%), Construction (-1.9%), and Prof/Bus Services (-0.6%) declined.",
+      "sourceLabel": "U.S. Bureau of Labor Statistics (Oct/Nov 2026)",
+      "sourceUrl": "https://www.bls.gov/web/metro/metro_oty_change.htm"
+    },
+    {
+      "domain": "Labor Market & Jobs",
+      "indicator": "MSA Unemployment Rate (Sep 2026 Preliminary & 2021–2025 Annual Averages)",
+      "countyLA": "4.4% (Sep 2026p, down from 5.5% Sep 2025); Annual avg: 5.3% (2024 & 2025) vs. 4.6% (2022)",
+      "cityLA": "LA City LWDA: 5.6% (May 2025) / 6.0% (Jan 2025) per CA EDD",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Headline MSA unemployment fell to 4.4% in Sep 2026, though civilian labor force declined -1.8% YoY (from 6.769M to 6.647M).",
+      "sourceLabel": "U.S. Bureau of Labor Statistics Monthly Metro Release (Oct 2026)",
+      "sourceUrl": "https://www.bls.gov/news.release/metro.htm"
+    },
+    {
+      "domain": "Inflation & Operating Cost",
+      "indicator": "LA-Long Beach-Anaheim CPI-U Inflation (Sep–Oct 2026)",
+      "countyLA": "Index 360.965 (Oct 2026, +0.6% MoM); Sep 2026 12-mo change: +3.7% (Oct 12-mo blank in BLS)",
+      "cityLA": "US Food Away From Home CPI-U: +3.5% YoY (May 2026) / +3.8% YoY (Mar 2026)",
+      "parcelTradeArea": "",
+      "status": "flagged_reconcile",
+      "impact": "Persistent ~3.5%–3.7% local inflation erodes flat or low-bump NNN leases while favoring uncapped CPI escalations. Flagged: BLS table shows '-' for Oct 2026 12-mo YoY.",
+      "sourceLabel": "U.S. Bureau of Labor Statistics (Nov 2026)",
+      "sourceUrl": "https://www.bls.gov/regions/west/data/xg-tables/ro9xg01.htm"
+    },
+    {
+      "domain": "Labor Regulation & Wages",
+      "indicator": "California Fast Food Minimum Wage (AB 1228) & LA City General Minimum Wage",
+      "countyLA": "CA Fast Food (AB 1228): $20.00/hr (eff. Apr 1, 2024); CA General: $16.90/hr (Jan 1, 2026)",
+      "cityLA": "City of LA General Minimum Wage: $18.42/hr (eff. Jul 1, 2026, CPI-W indexed)",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "AB 1228 directly applies to Jack in the Box corporate and franchisee units (national chain ≥60 stores), structurally increasing store labor costs and pressuring franchisee margins and rent coverage.",
+      "sourceLabel": "CA DIR AB 1228 FAQ & LA Office of Wage Standards (2026)",
+      "sourceUrl": "https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm"
+    },
+    {
+      "domain": "School Systems",
+      "indicator": "LAUSD Enrollment, Graduation Rate & 10-Yr County K-12 Forecast",
+      "countyLA": "CA DOF 2026 Series projects LA County public K-12 enrollment to fall -240,800 over 10 years",
+      "cityLA": "LAUSD 2025–26 Enrollment: 497,105 (16.4% EL); 2024–25 Grad Rate: 86.5%; 2024–25 CAASPP record gains (+3.4 ELA, +3.9 Math, +3.3 Sci)",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Improved LAUSD academic results are constructive, but the projected -240,800 countywide K-12 student drop indicates aging/fewer families with children — a headwind for family-driven QSR traffic.",
+      "sourceLabel": "CA Dept. of Education (2025–26) & CA DOF K-12 Projections",
+      "sourceUrl": "https://www.cde.ca.gov/sdprofile/details.aspx?cds=19647330000000"
+    },
+    {
+      "domain": "Transit & Infrastructure",
+      "indicator": "LA Metro D Line (Purple) Subway Extension & SCAG Long-Range Jobs Forecast",
+      "countyLA": "SCAG Connect SoCal 2024 projects LA County jobs 5,031,000 (2019) -> 5,461,000 (2050)",
+      "cityLA": "D Line Sec. 1 (Wilshire/La Brea, Fairfax, La Cienega) OPENED May 8, 2026; Sec. 2 (Beverly Hills/Century City) & Sec. 3 (Westwood/UCLA 2028 Olympic Village) forecast 2027",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Major Central LA/Mid-Wilshire heavy-rail investment supports long-run transit-oriented land values, though exact parcel proximity to Metro stations must be checked offline.",
+      "sourceLabel": "LA Metro D Line Project Page (2026) & SCAG Connect SoCal 2024",
+      "sourceUrl": "https://www.metro.net/projects/westside/"
+    },
+    {
+      "domain": "Zoning & Redevelopment",
+      "indicator": "LA City Community Plans, TOC Incentives & CA AB 2011 Commercial-to-Housing Law",
+      "countyLA": "CA AB 2011 enables ministerial multifamily housing along commercial corridors (30–40 du/ac for ≥1-acre sites on corridors <100 ft wide, subject to labor/affordability & relocation rules)",
+      "cityLA": "Downtown Community Plan (DTLA 2040) approved May 3, 2023 / revised Dec 4, 2024; Measure JJJ TOC Tiers 1–4 grant 35%+ density bonus within 0.5 mi of major transit",
+      "parcelTradeArea": "",
+      "status": "verified_proxy_only",
+      "impact": "Redevelopment optionality can establish a strong underlying land value floor if Jack in the Box vacates in 2030–2035 — ONLY after exact zoning, lot size, and TOC/AB 2011 eligibility are verified privately in ZIMAS.",
+      "sourceLabel": "LA City Planning & CA Legislature AB 2011",
+      "sourceUrl": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202120220AB2011"
+    },
+    {
+      "domain": "Traffic & Site Visibility",
+      "indicator": "Parcel Arterial AADT, Ingress/Egress, Drive-Thru Stacking & Signage",
+      "countyLA": "Central LA freeway corridors carry ~231,000–328,000 AADT in LA Planning / Caltrans EIR datasets",
+      "cityLA": "LADOT ambient Central City traffic growth factor: 1.0%/yr in Central City North planning EIR",
+      "parcelTradeArea": "",
+      "status": "unverified",
+      "impact": "UNVERIFIED PARCEL INPUT: Must verify exact arterial AADT, corner signalization, drive-thru stacking capacity, and grandfathered drive-thru zoning privately.",
+      "sourceLabel": "LA City Planning EIR & Caltrans Traffic Census",
+      "sourceUrl": "https://planning.lacity.gov/eir/2110_Bay_Street/Deir/DEIR%20Sections/IV.K.%20Transportation-Traffic.pdf"
+    },
+    {
+      "domain": "Competition & Trade-Area Ring",
+      "indicator": "1-Mile / 3-Mile / 5-Mile Census Tracts, Daytime Workers & Competing Drive-Thrus",
+      "countyLA": "LA County: 304,988 employer establishments; 3,987,736 CBP employment (2023)",
+      "cityLA": "City of LA: $17.37B Accommodation & Food Services sales; $81.35B retail sales (2022 Economic Census)",
+      "parcelTradeArea": "",
+      "status": "unverified",
+      "impact": "UNVERIFIED PARCEL INPUT: Must execute offline Census tract selection (2015–19 vs. 2020–24 trends) and local QSR drive-thru competitor / cannibalization audit.",
+      "sourceLabel": "U.S. Census Bureau QuickFacts (2022 Economic Census / 2023 CBP)",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/INC110223"
+    }
+  ],
+  "projectionFramework": [
+    {
+      "horizon": "2026–2030 (Pre-Expiration Window)",
+      "metric": "Official Agency Macro Baseline & Capital Markets",
+      "baseProjection": "CA DOF shows LA County -0.6% YoY & LA City -0.9% YoY population as of Jan 2026; BLS Sep 2026 MSA jobs +0.5% YoY; CA EDD projects +8.8% statewide job growth 2023–2033 led by Education & Health and Leisure/Hospitality; BLS Sep 2026 LA CPI-U +3.7% YoY; U.S. 10-Yr Treasury 4.91% (11/24/2026).",
+      "upsideCase": "Full D Line opening (Sections 2 & 3 forecast 2027) + 2028 Los Angeles Olympics visitor/infrastructure surge + lower Treasury yields + JACK brand stabilization strengthen buyer liquidity.",
+      "downsideCase": "Macro downturn lifts LA unemployment while AB 1228 ($20/hr) + persistent inflation compress franchisee margins, elevating 'JACK on Track' store-closure risk ahead of 2030.",
+      "classification": "OBSERVED OFFICIAL DATA + QUALITATIVE SCENARIOS",
+      "sourceLabel": "CA EDD 2025 Jobs Report, CA DOF, BLS, LA Metro, U.S. Treasury",
+      "sourceUrl": "https://edd.ca.gov/siteassets/files/pdf_pub_ctr/2025_california_jobs_market_report.pdf"
+    },
+    {
+      "horizon": "2030–2035 (Lease Expiration & Rollover Window)",
+      "metric": "Structural Demographic, Debt Maturity & Land Value Trajectory",
+      "baseProjection": "CA DOF projects slowing state growth (0.13%/yr avg) and -240,800 LA County public K-12 enrollment over 10 yrs; SCAG Connect SoCal 2024 projects gradual LA County employment expansion to 5.461M by 2050; JACK's Series 2026-1 ($500M, ARD May 2031) and Series 2022-1 A-2-II ($503M, ARD Feb 2032) debt maturities land inside this exact lease rollover window.",
+      "upsideCase": "Transit-corridor zoning (TOC Tiers 1–4 / AB 2011 / DTLA 2040) establishes an urban infill land floor supporting redevelopment sale or high-credit replacement QSR lease.",
+      "downsideCase": "Simultaneous arrival of lease expiry, JACK 2031–2032 securitized debt refinancing, California property insurance inflation, and shrinking family demographics creates severe re-leasing or valuation risk.",
+      "classification": "OBSERVED OFFICIAL FORECAST + QUALITATIVE SCENARIOS",
+      "sourceLabel": "CA DOF K-12 Projections, SCAG Connect SoCal 2024, SEC Q3 FY26 10-Q",
+      "sourceUrl": "https://dof.ca.gov/forecasting/demographics/public-k-12-graded-enrollment/"
+    }
+  ]
+}
