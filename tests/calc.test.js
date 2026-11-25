@@ -1,0 +1,12 @@
+const assert = require('node:assert/strict');
+const ids=['salePrice','sellingCosts','debt','saleTax','cash','growth','years','discount','exit','result','runCalc','resetCalc'];
+const elements=Object.fromEntries(ids.map(id=>[id,{value:'',textContent:'',addEventListener(event,handler){this.handler=handler;}}]));
+global.document={getElementById:id=>elements[id]};
+require('../docs/assets/calc.js');
+elements.runCalc.handler(); assert.match(elements.result.textContent,/All fields are required/);
+const data={salePrice:1000,sellingCosts:100,debt:200,saleTax:100,cash:100,growth:0,years:2,discount:0,exit:500};
+for (const [id,value] of Object.entries(data)) elements[id].value=String(value);
+elements.runCalc.handler(); assert.match(elements.result.textContent,/sale net equity: \$600\.00/);assert.match(elements.result.textContent,/hold equity PV: \$700\.00/);assert.match(elements.result.textContent,/Sale minus hold PV: -\$100\.00/);
+elements.years.value='2.5'; elements.runCalc.handler(); assert.match(elements.result.textContent,/Check inputs/);
+elements.resetCalc.handler(); assert.equal(elements.salePrice.value,''); assert.equal(elements.result.textContent,'');
+console.log('Calculator arithmetic, validation and clear: OK');

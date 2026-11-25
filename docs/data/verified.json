@@ -1,0 +1,195 @@
+{
+  "generated": "2026-11-25",
+  "note": "Machine-readable verified rows. Verified observations link to government or issuer primary sources. Empty source and value = private data unavailable; do not infer.",
+  "rows": [
+    {
+      "id": "C-01",
+      "metric": "Population estimates, July 1 2025 (V2025) — Los Angeles city",
+      "value": "3,869,089",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-02",
+      "metric": "Population estimates, July 1 2025 (V2025) — Los Angeles County",
+      "value": "9,694,934",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-03",
+      "metric": "Median household income (2024 dollars), 2020–2024 — City",
+      "value": "$81,939",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-04",
+      "metric": "Median household income (2024 dollars), 2020–2024 — County",
+      "value": "$90,112",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-05",
+      "metric": "Per capita income (2024 dollars), 2020–2024 — City / County",
+      "value": "$47,685 / $45,792",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-06",
+      "metric": "Persons in poverty — City / County",
+      "value": "16.5% / 13.3%",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-07",
+      "metric": "Median value owner-occupied housing, 2020–2024 — City / County",
+      "value": "$921,200 / $834,200",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-08",
+      "metric": "Median gross rent, 2020–2024 — City / County",
+      "value": "$1,933 / $1,954",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-09",
+      "metric": "Bachelor's degree or higher (25+), 2020–2024 — City / County",
+      "value": "38.5% / 36.0%",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-10",
+      "metric": "In civilian labour force (16+), 2020–2024 — City / County",
+      "value": "66.4% / 64.7%",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-11",
+      "metric": "Mean travel time to work (min), 2020–2024 — City / County",
+      "value": "30.7 / 30.4",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "C-12",
+      "metric": "Total accommodation & food services sales, 2022 — City / County",
+      "value": "$17,366,966k / $44,000,801k",
+      "source": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia,losangelescountycalifornia/PST045224",
+      "status": "verified"
+    },
+    {
+      "id": "B-01",
+      "metric": "BEA County personal income 2024 — Los Angeles County (largest county)",
+      "value": "$818.5 billion",
+      "source": "https://www.bea.gov/news/2026/gross-domestic-product-county-and-personal-income-county-2024",
+      "status": "verified"
+    },
+    {
+      "id": "J-01",
+      "metric": "Consolidated franchise rental revenues (Jack and Del Taco), FY2025",
+      "value": "$368,643k",
+      "source": "https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx",
+      "status": "verified"
+    },
+    {
+      "id": "J-03",
+      "metric": "Jack restaurant count end FY2025 (company / franchise / total)",
+      "value": "150 / 1,986 / 2,136",
+      "source": "https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx",
+      "status": "verified"
+    },
+    {
+      "id": "J-04",
+      "metric": "Jack same-store sales FY2025 (system) / Q4 2025",
+      "value": "-4.2% / -7.4%",
+      "source": "https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx",
+      "status": "verified"
+    },
+    {
+      "id": "J-05",
+      "metric": "Jack FY2025 openings / closures",
+      "value": "31 opened / 86 closed",
+      "source": "https://investors.jackinthebox.com/news/news-details/2025/Jack-in-the-Box-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Earnings/default.aspx",
+      "status": "verified"
+    },
+    {
+      "id": "T-01",
+      "metric": "IRS 2025 net capital gain rates (most individuals)",
+      "value": "0% / 15% / 20% thresholds per Topic 409",
+      "source": "https://www.irs.gov/taxtopics/tc409",
+      "status": "verified"
+    },
+    {
+      "id": "T-02",
+      "metric": "IRS unrecaptured §1250 gain max rate",
+      "value": "25%",
+      "source": "https://www.irs.gov/taxtopics/tc409",
+      "status": "verified"
+    },
+    {
+      "id": "T-03",
+      "metric": "California capital gains treatment",
+      "value": "Taxed as ordinary income; no lower rate",
+      "source": "https://www.ftb.ca.gov/file/personal/income-types/capital-gains-and-losses.html",
+      "status": "verified"
+    },
+    {
+      "id": "H-01",
+      "metric": "USGS UCERF3 LA region 30-yr probability M6.7 / M7 / M7.5",
+      "value": "60% / 46% / 31%",
+      "source": "https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area",
+      "status": "verified"
+    },
+    {
+      "id": "H-02",
+      "metric": "FEMA flood maps — official NFIP source (parcel zone)",
+      "value": "",
+      "source": "https://msc.fema.gov/portal/home",
+      "status": "unverified-parcel-lookup-required"
+    },
+    {
+      "id": "H-03",
+      "metric": "CAL FIRE FHSZ — LA SRA map (2023-09-29) (parcel zone)",
+      "value": "",
+      "source": "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones/fire-hazard-severity-zones-maps-2022",
+      "status": "unverified-parcel-lookup-required"
+    },
+    {
+      "id": "P-01",
+      "metric": "LA Housing Element 2021–2029 RHNA target (City)",
+      "value": "456,643 units (184,721 very-low/low income)",
+      "source": "https://planning.lacity.gov/odocument/b34da149-49e4-4b82-9923-eb87491bb0bd/Executive_Summary.pdf",
+      "status": "verified"
+    },
+    {
+      "id": "P-02",
+      "metric": "Parcel Census tract figures (trade area)",
+      "value": "",
+      "source": "https://data.census.gov/",
+      "status": "unverified-secure-tract-selection-required"
+    },
+    {
+      "id": "P-03",
+      "metric": "Parcel lease abstract (rent, escalations, options, notice dates)",
+      "value": "",
+      "source": "",
+      "status": "unverified-private-document-offline"
+    },
+    {
+      "id": "P-04",
+      "metric": "Short-lease discount broker quotes (cap-rate spread)",
+      "value": "",
+      "source": "",
+      "status": "unverified-no-quotes-on-file"
+    }
+  ]
+}
