@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sell vs Hold — W-02 After-Tax Comparison</title><link rel="stylesheet" href="assets/style.css"></head>
+<body>
+<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Sell-vs-hold + after-tax calculator (W-02)</small></div>
+<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a class="active" href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<div class="wrap">
+<h1>Sell-vs-hold comparison (private, in-browser)</h1>
+<p class="muted">Runs entirely in your browser. Nothing you enter is sent anywhere. Defaults use IRS Topic 409 (2025). This is a sensitivity tool, not tax or investment advice. No winner is selected until verified inputs exist.</p>
+
+<h2>Verified tax rules used as defaults</h2>
+<table><thead><tr><th>Rule</th><th>Value (2025)</th><th>Source</th></tr></thead><tbody>
+<tr><td>LTCG 0% ceiling (single)</td><td>$48,350 taxable income</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+<tr><td>LTCG 15% ceiling (single)</td><td>$533,400 taxable income</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+<tr><td>Unrecaptured §1250 gain max rate</td><td>25%</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+<tr><td>Short-term gains</td><td>Taxed as ordinary income</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+</tbody></table>
+
+<h2>Calculator</h2>
+<form id="calc-form" class="card">
+<div class="grid">
+<div><label>Current annual NNN rent ($)</label><input id="in-rent" type="number" value="0" step="any">
+<label>Rent escalation (%/yr)</label><input id="in-esc" type="number" value="0.02" step="any">
+<label>Hold horizon (years)</label><input id="in-years" type="number" value="10">
+<label>Discount rate (%)</label><input id="in-disc" type="number" value="0.06" step="any"></div>
+<div><label>Gross sale price today ($)</label><input id="in-price" type="number" value="0" step="any">
+<label>Adjusted basis ($)</label><input id="in-basis" type="number" value="0" step="any">
+<label>Unrecaptured §1250 gain ($)</label><input id="in-dep" type="number" value="0" step="any">
+<label>Selling costs (% of price)</label><input id="in-costs" type="number" value="0.03" step="any"></div>
+<div><label>Renewal rent ($/yr)</label><input id="in-renewal" type="number" value="0" step="any">
+<label>Terminal cap rate (%)</label><input id="in-cap" type="number" value="0.06" step="any">
+<label>Short-lease discount (%)</label><input id="in-shortdisc" type="number" value="0.10" step="any">
+<label>CA tax rate — illustrative (%)</label><input id="in-ca" type="number" value="0.093" step="any"></div>
+</div>
+<div class="grid">
+<div><label>LTCG rate (%)</label><input id="in-t15" type="number" value="0.15" step="any">
+<label>§1250 recapture (%)</label><input id="in-t25" type="number" value="0.25" step="any">
+<label>NIIT (%)</label><input id="in-niit" type="number" value="0.038" step="any">
+<label>Ordinary rate (info) (%)</label><input id="in-ord" type="number" value="0.24" step="any"></div>
+</div>
+<div id="calc-result" class="calc-out">Enter verified inputs to see the comparison.</div>
+</form>
+
+<h2>How to use it honestly</h2>
+<ol>
+<li>Enter only verified inputs (lease abstract, CPA basis, broker quotes). Leave unknowns blank — the tool will show $0, which is a signal to stop, not a valuation.</li>
+<li>Run the short-lease discount sensitivity at several levels (e.g. 5% / 10% / 15% / 20%) until real quotes replace the assumption.</li>
+<li>Stress the hold case: 12-month rent loss, major repair, and a 200 bps cap-rate widening at exit — together, not separately.</li>
+</ol>
+<div class="callout"><b>Short-lease discount:</b> currently <span class="pill blank">unverified — blank</span>. Do not quote a discount until broker opinions for short-lease QSR in LA are obtained privately. The calculator's default 10% is an illustrative placeholder only.</div>
+</div>
+<script src="assets/app.js"></script>
+<footer><a href="index.html">← Dashboard</a></footer>
+</body></html>
