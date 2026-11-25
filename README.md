@@ -27,11 +27,11 @@ See `COORDINATION.md` for the shared task board and session log.
 
 ---
 
-## This repository contains five dashboards
+## This repository contains six dashboards
 
 Multiple parallel sessions built dashboards before seeing the others' branches. Rather than
 delete work, all are retained. They do not contradict each other on any verified figure; they
-differ in structure and depth.
+differ in structure, depth, and filing cutoff date.
 
 | Dashboard | Entry point | Character |
 |---|---|---|
@@ -40,6 +40,7 @@ differ in structure and depth.
 | Alternative research | `alternative-research/index.html` | Independently researched second pass. |
 | Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
 | Privacy-first workflow | `privacy-first/index.html` | Conservative no-fabrication framework: redaction controls, empty/flagged inputs, seven decision gates, risk/Q&A/suggestions registers. |
+| **Central LA 2026 Refresh (Nov 2026 verified)** | `central-la-2026/index.html` | Latest filing cutoff (verified 2026-11-25): 11-page W-01–W-10 dashboard incorporating Jack in the Box FY2022–Q3 FY2026 SEC series (Del Taco sale Dec 2025, `$500M` Series 2026-1 `7.624%` refinancing, Nov 17, 2026 C-suite 8-K), post-June 30, 2026 Measure ULA `$5.4M/$10.9M` cliff detector, May 2026 CA DOF E-1 & Metro D Line Sec. 1 opening, Jan 2025 LA wildfire / CDI FAIR Plan orders, Notice Calendar tool, and 100% client-side W-02 calculator (`v1.0.0-2026.11`). |
 
 The analytical dashboard presents a **later** reporting period than the root dashboard: the
 tenant filed Q4 and full-year FY2025 results on 19 November 2025, disclosing same-store sales
@@ -48,9 +49,12 @@ Flagged for Review page.
 
 No figure in any dashboard is estimated. Where an official value could not be obtained it is
 blank and flagged.
+<<<<<<< HEAD
 
 ---
 
 ## Session 75e09b85 Addendum
 
 This session added an anonymized, static decision workspace at [`docs/arena-75e09b85/`](docs/arena-75e09b85/index.html). It includes executive summary, market research, risk analysis, decision framework with a client-side calculator, questions/missing-info, suggestions/decision-gate board, flagged review, privacy, and source registry pages. All claimed values are linked to official sources; unverified/missing inputs are left blank and flagged. No personal or parcel-identifying information is published.
+=======
+>>>>>>> origin/main

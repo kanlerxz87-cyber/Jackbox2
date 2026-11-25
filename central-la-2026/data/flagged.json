@@ -1,0 +1,108 @@
+{
+  "metadata": {
+    "verifiedAsOf": "2026-11-25",
+    "policy": "Every unverified value, blank parcel-specific field, pending SEC filing, and cross-agency methodological divergence is published here with official links for manual review. Unverified items are NEVER fabricated or filled by inference."
+  },
+  "items": [
+    {
+      "flagId": "FLG-01",
+      "category": "Pending Official Filing",
+      "severity": "High",
+      "item": "Jack in the Box Inc. FY2026 Full-Year Form 10-K & Q4 FY2026 Results (Fiscal Year Ended Sep 27, 2026)",
+      "currentStatus": "BLANK / UNVERIFIED",
+      "details": "As of 2026-11-25, SEC EDGAR contains Q3 FY2026 Form 10-Q (filed Aug 12, 2026) and Form 8-K C-suite departure notice (filed Nov 17, 2026), but FY2026 Form 10-K / Q4 FY2026 earnings release had not yet been filed/indexed. Q4 & FY2026 actual cells remain blank.",
+      "manualReviewAction": "Check SEC EDGAR CIK 0000807882 once FY2026 Form 10-K posts (typically late Nov / early Dec) to confirm final FY2026 SSS, closures, franchise rental revenue, and leverage ratio.",
+      "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=10-K&dateb=&owner=include&count=20"
+    },
+    {
+      "flagId": "FLG-02",
+      "category": "Private Legal / Lease Data",
+      "severity": "Critical",
+      "item": "Private Lease Abstract Terms (Exact Expiration Date in 2030–2035, Rent/NOI, Escalations, Corporate vs. Franchisee Guaranty, Options, Notice Deadlines, Prop 13 Cap, ROFR)",
+      "currentStatus": "BLANK / UNVERIFIED (CONFIDENTIAL)",
+      "details": "No confidential lease document exists in this public repository. All lease abstract values are intentionally blank placeholders to protect owner privacy.",
+      "manualReviewAction": "Commission a private attorney-prepared lease abstract offline, reconcile with the notice calendar, and input verified numbers only into the local browser W-02 calculator.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "flagId": "FLG-03",
+      "category": "Private Parcel / W-01 Trade Area",
+      "severity": "Critical",
+      "item": "Exact Central LA Parcel Identity, Municipal Jurisdiction (City of LA vs. Adjacent/Unincorporated), Census Tracts, 1/3/5-Mile Demographics, AADT Traffic & Competitor Ring",
+      "currentStatus": "BLANK / UNVERIFIED (CONFIDENTIAL)",
+      "details": "City and County figures are regional proxies only. Exact jurisdiction also determines whether City of LA Measure ULA (4.0% / 5.5% above $5.4M / $10.9M) and LA City Minimum Wage ($18.42/hr) apply.",
+      "manualReviewAction": "Use the confidential APN offline in LA County Assessor Portal, LA City ZIMAS, US Census Geocoder/ACS Tracts, and Caltrans/LADOT traffic portals; record only anonymized tract summaries if sharing externally.",
+      "sourceUrl": "https://finance.lacity.gov/faq/measure-ula"
+    },
+    {
+      "flagId": "FLG-04",
+      "category": "Private Parcel / W-04 Hazards",
+      "severity": "Critical",
+      "item": "Parcel-Level Earthquake Fault/Liquefaction (CGS EQ Zapp), Flood Zone (FEMA FIRM), Fire Hazard Severity Zone (CAL FIRE 2025 LRA), Insurance Policy & Phase I ESA",
+      "currentStatus": "BLANK / UNVERIFIED (CONFIDENTIAL)",
+      "details": "Regional LA hazard statistics are verified, but parcel-specific regulatory zone status cannot be confirmed without the confidential APN/address.",
+      "manualReviewAction": "Run offline parcel lookups in CGS EQ Zapp, FEMA MSC, and CAL FIRE 2025 LRA FHSZ viewer; order confidential Phase I ESA, PCA, and commercial insurance quote review.",
+      "sourceUrl": "https://maps.conservation.ca.gov/cgs/EQZApp/app/"
+    },
+    {
+      "flagId": "FLG-05",
+      "category": "Market Pricing / W-02 Quotes",
+      "severity": "Critical",
+      "item": "Real Market Cap Rates, Short-Lease Discount Spreads & Comparable Central LA QSR Sales",
+      "currentStatus": "BLANK / UNVERIFIED",
+      "details": "Official government sources do not publish parcel-level QSR NNN cap rates or short-lease discounts. Verified U.S. Treasury 10-Yr yield (4.91% on Nov 24, 2026) serves only as the risk-free floor.",
+      "manualReviewAction": "Obtain 3 written Broker Opinions of Value (BOVs) pricing BOTH current remaining WALT and a hypothetical 10–15 yr blend-and-extend, plus verified Central LA QSR & land comps, then enter into W-02.",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611"
+    },
+    {
+      "flagId": "FLG-06",
+      "category": "Private Owner Tax & Finance",
+      "severity": "Critical",
+      "item": "Owner Adjusted Tax Basis, Cumulative Sec. 1250 Depreciation, Existing Mortgage/Prepayment Penalty, Entity Form & Estate Plan",
+      "currentStatus": "BLANK / UNVERIFIED (CONFIDENTIAL)",
+      "details": "Statutory federal, CA, LA County, and Measure ULA tax rules are verified, but actual net after-tax proceeds cannot be determined without owner's private tax return basis and debt payoff statement.",
+      "manualReviewAction": "Have CPA compute verified adjusted basis, unrecaptured Sec. 1250 depreciation, CA/federal effective rates, and Prop 19 estate impact offline before comparing sell vs. 1031 vs. hold.",
+      "sourceUrl": "https://www.irs.gov/taxtopics/tc409"
+    },
+    {
+      "flagId": "FLG-07",
+      "category": "Cross-Agency Data Divergence",
+      "severity": "Medium",
+      "item": "LA County & City Population Estimate Divergence (U.S. Census V2025 vs. CA DOF Jan 2026 E-1)",
+      "currentStatus": "FLAGGED FOR RECONCILIATION",
+      "details": "U.S. Census QuickFacts shows LA County July 1, 2025 population at 9,694,934 (-3.2% vs. 2020) and marks LA City V2025 as NA (V2024: 3,878,704). CA Dept. of Finance E-1 (May 2026) estimates LA County Jan 1, 2026 at 9,837,286 (-0.6% YoY) and LA City at 3,806,201 (-0.9% YoY).",
+      "manualReviewAction": "Note methodological difference (CA DOF uses housing-unit/driver-license/birth-death records; Census PEP uses federal IRS/Medicare/immigration models). Both confirm negative recent momentum.",
+      "sourceUrl": "https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf"
+    },
+    {
+      "flagId": "FLG-08",
+      "category": "Official Publication Gap",
+      "severity": "Low",
+      "item": "BLS October 2026 LA-Long Beach-Anaheim CPI-U 12-Month Percent Change Blank",
+      "currentStatus": "FLAGGED — OFFICIAL GAP",
+      "details": "BLS CPI Overview Table (Nov 2026) reports Oct 2026 LA index at 360.965 (+0.6% MoM) and Sep 2026 12-month change at +3.7%, but leaves Oct 2025->Oct 2026 12-month % change blank ('-') because Oct 2025 data was unpublished.",
+      "manualReviewAction": "Use verified Sep 2026 (+3.7% YoY) and verify Nov/Dec 2026 BLS releases when published; do not interpolate missing BLS official cells.",
+      "sourceUrl": "https://www.bls.gov/regions/west/data/xg-tables/ro9xg01.htm"
+    },
+    {
+      "flagId": "FLG-09",
+      "category": "SEC Filing Partial Extraction",
+      "severity": "Low",
+      "item": "Q1 FY2026 Gross Openings/Closures Split & Q2 FY2026 Company/Franchise SSS Sub-Split",
+      "currentStatus": "BLANK / PARTIAL VERIFICATION",
+      "details": "Q1 FY2026 ending units (2,128, net -8) and Q2 FY2026 system SSS (-3.8%) and openings/closures (9 opened, 9 closed) are verified; exact Q1 gross open/close split and Q2 company-vs-franchise SSS & rental revenue sub-lines were not reproduced in summary excerpts and are left blank rather than inferred.",
+      "manualReviewAction": "Manually verify full Q1 FY2026 (jack-20260118.htm) and Q2 FY2026 (jack-20260412.htm) 10-Q tables on SEC EDGAR if quarterly sub-splits are required.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000067/jack-20260412.htm"
+    },
+    {
+      "flagId": "FLG-10",
+      "category": "Accounting Basis Note",
+      "severity": "Medium",
+      "item": "Jack in the Box Inc. Del Taco Discontinued Operations Recast (Dec 22, 2025 Sale)",
+      "currentStatus": "VERIFIED WITH CAUTION FLAG",
+      "details": "FY2023–FY2025 consolidated revenue totals in FY2025 10-K included Del Taco, while FY2026 10-Qs moved Del Taco to Discontinued Operations. All figures in our Tenant Analysis table are isolated to the standalone Jack in the Box segment for apples-to-apples continuity.",
+      "manualReviewAction": "When reviewing third-party broker OMs or financial aggregators, confirm they are not mixing pre-divestiture consolidated revenues with post-divestiture standalone Jack in the Box revenues.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000091/jack-20260705.htm"
+    }
+  ]
+}

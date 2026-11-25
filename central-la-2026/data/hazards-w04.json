@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "workstream": "W-04 · Parcel-level hazard screening",
+    "privacyNote": "Exact parcel zone status is intentionally BLANK and FLAGGED UNVERIFIED until checked offline against official portals using the confidential APN.",
+    "verifiedAsOf": "2026-11-25"
+  },
+  "hazardMatrix": [
+    {
+      "hazard": "Earthquake — Regional Rupture Probability (USGS UCERF3)",
+      "regionalBaseline": "Within 30 years in the Los Angeles region: 60% probability of ≥M6.7; 46% probability of ≥M7.0; 31% probability of ≥M7.5.",
+      "parcelZoneStatus": "",
+      "status": "unverified_parcel",
+      "lookupPortalName": "USGS Earthquake Hazards & UCERF3",
+      "lookupPortalUrl": "https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area",
+      "leaseAndInsuranceImpact": "Verify offline in private lease & Certificate of Insurance (COI) whether earthquake coverage is carried, deductible %, structural rebuild responsibility, and casualty rent-abatement / termination triggers."
+    },
+    {
+      "hazard": "Earthquake — Alquist-Priolo Fault Rupture & Liquefaction / Landslide Zones (CGS)",
+      "regionalBaseline": "CGS delineates regulatory Earthquake Zones of Required Investigation (Alquist-Priolo Fault Zones, Seismic Hazard Liquefaction & Landslide Zones). CGS released revised official LA County Alquist-Priolo fault zone maps on Nov 20, 2025.",
+      "parcelZoneStatus": "",
+      "status": "unverified_parcel",
+      "lookupPortalName": "CGS EQ Zapp (Official Parcel Lookup)",
+      "lookupPortalUrl": "https://maps.conservation.ca.gov/cgs/EQZApp/app/",
+      "leaseAndInsuranceImpact": "Alquist-Priolo Act restricts human-occupancy structures across active fault traces and mandates geotechnical studies for development; Seismic Hazard Zones trigger local permitting mitigation."
+    },
+    {
+      "hazard": "Wildfire — Fire Hazard Severity Zones (CAL FIRE 2025 LRA Rollout)",
+      "regionalBaseline": "Office of the State Fire Marshal released updated 2025 Local Responsibility Area (LRA) Fire Hazard Severity Zone (FHSZ) maps across California (Phases 1–4, Feb–Mar 2025). Zones classify hazard as Moderate, High, or Very High based on fuels, terrain, embers, and fire weather.",
+      "parcelZoneStatus": "",
+      "status": "unverified_parcel",
+      "lookupPortalName": "CAL FIRE OSFM 2025 LRA FHSZ Maps",
+      "lookupPortalUrl": "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones",
+      "leaseAndInsuranceImpact": "Even outside VHFHSZ, regional wildfire catastrophe losses (Jan 2025 LA fires) drive insurer non-renewals, FAIR Plan assessments, smoke/power-shutoff interruptions, and commercial property insurance repricing."
+    },
+    {
+      "hazard": "Flood — FEMA Special Flood Hazard Area (SFHA / FIRM)",
+      "regionalBaseline": "FEMA classifies 1%-annual-chance floodplains as Zone AE/A/AO/AH (mandatory flood insurance purchase requirement for federally regulated loans) and moderate/minimal flood areas as Shaded/Unshaded Zone X (0.2% annual chance or outside).",
+      "parcelZoneStatus": "",
+      "status": "unverified_parcel",
+      "lookupPortalName": "FEMA Flood Map Service Center (MSC)",
+      "lookupPortalUrl": "https://www.fema.gov/sites/default/files/documents/how-to-read-flood-insurance-rate-map-tutorial.pdf",
+      "leaseAndInsuranceImpact": "Zone AE/AO requires mandatory flood insurance and Base Flood Elevation compliance for redevelopment; verify parcel FIRM panel number, effective date, and zone designation offline."
+    },
+    {
+      "hazard": "Insurance Market & Catastrophe Availability (CA Dept. of Insurance)",
+      "regionalBaseline": "Following Jan 2025 LA wildfires (Palisades: 23,448 acres, 6,845 structures destroyed, 12 civilian fatalities; Eaton: 14,021 acres, 9,414 structures destroyed, 18 civilian fatalities), CA FAIR Plan exhausted $510M retained earnings and received CDI Order 2025-1 approving a $1B member insurer assessment, plus Order 2026-1 ($600M revolving credit line). High Value Commercial FAIR Plan limits expanded Jul 26, 2025 to $20M/building ($100M/location).",
+      "parcelZoneStatus": "",
+      "status": "unverified_parcel",
+      "lookupPortalName": "CA Dept. of Insurance Order 2025-1 & Order 2026-2",
+      "lookupPortalUrl": "https://www.insurance.ca.gov/0250-insurers/0500-legal-info/0700-commissioners-orders/upload/Order-No-2025-1-Approving-the-California-FAIR-Plan-Association-s-Request-to-Issue-Assessment.pdf",
+      "leaseAndInsuranceImpact": "Verify actual NNN Certificate of Insurance (carrier, replacement-cost limits, deductibles, business-interruption/loss-of-rents coverage, earthquake/flood sublimits) privately with an insurance broker."
+    },
+    {
+      "hazard": "Environmental & Building Engineering (Phase I ESA / PCA)",
+      "regionalBaseline": "Jack in the Box Form 10-K discloses that owners/operators of restaurant real property are subject to federal, state, and local hazardous materials regulations and remediation liability; LA City ZIMAS flags methane/oil-well/environmental overlays.",
+      "parcelZoneStatus": "",
+      "status": "unverified_parcel",
+      "lookupPortalName": "LA City Planning Maps / ZIMAS & JACK Form 10-K",
+      "lookupPortalUrl": "https://planning.lacity.gov/resources/maps",
+      "leaseAndInsuranceImpact": "Commission confidential Phase I Environmental Site Assessment (ESA) and Property Condition Assessment (PCA) offline before sale or lease renewal to confirm zero soil-vapor, UST, grease-trap, roof, or ADA defects."
+    }
+  ],
+  "wildfire2025OfficialStats": [
+    {
+      "incident": "Palisades Fire (Jan 7–31, 2025)",
+      "acres": "23,448",
+      "structuresDestroyed": "6,845",
+      "structuresDamaged": "975",
+      "civilianFatalities": "12",
+      "sourceLabel": "CAL FIRE Official Incident Page",
+      "sourceUrl": "https://www.fire.ca.gov/incidents/2025/1/7/palisades-fire"
+    },
+    {
+      "incident": "Eaton Fire (Jan 7–31, 2025)",
+      "acres": "14,021",
+      "structuresDestroyed": "9,414",
+      "structuresDamaged": "1,074",
+      "civilianFatalities": "18",
+      "sourceLabel": "CAL FIRE Official Incident Page",
+      "sourceUrl": "https://fire.ca.gov/incidents/2025/1/7/eaton-fire?amp=&amp="
+    }
+  ],
+  "stressScenarios": [
+    {
+      "type": "Business as Usual (BAU)",
+      "scenario": "Short-Lease Valuation Discount Without Early Renewal",
+      "lossOfRent": "Active contractual rent continues until 2030–2035 expiry; binary rollover risk at expiration (exact rent & date unverified).",
+      "repairCapex": "Depends on private lease NNN vs. NN maintenance split (unverified).",
+      "exitLiquidity": "Reduced buyer pool & tighter lender amortization as remaining WALT shortens; price exact discount from 3+ written broker BOV quotes in W-02.",
+      "wealthMitigation": "Reconcile notice calendar and solicit BOV quotes BEFORE crossing institutional lender lease-term thresholds.",
+      "sourceLabel": "U.S. Treasury Yield Curve (10-Yr 4.91% Benchmark)",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611"
+    },
+    {
+      "type": "Business as Usual (BAU)",
+      "scenario": "Franchisee Margin Compression (AB 1228 $20/hr Wage + Negative SSS)",
+      "lossOfRent": "Renewal pushback, rent relief request, or TI/remodel concession demand (exact store rent-to-sales ratio unverified).",
+      "repairCapex": "Potential tenant remodel / ADA / equipment upgrade contribution requested during renewal negotiations.",
+      "exitLiquidity": "Buyers underwrite store-level coverage and franchisee credit quality; JACK FY25 franchise SSS fell -4.3% and Q1–Q3 FY26 remained negative.",
+      "wealthMitigation": "Verify store-level sales and whether lease is Corporate-backed or Franchisee-direct before entering renewal discussions.",
+      "sourceLabel": "CA DIR AB 1228 FAQ & JACK FY2025 10-K",
+      "sourceUrl": "https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm"
+    },
+    {
+      "type": "Business as Usual (BAU)",
+      "scenario": "Elevated Interest Rates & Persistent Local Inflation",
+      "lossOfRent": "Real income erosion if contractual lease escalations lag LA CPI-U (+3.7% YoY Sep 2026).",
+      "repairCapex": "Higher construction/maintenance inflation on any landlord-retained structural items.",
+      "exitLiquidity": "Direct cap-rate upward pressure against 4.91% 10-Yr Treasury (11/24/2026) and Measure ULA (4.0%–5.5% >$5.4M inside LA City).",
+      "wealthMitigation": "Compare verified after-tax reinvestment yield vs. hold yield in W-02; verify whether lease escalations are fixed or CPI-indexed.",
+      "sourceLabel": "BLS West CPI Overview & FRED DGS10",
+      "sourceUrl": "https://www.bls.gov/regions/west/data/xg-tables/ro9xg01.htm"
+    },
+    {
+      "type": "Black Swan Event",
+      "scenario": "Major LA Basin Earthquake (USGS UCERF3: 60% ≥M6.7 / 46% ≥M7.0 / 31% ≥M7.5 in 30 Yrs)",
+      "lossOfRent": "Extended rent abatement or tenant lease-termination option if casualty rebuild exceeds contractual restoration window (verify lease clause).",
+      "repairCapex": "Severe structural / seismic-code-upgrade repair outlay if earthquake insurance is absent or carries high deductible.",
+      "exitLiquidity": "Near-total illiquidity for damaged commercial assets until engineering clearance, permitting, and reconstruction conclude.",
+      "wealthMitigation": "Run offline CGS EQ Zapp lookup, audit lease casualty/insurance clauses, and evaluate geographic diversification via IRC §1031.",
+      "sourceLabel": "USGS UCERF3 LA Earthquake Probability & CGS EQ Zapp",
+      "sourceUrl": "https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area"
+    },
+    {
+      "type": "Black Swan Event",
+      "scenario": "Regional Mega-Wildfire & California Property Insurance Dislocation (Jan 2025 Analog)",
+      "lossOfRent": "Direct interruption if parcel is in/near hazard zone, or indirect regional demand shock (LA County lost 64,000 residents Jan 2025–Jan 2026 per CA DOF).",
+      "repairCapex": "Elevated post-disaster rebuild labor/materials costs and insurer non-renewal / FAIR Plan surcharge pass-through friction.",
+      "exitLiquidity": "Buyer financing stalls if bindable property insurance cannot be quoted at closing.",
+      "wealthMitigation": "Check 2025 CAL FIRE LRA FHSZ offline; verify tenant's current insurance certificate and compliance with lease insurance covenants.",
+      "sourceLabel": "CA Dept. of Insurance Order 2025-1 & CA DOF E-1 2026",
+      "sourceUrl": "https://www.insurance.ca.gov/0250-insurers/0500-legal-info/0700-commissioners-orders/upload/Order-No-2025-1-Approving-the-California-FAIR-Plan-Association-s-Request-to-Issue-Assessment.pdf"
+    },
+    {
+      "type": "Black Swan Event",
+      "scenario": "Tenant / Franchisee Insolvency & 'JACK on Track' Block Closure",
+      "lossOfRent": "Total loss of NNN rent and expense reimbursements during vacancy/re-leasing (JACK closed 86 units in FY25, guides 50–60 closures in FY26, faces >5.25x leverage cash sweep & May 2031 ARD on $500M 7.624% notes).",
+      "repairCapex": "Substantial re-tenanting TI, demolition/re-imaging, and leasing commissions (unverified — obtain LA contractor & broker estimates).",
+      "exitLiquidity": "Dark QSR trades on vacant land / adaptive-reuse value rather than leased-fee income multiple.",
+      "wealthMitigation": "Verify corporate vs. franchisee guaranty, confirm ZIMAS TOC/AB 2011 land value floor, and maintain liquid carry reserves.",
+      "sourceLabel": "JACK Q3 FY2026 Form 10-Q & Jun 2026 Form 8-K",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000091/jack-20260705.htm"
+    }
+  ]
+}

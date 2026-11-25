@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W-02 Private Sell-vs-Hold &amp; After-Tax Calculator — Central LA NNN Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="app-sidebar" aria-label="Primary Navigation"></aside>
+    <div class="main-wrap">
+      <header class="topbar" id="app-topbar"></header>
+      <main class="content">
+        <div class="page-header">
+          <div class="page-kicker">Workstream W-02 · Private Local-Only Browser Calculator (Model v1.0.0-2026.11)</div>
+          <h2>Sell-vs-Hold, Short-Lease Discount &amp; After-Tax Comparison Model</h2>
+          <p class="page-lead">
+            Runs <strong>100% locally inside your browser</strong> — zero data is ever transmitted to any server.
+            Combines real broker BOV quotes (short-lease discount), verified Federal/California/Measure ULA tax rules
+            into one net after-tax comparison number, and a versioned 10-year cash-flow comparison across
+            <strong>Sell (Taxable)</strong>, <strong>Sell (IRC §1031)</strong>, <strong>Negotiated Early Renewal</strong>, and
+            <strong>Hold-to-Expiry / Re-Tenant Stress</strong>.
+          </p>
+        </div>
+
+        <div id="calc-status-banner" class="banner banner-warn"></div>
+
+        <!-- Privacy Action Bar -->
+        <section class="card" style="padding:14px 18px;">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+              <button type="button" class="btn btn-primary" id="btn-load-sandbox">Load Illustrative Anonymized Sandbox (NOT Real Parcel Data)</button>
+              <button type="button" class="btn btn-secondary" id="btn-export-json">Export Private Scenario JSON (Offline)</button>
+              <label class="btn btn-secondary" style="cursor:pointer;">
+                Import Local Scenario JSON
+                <input type="file" id="input-import-json" accept="application/json" style="display:none;">
+              </label>
+              <button type="button" class="btn btn-danger" id="btn-wipe-inputs">Wipe All Inputs From Memory</button>
+            </div>
+            <label style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;cursor:pointer;">
+              <input type="checkbox" id="verifiedAttestation">
+              <span>Attest: Inputs verified by Lease Abstract, CPA &amp; 3 BOVs</span>
+            </label>
+          </div>
+        </section>
+
+        <form id="w02-calculator-form" onsubmit="return false;">
+          <!-- Step 1: Private Lease, Debt & Broker Quotes -->
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h3>1. Private Lease Inputs &amp; Short-Lease Discount From Real Broker Quotes</h3>
+                <p class="card-sub">Distinguishes <span class="tag-obs">OBSERVED LAW</span> from <span class="tag-priv">PRIVATE INPUT</span> and <span class="tag-assump">ASSUMPTION</span>. Leave blank until verified offline.</p>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="noi">Current Annual Net Operating Income (NOI, $) <span class="tag-priv">PRIVATE</span></label>
+                <input type="number" id="noi" step="1000" min="0" placeholder="Blank — enter from lease abstract">
+                <span class="field-hint">Verify NNN vs. NN landlord deductions.</span>
+              </div>
+              <div class="field">
+                <label for="remainingWalt">Remaining Primary Lease Term (Years) <span class="tag-priv">PRIVATE</span></label>
+                <input type="number" id="remainingWalt" step="0.25" min="0.5" max="20" placeholder="e.g., 4–9 yrs (2030–2035)">
+                <span class="field-hint">Exact remaining WALT from lease abstract.</span>
+              </div>
+              <div class="field">
+                <label for="annualEscalation">Contractual Avg Annual Rent Bump (%) <span class="tag-priv">PRIVATE</span></label>
+                <input type="number" id="annualEscalation" step="0.1" min="0" max="10" placeholder="e.g., 1.5 or 2.0">
+                <span class="field-hint">Compare vs. Sep 2026 LA CPI-U (+3.7% YoY).</span>
+              </div>
+              <div class="field">
+                <label for="debtBalance">Existing Loan Payoff Balance ($) <span class="tag-priv">PRIVATE</span></label>
+                <input type="number" id="debtBalance" step="1000" min="0" placeholder="0 if free &amp; clear">
+              </div>
+              <div class="field">
+                <label for="prepayPenalty">Loan Prepayment / Defeasance Cost ($) <span class="tag-priv">PRIVATE</span></label>
+                <input type="number" id="prepayPenalty" step="1000" min="0" placeholder="0 if none">
+              </div>
+              <div class="field">
+                <label for="overrideSalePrice">Optional Custom Gross Sale Price ($) <span class="tag-priv">OPTIONAL</span></label>
+                <input type="number" id="overrideSalePrice" step="10000" min="0" placeholder="Leave blank to use BOV avg cap">
+                <span class="field-hint">Overrides BOV cap-rate implied value if set.</span>
+              </div>
+            </div>
+
+            <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;">
+            <div class="form-grid">
+              <div class="field">
+                <label for="bov1CurCap">Broker #1 BOV Cap Rate — Current WALT (%) <span class="tag-priv">REAL QUOTE</span></label>
+                <input type="number" id="bov1CurCap" step="0.05" min="2" max="15" placeholder="e.g., quote 1">
+              </div>
+              <div class="field">
+                <label for="bov2CurCap">Broker #2 BOV Cap Rate — Current WALT (%) <span class="tag-priv">REAL QUOTE</span></label>
+                <input type="number" id="bov2CurCap" step="0.05" min="2" max="15" placeholder="e.g., quote 2">
+              </div>
+              <div class="field">
+                <label for="bov3CurCap">Broker #3 BOV Cap Rate — Current WALT (%) <span class="tag-priv">REAL QUOTE</span></label>
+                <input type="number" id="bov3CurCap" step="0.05" min="2" max="15" placeholder="e.g., quote 3">
+              </div>
+              <div class="field">
+                <label for="bov1ExtCap">Broker #1 BOV Cap Rate — Extended 10–15 Yr (%) <span class="tag-priv">REAL QUOTE</span></label>
+                <input type="number" id="bov1ExtCap" step="0.05" min="2" max="15" placeholder="If blend-and-extended">
+              </div>
+              <div class="field">
+                <label for="bov2ExtCap">Broker #2 BOV Cap Rate — Extended 10–15 Yr (%) <span class="tag-priv">REAL QUOTE</span></label>
+                <input type="number" id="bov2ExtCap" step="0.05" min="2" max="15" placeholder="If blend-and-extended">
+              </div>
+              <div class="field">
+                <label for="bov3ExtCap">Broker #3 BOV Cap Rate — Extended 10–15 Yr (%) <span class="tag-priv">REAL QUOTE</span></label>
+                <input type="number" id="bov3ExtCap" step="0.05" min="2" max="15" placeholder="If blend-and-extended">
+              </div>
+            </div>
+            <div id="bov-results" style="margin-top:16px;"></div>
+          </section>
+
+          <!-- Step 2: After-Tax Module -->
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h3>2. After-Tax Sale Module (Verified IRS, CA FTB &amp; Measure ULA Rules)</h3>
+                <p class="card-sub">Turns verified federal, California, LA County ($1.10/$1,000), LA City Base ($2.25/$500), and Measure ULA (4.0% &gt;$5.4M; 5.5% ≥$10.9M post-Jun 30, 2026) rules into one net after-tax comparison figure.</p>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="inLaCity">Inside Incorporated City of Los Angeles? <span class="tag-priv">PRIVATE ZIMAS</span></label>
+                <select id="inLaCity">
+                  <option value="yes">Yes — City of LA (Base 0.45% + Measure ULA applies)</option>
+                  <option value="no">No — Unincorporated LA County / Other City (County 0.11% only)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="adjustedBasis">Adjusted Tax Basis ($) <span class="tag-priv">CPA PRIVATE</span></label>
+                <input type="number" id="adjustedBasis" step="10000" min="0" placeholder="Original cost + capex - dep">
+              </div>
+              <div class="field">
+                <label for="accumDep">Cumulative Straight-Line Depreciation ($) <span class="tag-priv">CPA PRIVATE</span></label>
+                <input type="number" id="accumDep" step="10000" min="0" placeholder="Subject to 25% Sec 1250">
+              </div>
+              <div class="field">
+                <label for="fedLtcgRate">Federal LTCG Rate (%) <span class="tag-obs">IRS MAX 20%</span></label>
+                <input type="number" id="fedLtcgRate" step="0.1" value="20.0" min="0" max="20">
+              </div>
+              <div class="field">
+                <label for="fedRecapRate">Federal Unrecaptured Sec. 1250 (%) <span class="tag-obs">IRS MAX 25%</span></label>
+                <input type="number" id="fedRecapRate" step="0.1" value="25.0" min="0" max="25">
+              </div>
+              <div class="field">
+                <label for="niitRate">Federal NIIT Surtax (%) <span class="tag-obs">IRS 3.8%</span></label>
+                <input type="number" id="niitRate" step="0.1" value="3.8" min="0" max="3.8">
+              </div>
+              <div class="field">
+                <label for="caTaxRate">California Income + BHST Rate (%) <span class="tag-obs">FTB MAX 13.3%</span></label>
+                <input type="number" id="caTaxRate" step="0.1" value="13.3" min="0" max="14.4">
+              </div>
+              <div class="field">
+                <label for="brokerCommPct">Brokerage Commission (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="brokerCommPct" step="0.25" min="0" max="10" placeholder="e.g., 3.5">
+              </div>
+              <div class="field">
+                <label for="otherClosingPct">Escrow / Title / Legal Closing (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="otherClosingPct" step="0.1" min="0" max="5" placeholder="e.g., 0.5">
+              </div>
+            </div>
+            <div id="aftertax-results" style="margin-top:16px;"></div>
+          </section>
+
+          <!-- Step 3: Versioned 10-Year Sell vs. 1031 vs. Renew vs. Hold Model -->
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h3>3. Versioned 10-Year Cash-Flow Comparison (v1.0.0-2026.11)</h3>
+                <p class="card-sub">Explicitly separates scenario assumptions so advisors can stress-test reinvestment yield, renewal concessions, vacancy downtime, and urban land floor.</p>
+              </div>
+            </div>
+            <div class="form-grid" style="margin-bottom:16px;">
+              <div class="field">
+                <label for="reinvestAfterTaxYield">Taxable Sale After-Tax Reinvest Yield (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="reinvestAfterTaxYield" step="0.1" min="0" max="15" placeholder="Benchmark: 4.91% 10Y UST">
+              </div>
+              <div class="field">
+                <label for="exchangeYield">§1031 Replacement Cash Yield (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="exchangeYield" step="0.1" min="0" max="15" placeholder="e.g., 5.5–6.25">
+              </div>
+              <div class="field">
+                <label for="exchangeGrowth">§1031 Replacement Annual Growth (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="exchangeGrowth" step="0.1" min="0" max="10" placeholder="e.g., 2.0">
+              </div>
+              <div class="field">
+                <label for="renewalRentPct">Renewal Rent as % of Current NOI <span class="tag-assump">NEGOTIATED</span></label>
+                <input type="number" id="renewalRentPct" step="1" min="50" max="150" placeholder="e.g., 95 or 100">
+              </div>
+              <div class="field">
+                <label for="renewalTiLc">Renewal TI / Remodel / Commission ($) <span class="tag-assump">NEGOTIATED</span></label>
+                <input type="number" id="renewalTiLc" step="10000" min="0" placeholder="Landlord upfront outlay">
+              </div>
+              <div class="field">
+                <label for="renewalExitCap">Renewal Path Year-10 Exit Cap (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="renewalExitCap" step="0.1" min="3" max="15" placeholder="e.g., 6.0">
+              </div>
+              <div class="field">
+                <label for="holdDowntimeMonths">Hold-to-Expiry Vacancy Downtime (Months) <span class="tag-assump">STRESS</span></label>
+                <input type="number" id="holdDowntimeMonths" step="1" min="0" max="48" placeholder="e.g., 12–24">
+              </div>
+              <div class="field">
+                <label for="holdReleasingCost">Hold-to-Expiry Re-Tenanting TI / LC ($) <span class="tag-assump">STRESS</span></label>
+                <input type="number" id="holdReleasingCost" step="10000" min="0" placeholder="Obtain LA contractor quote">
+              </div>
+              <div class="field">
+                <label for="holdReplacementRentPct">Replacement Tenant Rent (% of Current) <span class="tag-assump">STRESS</span></label>
+                <input type="number" id="holdReplacementRentPct" step="1" min="40" max="180" placeholder="e.g., 100">
+              </div>
+              <div class="field">
+                <label for="holdLandFloor">Verified Unencumbered Land Value Floor ($) <span class="tag-priv">LAND BOV</span></label>
+                <input type="number" id="holdLandFloor" step="50000" min="0" placeholder="From LA infill land broker">
+              </div>
+              <div class="field">
+                <label for="holdExitCap">Hold Path Year-10 Exit Cap (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="holdExitCap" step="0.1" min="3" max="15" placeholder="e.g., 6.5">
+              </div>
+              <div class="field">
+                <label for="discountRate">Risk-Adjusted Discount Rate (%) <span class="tag-assump">ASSUMPTION</span></label>
+                <input type="number" id="discountRate" step="0.25" min="2" max="18" placeholder="e.g., 7.5">
+              </div>
+              <div class="field">
+                <label for="ordinaryTaxOnRent">Combined Fed+CA Effective Tax on Rent (%) <span class="tag-priv">CPA PRIVATE</span></label>
+                <input type="number" id="ordinaryTaxOnRent" step="0.5" min="0" max="55" placeholder="After depreciation shelter">
+              </div>
+            </div>
+
+            <div id="model-results"></div>
+          </section>
+
+          <!-- Step 4: Sensitivity & Model Back-Testing Governance -->
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h3>4. Sensitivity Matrix &amp; Versioned Back-Testing Readiness</h3>
+                <p class="card-sub">Stress-tests Hold-to-Expiry NPV against simultaneous Exit Cap Rate expansion and Vacancy Downtime duration.</p>
+              </div>
+            </div>
+            <div id="sensitivity-results" style="margin-bottom:16px;"></div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Model Governance Item</th>
+                    <th>Current State (v1.0.0-2026.11)</th>
+                    <th>Requirement Before Back-Testing / Binding Use</th>
+                    <th>Official Anchor Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Model Version &amp; Formula Audit</strong></td>
+                    <td><code>v1.0.0-2026.11</code> (Client-side deterministic waterfall + 10-yr DCF)</td>
+                    <td>Lock versioned JSON snapshot with CPA review of depreciation &amp; installment/1031 rules.</td>
+                    <td><a class="source-link" href="https://www.irs.gov/pub/irs-pdf/i8824.pdf" target="_blank" rel="noopener noreferrer">IRS Form 8824 &#8599;</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Historical Comparable Back-Testing</strong></td>
+                    <td><span class="blank-cell">BLANK — REQUIRES VERIFIED LA COMPS</span></td>
+                    <td>Collect 10–20 closed Central LA / LA County QSR NNN sales (2022–2026) with verified WALT, cap rate, guaranty &amp; ULA impact to test valuation prediction error.</td>
+                    <td><a class="source-link" href="https://finance.lacity.gov/faq/measure-ula" target="_blank" rel="noopener noreferrer">LA Finance ULA &#8599;</a></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Risk-Free Rate Calibration</strong></td>
+                    <td>Verified U.S. 10-Yr Treasury = <strong>4.91%</strong> (Nov 24, 2026); 5-Yr = 4.69%; 30-Yr = 5.30%</td>
+                    <td>Update daily Treasury yield when soliciting final Gate-4 broker BOVs.</td>
+                    <td><a class="source-link" href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611" target="_blank" rel="noopener noreferrer">U.S. Treasury &#8599;</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </form>
+
+        <footer class="footer-note">
+          <span>W-02 Private Browser Engine (Zero Network Transmission) · Verified Statutory Defaults as of 2026-11-25</span>
+          <span><a href="decision-gates.html">Next: W-03 Decision-Gate Progress Board &#8594;</a></span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <script src="assets/js/data-bundle.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/calculator.js"></script>
+</body>
+</html>

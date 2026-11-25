@@ -294,7 +294,7 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 
 - **Session ID:** `75e09b85`
 - **Branch:** `arena/75e09b85-jackbox2` (branched from `main` @ `d1f3bf8b6c453a009ac95b51862a5f9d37d66a5c`, integrated onto main @ 5c7ea6f)
-- **Status:** in_progress (final integration)
+- **Status:** in_progress (PR #15 pending merge/deploy)
 - **Scope:** `docs/arena-75e09b85/**`, `COORDINATION.md`, `README.md`, `.gitignore`
 
 ### Tasks (75e09b85)
@@ -305,7 +305,7 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 | T75-003 | Verified official-source research tables | done | 75e09b85 | `docs/arena-75e09b85/market-research.html`, `risk-analysis.html`, `sources.html` | Census QuickFacts, BLS LAUS, USGS UCERF3, FEMA MSC, OSFM FHSZ cited. |
 | T75-004 | Decision framework, questions, suggestions, executive summary | done | 75e09b85 | `docs/arena-75e09b85/decision-framework.html`, `questions.html`, `suggestions.html`, `executive-summary.html` | No sell/renew winner selected; decision gates defined. |
 | T75-005 | Privacy/anonymization + flagged review + verification | done | 75e09b85 | `docs/arena-75e09b85/privacy.html`, `flagged-review.html`, all docs | No personal identifiers published; link/anchor check performed. |
-| T75-006 | Final integration, PR, merge, Pages deploy | in_progress | 75e09b85 | repo-wide | Integrated onto main without discarding other sessions' work. |
+| T75-006 | Final integration, PR, merge, Pages deploy | in_progress | 75e09b85 | repo-wide | PR #15 created; merged origin/main to resolve conflicts; pending merge/deploy confirmation. |
 
 ### Verification Log (75e09b85)
 | Time (UTC) | Artifact | Verification | Sources | Result |
@@ -319,3 +319,31 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 | Time (UTC) | Event | Detail |
 |---|---|---|
 | 2026-11-25T13:37:00Z | Rebase conflict | Initial rebase onto origin/main conflicted on COORDINATION/README/docs overlap. Aborted rebase, reset branch to origin/main, restored non-conflicting `docs/arena-75e09b85/` artifact. No other session work discarded. |
+
+## Parallel integration handoff — session `arena/ae0d8ac3-jackbox2` (Verified 2026-11-25)
+
+**Situation on arrival.** Branch `arena/ae0d8ac3-jackbox2` started from initial commit `d1f3bf8` (containing only `README.md`) while parallel sessions merged PRs #1–#11 and #13 into `main`. When PR #12 (`https://github.com/kanlerxz87-cyber/Jackbox2/pull/12`) was opened, GitHub reported merge conflicts with the later commits on `main`.
+
+**Conflict resolution (zero prior work discarded).**
+- Relocated session `arena/ae0d8ac3-jackbox2`'s complete, self-contained 11-page dashboard cleanly into `central-la-2026/` (`index.html`, `tenant-analysis.html`, `market-trade-area.html`, `hazards-risk.html`, `lease-calendar.html`, `calculator.html`, `decision-gates.html`, `questions-gaps.html`, `suggestions.html`, `advisor-summary.html`, `flagged-review.html`, plus `central-la-2026/data/`, `central-la-2026/assets/`, and `central-la-2026/scripts/`).
+- Merged `origin/main` cleanly (including PR #11 and PR #13) preserving 100% of all five existing dashboards (`index.html` root, `site/`, `docs/`, `alternative-research/`, `privacy-first/`), workflows (`.github/workflows/validate.yml`), datasets (`data/*`), build scripts (`tools/*`), and test suites (`tests/*`, `privacy-first/tests/*`).
+- Resolved conflicts in `README.md` and `COORDINATION.md` purely additively (retaining all prior text and appending this session's entry), and added a discoverability link to `central-la-2026/index.html` in the root `index.html` callout.
+
+**New official evidence verified through 2026-11-25 (`central-la-2026/`).**
+- **SEC EDGAR (CIK `0000807882`):** FY2022–FY2025 annual & Q1 FY2025–Q3 FY2026 quarterly standalone Jack in the Box series (FY25 SSS `-4.2%`, 86 closures incl. 51 "JACK on Track"; FY26 SSS Q1 `-6.7%`, Q2 `-3.8%`, Q3 `-1.1%`, 2,115 units; standalone franchise rental revenue `$351.3M` FY23 &rarr; `$332.7M` FY25, 40-wk YTD FY26 `-6.8%` YoY to `$242.5M`); Del Taco sale completed Dec 22, 2025 (`$119.1M` net proceeds, discontinued operations recast); Series 2026-1 `$500M` `7.624%` senior secured notes closed Jun 23, 2026 (ARD May 2031, Senior ABS leverage `>5.25x` triggering `$23.3M` cash sweep); dividend & buybacks suspended; Interim CEO Mark King appointed May 13, 2026; Form 8-K filed Nov 17, 2026 disclosing upcoming CFO, CLAO, and CTO departures (Jan–May 2027); FY2025 10-K real estate ownership split (`1,585` corporate-leased vs. `387` franchise-direct, `941` California units = `44.1%`).
+- **Central LA Economy, Wages, Transit & Schools (W-01):** CA DOF May 2026 E-1 population (LA County `9,837,286` `-0.6%` / `-64K` YoY; LA City `3,806,201` `-0.9%` YoY) and K-12 `-240,800` 10-yr county projection; U.S. Census QuickFacts (`$81,939` LA City / `$90,112` LA County median HH income; `16.5%` LA City poverty); BLS Sep/Oct 2026 LA MSA jobs (`6,282,100`, `+0.5%` YoY), unemployment (`4.4%` Sep 2026p), and LA CPI-U (`360.965` Oct 2026; `+3.7%` Sep 2026 YoY); CA DIR AB 1228 `$20.00/hr` fast-food wage; LA City `$18.42/hr` minimum wage (Jul 1, 2026); CDE LAUSD (`497,105` enrollment, `86.5%` graduation, record 2024–25 CAASPP gains); LA Metro D Line Section 1 opened May 8, 2026; LA City Planning DTLA 2040, Measure JJJ TOC & CA AB 2011; SCAG Connect SoCal 2024.
+- **Tax, Transfer Tax & Capital Markets (W-02):** IRS Topic 409 (`20%` LTCG / `25%` Sec. 1250), NIIT (`3.8%`), Form 8824 §1031 (`45d/180d`); CA FTB (`13.3%` combined top incl. 1% Behavioral Health Services Tax); LA County RRCC DTT (`$0.55/$500`); City of LA Office of Finance Measure ULA post-June 30, 2026 indexed thresholds (`4.0%` `>$5.4M`, `5.5%` `≥$10.9M` on gross value, with interactive dead-zone cliff detector); CA BOE Prop 13 & Prop 19; U.S. Treasury Daily Par Yield Curve (`4.91%` 10-Yr on Nov 24, 2026; FRED `DGS10` `4.92%` on Nov 23, 2026).
+- **Parcel Hazards & Black Swans (W-04):** USGS UCERF3 (`60%` ≥M6.7 / `46%` ≥M7.0 / `31%` ≥M7.5 in 30 yrs); CGS EQ Zapp (Nov 20, 2025 revised LA fault zones); FEMA MSC; CAL FIRE 2025 LRA FHSZ & official Jan 2025 Palisades (`23,448` acres, `6,845` structures destroyed) and Eaton (`14,021` acres, `9,414` structures destroyed) fire stats; CA Dept. of Insurance FAIR Plan Orders `2025-1` (`$1B` assessment), `2026-1` (`$600M` credit line), and `2026-2` (`$20M/bldg`, `$100M/loc` commercial limits).
+
+**Flagged irregularities (`central-la-2026/flagged-review.html` — `needs review`, non-blocking):**
+- `FLG-01` (pending FY2026 10-K / Q4 FY2026 as of 2026-11-25), `FLG-02`–`FLG-06` (private lease, parcel trade area, parcel hazards, broker BOV quotes, owner tax basis intentionally blank), `FLG-07` (Census V2025 vs. CA DOF Jan 2026 population divergence), `FLG-08` (BLS Oct 2026 LA CPI 12-mo cell blank `-`), `FLG-09` (Q1/Q2 FY26 partial sub-splits blank), `FLG-10` (Del Taco discontinued operations recast).
+
+**Combined verification & PR/deploy record (`arena/ae0d8ac3-jackbox2`):**
+- All repo CI & custom verification suites executed post-merge: `tests/check_site.py`, `tests/calc.test.js`, `tools/check.py`, `privacy-first/tests/check.py`, `alternative-research/tests/check.py`, `central-la-2026/scripts/verify_site.mjs`, and `central-la-2026/scripts/test_runtime.mjs` — all **PASS**.
+- **PR #12:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/12 — **MERGED** to `main` on `2026-11-25` as commit `6a3b723cc740f49bb98d5c9ab1311323fe39ff29`.
+- **Main Validation Workflow (`Validate static site`):** https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45630981171 — **SUCCESS**.
+- **GitHub Pages Build & Deploy (`pages-build-deployment`):** https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45630980808 — **SUCCESS** (`pages/builds/latest` reported `status: "built"`, `error: null` for commit `6a3b723cc740f49bb98d5c9ab1311323fe39ff29` at `2026-11-25T14:09:48Z`).
+- **Live Public URLs Verified via Live Fetch:**
+  - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
+  - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
+  - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
