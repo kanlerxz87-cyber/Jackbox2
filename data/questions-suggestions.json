@@ -1,0 +1,282 @@
+{
+  "decisionOptions": [
+    {
+      "id": "OPT-1",
+      "option": "Sell Now — Taxable Cash-Out Sale",
+      "wealthPreservation": "High once converted into diversified liquid holdings (e.g., U.S. Treasuries yielding 4.69% 5-Yr / 4.91% 10-Yr / 5.30% 30-Yr as of Nov 24, 2026), but immediately reduced by transaction & tax friction.",
+      "growthOpportunity": "Moderate — liquid capital can be redeployed across asset classes, though starting principal is smaller after federal + CA + transfer taxes.",
+      "bauRisks": "Heavy tax drag: up to 20% Fed LTCG + 25% Unrecaptured Sec. 1250 + 3.8% NIIT + 13.3% CA ordinary/BHST + 0.11% LA County DTT + 0.45% LA City base + 4.0%–5.5% Measure ULA (if inside LA City >$5.4M/$10.9M); short-lease discount if WALT is low.",
+      "blackSwanRisks": "Eliminates single-asset LA earthquake, wildfire, and JACK tenant bankruptcy exposure immediately at closing; shifts risk to broader financial markets.",
+      "bestWhen": "Verified tax basis is relatively high, expected price avoids the Measure ULA cliff (or parcel is outside LA City), owner prioritizes liquidity/de-risking, and store closure risk is elevated.",
+      "sourceLabel": "IRS Topic 409, CA FTB, LA Finance ULA, U.S. Treasury",
+      "sourceUrl": "https://finance.lacity.gov/faq/measure-ula"
+    },
+    {
+      "id": "OPT-2",
+      "option": "Sell Before Short-Lease Cliff — IRC §1031 Tax-Deferred Exchange (or DST)",
+      "wealthPreservation": "High — defers federal & conforming CA capital gain and Sec. 1250 depreciation recapture while diversifying into longer-WALT, higher-credit, geographically dispersed real property.",
+      "growthOpportunity": "Moderate to High — keeps pre-tax equity compounding (note: LA County/City transfer taxes, Measure ULA, and brokerage fees are NOT deferred by §1031).",
+      "bauRisks": "Strict IRS 45-day written identification and 180-day closing deadlines via Qualified Intermediary; Measure ULA cash drag if applicable; reinvestment risk under tight deadlines.",
+      "blackSwanRisks": "Substantially reduces single-site LA seismic (60% 30-yr ≥M6.7 USGS probability), California wildfire/insurance, and single-tenant JACK exposure if diversified out of state.",
+      "bestWhen": "Low tax basis with large embedded capital gain/depreciation, owner wants passive wealth preservation without paying immediate federal+CA income taxes, and WALT still attracts institutional buyers.",
+      "sourceLabel": "IRS Form 8824 (2026) & USGS UCERF3",
+      "sourceUrl": "https://www.irs.gov/pub/irs-pdf/i8824.pdf"
+    },
+    {
+      "id": "OPT-3",
+      "option": "Negotiated Early Renewal / 'Blend-and-Extend' (Hold or Sell Post-Extension)",
+      "wealthPreservation": "Moderate to High ONLY IF corporate guaranty & healthy store economics are verified — repairs WALT, reduces short-lease buyer discount, and preserves Prop 13 base year value.",
+      "growthOpportunity": "High optionality — can unlock a higher sale valuation after extending lease term or sustain cash flow without triggering immediate income tax or Measure ULA.",
+      "bauRisks": "Tenant may seek rent relief or TI contribution given AB 1228 ($20/hr wage) and JACK's negative SSS (-4.2% FY25; -1.1% Q3 FY26); C-suite turnover (Nov 2026 8-K) may slow negotiations.",
+      "blackSwanRisks": "Extends LA seismic/wildfire concentration AND keeps owner exposed through JACK's May 2031 ($500M 7.624% Series 2026-1) and Feb 2032 ($503M Series 2022-1) debt ARDs.",
+      "bestWhen": "Private store sales confirm healthy rent coverage, lessee/guarantor is Corporate or well-capitalized multi-unit franchisee, and broker BOVs confirm post-extension value uplift exceeds concessions.",
+      "sourceLabel": "JACK Q3 FY26 10-Q, Nov 2026 8-K & LA Assessor Prop 13",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000091/jack-20260705.htm"
+    },
+    {
+      "id": "OPT-4",
+      "option": "Hold to Expiration (2030–2035) & Re-Lease / Re-Tenant to Replacement QSR",
+      "wealthPreservation": "Low to Moderate — binary lease rollover risk; vacancy halts rent while property taxes, insurance, and maintenance revert to landlord.",
+      "growthOpportunity": "Moderate to High ONLY if site holds grandfathered drive-thru zoning and strong arterial traffic capable of attracting a stronger replacement QSR at higher market rent.",
+      "bauRisks": "Unverified downtime duration, substantial TI/re-imaging/demolition costs, leasing commissions, and shrinking lender appetite as WALT approaches zero.",
+      "blackSwanRisks": "Severe if expiration coincides with a recession, credit crunch, or major LA disaster when restaurant expansion pauses.",
+      "bestWhen": "Verified in-place rent is materially below Central LA market rent, site enjoys grandfathered drive-thru scarcity, and owner holds ample liquid carry reserves.",
+      "sourceLabel": "JACK FY2025 10-K (Lease Terms) & CA DIR AB 1228",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "id": "OPT-5",
+      "option": "Hold to Expiration & Reposition / Sell to Developer (TOC / AB 2011 / DTLA 2040)",
+      "wealthPreservation": "Moderate — dense Central LA land can act as an inflation backstop, subject to zoning, entitlement, and interest-rate cycles.",
+      "growthOpportunity": "Highest long-term upside IF private ZIMAS review confirms TOC Tier 3–4 or AB 2011 ministerial multifamily eligibility near Metro D Line / transit hubs.",
+      "bauRisks": "Entitlement complexity, Measure ULA transfer tax dampening developer bids >$5.4M inside LA City, elevated post-2025 wildfire construction costs, and AB 2011 commercial-tenant relocation obligations.",
+      "blackSwanRisks": "High illiquidity in real estate downturns; CGS Alquist-Priolo fault, liquefaction, or Phase I environmental findings can impair redevelopment feasibility.",
+      "bestWhen": "Offline ZIMAS & land-broker valuation confirm unencumbered land value approaches or exceeds leased-fee QSR value and owner has a multi-decade, low-leverage horizon.",
+      "sourceLabel": "CA Legislature AB 2011, LA City Planning & LA Metro D Line",
+      "sourceUrl": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202120220AB2011"
+    },
+    {
+      "id": "OPT-6",
+      "option": "Recapitalize / Refinance & Hold (Debt-Funded Diversification)",
+      "wealthPreservation": "Low to Moderate — introduces debt service against a single QSR tenant facing negative SSS and elevated leverage; lenders shorten amortization to match remaining WALT.",
+      "growthOpportunity": "Moderate — extracts tax-deferred cash to diversify, but borrowing off a 4.91% 10-Yr Treasury base risks thin or negative leverage.",
+      "bauRisks": "Refinancing wall prior to 2030–2035 expiry, DSCR covenant stress if tenant vacates, higher interest burden.",
+      "blackSwanRisks": "Debt leverage amplifies equity wipeout risk if an earthquake, wildfire, or tenant bankruptcy interrupts rent.",
+      "bestWhen": "Generally UNFAVORABLE unless lease is first extended to long WALT and conservative leverage preserves strong DSCR.",
+      "sourceLabel": "U.S. Treasury Par Yield Curve (Nov 24, 2026) & JACK Q3 FY26 10-Q",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611"
+    }
+  ],
+  "missingInfoQA": [
+    {
+      "id": "Q-01",
+      "domain": "Lease & Legal",
+      "question": "Who is the exact legal tenant and guarantor — Jack in the Box Inc. (or SPV), or an independent franchisee LLC?",
+      "whatWeKnow": "FY2025 10-K shows 1,585 of 2,136 JACK stores (74.2%) are leased by Jack in the Box from third-party landlords (mostly subleased to franchisees), while 387 (18.1%) are direct franchisee sites.",
+      "whatWeDoNotKnow": "Which category this specific Central LA lease falls into, and whether any corporate guaranty survived past assignments/refranchising.",
+      "decisionImpact": "CRITICAL — Determines default risk, bankruptcy recovery, and buyer cap rate.",
+      "discoveryMethod": "Commission a private real estate attorney to review the executed Lease, all Amendments, Assignments, Estoppels, and Guaranty instruments offline.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "id": "Q-02",
+      "domain": "Lease & Legal",
+      "question": "What is the exact primary expiration date (within 2030–2035), renewal option schedule, option rent formula, and latest written notice deadline?",
+      "whatWeKnow": "JACK standard leases run 20 years initially with 1–20 years of unilateral tenant renewal options; prompt specifies 2030–2035 expiration window.",
+      "whatWeDoNotKnow": "Exact month/day of expiration, how many options remain, whether option rent is fixed, CPI, or FMV, and exact written notice deadline.",
+      "decisionImpact": "CRITICAL — Dictates timing of short-lease valuation cliff and prevents accidental forfeiture of negotiation leverage.",
+      "discoveryMethod": "Extract exact dates in the Private Lease Abstract and reconcile against an audited Notice Calendar with advance reminders.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "id": "Q-03",
+      "domain": "Lease & Legal",
+      "question": "Is the lease Absolute NNN, NN, or a Ground Lease — and does it contain a Prop 13 reassessment cap, ROFR, or Go-Dark clause?",
+      "whatWeKnow": "565 of 2,136 JACK units sit on ground-leased land; Prop 13 reassesses LA County property upon change of ownership (1% base + voted bonds).",
+      "whatWeDoNotKnow": "Landlord roof/structure obligations, whether tenant absorbs post-sale Prop 13 tax jump, whether tenant holds a ROFR/ROFO, or whether tenant can go dark while paying rent.",
+      "decisionImpact": "HIGH — A Prop 13 tax cap reduces buyer NOI and purchase price; a ROFR can disrupt 1031 exchange timelines.",
+      "discoveryMethod": "Attorney lease abstract audit of Expense Pass-Through, Property Tax, Maintenance, ROFR/ROFO, and Default/Go-Dark articles.",
+      "sourceUrl": "https://assessor.lacounty.gov/real-estate-toolkit/proposition-13"
+    },
+    {
+      "id": "Q-04",
+      "domain": "Tenant & Store Economics",
+      "question": "What are the subject store's actual annual gross sales, trend since AB 1228 ($20/hr wage), and rent-to-sales occupancy ratio?",
+      "whatWeKnow": "Systemwide JACK franchise AUV fell from $1,949K (FY24) to $1,874K (FY25); franchise SSS was -4.3% (FY25), -7.0% (Q1 FY26), -1.2% (Q3 FY26); 86 stores closed in FY25 (51 under 'JACK on Track').",
+      "whatWeDoNotKnow": "Whether this Central LA store is high-volume/healthy or an underperforming closure candidate.",
+      "decisionImpact": "CRITICAL — Strong unit sales support blend-and-extend; weak sales with high rent burden signal closure/non-renewal risk.",
+      "discoveryMethod": "Check lease for annual sales reporting rights (mandatory if percentage rent clause exists); request store sales during renewal talks; review anonymized broker foot-traffic reports offline.",
+      "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm"
+    },
+    {
+      "id": "Q-05",
+      "domain": "Property & Trade Area (W-01)",
+      "question": "Is the parcel legally inside the incorporated City of Los Angeles, or in an adjacent city / unincorporated LA County?",
+      "whatWeKnow": "Measure ULA (4.0% > $5.4M; 5.5% ≥ $10.9M after Jun 30, 2026) and LA City Base Transfer Tax ($2.25/$500) apply ONLY inside incorporated City of Los Angeles (Culver City & Santa Monica have distinct city transfer taxes).",
+      "whatWeDoNotKnow": "Exact municipal boundary of the confidential parcel.",
+      "decisionImpact": "CRITICAL — Crossing the $5.4M Measure ULA threshold inside LA City imposes 4.0% tax on the entire GROSS sale price (non-deferrable even in a §1031 exchange).",
+      "discoveryMethod": "Check confidential APN privately on LA County Assessor Portal and LA City ZIMAS.",
+      "sourceUrl": "https://finance.lacity.gov/faq/measure-ula"
+    },
+    {
+      "id": "Q-06",
+      "domain": "Property & Trade Area (W-01)",
+      "question": "What are the 1-, 3-, and 5-mile Census tract demographics, arterial AADT traffic counts, nearest LAUSD schools, and QSR drive-thru competitors?",
+      "whatWeKnow": "City of LA averages $81,939 median HH income, 16.5% poverty, 8,304 pop/sq mi, and -0.9% YoY population change (Jan 2026 CA DOF). Central LA neighborhoods vary widely tract-by-tract.",
+      "whatWeDoNotKnow": "Exact Census tract income/population trend, daytime worker density, arterial VPD count, grandfathered drive-thru status, and nearby rival or sibling Jack in the Box locations.",
+      "decisionImpact": "HIGH — Governs both tenant renewal willingness and replacement tenant demand if Jack in the Box exits.",
+      "discoveryMethod": "Offline secure geocoding using data.census.gov tract tables, Caltrans/LADOT traffic counts, CDE School Dashboard, and a confidential competitor survey.",
+      "sourceUrl": "https://www.census.gov/quickfacts/fact/table/losangelescitycalifornia/INC110223"
+    },
+    {
+      "id": "Q-07",
+      "domain": "Property & Redevelopment",
+      "question": "What is the exact zoning, lot square footage, TOC Tier (1–4), AB 2011 eligibility, and vacant land value floor?",
+      "whatWeKnow": "LA Metro D Line Sec. 1 opened May 8, 2026; Measure JJJ TOC and CA AB 2011 allow high-density residential on qualifying commercial/transit corridors.",
+      "whatWeDoNotKnow": "Lot dimensions, zoning designation, distance to Metro station, freeway 500-ft buffer (AB 2011 HVAC rule), and unencumbered land value per sq ft.",
+      "decisionImpact": "HIGH — If underlying land value approaches leased-fee QSR value, holding through lease expiry carries significantly lower downside.",
+      "discoveryMethod": "Private lookup on LA City ZIMAS (including AB 2011 & TOC eligibility tabs) plus a confidential land-value opinion from an LA urban infill land broker.",
+      "sourceUrl": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202120220AB2011"
+    },
+    {
+      "id": "Q-08",
+      "domain": "Tax & Wealth Structure",
+      "question": "What is the owner's adjusted tax basis, cumulative depreciation taken, holding entity (individual, trust, LLC, partnership), and estate/Prop 19 objective?",
+      "whatWeKnow": "Federal top rates: 20% LTCG + 25% Sec 1250 + 3.8% NIIT; CA taxes capital gains as ordinary income up to 13.3%; IRC §1031 defers income tax; Prop 19 removed parent-child property tax exclusion on commercial rentals.",
+      "whatWeDoNotKnow": "Actual unrealized capital gain, Sec 1250 recapture balance, existing mortgage/prepayment penalty, and total net-worth concentration in this single asset.",
+      "decisionImpact": "CRITICAL — Low tax basis strongly favors §1031 exchange or hold/blend-and-extend over taxable cash-out; high single-asset concentration favors diversification.",
+      "discoveryMethod": "Confidential CPA tax projection using latest tax return/Form 4562 depreciation schedule and estate counsel review of trust/entity documents.",
+      "sourceUrl": "https://www.ftb.ca.gov/file/personal/income-types/capital-gains-and-losses.html"
+    },
+    {
+      "id": "Q-09",
+      "domain": "Capital Markets & Pricing (W-02)",
+      "question": "What exact cap rates and purchase prices will real buyers pay TODAY (at current WALT) vs. AFTER a 10–15 year blend-and-extend?",
+      "whatWeKnow": "U.S. 10-Year Treasury yielded 4.91% on Nov 24, 2026 (FRED DGS10: 4.92% on Nov 23, 2026); lenders tighten amortization on short remaining lease terms.",
+      "whatWeDoNotKnow": "Actual Southern California QSR buyer cap rate spread, short-lease discount in basis points, and whether expected sale price falls below or above the $5.4M Measure ULA threshold.",
+      "decisionImpact": "CRITICAL — Quantifies the exact dollar benefit of extending before selling vs. exiting early.",
+      "discoveryMethod": "Solicit 3 independent confidential Broker Opinions of Value (BOVs) from active Southern California NNN QSR brokers (with closed LA comps and explicit WALT sensitivity).",
+      "sourceUrl": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611"
+    },
+    {
+      "id": "Q-10",
+      "domain": "Hazards, Engineering & Insurance (W-04)",
+      "question": "What is the parcel's exact CGS fault/liquefaction zone, FEMA flood zone, CAL FIRE 2025 LRA fire zone, Phase I ESA environmental status, and current insurance coverage?",
+      "whatWeKnow": "LA Basin has 60% 30-yr probability of ≥M6.7 earthquake (USGS UCERF3); Jan 2025 LA wildfires destroyed 16,259 structures and led to CDI Order 2025-1 ($1B FAIR Plan assessment).",
+      "whatWeDoNotKnow": "Whether the parcel sits in an Alquist-Priolo/liquefaction/SFHA/VHFHSZ zone, whether soil/groundwater contamination exists, building condition, and whether earthquake/loss-of-rent insurance is carried.",
+      "decisionImpact": "HIGH — Uninsured seismic/environmental exposure can cause severe equity loss in a Black Swan event or derail buyer financing in escrow.",
+      "discoveryMethod": "Run offline APN checks in CGS EQ Zapp, FEMA MSC, and CAL FIRE LRA FHSZ viewer; review tenant COI with a commercial insurance broker; commission private Phase I ESA & PCA.",
+      "sourceUrl": "https://maps.conservation.ca.gov/cgs/EQZApp/app/"
+    }
+  ],
+  "siteSuggestions": [
+    {
+      "id": "SUG-01",
+      "category": "Privacy & Offline Security",
+      "title": "Encrypted Local-Only Private Workspace File (.enc.json via Web Crypto AES-GCM)",
+      "description": "Upgrade the W-02 browser calculator and W-03 decision board to optionally save/load an AES-256-GCM passphrase-encrypted local file so the owner and advisors can exchange verified private scenarios offline without ever exposing plaintext PII or publishing private inputs.",
+      "decisionBenefit": "Eliminates manual re-entry across advisor sessions while keeping GitHub Pages 100% anonymous.",
+      "privacyImpact": "Positive — 100% client-side Web Crypto API; zero network upload.",
+      "effort": "Low",
+      "prerequisites": "Owner approval of local passphrase workflow with CPA/attorney.",
+      "sourceLabel": "NIST / Internal Privacy Standard (Site Architecture)",
+      "sourceUrl": "https://www.irs.gov/taxtopics/tc409"
+    },
+    {
+      "id": "SUG-02",
+      "category": "W-01 Trade-Area Automation",
+      "title": "Offline Local-Only Census Tract & ZIMAS Import Bridge (CSV/JSON)",
+      "description": "Add a local file loader to W-01 that ingests an anonymized CSV exported offline from data.census.gov (tract-level 2015–19 vs. 2020–24 ACS trends) and renders side-by-side comparisons against LA City and LA County strictly in browser memory.",
+      "decisionBenefit": "Replaces regional proxies with verified tract-level multi-year evidence without ever committing parcel identifiers to the repo.",
+      "privacyImpact": "Safe when restricted to client-side memory and stripping tract FIPS IDs before printing.",
+      "effort": "Medium",
+      "prerequisites": "Offline geocoding of confidential APN to select consistent Census tracts.",
+      "sourceLabel": "U.S. Census Bureau Data Portal",
+      "sourceUrl": "https://data.census.gov/profile/Los_Angeles_County,_California?g=050XX00US06037"
+    },
+    {
+      "id": "SUG-03",
+      "category": "W-02 Financial Modeling",
+      "title": "Monte Carlo & Correlated Tail-Risk Simulator (Cap Rate × Downtime × Disaster Shocks)",
+      "description": "Extend W-02 with a 1,000-trial client-side simulation correlating interest rates, tenant non-renewal/closure risk, vacancy duration, and disaster repair outlays to display 10th / 50th / 90th percentile wealth outcomes across Sell, §1031, Renew, and Hold.",
+      "decisionBenefit": "Quantifies downside wealth preservation (P10 tail risk) alongside median growth (P50).",
+      "privacyImpact": "Neutral — executes 100% locally in browser.",
+      "effort": "Medium",
+      "prerequisites": "Verified private NOI, tax basis, and 3 broker BOV quotes to calibrate distributions.",
+      "sourceLabel": "USGS UCERF3 & U.S. Treasury Yield Curve",
+      "sourceUrl": "https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area"
+    },
+    {
+      "id": "SUG-04",
+      "category": "W-02 Market Comps & Back-Testing",
+      "title": "Comparable Sales Ledger & Empirical Short-Lease Discount Back-Tester",
+      "description": "Add a local-only comparable sales ledger (WALT remaining, cap rate, corporate vs. franchisee guaranty, LA submarket, Measure ULA impact, sale date) to fit an empirical WALT-vs-Cap-Rate curve and back-test model predictions against real closed LA QSR trades.",
+      "decisionBenefit": "Replaces broker anecdotes with auditable closed-transaction evidence.",
+      "privacyImpact": "Low risk when storing anonymized market comps separate from subject parcel.",
+      "effort": "Medium",
+      "prerequisites": "Collection of verified closed Southern California QSR NNN comps from brokers/public deeds.",
+      "sourceLabel": "City of Los Angeles Office of Finance Measure ULA FAQ",
+      "sourceUrl": "https://finance.lacity.gov/faq/measure-ula"
+    },
+    {
+      "id": "SUG-05",
+      "category": "Tenant Credit Monitoring",
+      "title": "Quarterly SEC EDGAR Filing Watchlist & Credit Red-Line Tracker",
+      "description": "Add a repeatable quarterly SEC EDGAR review workflow to ingest Jack in the Box's forthcoming FY2026 Form 10-K and FY2027 Form 10-Qs, tracking SSS, closures, franchise rental revenue, and leverage covenants against predefined action triggers.",
+      "decisionBenefit": "Ensures sale/renewal timing adapts quickly to corporate turnaround or credit deterioration.",
+      "privacyImpact": "Zero PII — strictly public SEC EDGAR filings.",
+      "effort": "Medium",
+      "prerequisites": "Define owner's exact tenant-credit red lines (e.g., leverage/closure thresholds).",
+      "sourceLabel": "SEC EDGAR — Jack in the Box Inc. (CIK 0000807882)",
+      "sourceUrl": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=10-K&dateb=&owner=include&count=20"
+    },
+    {
+      "id": "SUG-06",
+      "category": "Tax & 1031 Comparison",
+      "title": "Measure ULA Cliff Optimizer & §1031 Replacement Comparison Module",
+      "description": "Add a specialized visualization highlighting the exact Measure ULA 'dead zone' immediately above $5,400,000 and $10,900,000 (where a marginally lower gross sale price nets more after-tax cash) alongside a multi-property §1031 / DST yield & geographic diversification matrix.",
+      "decisionBenefit": "Prevents costly pricing errors near LA's $5.4M / $10.9M transfer-tax cliffs and sharpens §1031 comparison.",
+      "privacyImpact": "Neutral — 100% client-side calculation.",
+      "effort": "Low",
+      "prerequisites": "Verify offline whether parcel lies inside incorporated City of Los Angeles.",
+      "sourceLabel": "City of Los Angeles Measure ULA & IRS Form 8824",
+      "sourceUrl": "https://finance.lacity.gov/faq/measure-ula"
+    },
+    {
+      "id": "SUG-07",
+      "category": "Advisor Collaboration (W-10)",
+      "title": "Role-Specific One-Page Printable Packets (Attorney, CPA, Broker RFP)",
+      "description": "Expand W-10 into three discipline-segmented 1-page printable briefs: (1) Attorney Lease Abstract & Notice Brief, (2) CPA Tax/1031/Prop 19 Worksheet, and (3) Anonymized Broker BOV Request-for-Proposal specifying exact WALT scenarios to quote.",
+      "decisionBenefit": "Accelerates Gates 1–4 while preventing unnecessary sharing of personal tax details with brokers.",
+      "privacyImpact": "High privacy hygiene — enforces need-to-know compartmentalization across advisors.",
+      "effort": "Low",
+      "prerequisites": "Confirm engaged advisors and NDA coverage.",
+      "sourceLabel": "IRS Topic 409 & CA BOE Prop 19",
+      "sourceUrl": "https://boe.ca.gov/meetings/2022-responses.htm"
+    },
+    {
+      "id": "SUG-08",
+      "category": "W-04 Hazard & Insurance",
+      "title": "Lease Casualty Clause vs. COI Coverage Gap Checker",
+      "description": "Provide a local offline checklist cross-referencing the lease's Insurance, Casualty, and Condemnation articles against the tenant's actual Certificate of Insurance and CA FAIR Plan / private earthquake policy terms.",
+      "decisionBenefit": "Identifies uninsured earthquake, rent-abatement, or rebuild gaps before a Black Swan event strikes.",
+      "privacyImpact": "100% client-side; no policy numbers or parcel addresses stored in repo.",
+      "effort": "Low",
+      "prerequisites": "Obtain current tenant Certificate of Insurance and executed lease casualty clause.",
+      "sourceLabel": "CA Dept. of Insurance FAIR Plan Orders",
+      "sourceUrl": "https://www.insurance.ca.gov/0250-insurers/0500-legal-info/0700-commissioners-orders/upload/FAIR-Plan-Stipulation-and-Order-2026-2.pdf"
+    },
+    {
+      "id": "SUG-09",
+      "category": "Governance & Decision Hygiene",
+      "title": "Versioned Gate-5 Pre-Commitment Audit Memo Generator",
+      "description": "Create an offline printable/JSON 'Decision Lock Memo' capturing the exact model version, timestamp, verified CPA/BOV inputs, advisor sign-offs, and rejected alternatives prior to signing a listing agreement or lease amendment.",
+      "decisionBenefit": "Enforces disciplined governance and prevents premature commitments before verified inputs exist.",
+      "privacyImpact": "Stored strictly in owner's offline access-controlled vault.",
+      "effort": "Low",
+      "prerequisites": "Completion of Gates 1–4.",
+      "sourceLabel": "IRS Form 8824 & Official Verification Audit Framework",
+      "sourceUrl": "https://www.irs.gov/pub/irs-pdf/i8824.pdf"
+    }
+  ]
+}
