@@ -310,5 +310,10 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 
 **Combined verification & PR/deploy record (`arena/ae0d8ac3-jackbox2`):**
 - All repo CI & custom verification suites executed post-merge: `tests/check_site.py`, `tests/calc.test.js`, `tools/check.py`, `privacy-first/tests/check.py`, `alternative-research/tests/check.py`, `central-la-2026/scripts/verify_site.mjs`, and `central-la-2026/scripts/test_runtime.mjs` — all **PASS**.
-- **PR #12:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/12 (merging cleanly to `main` on `2026-11-25`).
-- **Live Entry Point:** https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html (linked from root https://kanlerxz87-cyber.github.io/Jackbox2/).
+- **PR #12:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/12 — **MERGED** to `main` on `2026-11-25` as commit `6a3b723cc740f49bb98d5c9ab1311323fe39ff29`.
+- **Main Validation Workflow (`Validate static site`):** https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45630981171 — **SUCCESS**.
+- **GitHub Pages Build & Deploy (`pages-build-deployment`):** https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45630980808 — **SUCCESS** (`pages/builds/latest` reported `status: "built"`, `error: null` for commit `6a3b723cc740f49bb98d5c9ab1311323fe39ff29` at `2026-11-25T14:09:48Z`).
+- **Live Public URLs Verified via Live Fetch:**
+  - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
+  - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
+  - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
