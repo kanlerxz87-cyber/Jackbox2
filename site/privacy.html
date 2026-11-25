@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy policy — Jack in the Box ground lease, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision support for a single-tenant NNN Jack in the Box ground lease in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap bar">
+  <div class="brand">Jack in the Box <span>/ Central LA ground lease</span></div>
+  <nav class="main">
+<a href="index.html">Overview</a>
+<a href="decision.html">Decision</a>
+<a href="gates.html">Decision gates</a>
+<a href="questions.html">Questions</a>
+<a href="economy.html">Local economy</a>
+<a href="trade-area.html">Trade area</a>
+<a href="hazards.html">Hazards</a>
+<a href="valuation.html">Sell vs hold</a>
+<a href="tax.html">After tax</a>
+<a href="risks.html">Risks</a>
+<a href="calculator.html">Calculator</a>
+<a href="sources.html">Sources</a>
+<a href="flagged.html">Flagged for review</a>
+<a href="requirements.html">Requirements</a>
+<a href="suggestions.html">Suggestions</a>
+<a href="print.html">1-page summary</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only</p>
+  <h1>Privacy policy</h1>
+  <p class="lede">How personal and commercially sensitive information is kept out of this site structurally, not by convention.</p>
+  
+</div>
+
+<div class="note ok"><p><b>The rule that governs every other decision on this site.</b> Personal and commercially sensitive information is removed before publication, not after. Nothing is published and then redacted. The public site is assembled from a data layer that has never contained an identifier.</p></div>
+
+<section class="block">
+  <h2>What is never published</h2>
+<div class="twrap"><table class=""><thead><tr><th>Category</th><th>Placeholder</th><th>Where it lives instead</th></tr></thead><tbody><tr><td>Owner or entity name</td><td class="id">[OWNER-ENTITY]</td><td>Offline, authorised advisers only</td></tr>
+<tr><td>Street address</td><td class="id">[STREET-ADDRESS]</td><td>Offline; used only inside the secure workflow</td></tr>
+<tr><td>Assessor's parcel number</td><td class="id">[APN]</td><td>Offline</td></tr>
+<tr><td>Executed lease and amendments</td><td class="id">[LEASE-FILE]</td><td>Offline document register, with hashes only</td></tr>
+<tr><td>Survey, site plan, title, insurance</td><td class="id">[SURVEY] · [SITE-PLAN] · [TITLE-REPORT] · [INSURANCE-POLICY]</td><td>Offline</td></tr>
+<tr><td>Owner tax returns, basis, income, filing status</td><td class="id">[TAX-RETURNS]</td><td>Never in this repository, under any circumstances</td></tr>
+<tr><td>Broker quotes and bids</td><td class="id">[BROKER-QUOTE-1..3]</td><td>Offline; entered only into the browser calculator</td></tr>
+<tr><td>Tenant's rent, sales and guarantor financials</td><td class="id">[TENANT-FINANCIALS]</td><td>Offline, under confidentiality</td></tr></tbody></table></div>
+</section>
+
+<section class="block">
+  <h2>How privacy is enforced, not promised</h2>
+  <ol class="tight">
+    <li><b>Structural separation.</b> The site is generated from <code>data/*.json</code>. Those files contain no identifier fields at all — not empty ones, not masked ones. There is nowhere for a name or an address to be stored.</li>
+    <li><b>A blocklist in the build.</b> <code>tools/check.py</code> fails the build if any ZIP code, street-suffix address pattern, parcel-number pattern, email address, phone number or Social Security number pattern appears anywhere in the site or the data.</li>
+    <li><b>Aggregation only.</b> Every published figure is a county, city or metro statistic drawn from a public government release. None of it is derived from the owner's private records.</li>
+    <li><b>The calculator transmits nothing.</b> It is a single HTML file with inline JavaScript. There is no network call, no analytics, no font fetch from a third party, and no local storage. Nothing typed into it leaves the browser tab.</li>
+    <li><b>No third-party requests at all.</b> No CDN, no analytics, no embedded maps, no tracking pixels. The only outbound links are explicit citations a reader chooses to click.</li>
+  </ol>
+  <div class="note warn"><p><b>The one thing this site cannot protect against.</b> A reader who types the address into the calculator is typing it into their own browser, and it still does not leave the tab. But if the owner shares a screenshot of the site with a filled-in calculator, the address leaves with the screenshot. That is a human control, not a technical one, and it is the reason the calculator ships with placeholder values rather than real ones.</p></div>
+</section>
+
+<section class="block">
+  <h2>Handling of research findings</h2>
+  <p class="sub">The brief requires that any personal information encountered during research be treated as internal-only. During this session, research touched only public corporate filings and public government statistics. No individual's personal information was collected, and none is reproduced anywhere.</p>
+  <div class="note"><p><b>One deliberate exclusion.</b> The tenant's earnings release names an investor-relations contact with an email address and phone number. That information was read but is deliberately not reproduced on this site; the source is cited by document link instead, so a reader can reach the primary record without this site republishing an individual's contact details.</p></div>
+</section>
+
+<section class="block">
+  <h2>Where the real records should live</h2>
+  <p class="sub">Proposal SG-09 on the <a href="suggestions.html">suggestions page</a>: a separate, access-logged internal workspace for the actual documents, with this site permanently aggregate-only. The public site should never link to that workspace — a link is itself a disclosure about where the records are.</p>
+</section>
+
+</main>
+<footer class="site"><div class="wrap">
+  <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built 2026-11-25 13:46 UTC from the data layer in <code>data/</code>.</p>
+  <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
+</div></footer>
+</body>
+</html>

@@ -969,3 +969,473 @@ build_valuation()
 print("built: decision gates questions trade-area hazards valuation")
 if errors:
     print("SOURCE ERRORS:", *errors, sep="\n  ")
+
+# ---------------------------------------------------------------- risks page
+def build_risks():
+    R = load("risks.json")
+    rows = []
+    for r in R["risks"]:
+        aff = ", ".join(r["affects"])
+        rows.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td><b>{e(r["risk"])}</b></td>'
+            f'<td>{e(r["category"])}</td>'
+            f'<td>{e(aff)}</td>'
+            f'<td>{e(r["evidence"])}</td>'
+            f'<td>{e(r["likelihood"])}</td>'
+            f'<td>{e(r["impact"])}</td>'
+            f'<td>{e(r["preventability"])}</td>'
+            f'<td>{e(r["mitigation"])}</td>'
+        )
+    bs = R["black_swan_block"]
+    bsw = []
+    for ev in bs["events"]:
+        bsw.append(
+            f'<td><b>{e(ev["event"])}</b></td>'
+            f'<td>{e(ev["rent_leg"])}</td>'
+            f'<td>{e(ev["repair_leg"])}</td>'
+            f'<td>{e(ev["liquidity_leg"])}</td>'
+            f'<td>{e(ev["net"])}</td>'
+        )
+    body = """
+<div class="note"><p><b>No probability is assigned to any event on this page.</b> Assigning one without an insured loss model would be fabrication. The comparisons are ordinal — which risk is worse than which — not cardinal. Where verified evidence exists it is quoted with its source; where the point is structural reasoning, it is labelled as an assumption.</p></div>
+<div class="note warn"><p><b>The one risk that is not in the property at all.</b> Concentration. If this parcel is a large share of the owner's net worth, then holding it is a decision about the owner's balance sheet, not about the building — and it may justify a sale regardless of price. That is why gate G-12 exists: the objective function must be stated before the analysis can conclude anything.</p></div>
+<section class="block">
+  <h2>Risk register by decision path</h2>
+  <p class="sub">Path codes: D-1 sell now · D-2 market now · D-3 renew and hold · D-4 hold to expiry · D-5 sale-leaseback to tenant · D-6 1031 exchange · D-7 do nothing.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Risk", "l"), ("Category", "l"), ("Affects", "l"), ("Evidence", "l"), ("Likelihood", "l"), ("Impact", "l"), ("Preventable", "l"), ("Mitigation", "l")],
+        rows,
+    )
+    body += f"""
+</section>
+<section class="block">
+  <h2>Black swan events</h2>
+  <p class="sub">{e(bs["summary"])}</p>
+"""
+    body += table(
+        [("Event", "l"), ("Loss of rent", "l"), ("Repairs", "l"), ("Exit liquidity", "l"), ("Net effect", "l")],
+        bsw,
+    )
+    body += f"""
+  <div class="note warn"><p><b>The design principle.</b> {e(bs["design_principle"])}</p></div>
+</section>
+<section class="block">
+  <h2>Wealth preservation versus growth</h2>
+  <p class="sub">The brief asks for a balance that preserves wealth while keeping growth available at a manageable risk level. Those two goals point in opposite directions here, and pretending otherwise would be the least useful thing this site could do.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What holding preserves</h3>
+      <ul class="tight">
+        <li>Optionality. The owner keeps the reversion and any land-value upside.</li>
+        <li>Tax deferral by simply not selling.</li>
+        <li>Income, if and while the tenant pays.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>What holding costs</h3>
+      <ul class="tight">
+        <li>Unresolved concentration in one tenant, one building, one seismic region.</li>
+        <li>Exposure to an uncapped regulatory cost mechanism (AB 1228) that drives the tenant's closures.</li>
+        <li>Illiquidity at exactly the moment a correlated shock would make it most costly.</li>
+        <li>Term decay: every year of expiry approaching widens the buyer's spread, so waiting has a price even if nothing goes wrong.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><p><b>The balance point.</b> A manageable risk level here is not achieved by choosing hold or sell in the abstract. It is achieved by (1) closing the blocking gates, (2) testing the market and the tenant at the same time, and (3) sizing the decision against a written objective statement — so that whichever path is chosen, the concentration and the tail are deliberate rather than inherited.</p></div>
+</section>
+"""
+    page("risks.html", "Risk register", body,
+         "Risks for every decision path, including the correlated black-swan events that could take rent, repairs and exit liquidity at the same time.")
+
+# ---------------------------------------------------------------- tax page
+def build_tax():
+    V = load("valuation.json")
+    rules = [r for r in V["after_tax_rules"]]
+    rows = []
+    for r in rules:
+        rows.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td><b>{e(r["item"])}</b></td>'
+            f'<td>{e(r.get("rule",""))}</td>'
+            f'<td>{label_badge(r.get("label"))}</td>'
+            f'<td>{src_link(r.get("source"))}</td>'
+            f'<td>{e(r.get("required_input","")) or "—"}</td>'
+        )
+    body = """
+<div class="note warn"><p><b>This is a rule sheet, not tax advice, and it is not a computation.</b> Every rate below is quoted from an official source. The computation itself needs the owner's basis, filing status and other income, none of which may appear in this repository — so the arithmetic lives in the <a href="calculator.html">calculator</a>, which runs in the reader's browser and transmits nothing.</p></div>
+<div class="grid g4">
+  <div class="stat info"><div class="k">Recapture layer</div><div class="v">25<small>% max</small></div><div class="n">Unrecaptured §1250 gain</div></div>
+  <div class="stat info"><div class="k">Capital gain</div><div class="v">20<small>% max</small></div><div class="n">0 / 15 / 20 by bracket</div></div>
+  <div class="stat info"><div class="k">NIIT</div><div class="v">3.8<small>%</small></div><div class="n">On top, above MAGI threshold</div></div>
+  <div class="stat warn"><div class="k">California</div><div class="v">12.3<small>% top</small></div><div class="n">No capital-gain preference</div></div>
+</div>
+<section class="block">
+  <h2>Verified tax rules</h2>
+  <p class="sub">Each row is a statement of law with its official citation. Rates are 2025 figures as published.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Item", "l"), ("Rule", "l"), ("Class", "l"), ("Source", "l"), ("Required input", "l")],
+        rows,
+    )
+    body += """
+</section>
+<section class="block">
+  <h2>How the layers stack</h2>
+  <p class="sub">A worked illustration of the structure. It uses no property-specific numbers, because there are none.</p>
+  <ol class="tight">
+    <li><b>Split the gain.</b> Separate the portion attributable to depreciation (unrecaptured §1250) from the rest. Only the first layer is taxed at 25%; the second follows capital-gain rates.</li>
+    <li><b>Federal.</b> 25% maximum on the recapture layer, then 0/15/20% on the remaining long-term gain according to taxable income.</li>
+    <li><b>Net investment income tax.</b> 3.8% on the net gain once MAGI exceeds $200,000 single or $250,000 married filing jointly. A triple-net ground lease is normally passive, so the NIIT normally applies — that determination belongs to the adviser.</li>
+    <li><b>California.</b> The gain is ordinary income for state purposes. Large gains push into the 11.3% and 12.3% brackets. There is no state capital-gain rate.</li>
+    <li><b>Section 1031.</b> Fully deferred, the federal layers on reinvested proceeds collapse toward zero, and the state treatment follows. This is the largest single lever available and it must be arranged before closing.</li>
+  </ol>
+  <div class="note warn"><p><b>The cash-flow trap in an installment sale.</b> Under the installment method the capital gain is spread over the payments, but depreciation-recapture ordinary income must be recognised in the year of sale regardless. An owner who sells on seller financing can therefore owe tax on money not yet received.</p></div>
+</section>
+"""
+    page("tax.html", "After-tax module", body,
+         "Verified tax rules, the stacking order, and why the deferral decision can matter more than the sale price.")
+
+# ---------------------------------------------------------------- requirements page
+def build_requirements():
+    R = load("requirements.json")["requirements"]
+    status_badge = {"addressed": ("closed", "addressed"),
+                    "addressed-gated": ("der", "addressed · gated"),
+                    "open-blocked": ("unv", "open · blocked")}
+    rows = []
+    counts = {"addressed": 0, "addressed-gated": 0, "open-blocked": 0}
+    for r in R:
+        counts[r["status"]] = counts.get(r["status"], 0) + 1
+        cb, ct = status_badge.get(r["status"], ("ctx", r["status"]))
+        blocked = r.get("blocked_by", "")
+        rows.append(
+            f'<td class="id">{e(r["id"])}</td>'
+            f'<td>{e(r["group"])}</td>'
+            f'<td>{e(r["text"])}</td>'
+            f'<td>{badge(cb, ct)}</td>'
+            f'<td>{e(r["where"])}</td>'
+            f'<td>{e(blocked) if blocked else "—"}</td>'
+        )
+    body = f"""
+<div class="grid g4">
+  <div class="stat info"><div class="k">Requirements</div><div class="v">{len(R)}</div><div class="n">Line by line from the brief</div></div>
+  <div class="stat ok"><div class="k">Delivered</div><div class="v">{counts["addressed"]}</div><div class="n">Complete as specified</div></div>
+  <div class="stat info"><div class="k">Delivered, gated</div><div class="v">{counts["addressed-gated"]}</div><div class="n">Structure built; answer blocked</div></div>
+  <div class="stat warn"><div class="k">Blocked</div><div class="v">{counts["open-blocked"]}</div><div class="n">Cannot be answered without new inputs</div></div>
+</div>
+<div class="note"><p><b>How to read the status column.</b> <b>Addressed</b> means the requirement is met in this repository. <b>Addressed · gated</b> means the structure, method and template are complete but the substantive answer depends on a named missing input — the work is not pretended to be finished. <b>Open · blocked</b> means it cannot be delivered with verified official sources in this environment, and it is published as a flagged gap rather than filled with an estimate.</p></div>
+<section class="block">
+  <h2>Requirement register</h2>
+  <p class="sub">Every instruction from the brief, its status, where it is addressed, and what blocks it.</p>
+"""
+    body += table([("ID", "l"), ("Group", "l"), ("Requirement", "l"), ("Status", "l"), ("Where addressed", "l"), ("Blocked by", "l")], rows)
+    body += "</section>"
+    page("requirements.html", "Requirement register", body,
+         "The brief, decomposed line by line, with an honest status for each item.")
+
+# ---------------------------------------------------------------- suggestions page
+def build_suggestions():
+    S = load("suggestions.json")
+    rows = []
+    for sg in S["improvements"]:
+        rows.append(
+            f'<td class="id">{e(sg["id"])}</td>'
+            f'<td><b>{e(sg["title"])}</b></td>'
+            f'<td>{e(sg["problem"])}</td>'
+            f'<td>{e(sg["proposal"])}</td>'
+            f'<td>{e(sg["effort"])}</td>'
+            f'<td>{e(sg["decision_enabled"])}</td>'
+            f'<td>{badge("closed" if sg["recommendation"].startswith("Adopt") else "der", sg["recommendation"])}</td>'
+        )
+    paths = []
+    for p in S["choose_a_path"]["paths"]:
+        inc = " · ".join(p["includes"])
+        paths.append(
+            f'<td class="id">{e(p["id"])}</td>'
+            f'<td><b>{e(p["name"])}</b></td>'
+            f'<td class="id">{e(inc)}</td>'
+            f'<td>{e(p["effort"])}</td>'
+            f'<td>{e(p["gets_you"])}</td>'
+            f'<td>{e(p["does_not_get_you"])}</td>'
+        )
+    body = f"""
+<div class="note ok"><p><b>Nothing on this page has been implemented.</b> That is deliberate. The brief asks for a dedicated section where a reviewer can see suggested improvements and choose a path before anything changes. Every proposal below is a recommendation with its reasoning attached, so the choice can be made on the merits rather than on vibes.</p></div>
+<div class="note"><p><b>Two suggestions matter more than the rest.</b> SG-07 (the hard verified/unverified visual rule) protects against the failure mode where a polished site becomes a source of false confidence. SG-05 (a comparable-transactions tracker built from public county records) is the only route to a defensible price that does not require buying commercial data. If only two things are done, do those.</p></div>
+<section class="block">
+  <h2>Proposed improvements</h2>
+  <p class="sub">Ten proposals. Each one names the problem it solves, so a proposal can be rejected on the same basis it was made.</p>
+"""
+    body += table(
+        [("ID", "l"), ("Improvement", "l"), ("Problem it solves", "l"), ("Proposal", "l"), ("Effort", "l"), ("Decision it enables", "l"), ("Recommendation", "l")],
+        rows,
+    )
+    body += f"""
+</section>
+<section class="block">
+  <h2>Choose a path</h2>
+  <p class="sub">{e(S["choose_a_path"]["instruction"])}</p>
+"""
+    body += table(
+        [("ID", "l"), ("Path", "l"), ("Includes", "l"), ("Effort", "l"), ("What you get", "l"), ("What you do not get", "l")],
+        paths,
+    )
+    body += f"""
+  <div class="note ok"><p><b>Recommendation.</b> {e(S["choose_a_path"]["recommendation"])}</p></div>
+</section>
+"""
+    page("suggestions.html", "Suggestions and a path to choose", body,
+         "Proposed improvements to this site and to the decision process, none implemented, each with a recommendation so a path can be chosen first.")
+
+# ---------------------------------------------------------------- privacy page
+def build_privacy():
+    body = """
+<div class="note ok"><p><b>The rule that governs every other decision on this site.</b> Personal and commercially sensitive information is removed before publication, not after. Nothing is published and then redacted. The public site is assembled from a data layer that has never contained an identifier.</p></div>
+
+<section class="block">
+  <h2>What is never published</h2>
+"""
+    body += table(
+        [("Category", "l"), ("Placeholder", "l"), ("Where it lives instead", "l")],
+        [
+            '<td>Owner or entity name</td><td class="id">[OWNER-ENTITY]</td><td>Offline, authorised advisers only</td>',
+            '<td>Street address</td><td class="id">[STREET-ADDRESS]</td><td>Offline; used only inside the secure workflow</td>',
+            '<td>Assessor\'s parcel number</td><td class="id">[APN]</td><td>Offline</td>',
+            '<td>Executed lease and amendments</td><td class="id">[LEASE-FILE]</td><td>Offline document register, with hashes only</td>',
+            '<td>Survey, site plan, title, insurance</td><td class="id">[SURVEY] · [SITE-PLAN] · [TITLE-REPORT] · [INSURANCE-POLICY]</td><td>Offline</td>',
+            '<td>Owner tax returns, basis, income, filing status</td><td class="id">[TAX-RETURNS]</td><td>Never in this repository, under any circumstances</td>',
+            '<td>Broker quotes and bids</td><td class="id">[BROKER-QUOTE-1..3]</td><td>Offline; entered only into the browser calculator</td>',
+            '<td>Tenant\'s rent, sales and guarantor financials</td><td class="id">[TENANT-FINANCIALS]</td><td>Offline, under confidentiality</td>',
+        ],
+    )
+    body += """
+</section>
+
+<section class="block">
+  <h2>How privacy is enforced, not promised</h2>
+  <ol class="tight">
+    <li><b>Structural separation.</b> The site is generated from <code>data/*.json</code>. Those files contain no identifier fields at all — not empty ones, not masked ones. There is nowhere for a name or an address to be stored.</li>
+    <li><b>A blocklist in the build.</b> <code>tools/check.py</code> fails the build if any ZIP code, street-suffix address pattern, parcel-number pattern, email address, phone number or Social Security number pattern appears anywhere in the site or the data.</li>
+    <li><b>Aggregation only.</b> Every published figure is a county, city or metro statistic drawn from a public government release. None of it is derived from the owner's private records.</li>
+    <li><b>The calculator transmits nothing.</b> It is a single HTML file with inline JavaScript. There is no network call, no analytics, no font fetch from a third party, and no local storage. Nothing typed into it leaves the browser tab.</li>
+    <li><b>No third-party requests at all.</b> No CDN, no analytics, no embedded maps, no tracking pixels. The only outbound links are explicit citations a reader chooses to click.</li>
+  </ol>
+  <div class="note warn"><p><b>The one thing this site cannot protect against.</b> A reader who types the address into the calculator is typing it into their own browser, and it still does not leave the tab. But if the owner shares a screenshot of the site with a filled-in calculator, the address leaves with the screenshot. That is a human control, not a technical one, and it is the reason the calculator ships with placeholder values rather than real ones.</p></div>
+</section>
+
+<section class="block">
+  <h2>Handling of research findings</h2>
+  <p class="sub">The brief requires that any personal information encountered during research be treated as internal-only. During this session, research touched only public corporate filings and public government statistics. No individual's personal information was collected, and none is reproduced anywhere.</p>
+  <div class="note"><p><b>One deliberate exclusion.</b> The tenant's earnings release names an investor-relations contact with an email address and phone number. That information was read but is deliberately not reproduced on this site; the source is cited by document link instead, so a reader can reach the primary record without this site republishing an individual's contact details.</p></div>
+</section>
+
+<section class="block">
+  <h2>Where the real records should live</h2>
+  <p class="sub">Proposal SG-09 on the <a href="suggestions.html">suggestions page</a>: a separate, access-logged internal workspace for the actual documents, with this site permanently aggregate-only. The public site should never link to that workspace — a link is itself a disclosure about where the records are.</p>
+</section>
+"""
+    page("privacy.html", "Privacy policy", body,
+         "How personal and commercially sensitive information is kept out of this site structurally, not by convention.")
+
+build_risks()
+build_tax()
+build_requirements()
+build_suggestions()
+build_privacy()
+print("built: risks tax requirements suggestions privacy")
+if errors:
+    print("SOURCE ERRORS:", *errors, sep="\n  ")
+
+# ---------------------------------------------------------------- overview / index
+def build_index():
+    G = load("gates.json")
+    Q = load("questions.json")["questions"]
+    R = load("requirements.json")["requirements"]
+    F = load("risks.json")
+    S = load("sources.json")["sources"]
+    cur = G["current_state"]
+    open_q = sum(1 for q in Q if q["answer_state"] == "unanswered")
+    blocked_src = sum(1 for s in S if not s.get("status","").startswith("open"))
+
+    cards = [
+        ("decision.html", "Course of action", "Sell or renew: the conditional recommendation, the reasoning, and the sequence that turns an opinion into a decision."),
+        ("gates.html", "Decision gates", f"{cur['gates_total']} gates, {cur['closed']} closed. What must be true before a listing, a letter of intent or a renewal negotiation is authorised."),
+        ("questions.html", "Questions to resolve", f"{len(Q)} questions with a route to each answer. {open_q} are still unanswered."),
+        ("economy.html", "Local economy", "Labour market, industry mix, prices, income, population and the tenant's own operating series."),
+        ("trade-area.html", "Trade area", "W-01: replacing city and county proxies with genuine trade-area figures, and why the column is empty."),
+        ("hazards.html", "Hazard screening", "W-04: seismic, flood and fire, with the parcel-level lookups specified and the stress design."),
+        ("valuation.html", "Sell versus hold", "W-02: the worksheet extended to a full comparison, with no winner chosen until inputs exist."),
+        ("tax.html", "After-tax module", "Verified tax rules and the stacking order — the layer most owners underestimate."),
+        ("risks.html", "Risk register", "Risk by decision path, plus the correlated black-swan events that take all three legs at once."),
+        ("calculator.html", "Calculator", "A private worksheet that runs entirely in your browser. Nothing is transmitted or stored."),
+        ("sources.html", "Sources", "The complete audit trail. Every figure on this site traces to a source on that page."),
+        ("flagged.html", "Flagged for review", "Every irregularity, with its severity and the exact route to resolving it."),
+        ("requirements.html", "Requirement register", "The brief decomposed line by line, with an honest status for each item."),
+        ("suggestions.html", "Suggestions", "Proposed improvements, none implemented, with paths to choose from before anything changes."),
+        ("print.html", "One-page summary", "W-10: a printable brief for advisers."),
+    ]
+    grid = "".join(
+        f'<a class="card nav-card" href="{u}"><h3>{e(t)}</h3><p>{e(d)}</p></a>'
+        for u, t, d in cards
+    )
+
+    body = privacy_banner()
+    body += f"""
+<div class="grid g4">
+  <div class="stat warn"><div class="k">Decision readiness</div><div class="v">{cur["decision_readiness_percent"]}<small>%</small></div><div class="n">{cur["closed"]} of {cur["gates_total"]} gates closed</div></div>
+  <div class="stat warn"><div class="k">Unanswered questions</div><div class="v">{open_q}</div><div class="n">of {len(Q)} registered, each with a route</div></div>
+  <div class="stat ok"><div class="k">Requirements addressed</div><div class="v">{sum(1 for r in R if r["status"]!="open-blocked")}</div><div class="n">of {len(R)} — the rest flagged, not faked</div></div>
+  <div class="stat info"><div class="k">Tier 1 sources</div><div class="v">{sum(1 for s in S if s.get("tier")==1)}</div><div class="n">official primary documents</div></div>
+</div>
+
+<section class="block">
+  <h2>The short version</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What we can say with verified evidence</h3>
+      <ul class="tight">
+        <li><b>The area is not growing.</b> Metro employment +1.29% versus October 2019, +0.19% versus October 2024. City population −0.8% since 2020. Only one of nine tracked sectors is clearly expanding.</li>
+        <li><b>The tenant is shrinking.</b> 86 closures in FY2025, guidance for 50–100 more, same-store sales −4.2% then −7.4%, about 7.3× leverage, and a stated plan that includes selling real estate.</li>
+        <li><b>Capital is not cheap.</b> The 10-year Treasury yields 4.92%, so a short-lease spread is expensive and getting more so as the term decays.</li>
+        <li><b>The tax code rewards acting deliberately.</b> Section 1031 can defer most of the gain, and it only exists if the owner sells.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>What we cannot say, and will not guess</h3>
+      <ul class="tight">
+        <li><b>The rent.</b> Unknown.</li>
+        <li><b>The term.</b> Given as a five-year range, which cannot be discounted.</li>
+        <li><b>The obligor.</b> Brand or franchisee — different balance sheets entirely.</li>
+        <li><b>The basis.</b> Unknown, so the tax layer is unknown.</li>
+        <li><b>The price.</b> No quote, no comparable, no verified spread.</li>
+        <li><b>The hazards.</b> No parcel-level zone status for seismic, flood or fire.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note warn"><p><b>So the honest answer is "not yet" — and that is a real answer.</b> The direction is legible: the weight of verified evidence favours selling, because the hold case is a bet on a counterparty that has publicly said it is shrinking, in an area that is not growing, against a tax code that rewards acting. But the magnitude is not legible, because six gate inputs are missing. Choosing a price without them would produce a confident, precise, wrong answer. Start with the <a href="decision.html">course of action</a>.</p></div>
+</section>
+
+<section class="block">
+  <h2>Explore</h2>
+  <p class="sub">Organised by category. Every page states plainly what is verified, what is derived, and what is still unknown.</p>
+  <div class="grid g3">{grid}</div>
+</section>
+
+<section class="block">
+  <h2>How to read this site</h2>
+  <div class="card">
+    <p>Each row of evidence carries one of four labels, and the label is the point:</p>
+    <ul class="tight">
+      <li>{badge("obs","observed")} — a number printed by an official source, quoted as-is.</li>
+      <li>{badge("der","derived")} — arithmetic on observations, with the formula shown so you can check it.</li>
+      <li>{badge("rule","verified rule")} — a statement of law or regulation from a primary source.</li>
+      <li>{badge("tpl","template")} — a formula awaiting inputs. The value column is empty.</li>
+      <li>{badge("unv","unverified")} — no official value was obtained. The value is left blank and the row is flagged. It is never estimated.</li>
+    </ul>
+    <p>Every populated row links to the official source that printed the number. If a link is missing, the row is not populated. See the <a href="sources.html">source ledger</a> for the complete audit trail.</p>
+  </div>
+</section>
+
+<section class="block">
+  <h2>Scope and limits</h2>
+  <div class="card">
+    <p><b>What this is.</b> A source-linked decision-support workspace for one property. It organises what is known, specifies exactly what is missing, and builds the comparison so that it can be completed the moment real inputs arrive.</p>
+    <p><b>What this is not.</b> It is not an appraisal, a valuation, a broker's opinion, legal advice, or tax advice. It contains no price, because no verified price input exists. Any figure that would require an assumption is either absent or explicitly labelled as an assumption with the evidence that should replace it.</p>
+    <p><b>Research limitation, disclosed.</b> This session could read web pages but could not download binary files or call data APIs. Where that blocked an official source — the California Department of Finance projection workbooks, the Census ACS API — the gap is recorded on the <a href="flagged.html">flagged page</a> rather than filled with an estimate.</p>
+  </div>
+</section>
+"""
+    extra_css = """
+<style>
+.nav-card{display:block;color:inherit;transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease}
+.nav-card:hover{text-decoration:none;border-color:#9fc3d8;box-shadow:0 3px 10px rgba(11,92,138,.10);transform:translateY(-1px)}
+.nav-card h3{color:#0b5c8a}
+.nav-card p{font-size:13px;color:#3d4a57;margin:0}
+</style>
+"""
+    page("index.html", "Overview", body + extra_css,
+         "A single-tenant NNN Jack in the Box ground lease in Central Los Angeles, expiring somewhere in 2030–2035. Should the owner sell, or renew? This site organises what is verified, what is missing, and what would settle it.")
+
+# ---------------------------------------------------------------- print page
+def build_print():
+    G = load("gates.json"); Q = load("questions.json")["questions"]
+    R = load("risks.json")
+    cur = G["current_state"]; best = R["best_course_of_action"]
+    stamp = BUILT.strftime("%d %B %Y")
+
+    gaterows = "".join(
+        f'<tr><td class="id">{e(g["id"])}</td><td>{e(g["gate"])}</td><td>{e(g["blocking"])}</td><td>{e(g["status"])}</td><td>{e(g["evidence_required"])}</td></tr>'
+        for g in G["gates"]
+    )
+    steps = "".join(
+        f'<tr><td class="num">{s["step"]}</td><td>{e(s["action"])}</td><td>{e(s["why"])}</td></tr>'
+        for s in best["recommended_sequence"]
+    )
+    flips = "".join(f"<li>{e(x)}</li>" for x in best["what_would_flip_the_recommendation_to_hold"])
+
+    body = f"""
+<div class="noprint" style="margin:16px 0">
+  <button onclick="window.print()" style="background:#0b5c8a;color:#fff;border:none;border-radius:8px;padding:10px 18px;font:600 14px inherit;cursor:pointer">Print this page</button>
+  <span style="margin-left:12px;font-size:13px;color:#6b7885">One page. No personal information. Safe to hand to an adviser.</span>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <h2 style="margin:0 0 4px">Jack in the Box · Central Los Angeles · single-tenant NNN ground lease</h2>
+  <p style="margin:0;font-size:13px;color:#3d4a57">Adviser brief · prepared {e(stamp)} · all identifiers withheld · aggregate findings only</p>
+</div>
+
+<div class="grid g2">
+  <div class="card">
+    <h3>Bottom line</h3>
+    <p><b>Do not commit to a sale, a renewal or a letter of intent yet.</b> {cur["closed"]} of {cur["gates_total"]} decision gates are closed. The direction of the evidence is legible; the magnitude is not.</p>
+    <p><b>Lean if forced today:</b> {e(best["lean_if_forced_today"])}</p>
+  </div>
+  <div class="card">
+    <h3>Verified evidence — the four points that matter</h3>
+    <ul class="tight">
+      <li><b>Area is not growing:</b> metro employment +1.29% vs Oct 2019, +0.19% vs Oct 2024; city population −0.8% since 2020.</li>
+      <li><b>Tenant is shrinking:</b> 86 closures FY2025, 50–100 guided FY2026, same-store sales −4.2% FY2025 and −7.4% Q4, ~7.3× leverage.</li>
+      <li><b>Capital is not cheap:</b> 10-year Treasury 4.92% (23 Nov 2026).</li>
+      <li><b>Tax lever:</b> §1031 deferral exists only if the owner sells; recapture at up to 25% plus 3.8% NIIT plus California up to 12.3%.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 style="font-size:15px;margin:16px 0 6px">Decision gates</h2>
+<div class="twrap"><table><thead><tr><th>ID</th><th>Gate</th><th>Blocking</th><th>Status</th><th>Evidence required</th></tr></thead><tbody>{gaterows}</tbody></table></div>
+
+<h2 style="font-size:15px;margin:16px 0 6px">Recommended sequence</h2>
+<div class="twrap"><table><thead><tr><th>Step</th><th>Action</th><th>Why this order</th></tr></thead><tbody>{steps}</tbody></table></div>
+
+<div class="grid g2" style="margin-top:12px">
+  <div class="card">
+    <h3>What would flip the recommendation to hold</h3>
+    <ul class="tight">{flips}</ul>
+  </div>
+  <div class="card">
+    <h3>What is missing, in one list</h3>
+    <ul class="tight">
+      <li>Rent, escalation, exact expiry date, option mechanism</li>
+      <li>Obligor identity and guaranty</li>
+      <li>Owner basis and depreciation history</li>
+      <li>Parcel hazard status: seismic, flood, fire</li>
+      <li>Three written sale quotes; tenant's written renewal indication</li>
+      <li>Zoning and alternative-use headroom; trade-area figures</li>
+    </ul>
+  </div>
+</div>
+
+<p style="font-size:11px;color:#6b7885;margin-top:14px">
+Sources: SEC filings (10-K FY2025, Q4 FY2025 earnings release), BLS LAUS and CES, BLS CPI-U, Census QuickFacts, IRS Publications and Topics, California FTB, California DIR, FEMA NFHL, USGS, CAL FIRE, CGS.
+Full ledger and verification status at <b>sources.html</b>. Nothing here is an appraisal, a valuation, or legal, tax or investment advice.
+No owner name, address, parcel number, lease document or financial record appears on this page by design.
+</p>
+"""
+    page("print.html", "One-page adviser summary", body,
+         "W-10: the whole position on one printable page. No personal information — safe to hand to an adviser.")
+
+build_index()
+build_print()
+print("built: index print")
+if errors:
+    print("SOURCE ERRORS:", *errors, sep="\n  ")
