@@ -337,12 +337,16 @@ def build_economy():
 def build_sources():
     tier_badge = {1: ("closed", "Tier 1 official"), 2: ("der", "Tier 2 official-derived"), 3: ("ctx", "Tier 3 lead")}
     rows = []
-    opened = 0
+    opened = 0      # value-bearing: opened and a value may be taken from it
+    method = 0      # opened, but only method/context — no parcel value published
     blocked = 0
     for s in SOURCES:
         cls, txt = tier_badge.get(s.get("tier", 3), ("ctx", "lead"))
         status = s.get("status", "")
-        if status.startswith("open"):
+        if "method-only" in status:
+            method += 1
+            st = badge("ctx", "method only")
+        elif status.startswith("open"):
             opened += 1
             st = badge("closed", status.replace("-", " "))
         else:
@@ -361,8 +365,9 @@ def build_sources():
     body = f"""
 <div class="grid g4">
   <div class="stat info"><div class="k">Sources in ledger</div><div class="v">{len(SOURCES)}</div><div class="n">Every one opened or attempted this session</div></div>
-  <div class="stat ok"><div class="k">Opened and read</div><div class="v">{opened}</div><div class="n">Basis for every published value</div></div>
-  <div class="stat warn"><div class="k">Blocked or method-only</div><div class="v">{blocked}</div><div class="n">No value published from these</div></div>
+  <div class="stat ok"><div class="k">Value-bearing</div><div class="v">{opened}</div><div class="n">Basis for every published value</div></div>
+  <div class="stat info"><div class="k">Method or context only</div><div class="v">{method}</div><div class="n">Opened; no parcel value published</div></div>
+  <div class="stat warn"><div class="k">Blocked</div><div class="v">{blocked}</div><div class="n">Could not be retrieved</div></div>
   <div class="stat info"><div class="k">Tier 1 publishers</div><div class="v">{sum(1 for s in SOURCES if s.get("tier")==1)}</div><div class="n">SEC, BLS, Census, IRS, CA agencies, FEMA, USGS, CAL FIRE</div></div>
 </div>
 
