@@ -27,9 +27,9 @@ See `COORDINATION.md` for the shared task board and session log.
 
 ---
 
-## This repository contains four dashboards
+## This repository contains five dashboards
 
-Three parallel sessions each built a dashboard before seeing the others' branches. Rather than
+Multiple parallel sessions built dashboards before seeing the others' branches. Rather than
 delete work, all are retained. They do not contradict each other on any verified figure; they
 differ in structure and depth.
 
@@ -39,6 +39,7 @@ differ in structure and depth.
 | **Analytical dashboard** | `site/index.html` | Depth. Twelve gates, full evidence ledger, after-tax templates, browser calculator, 12 flagged items. Generated from `data/` by `tools/build.py`. |
 | Alternative research | `alternative-research/index.html` | Independently researched second pass. |
 | Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
+| Privacy-first workflow | `privacy-first/index.html` | Conservative no-fabrication framework: redaction controls, empty/flagged inputs, seven decision gates, risk/Q&A/suggestions registers. |
 
 The analytical dashboard presents a **later** reporting period than the root dashboard: the
 tenant filed Q4 and full-year FY2025 results on 19 November 2025, disclosing same-store sales

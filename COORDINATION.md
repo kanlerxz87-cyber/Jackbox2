@@ -243,3 +243,39 @@ Both changes need admin rights that this session does not have. This is logged, 
 by appending only. No file belonging to sessions `26811aa3`, `bdbaf9cc` or `fb776066` was
 modified, moved or deleted; verified before each merge with `git diff --stat origin/main...HEAD`
 showing additions only outside those paths.
+
+---
+
+## Parallel integration handoff — session `arena-9f76f0cd`
+
+**Situation on arrival.** This session was pinned to initial commit `d1f3bf8`, where the repository contained only `README.md`. It created a separate privacy-first dashboard before seeing the four dashboards and shared coordination history already merged to `main`. PR #11 therefore conflicted with the later shared files.
+
+**Conflict resolution.** The session fetched and merged `origin/main` after PR #11 reported that it could not merge cleanly. The merge produced add/add conflicts in `COORDINATION.md`, `docs/index.html`, `docs/privacy.html`, `docs/sources.html`, `docs/suggestions.html`, and `index.html`, plus a content conflict in `README.md`. No other session's work was discarded:
+
+- Kept `main` versions of the root dashboard and the existing `docs/` dashboard conflict files.
+- Preserved this session's complete 10-page dashboard under the new non-overlapping `privacy-first/` path.
+- Preserved the complete shared coordination board and appended this handoff.
+- Updated the README dashboard table from four to five dashboards and linked `privacy-first/index.html`.
+- Accepted all additive files already present on `main` (`site/`, `alternative-research/`, `data/`, `tools/`, workflows, and existing tests) without alteration.
+
+**This session's output.** `privacy-first/` includes an anonymous executive dashboard, privacy controls, official-source registry, area/trade-area workflow, parcel-hazard workflow, lease/tax framework, seven decision gates, risk register, 12-question evidence list, 10 suggestions, flagged-review register, printable styles, and a local illustrative calculator. It publishes no parcel, owner, lease, or owner-financial identifiers. It deliberately does not select a sell/renew winner.
+
+**Verification performed before integration.** Internal link scan of this session's 10 HTML pages found zero missing local targets. All decision tables include a source/reference column; missing property facts and numeric inputs are blank or flagged. Source registry points to official government sources. No parcel address, APN, owner identity, lease document, or financial records were added. These checks do not validate external link availability or private property facts.
+
+**Remaining needs review.** Exact lease terms, parcel identity, NOI, tenant/store performance, tax basis, debt, broker quotes/short-lease discount, parcel hazard zones, insurance, title, environmental status, and tract-level figures remain missing. The calculator is illustrative arithmetic only, not an appraisal, forecast, or tax engine. No final recommendation is possible until the private evidence package and qualified-advisor reviews are complete.
+
+**PR/deploy.** PR #11: https://github.com/kanlerxz87-cyber/Jackbox2/pull/11. Merge/deploy results are recorded below after completion.
+
+### Integration verification — session `arena-9f76f0cd`
+
+- Existing `docs/` dashboard: `python3 tests/check_site.py` — **PASS**, 19 pages, local links/table provenance/JSON checked.
+- Existing calculator: `node tests/calc.test.js` — **PASS**, arithmetic/validation/clear behavior.
+- Analytical dashboard: `python3 tools/check.py` — **PASS**, 17 pages, links, host allowlist, identifier patterns, and calculator network isolation.
+- Alternative dashboard: `cd alternative-research && python3 tests/check.py` — **PASS**, all reported rows sourced.
+- Privacy-first dashboard: custom HTML-parser check — **PASS**, 10 pages, zero missing local links/anchors, and every data-table row has an external official/context source link.
+- Repository: `git diff --check` — **PASS**; merge-conflict-marker scan — **PASS**; unmerged-path scan — **PASS**.
+- External link availability was not exhaustively network-checked by these local tests. Private facts remain unverified and flagged.
+
+### Rebase note — session `arena-9f76f0cd`
+
+Immediately before pushing the resolved integration merge, `git pull --rebase origin arena/9f76f0cd-jackbox2` attempted to replay the already-merged `main` history because the remote session branch still pointed to the pre-integration commit. It conflicted on the earlier session `fb776066` coordination commit. The rebase was aborted to avoid rewriting or discarding any parallel session's commits; the clean, verified integration merge `ce15159` was restored unchanged. The remote session branch is an ancestor of the local branch, so a normal fast-forward push is safe.
