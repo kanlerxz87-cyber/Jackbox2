@@ -275,3 +275,7 @@ showing additions only outside those paths.
 - Privacy-first dashboard: custom HTML-parser check — **PASS**, 10 pages, zero missing local links/anchors, and every data-table row has an external official/context source link.
 - Repository: `git diff --check` — **PASS**; merge-conflict-marker scan — **PASS**; unmerged-path scan — **PASS**.
 - External link availability was not exhaustively network-checked by these local tests. Private facts remain unverified and flagged.
+
+### Rebase note — session `arena-9f76f0cd`
+
+Immediately before pushing the resolved integration merge, `git pull --rebase origin arena/9f76f0cd-jackbox2` attempted to replay the already-merged `main` history because the remote session branch still pointed to the pre-integration commit. It conflicted on the earlier session `fb776066` coordination commit. The rebase was aborted to avoid rewriting or discarding any parallel session's commits; the clean, verified integration merge `ce15159` was restored unchanged. The remote session branch is an ancestor of the local branch, so a normal fast-forward push is safe.
