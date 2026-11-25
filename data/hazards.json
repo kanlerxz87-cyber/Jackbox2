@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "compiled_utc": "2026-11-25",
+    "status": "W-04 is ADDRESSED-GATED. Three official parcel-level lookups are specified and their instruments are linked. All three return blank because they require an address, which is withheld under the privacy rule.",
+    "honesty_rule": "No hazard zone is asserted for this parcel. A regional statement such as 'Los Angeles is seismically active' is TRUE and USELESS for pricing. It is recorded below as context only and is explicitly not a parcel finding."
+  },
+  "context_only_not_parcel_findings": [
+    {"id":"HZ-C1","statement":"Los Angeles County lies within a region of high seismic hazard, and the current national reference is the USGS 2023 50-state National Seismic Hazard Model.","basis":"S-22","url":"https://www.usgs.gov/programs/earthquake-hazards/hazards","label":"context","not_a_finding":"This says nothing about the parcel's shaking value, soil class, fault distance or liquefaction status."},
+    {"id":"HZ-C2","statement":"CAL FIRE classifies lands into Moderate, High and Very High Fire Hazard Severity Zones, and states that FHSZ maps measure hazard over a 30 to 50 year horizon and not risk.","basis":"S-19","url":"https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones","label":"context","not_a_finding":"An urban parcel in Central LA is likely in a Local Responsibility Area rather than the State Responsibility Area, and LRA maps are released jurisdiction by jurisdiction. The parcel's class is unknown."},
+    {"id":"HZ-C3","statement":"FEMA's National Flood Hazard Layer is the authoritative current effective flood hazard database for NFIP purposes and covers over 90% of the U.S. population.","basis":"S-21","url":"https://www.fema.gov/flood-maps/national-flood-hazard-layer","label":"context","not_a_finding":"The parcel's flood zone is unknown."}
+  ],
+  "parcel_screening": [
+    {
+      "id":"HZ-01","hazard":"Seismic - liquefaction zone",
+      "official_instrument":"California Geological Survey EQ Zapp (Seismic Hazards Mapping Act zones)",
+      "lookup_url":"https://maps.conservation.ca.gov/cgs/EQZApp/app/",
+      "method_url":"https://www.conservation.ca.gov/cgs/geohazards/eq-zapp",
+      "source":"S-20",
+      "value":"","status":"unverified","blocked_by":"[STREET-ADDRESS]",
+      "why_it_changes_the_decision":"Liquefaction potential drives foundation and structural retrofit cost. A retrofit bill arriving in the 2030-2035 window lands either on the owner (as landlord repair obligation) or triggers a tenant termination right. Either way it is a direct hit to sale value.",
+      "how_to_obtain":"Enter [STREET-ADDRESS] in EQ Zapp and record the zone status verbatim. Note that the tool also reports when CGS has NOT evaluated the area, which is itself a finding."
+    },
+    {
+      "id":"HZ-02","hazard":"Seismic - earthquake-induced landslide zone",
+      "official_instrument":"California Geological Survey EQ Zapp",
+      "lookup_url":"https://maps.conservation.ca.gov/cgs/EQZApp/app/",
+      "method_url":"https://www.conservation.ca.gov/cgs/geohazards/eq-zapp",
+      "source":"S-20",
+      "value":"","status":"unverified","blocked_by":"[STREET-ADDRESS]",
+      "how_to_obtain":"Same lookup as HZ-01; record both the landslide and liquefaction determinations."
+    },
+    {
+      "id":"HZ-03","hazard":"Seismic - fault rupture zone (Alquist-Priolo)",
+      "official_instrument":"California Geological Survey EQ Zapp / Alquist-Priolo Earthquake Fault Zone maps",
+      "lookup_url":"https://maps.conservation.ca.gov/cgs/EQZApp/app/",
+      "method_url":"https://www.conservation.ca.gov/cgs/geohazards/eq-zapp",
+      "source":"S-20",
+      "value":"","status":"unverified","blocked_by":"[STREET-ADDRESS]",
+      "why_it_changes_the_decision":"A fault-rupture zone designation can preclude rebuild in kind after a loss, which converts a property insurance claim into a land-value-only outcome.",
+      "how_to_obtain":"EQ Zapp, and confirm against the published Alquist-Priolo zone map for the quadrangle."
+    },
+    {
+      "id":"HZ-04","hazard":"Seismic - site ground shaking",
+      "official_instrument":"USGS National Seismic Hazard Model / Earthquake Hazard Toolbox",
+      "lookup_url":"https://earthquake.usgs.gov/nshmp/",
+      "method_url":"https://www.usgs.gov/programs/earthquake-hazards/hazards",
+      "source":"S-22",
+      "value":"","status":"unverified","blocked_by":"[STREET-ADDRESS]",
+      "why_it_changes_the_decision":"Design-basis shaking plus building code vintage sets the probable maximum loss (PML), which sets the insurance premium and the deductible the owner actually carries.",
+      "how_to_obtain":"Query the Toolbox at the parcel coordinates for the 2% in 50 year and 10% in 50 year values; pair with the year built from [SITE-PLAN]."
+    },
+    {
+      "id":"HZ-05","hazard":"Flood zone (NFIP)",
+      "official_instrument":"FEMA Flood Map Service Center / NFHL Viewer; FIRMette for the parcel",
+      "lookup_url":"https://msc.fema.gov/nfhl",
+      "method_url":"https://www.fema.gov/flood-maps/national-flood-hazard-layer",
+      "source":"S-21",
+      "value":"","status":"unverified","blocked_by":"[STREET-ADDRESS]",
+      "why_it_changes_the_decision":"A Special Flood Hazard Area designation triggers mandatory flood insurance for any lender, and a Zone AE base flood elevation can force elevation or flood-proofing work on any re-let or remodel.",
+      "how_to_obtain":"Search [STREET-ADDRESS] on the MSC, download the FIRMette and record the zone, panel number and effective date verbatim."
+    },
+    {
+      "id":"HZ-06","hazard":"Fire hazard severity zone",
+      "official_instrument":"CAL FIRE / Office of the State Fire Marshal FHSZ viewer and zone lookup",
+      "lookup_url":"https://experience.arcgis.com/experience/5065c998b4b0462f9ec3c6c226c610a9",
+      "method_url":"https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones",
+      "source":"S-19",
+      "value":"","status":"unverified","blocked_by":"[STREET-ADDRESS]",
+      "why_it_changes_the_decision":"For an urban Central LA parcel the fire question is less about wildfire than about whether an FHSZ designation would attach building-hardening requirements to any rebuild, and whether the property sits in an area insurers are withdrawing from.",
+      "how_to_obtain":"FHSZ lookup by address. If the parcel is in a Local Responsibility Area, obtain the local jurisdiction's adopted LRA map - CAL FIRE notes that LRA maps are released to jurisdictions, so the City is the authority."
+    },
+    {
+      "id":"HZ-07","hazard":"Wildfire history within the surrounding reporting area",
+      "official_instrument":"CAL FIRE fire perimeter data",
+      "lookup_url":"https://www.fire.ca.gov/",
+      "method_url":"https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones",
+      "source":"",
+      "value":"","status":"unverified","blocked_by":"not retrieved this session",
+      "how_to_obtain":"CAL FIRE publishes historical perimeter GIS data; intersect with a 5 mile ring around the parcel. Record the most recent perimeter year and distance."
+    },
+    {
+      "id":"HZ-08","hazard":"Engineering condition and deferred maintenance",
+      "official_instrument":"Property condition assessment (PCA) and, if seismic retrofit is plausible, a seismic assessment",
+      "lookup_url":"",
+      "method_url":"",
+      "source":"",
+      "value":"","status":"unverified","blocked_by":"no report commissioned",
+      "why_it_changes_the_decision":"In a ground lease the box reverts to the owner at expiry in whatever condition the lease allows. The reversion value - often the largest single cash flow in the hold case - is a direct function of this number.",
+      "how_to_obtain":"Commission an ASTM-standard PCA from a licensed engineer. Keep it offline with authorised advisers."
+    },
+    {
+      "id":"HZ-09","hazard":"Insurance availability, premium and deductible",
+      "official_instrument":"Certificate of insurance from [INSURANCE-POLICY] plus three broker indications",
+      "lookup_url":"",
+      "method_url":"",
+      "source":"",
+      "value":"","status":"unverified","blocked_by":"[INSURANCE-POLICY]",
+      "why_it_changes_the_decision":"California property insurance availability has become a binding constraint on transactions. A buyer will underwrite the insurance line, and an uninsurable building is a land sale.",
+      "how_to_obtain":"Obtain the current certificate, the loss runs, and three written indications for a like-for-like renewal. Keep offline."
+    },
+    {
+      "id":"HZ-10","hazard":"Environmental screening",
+      "official_instrument":"CalEnviroScreen (CalEPA) and a Phase I ESA",
+      "lookup_url":"https://oehha.ca.gov/calenviroscreen",
+      "method_url":"https://oehha.ca.gov/calenviroscreen",
+      "source":"",
+      "value":"","status":"unverified","blocked_by":"not retrieved this session",
+      "how_to_obtain":"Look up the tract in CalEnviroScreen for the pollution-burden percentile, and commission a Phase I ESA before marketing. A QSR site carries historical fuel/degreaser risk."
+    }
+  ],
+  "stress_test_design": {
+    "purpose": "R-17 requires seismic, flood and fire to be stressed together with loss of rent, repairs and exit liquidity - not as three separate footnotes.",
+    "mechanics": [
+      {"leg":"Loss of rent","driver":"Months from event to rent resumption, times monthly rent","note":"In a NNN lease confirmed by HZ-05 style findings the tenant may still owe rent while closed - check the lease, do not assume."},
+      {"leg":"Repairs","driver":"Repair cost not covered by insurance, i.e. the deductible plus uninsured exclusions plus code-upgrade cost","note":"Older buildings commonly face code-triggered upgrade obligations after a loss."},
+      {"leg":"Exit liquidity","driver":"Probability that a buyer will transact at all in the 12 months after an event","note":"This is the leg owners forget. After a regional event, transaction volume in the affected submarket goes to near zero for an extended period, so the owner cannot sell to avoid the other two legs."}
+    ],
+    "why_together": "The three legs are correlated, not independent. A regional seismic event simultaneously stops rent, triggers repair obligations and closes the transaction market. Treating them as independent understates the tail by a wide margin."
+  }
+}

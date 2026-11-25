@@ -14,3 +14,7 @@ jobs:
         run: python3 tests/check_site.py
       - name: Test calculator
         run: node tests/calc.test.js
+      - name: Rebuild analytical dashboard from the verified data layer
+        run: python3 tools/build.py
+      - name: Analytical dashboard integrity (links, official-source allowlist, privacy patterns)
+        run: python3 tools/check.py

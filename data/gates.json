@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "compiled_utc": "2026-11-25",
+    "purpose": "W-03 decision-gate progress board. A gate is closed until an evidenced answer exists. The owner may not authorise a sale, a renewal, or a negotiation mandate while any BLOCKING gate is open. This is the operational heart of the brief: it converts 'we should decide' into 'here is exactly what must be true before we may decide'.",
+    "status_key": {"closed":"Needs decision-critical evidence that has been obtained.","open":"Evidence not obtained.","not-applicable":"Cannot apply until the parcel is identified."},
+    "blocking_key": {"blocking":"Decision cannot be made at all.","high":"Decision can be framed but not committed.","medium":"Affects sizing, not direction."}
+  },
+  "current_state": {
+    "gates_total": 12,
+    "closed": 0,
+    "open": 12,
+    "decision_readiness_percent": 0,
+    "plain_readout": "Zero of twelve decision-critical gates are closed. That is the honest headline of this entire project. Nothing in the economic evidence is strong enough to compensate for not knowing the rent, the term, the entity, the basis or the hazard zone."
+  },
+  "gates": [
+    {
+      "id":"G-01","gate":"Executed lease abstract completed and reconciled to the notice calendar","blocking":"blocking","status":"open","owner_action":"Deliver [LEASE-FILE] to the named adviser.","evidence_required":"Signed abstract covering term, rent, escalation, options, go-dark, guaranty, NNN allocation, termination rights, notice periods.","why":"R-03. Without it, the renewal case has no rent and the sale case has no income stream. Everything downstream is arithmetic on an unknown.",
+      "unblocks":["G-03","G-04","G-05","G-09"]
+    },
+    {
+      "id":"G-02","gate":"Credit of the actual obligor identified and evidenced","blocking":"blocking","status":"open","owner_action":"Confirm whether the obligor is the brand, the franchisee, or both, and obtain the guaranty.","evidence_required":"Executed guaranty, franchisee financial statements, and if relevant the brand's SEC filings.","why":"A Jack in the Box unit is usually operated by a franchisee. The brand's balance sheet is not the tenant's balance sheet. Pricing the lease off the brand's credit would be a category error.",
+      "unblocks":["G-05","G-06"]
+    },
+    {
+      "id":"G-03","gate":"Owner's adjusted basis and depreciation history obtained","blocking":"blocking","status":"open","owner_action":"Have the accountant extract cost basis, improvement basis and accumulated depreciation.","evidence_required":"Depreciation schedules and prior returns, held offline.","why":"R-04 and R-19. The after-tax comparison cannot produce one number without basis. The recapture layer alone can be a five-figure-per-million difference.",
+      "unblocks":["G-08"]
+    },
+    {
+      "id":"G-04","gate":"Firm remaining term fixed to a date","blocking":"high","status":"open","owner_action":"Replace the 2030-2035 range with the contractual date plus any extension already exercised.","evidence_required":"Lease page showing expiration and any exercised options.","why":"I-02. A range cannot be discounted. Every projection in this repo is a range because of this single gap.",
+      "unblocks":["G-09"]
+    },
+    {
+      "id":"G-05","gate":"Rent and escalation tested against verified local inflation","blocking":"high","status":"open","owner_action":"Compare the contractual escalation to the verified 3.79%/yr LA CPI-U CAGR (PI-04).","evidence_required":"Lease escalation clause plus the comparison.","why":"A 2% fixed bump against 3.79% realised local inflation is a real-terms rent cut of roughly 1.8 points a year, compounding. That is a sale signal, not a hold signal."
+    },
+    {
+      "id":"G-06","gate":"Renewal probability evidenced rather than assumed","blocking":"high","status":"open","owner_action":"Ask the tenant's real-estate contact directly, in writing, and record the answer.","evidence_required":"Written tenant indication, or a documented refusal to give one.","why":"The tenant has closed 86 units, guided to 50-100 more, carries 7.33x leverage and is selling real estate under JACK on Track. A renewal probability must be evidenced, not felt.",
+      "unblocks":["G-11"]
+    },
+    {
+      "id":"G-07","gate":"Parcel-level hazard status obtained (seismic, flood, fire)","blocking":"blocking","status":"open","owner_action":"Run HZ-01 to HZ-06 with the address inside the secure workflow.","evidence_required":"EQ Zapp output, FIRMette, FHSZ determination, all recorded verbatim.","why":"W-04 and R-20. Insurance pricing, retrofit cost and rebuild rights all hinge on this and none can be proxied regionally.",
+      "unblocks":["G-09"]
+    },
+    {
+      "id":"G-08","gate":"Three written sale-side quotes obtained","blocking":"high","status":"open","owner_action":"Instruct brokers for written indications, not verbal ranges.","evidence_required":"Three written quotes plus the assumptions behind each.","why":"Pricing the short-lease discount from real quotes (R-13) is otherwise impossible; no official dataset publishes it."
+    },
+    {
+      "id":"G-09","gate":"Cash-flow model built and back-tested on verified inputs","blocking":"medium","status":"open","owner_action":"Commission the model once G-01, G-04 and G-07 close.","evidence_required":"Versioned model with an observation/assumption register and a back-test against at least one full cycle.","why":"R-18. A model built on one quarter or on guesses is worse than no model because it invites false confidence."
+    },
+    {
+      "id":"G-10","gate":"Trade area defined and tract set fixed","blocking":"medium","status":"open","owner_action":"Release the location into the secure workflow for tract selection only.","evidence_required":"Documented tract set and the weighted ring figures behind TA-10 to TA-14.","why":"W-01, R-11, R-14. City and county proxies must be replaced, not supplemented."
+    },
+    {
+      "id":"G-11","gate":"Zoning and alternative-use headroom confirmed","blocking":"medium","status":"open","owner_action":"Pull the ZIMAS parcel report.","evidence_required":"Zoning, permitted uses, overlay and community plan designation.","why":"The reversion value - the largest cash flow in the hold case - is set by what the land may become, not by what the box earns today."
+    },
+    {
+      "id":"G-12","gate":"Owner's objective function stated in writing","blocking":"blocking","status":"open","owner_action":"State the priority order explicitly: income now, capital preservation, growth, liquidity, estate, or tax deferral.","evidence_required":"A one-page signed objective statement held offline.","why":"R-30. 'Best decision' is undefined without it. Preserving wealth and pursuing growth point to opposite answers here: hold preserves optionality, sell converts concentration risk into diversified liquidity. The two cannot both be maximised and the trade-off must be chosen by the owner, not inferred by an adviser."
+    }
+  ],
+  "sequencing": [
+    {"phase":1,"name":"Evidence","gates":["G-01","G-02","G-03","G-04","G-07","G-12"],"note":"All blocking. Nothing else should start. This is roughly two to three weeks of adviser work, not months."},
+    {"phase":2,"name":"Market test","gates":["G-08","G-06","G-05"],"note":"Quotes and a written tenant indication. Doing this before phase 1 risks anchoring the owner to a number produced from unknowns."},
+    {"phase":3,"name":"Analysis","gates":["G-09","G-10","G-11"],"note":"Model, trade area and zoning headroom. Only now is the sell-versus-hold comparison numerically meaningful."},
+    {"phase":4,"name":"Decision","gates":[],"note":"Compare the after-tax sale number against the probability-weighted renewal number, both from verified inputs, and choose against the objective statement."}
+  ]
+}
