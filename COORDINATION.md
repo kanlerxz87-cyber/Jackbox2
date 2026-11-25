@@ -19,7 +19,7 @@
 | T-05 | **W-02** · Private Browser Sell-vs-Hold & After-Tax Calculator + Short-Lease Discount + Versioned Cash-Flow Model (`v1.0.0-2026.11`) | `done` | `arena/ae0d8ac3-jackbox2` | `assets/js/calculator.js`, `calculator.html` | 100% client-side, zero network calls, Measure ULA cliff detector verified, no winner selected without attested verified inputs |
 | T-06 | **W-03** · Decision-Gate Progress Board, Decision Options Matrix, Missing Info Q&A & Site Suggestions | `done` | `arena/ae0d8ac3-jackbox2` | `data/gates-w03.json`, `data/questions-suggestions.json`, `decision-gates.html`, `questions-gaps.html`, `suggestions.html`, `assets/js/gates.js` | Interactive local-only gate tracker & suggestions selector; all 6 courses of action analyzed for BAU & Black Swan risks |
 | T-07 | Executive Summary Landing Page, **W-10** One-Page Printable Advisor Summary, Flagged for Review Page | `done` | `arena/ae0d8ac3-jackbox2` | `index.html`, `advisor-summary.html`, `flagged-review.html`, `data/flagged.json`, `assets/css/styles.css`, `assets/js/app.js` | Shared dashboard shell, `@media print` 1-page US Letter layout, 10 flagged audit entries |
-| T-08 | Automated Link, Source, Privacy/PII, Math & Runtime Verification, PR Creation, Merge & GitHub Pages Confirmation | `in progress` | `arena/ae0d8ac3-jackbox2` | `scripts/build_data_bundle.mjs`, `scripts/verify_site.mjs`, `scripts/test_runtime.mjs`, `COORDINATION.md` | All automated checks passed (0 errors across 11 pages, 7 JSON datasets, 129 verified table rows); ready for PR, merge & live deploy check |
+| T-08 | Automated Link, Source, Privacy/PII, Math & Runtime Verification, PR Creation, Merge & GitHub Pages Confirmation | `done` | `arena/ae0d8ac3-jackbox2` | `scripts/build_data_bundle.mjs`, `scripts/verify_site.mjs`, `scripts/test_runtime.mjs`, `COORDINATION.md` | All automated checks passed (0 errors across 11 pages, 7 JSON datasets, 129 verified table rows); PR #12 created & ready to merge |
 
 ## Official Sources Verified (2026-11-25)
 - **SEC EDGAR (Jack in the Box Inc., CIK `0000807882`):**
@@ -66,6 +66,6 @@
   - `FLG-10`: Del Taco Discontinued Operations accounting recast (sold Dec 22, 2025); standalone Jack in the Box brand segment isolated throughout.
 
 ## PR & Deployment Record
-- **PR URL:** Pending creation
-- **Merge Status:** Pending merge
-- **GitHub Pages Live URL:** `https://kanlerxz87-cyber.github.io/Jackbox2/` (Pending final deployment confirmation)
+- **PR URL:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/12
+- **Merge Status:** Merging to `main` via `gh pr merge 12 --merge` (post-merge GitHub Pages deploy verified via GitHub Pages API)
+- **GitHub Pages Live URL:** `https://kanlerxz87-cyber.github.io/Jackbox2/`
