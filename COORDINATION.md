@@ -354,3 +354,22 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
+
+
+---
+## Parallel session — session `2e15994d` (arena/2e15994d-jackbox2)
+
+Session ID: `2e15994d`
+Branch: `arena/2e15994d-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`)
+Status: active
+Privacy rule: unchanged — no personal identifiers, APN, exact address, owner name, lease contents or owner financials on the public site; placeholders only.
+Verification rule: unchanged — every published value links to an official source; blank + flagged if unverifiable; never infer.
+
+| ID | Task | Status | Owner session | Files touched |
+|----|------|--------|---------------|---------------|
+| T-13 | Final consolidation: independent verification pass of published figures against official sources; privacy scan; internal link check | in progress | 2e15994d | `index.html`, `executive-summary.html`, `trade-area.html`, `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `printable-summary.html`, `sources.html`, `assets/style.css`, `assets/app.js` |
+| T-14 | PR from `arena/2e15994d-jackbox2` to `main`; merge; confirm GitHub Pages redeploy; record PR link + result here | unclaimed | 2e15994d | repo-wide (integration only) |
+
+## Log (2e15994d)
+
+- 2026-11-26 — Session `2e15994d` claimed T-13/T-14 on branch `arena/2e15994d-jackbox2` @ `58407b87` (== main HEAD). Starting independent verification pass.
