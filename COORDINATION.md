@@ -355,8 +355,8 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
 
-
 ---
+
 ## Parallel session — session `2e15994d` (arena/2e15994d-jackbox2)
 
 Session ID: `2e15994d`
@@ -376,3 +376,20 @@ Verification rule: unchanged — every published value links to an official sour
 - 2026-11-26 — T-13 done. Re-verified all published values against live official sources (SEC Q3 2025 Ex-99.1; FRED CALOSA7POP; BLS LA Economy at a Glance; Census QuickFacts LA County; IRS Topic 409; USGS MF-1964; FEMA MSC; CAL FIRE). All match. Privacy scan clean (no emails/phones/SSNs/APNs in public HTML/JSON). Internal link check `tests/check_site.py` PASS (19 pages); `node tests/calc.test.js` PASS. Verification log added to `sources.html`.
 - 2026-11-26 — T-14 in progress: preparing PR `arena/2e15994d-jackbox2` → `main`.
 - 2026-11-26 — T-14 done. PR #17 https://github.com/kanlerxz87-cyber/Jackbox2/pull/17 merged (merge commit `06cf3a8f95b51ea6e1e0eb7bc9269feddcb03efd`). GitHub Pages `built` with no error on main @ `06cf3a8`; live at https://kanlerxz87-cyber.github.io/Jackbox2/ . Verification log published on `sources.html`; Flagged for Review page unchanged (non-blocking blanks only). All work complete for session `2e15994d`.
+
+---
+
+## Integration, Audit & Remediation Session `7e425bfb` (Verified 2026-11-26)
+
+- **Session ID:** `7e425bfb`
+- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`; merged `origin/main` @ `89d076a` / PR #17 & #19 cleanly, preserving all session `2e15994d` additions)
+- **Claimed Task Scope:**
+  - `T-7E-01` (`done` — `7e425bfb`): Resolved `README.md` merge conflict markers from PR #16 cleanly without discarding any session's work; added `docs/arena-75e09b85/` to the dashboard directory table.
+  - `T-7E-02` (`done` — `7e425bfb`): Line-by-line re-verification against live official sources on `2026-11-26`:
+    * **SEC EDGAR CIK `0000807882`:** Confirmed latest filing as of `2026-11-26` remains the `2026-11-17` Form 8-K (`jack-20261113.htm`, C-suite departures); FY2026 Form 10-K / Q4 FY2026 earnings release has not yet posted (`FLG-01` / `F9` remain `unverified` / blank). Re-verified Q3 FY2025 (`-7.1%` SSS, `2,168` units, `21` closures) and Q3 FY2026 (`-1.1%` SSS, `2,115` units, `4` openings, `17` closures).
+    * **U.S. Census QuickFacts LA County (`V2025`) & FRED `CALOSA7POP`:** Live-verified `9,694,934` (2025), `80.9%` HS+, `36.0%` BA+, `64.7%` labor force, `$44,000,801k` 2022 accommodation & food services sales, `45.9%` owner-occupied, `$834,200` median home value, `$90,112` median HH income, `13.3%` poverty.
+    * **BLS LA MSA (`ca_losangeles_msa.htm`, `metro_oty_change.htm`, `ro9xg01.htm`):** Re-verified Sep 2026p `4.4%` unemployment, `6,646.9k` civilian labor force, `+0.5%` YoY nonfarm payroll, LA CPI-U `360.965` (Oct 2026, `+0.6%` MoM; Sep 2026 `+3.7%` YoY; Oct 12-mo cell blank). Also observed Oct 2026p nonfarm payroll (`6,371.5k`, `+0.9%` YoY).
+    * **U.S. Treasury Daily Par Yield Curve (`home.treasury.gov`):** Re-verified Nov 24, 2026 (`4.91%` 10-Yr) and observed Nov 25, 2026 (`4.85%` 10-Yr, `4.65%` 5-Yr, `4.74%` 7-Yr, `5.24%` 30-Yr).
+    * **Tax, Labor & Hazard Agencies:** Re-verified IRS Topic 409 (`$48,350` / `$533,400` single 2025 tiers, `25%` §1250 max), CA FTB (capital gains taxed as ordinary income), LA City Office of Finance Measure ULA (`$5.4M` 4.0% / `$10.9M` 5.5% post-June 30, 2026), CA DIR AB 1228 (`$20.00/hr`), USGS UCERF3 (`60%` ≥M6.7 / `46%` ≥M7.0 / `31%` ≥M7.5), and `fire.ca.gov`.
+  - `T-7E-03` (`done` — `7e425bfb`): Fixed `assets/app.js` calculator bugs (IRC §1001 amount realized now deducts selling costs before computing gain; `in-ord` now computes after-tax Hold NPV alongside pre-tax Hold NPV and deducts terminal exit selling costs; removed unused `in-t20` read); added CA FTB & Measure ULA reference row to `sell-vs-hold.html`; added official `https://` source links to every table row across all 12 root HTML pages (`executive-summary.html`, `decision-gates.html`, `trade-area.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `sources.html`, `index.html`).
+  - `T-7E-04` (`done` — `7e425bfb`): Added `tests/check_root.py` and `tests/root_calc.test.js`, extended `.github/workflows/validate.yml` to run all repo test suites (`tests/check_site.py`, `tests/calc.test.js`, `tools/build.py`, `tools/check.py`, `privacy-first/tests/check.py`, `tests/check_root.py`, `tests/root_calc.test.js`, `alternative-research/tests/check.py`, `central-la-2026/scripts/verify_site.mjs`, `central-la-2026/scripts/test_runtime.mjs`). All checks pass locally (`0` conflict markers, `0` broken links across 87 HTML files, `0` PII hits).
