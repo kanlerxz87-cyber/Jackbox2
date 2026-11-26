@@ -435,12 +435,12 @@ window.JACKBOX_DATA = {
       },
       {
         "domain": "School Systems",
-        "indicator": "LAUSD Enrollment, Graduation Rate & 10-Yr County K-12 Forecast",
+        "indicator": "LAUSD Enrollment (unresolved source-definition conflict), Graduation Rate & 10-Yr County K-12 Forecast",
         "countyLA": "CA DOF 2026 Series projects LA County public K-12 enrollment to fall -240,800 over 10 years",
-        "cityLA": "LAUSD 2025–26 enrollment: 497,105 (16.4% English learners); 2024–25 graduation rate: 86.5%",
+        "cityLA": "Enrollment: blank pending reconciliation (CDE profile: 497,105 for 2025–26; School Dashboard: 369,830 for 2024–25). Graduation rate: 86.5% (2024–25).",
         "parcelTradeArea": "",
-        "status": "verified_proxy_only",
-        "impact": "These districtwide metrics are not school assignments or parcel trade-area characteristics; use as regional context only.",
+        "status": "flagged_reconcile",
+        "impact": "LAUSD districtwide enrollment values use apparently different periods/definitions and are not reconciled; do not use either enrollment count until CDE clarifies the definitions. Graduation rate and countywide DOF projection are separate measures, not parcel-level school data.",
         "sourceLabel": "CA Dept. of Education (2025–26) & CA DOF K-12 Projections",
         "sourceUrl": "https://www.cde.ca.gov/sdprofile/details.aspx?cds=19647330000000",
         "sourceUrl2": "https://www.caschooldashboard.org/reports/19647330000000/2025",
@@ -1013,6 +1013,17 @@ window.JACKBOX_DATA = {
         "details": "FY2023–FY2025 consolidated revenue totals in FY2025 10-K included Del Taco, while FY2026 10-Qs moved Del Taco to Discontinued Operations. All figures in our Tenant Analysis table are isolated to the standalone Jack in the Box segment for apples-to-apples continuity.",
         "manualReviewAction": "When reviewing third-party broker OMs or financial aggregators, confirm they are not mixing pre-divestiture consolidated revenues with post-divestiture standalone Jack in the Box revenues.",
         "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000091/jack-20260705.htm"
+      },
+      {
+        "flagId": "FLG-11",
+        "category": "Cross-Source Definition Conflict",
+        "severity": "Medium",
+        "item": "LAUSD Enrollment Count — CDE District Profile vs California School Dashboard",
+        "currentStatus": "FLAGGED — DO NOT PUBLISH AN ENROLLMENT VALUE UNTIL RECONCILED",
+        "details": "The CDE LAUSD district profile reports enrollment of 497,105 for 2025–26, while the 2025 California School Dashboard reports 369,830. The periods and/or enrollment definitions differ; this dashboard does not determine which population is comparable. The W-01 enrollment cell is therefore explicitly unresolved. The separate 2024–25 graduation-rate figure is not an enrollment count.",
+        "manualReviewAction": "Ask CDE/LAUSD to identify the precise reporting date, student-population definition, and coverage behind each value; then select one consistently defined series. Keep parcel school assignment separate and verify it offline.",
+        "sourceUrl": "https://www.cde.ca.gov/sdprofile/details.aspx?cds=19647330000000",
+        "sourceUrl2": "https://www.caschooldashboard.org/reports/19647330000000/2025"
       }
     ]
   },

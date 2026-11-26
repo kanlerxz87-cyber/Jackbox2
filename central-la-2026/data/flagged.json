@@ -105,6 +105,17 @@
       "details": "FY2023–FY2025 consolidated revenue totals in FY2025 10-K included Del Taco, while FY2026 10-Qs moved Del Taco to Discontinued Operations. All figures in our Tenant Analysis table are isolated to the standalone Jack in the Box segment for apples-to-apples continuity.",
       "manualReviewAction": "When reviewing third-party broker OMs or financial aggregators, confirm they are not mixing pre-divestiture consolidated revenues with post-divestiture standalone Jack in the Box revenues.",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000091/jack-20260705.htm"
+    },
+    {
+      "flagId": "FLG-11",
+      "category": "Cross-Source Definition Conflict",
+      "severity": "Medium",
+      "item": "LAUSD Enrollment Count — CDE District Profile vs California School Dashboard",
+      "currentStatus": "FLAGGED — DO NOT PUBLISH AN ENROLLMENT VALUE UNTIL RECONCILED",
+      "details": "The CDE LAUSD district profile reports enrollment of 497,105 for 2025–26, while the 2025 California School Dashboard reports 369,830. The periods and/or enrollment definitions differ; this dashboard does not determine which population is comparable. The W-01 enrollment cell is therefore explicitly unresolved. The separate 2024–25 graduation-rate figure is not an enrollment count.",
+      "manualReviewAction": "Ask CDE/LAUSD to identify the precise reporting date, student-population definition, and coverage behind each value; then select one consistently defined series. Keep parcel school assignment separate and verify it offline.",
+      "sourceUrl": "https://www.cde.ca.gov/sdprofile/details.aspx?cds=19647330000000",
+      "sourceUrl2": "https://www.caschooldashboard.org/reports/19647330000000/2025"
     }
   ]
 }
