@@ -651,3 +651,51 @@ that answers the question.
 - **Rebase incident (2026-11-26):** A required `git pull --rebase origin main` advanced `main` from `58407b8` to `aec8f7b` and conflicted first in `COORDINATION.md`, then in `.github/workflows/validate.yml`, `README.md`, and `index.html`. The resolution retained the incoming sessions’ full coordination record, root calculator fixes/tests, all root table-source remediation, and all existing dashboards. The merged workflow is additive; the root portal intentionally supersedes only the former ambiguous landing-page presentation while retaining historical routes. No parallel-session artifact was discarded.
 - **Final rebase reconciliation (2026-11-26):** An earlier rebase onto `884cb6d` retained AUD-01’s evidence-neutrality work (source-ledger cutoff, no-winner language, and risk-table provenance) and restored an archival-banner insertion the checker caught as omitted during conflict resolution. The final rebase onto `main` at `4343ade` incorporated the later consolidated-root integration (PRs #23, #25, #27, and #28). Its root structure, generated pages, and the latest Caltrans/Registrar-Recorder source-register update were retained; this work now exposes the audit through `tools/build_root.py`, points archival `site/` notices back to the consolidated root, and updates the audit’s policy/coverage model accordingly. No parallel-session dashboard, evidence record, or coordination history was discarded.
 - **Remote integration and publication (2026-11-26):** PR #22 (<https://github.com/kanlerxz87-cyber/Jackbox2/pull/22>) merged at `2026-11-26T13:27:58Z` as `8aa3c9c46d3244153086973db1140aca0b7a478b`. Its pull-request validation succeeded (<https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45829309677>); the main push validation succeeded (<https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45829410835>); and the legacy Pages build/deployment succeeded (<https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45829410359>). The Pages API reported `status: built`, `error: null`, and the same merge commit for <https://kanlerxz87-cyber.github.io/Jackbox2/>.
+
+---
+
+## Final integration consolidation — session `99352659` (2026-11-26)
+
+- **Session ID:** `99352659` · **Branch:** `arena/99352659-jackbox2` (from `58407b8`, = main after PR #16).
+- **Role:** acting as the final integration session (all prior board tasks are marked done or needs-review and all PRs #1–#16 are merged; GitHub Pages is `legacy`, source `main` `/`, currently serving the root dashboard).
+- **Privacy rule unchanged:** no identifiers, APN, lease files or owner finances published; placeholders only; aggregate non-identifying findings only.
+
+### Claim (appended claim, commit + push immediately)
+| ID | Task | Status (at claim) | Owner | File scope |
+|----|------|-------------------|-------|------------|
+| T-INT-01 | Repair committed merge-conflict markers in `README.md`; make README an accurate map of all dashboards + live URLs + verification summary | in progress | 99352659 | `README.md` |
+| T-INT-02 | Root landing page: add categorized "Browse by category" portal section linking every dashboard (shared output; final integration) | in progress | 99352659 | `index.html` |
+| T-INT-03 | Line-by-line re-verification of the root page's published rows against official sources (SEC, BLS, FRED, IRS, USGS) | in progress | 99352659 | (read-only verification) |
+| T-INT-04 | Full-tree local link check (all 87 HTML files) + privacy/identifier scan | in progress | 99352659 | (read-only checks) |
+| T-INT-05 | PR from `arena/99352659-jackbox2` to `main`, merge, confirm Pages deploy, record outcome | in progress | 99352659 | repo-wide (integration only) |
+
+Scopes are additive and non-overlapping with all prior sessions; no other session's files are edited except the shared outputs above (README.md, index.html), which the coordination rules reserve for the final integration session.
+
+### Verification performed at claim time (2026-11-26, this session)
+- `python3 tests/check_site.py` → **19 pages OK**; `node tests/calc.test.js` → **OK**; `python3 tools/build.py && python3 tools/check.py` → **OK**; `python3 privacy-first/tests/check.py` → **OK**; `cd alternative-research && python3 tests/check.py` → **OK** (must run from its own directory — running it from repo root globs the root pages and raises a false `table row missing source`; pre-existing, not a site defect); `cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs` → **ALL PASS**.
+- GitHub Pages: `gh api repos/kanlerxz87-cyber/Jackbox2/pages` → `status: building`/`built` expected; source `main` `/`, `build_type: legacy`, `https_enforced: true`.
+- Full-tree local link check across all 87 `*.html` files → **no broken local links**.
+- Privacy scan (street-address-like patterns, APN patterns, e-mail addresses, US phone numbers) → **no identifiers found**; only prose matches. (Coordination: claim final integration consolidation (session 99352659))
+ (Coordination: claim final integration consolidation (session 99352659))
+
+### Completion record — session `99352659` (2026-11-26)
+
+**Merge incidents during this session (both resolved additively, no other session's work discarded):**
+1. `git pull --rebase` after claiming conflicted on `COORDINATION.md` — `main` had advanced with PRs #18/#19 (sessions `7e425bfb` / `2e15994d`). Resolved by keeping both sides; that rebase surfaced that the `README.md` conflict markers had already been repaired and an independent verification pass had been published (see those sections).
+2. Second rebase conflict — `main` had advanced again through PRs #20–#25 (sessions `2a14dbc0` and `88ea335a`, including a full root-dashboard rebuild from `data/root.json` and generator `tools/build_root.py`). `COORDINATION.md` resolved additively (all new sections kept). My `index.html` commit (categorized "Browse by category" portal) was dropped via `--ours`/empty-commit during rebase because it targeted the pre-rebuild layout and its purpose is now served by the rebuilt page's grouped category navigation (Decide / Analyse / Workspace) and its "Archive — earlier parallel work, kept and dated" table. No other session's file was modified.
+
+**Task disposition:**
+- `T-INT-01` (README repair) — **superseded / already done on `main`** by sessions `2e15994d` (verification) and `7e425bfb` (README conflict-marker removal, PR #18). Verified: no conflict markers on `main` (`tests/check_root.py` reports `0` conflict markers).
+- `T-INT-02` (root portal) — **superseded** by session `88ea335a` root rebuild (PRs #22–#25), which ships grouped category navigation and an archive index of all seven dashboards.
+- `T-INT-03` (line-by-line re-verification of published figures vs official sources) — **done for the anchor rows, this session, by direct fetch**:
+  - SEC EDGAR Ex-99.1 — Q3 FY2025 earnings release (ended 2025-07-06): SSS **−7.1%**; **2,168** restaurants (142 company + 2,026 franchise); **21** closures (13 "JACK on Track"). URL: https://www.sec.gov/Archives/edgar/data/807882/000080788225000042/ex991-q325earningsrelease.htm
+  - SEC EDGAR Ex-99.1 — Q3 FY2026 earnings release (ended 2026-07-05): SSS **−1.1%**; **2,115** restaurants (149 company + 1,966 franchise); **4** openings / **17** closures; Del Taco completed 2025-12-22 (discontinued operations). URL: https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm
+  - FRED `CALOSA7POP` (U.S. Census Bureau, updated 2026-03-27): LA County resident population **9,694,934** (2025); 9,810,478 (2021); 9,748,524 (2022); 9,732,568 (2023). URL: https://fred.stlouisfed.org/series/CALOSA7POP
+  - BLS — LOS ANGELES-LONG BEACH-ANAHEIM Economy at a Glance (fetched 2026-11-26): Sep 2026 (p) unemployment **4.4%**, civilian labor force 6,646.9k, Sep 2026 (p) nonfarm **+0.5%** 12-mo; Oct 2026 (p) nonfarm **6,371.5k, +0.9%** 12-mo. URL: https://www.bls.gov/regions/west/ca_losangeles_msa.htm
+  - IRS Topic 409 (2025): 0%/15%/20% LTCG tiers; single 15% ceiling **$533,400**; unrecaptured §1250 max **25%**. URL: https://www.irs.gov/taxtopics/tc409
+  - USGS FAQ (UCERF3): LA region 30-yr probability **60%** M≥6.7 / **46%** M≥7.0 / **31%** M≥7.5. URL: https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area
+  - Cross-check vs new root ledger rows: figures match (T-03, T-04, T-05, T-08, E-06, E-07, C-02, C-03, H-01, E-01 direction). FY2026 guidance line (~2,100 restaurants, low single-digit decline) was **not** independently re-fetched cell-by-cell by this session; it carries the official Ex-99.1 link and the repo provenance checker passes; flagged here for completeness, not as a defect.
+- `T-INT-04` (full-tree link & privacy check) — **done**: at claim time, 87 HTML files, no broken local links; after the rebases (current `main` tip), `tests/check_root.py` reports **16 root pages / 91 HTML files, 0 conflict markers, 0 broken links, 0 PII hits**; `tests/check_site.py` 19 pages OK; `node tests/calc.test.js` OK; `node tests/root_calc.test.js` OK; `python3 tools/build.py && python3 tools/check.py` OK (links resolve, hosts allowlisted, no identifier patterns, calculator inert); `privacy-first/tests/check.py` OK; `alternative-research/tests/check.py` OK from its directory; `central-la-2026` `verify_site.mjs` + `test_runtime.mjs` ALL PASS. Privacy scan (street-address-like, APN, e-mail, phone patterns) across the tree: **no identifiers**.
+- `T-INT-05` (PR → merge → Pages verify) — PR opened from `arena/99352659-jackbox2` to `main`; result recorded in the follow-up note below.
+
+**Notes for the reader:** nothing in this session selected a sell-or-renew winner; the site continues to publish aggregate, non-identifying findings only, with unverified values blank + flagged. The private decision inputs (lease abstract, parcel hazard/insurance file, owner tax basis, tract selection) remain outside this repository by design.
