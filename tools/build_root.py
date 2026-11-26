@@ -433,7 +433,7 @@ def build_index():
             ("risks.html", "Risks", "Decision-by-decision register with black swan stress tests."),
             ("questions.html", "Questions", "What must be answered, by whom, and what changes when it is."),
             ("suggestions.html", "Suggestions", "Proposed actions and site changes, for review before anything is implemented."),
-            ("flagged.html", "Flagged for review", "Twenty items left blank on purpose, each with the official link to check it."),
+            ("flagged.html", "Flagged for review", "Twenty-one items left blank on purpose, each with the official link to check it."),
             ("requirements.html", "Requirements", "Every item in the brief traced to a page, with the two that cannot be completed."),
             ("printable-summary.html", "Printable summary", "One page for advisers, with the same sources."),
         ])
@@ -514,7 +514,7 @@ def build_exec():
 <tr>
   <td><b>Sell before expiry</b><br><span class="small muted">Market the lease with its remaining term</span></td>
   <td>A buyer pays, after tax and costs, more than the present value of holding to expiry and re-leasing — and more than the option value of waiting.</td>
-  <td>Rate reference at 4.91% suggests buyers still need a spread that a short lease may not clear; a sale removes tenant credit and hazard exposure from the owner's balance sheet.</td>
+  <td>Rate reference at 4.85% suggests buyers still need a spread that a short lease may not clear; a sale removes tenant credit and hazard exposure from the owner's balance sheet.</td>
   <td>Tenant closures and negative same-store sales will be read by buyers as re-leasing risk; no comparable sale evidence exists yet.</td>
   <td>Three broker opinions cluster below the hold value computed from verified inputs.</td>
 </tr>
@@ -955,7 +955,7 @@ provided each one's remaining term and rent are known. A single blended "short-l
 comparables should be treated as an assumption.</p>
 
 <h2>What the capital markets currently say</h2>
-<p>The 10-year Treasury closed at 4.91% on 24 November 2026. Separately, the tenant itself raised US$500 million
+<p>The 10-year Treasury par yield closed at 4.85% on 25 November 2026, after 4.91% the previous day. Separately, the tenant itself raised US$500 million
 of senior secured notes at 7.624% in June 2026, secured partly by real estate and franchise cash flows. A buyer
 of this lease will want a yield above the risk-free rate and above the tenant's own secured cost of debt, since
 a lease claim is unsecured and subordinated in practice. That does not produce a cap rate — only comparable
@@ -1040,7 +1040,7 @@ def build_calculator():
     <div class="row">
       <div class="field"><label for="vacancy">Vacancy and collection loss (% of rent)</label><input id="vacancy" type="number" min="0" max="50" step="0.5" inputmode="decimal" placeholder="0.0"></div>
       <div class="field"><label for="disc">Discount rate (%)</label><input id="disc" type="number" min="0.1" max="30" step="0.1" inputmode="decimal" placeholder="0.0">
-        <span class="small muted">10-year Treasury was 4.91% on 24 November 2026; add a spread you can defend.</span>
+        <span class="small muted">10-year Treasury par yield was 4.85% on 25 November 2026; add a spread you can defend.</span>
       </div>
       <div class="field"><label for="cap">Exit cap rate (%)</label><input id="cap" type="number" min="0.5" max="30" step="0.1" inputmode="decimal" placeholder="0.0"></div>
       <div class="field"><label for="exitCosts">Exit costs (% of terminal value)</label><input id="exitCosts" type="number" min="0" max="20" step="0.1" inputmode="decimal" placeholder="0.0"></div>
@@ -1432,7 +1432,7 @@ REQUIREMENTS = [
     ("R-14", "X-09", "A suggestions section, reviewed before anything is implemented",
      "Delivered", "suggestions.html", "Fifteen proposals ordered by whether delay has a cost; site changes described, not built."),
     ("R-15", "X-10", "Flag irregular and unverified items for review",
-     "Delivered", "flagged.html", "Twenty blank items with the exact check and official link, plus eight consolidation irregularities with their handling."),
+     "Delivered", "flagged.html", "Twenty-one blank items with the exact check and official link, plus eight consolidation irregularities with their handling."),
     ("R-16", "X-11", "Anonymise all personal information; placeholders only",
      "Delivered and enforced", "privacy.html", "Placeholder discipline, layer separation, threat table, operating rules, and an automated identifier scan in the build."),
     ("R-17", "X-12", "Verify every figure against an official source, with links",

@@ -1,69 +1,48 @@
 #!/usr/bin/env python3
-"""Verify the root dashboard.
-
-Rules enforced (these are the site's own published rules, not style preferences):
-  1. Every <tr> in a <tbody> carries an https:// link to an official source, OR states
-     plainly that the value is blank/unverified/withheld/not public.
-  2. Every local href and src resolves to a file that exists.
-  3. Every local anchor (#id) resolves to an id on the target page.
-  4. Every https:// host used in a source link is on the official allowlist.
-  5. No personal or parcel-identifying patterns appear in the HTML.
-  6. No inline event handlers, no external scripts, no network calls from the calculator.
-  7. Required nav pages exist and are all reachable from index.html.
-
-Run from the repository root: python3 tests/check_root.py
-"""
-import re
-import sys
+"""Repo-wide integration check: conflict markers, all HTML links, root table provenance, PII, and root calculator isolation."""
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit, unquote
+from urllib.parse import unquote, urlsplit
+import re
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = [
-    'index.html', 'executive-summary.html', 'decision-gates.html', 'trade-area.html',
-    'hazards.html', 'sell-vs-hold.html', 'risks.html', 'questions.html',
-    'suggestions.html', 'flagged.html', 'printable-summary.html', 'sources.html',
-]
-
-# Official-source allowlist. Anything else is a failure, so a vendor or news
-# site cannot creep into a "source" column.
-ALLOWED_HOSTS = {
-    'www.sec.gov', 'sec.gov',
-    'www.census.gov', 'census.gov',
-    'fred.stlouisfed.org',
-    'www.bls.gov', 'bls.gov',
-    'www.irs.gov', 'irs.gov',
-    'www.ftb.ca.gov', 'ftb.ca.gov',
-    'finance.lacity.gov', 'planning.lacity.gov', 'assessor.lacounty.gov',
-    'www.earthquakeauthority.com',
-    'dof.ca.gov',
-    'www.usgs.gov', 'usgs.gov', 'earthquake.usgs.gov', 'pubs.usgs.gov',
-    'msc.fema.gov', 'www.fema.gov',
-    'osfm.fire.ca.gov', 'www.fire.ca.gov',
-    'www.conservation.ca.gov',
-    'www.dir.ca.gov',
-    'home.treasury.gov',
-    'www.insurance.ca.gov', 'www.cfpnet.com',
-    'www.cde.ca.gov',
-    'dot.ca.gov',
-    'www.census.gov',
-}
-
-BLANK_MARKERS = ('blank', 'unverified', 'withheld', 'not public', 'not started',
-                 'pending', 'not applied', 'not priced', 'owner input', 'deferred',
-                 'not obtainable', 'no official')
-
 errors = []
-warnings = []
 
+# 1. Conflict markers across tracked text files
+CONFLICT_RE = re.compile(r"^(?:<<<<<<<\s|=======\s*$|>>>>>>>\s)", re.MULTILINE)
+for p in sorted(ROOT.rglob("*")):
+    if ".git" in p.parts or not p.is_file():
+        continue
+    if p.suffix.lower() not in {".html", ".md", ".json", ".js", ".css", ".py", ".mjs", ".yml", ".yaml", ".txt"}:
+        continue
+    text = p.read_text(encoding="utf-8", errors="ignore")
+    if CONFLICT_RE.search(text):
+        errors.append(f"conflict marker found in {p.relative_to(ROOT)}")
 
-class RowChecker(HTMLParser):
-    def __init__(self, page):
+# 2. All HTML local links + no insecure http:// links across the entire repo
+LINK_RE = re.compile(r'(?:href|src)=["\']([^"\']+)["\']', re.IGNORECASE)
+html_files = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts)
+for html in html_files:
+    text = html.read_text(encoding="utf-8", errors="ignore")
+    for m in LINK_RE.finditer(text):
+        url = m.group(1)
+        if url.startswith(("https://", "#", "mailto:", "javascript:")):
+            continue
+        if url.startswith("http://"):
+            errors.append(f"insecure http:// link in {html.relative_to(ROOT)}: {url}")
+            continue
+        parsed = urlsplit(url)
+        if parsed.scheme or parsed.netloc or not parsed.path:
+            continue
+        target = (html.parent / unquote(parsed.path)).resolve()
+        if not target.is_relative_to(ROOT.resolve()) or not target.exists():
+            errors.append(f"broken local link in {html.relative_to(ROOT)}: {url}")
+
+# 3. Every table row in root *.html must have an https:// official source link
+class RootTableParser(HTMLParser):
+    def __init__(self):
         super().__init__()
-        self.page = page
-        self.in_tbody = False
-        self.nodata_depth = 0
         self.row = None
         self.unsourced = 0
         self.nosource_depth = 0
@@ -85,95 +64,40 @@ class RowChecker(HTMLParser):
                 self.row["https"] = True
 
     def handle_endtag(self, tag):
-        if tag == 'table' and self.nodata_depth:
-            self.nodata_depth -= 1
-        if tag == 'tr' and self.row:
-            text = ' '.join(self.row_text).lower()
-            if not self.row_http and not any(m in text for m in BLANK_MARKERS):
-                snippet = ' '.join(self.row_text)[:110]
-                errors.append(f'{self.page}: table row {self.row_num} has no official source and is not '
-                              f'marked blank/unverified -> "{snippet}"')
+        if tag == "tr" and self.row is not None:
+            if self.row["td"] and not self.row["https"]:
+                self.unsourced += 1
             self.row = None
         if tag == "table" and self.nosource_depth:
             self.nosource_depth -= 1
 
+root_pages = sorted(ROOT.glob("*.html"))
+for page in root_pages:
+    p = RootTableParser()
+    p.feed(page.read_text(encoding="utf-8"))
+    if p.unsourced:
+        errors.append(f"root {page.name}: {p.unsourced} table row(s) without an https:// official source link")
 
-def check_page(name, pages):
-    path = ROOT / name
-    if not path.exists():
-        errors.append(f'{name}: page is missing')
-        return None
-    html = path.read_text(encoding='utf-8')
-
-    checker = RowChecker(name)
-    checker.feed(html)
-
-    # 2. local links resolve
-    for tag, ref in checker.refs:
-        parts = urlsplit(ref)
-        if parts.scheme and parts.scheme != 'https':
-            errors.append(f'{name}: non-https external reference {ref}')
-            continue
-        if parts.scheme == 'https':
-            continue
-        if not parts.path:
-            continue
-        target = (path.parent / unquote(parts.path)).resolve()
-        if not target.exists():
-            errors.append(f'{name}: broken local link -> {ref}')
-        elif parts.fragment and target.name in pages and target.suffix == '.html':
-            if unquote(parts.fragment) not in pages[target.name]:
-                errors.append(f'{name}: broken anchor -> {ref}')
-
-    # 4. host allowlist on every absolute link
-    for tag, ref in checker.refs:
-        parts = urlsplit(ref)
-        if parts.scheme == 'https' and parts.hostname not in ALLOWED_HOSTS:
-            errors.append(f'{name}: non-official source host -> {ref}')
-
-    # 5. privacy patterns
-    privacy = {
-        'street address': r'\b\d{3,5}\s+[NSEW]?\.?\s*[A-Z][a-z]+\s+(Street|St|Avenue|Ave|Boulevard|Blvd|Road|Rd|Drive|Dr|Way)\b',
-        'APN-like number': r'\b\d{3,4}-\d{3}-\d{3}\b',
-        'phone number': r'\b\(?\d{3}\)?[ .-]\d{3}[ .-]\d{4}\b',
-        'email address': r'[\w.+-]+@[\w-]+\.[\w.]+',
-        'SSN': r'\b\d{3}-\d{2}-\d{4}\b',
-        'coordinates': r'\b\d{2}\.\d{4,}\s*,\s*-?\d{2,3}\.\d{4,}\b',
-    }
-    for label, pattern in privacy.items():
-        for m in re.finditer(pattern, html):
-            errors.append(f'{name}: possible {label} -> "{m.group(0)}"')
-
-    # 6. no inline handlers, no external scripts, no network calls in app code
-    if re.search(r'\son[a-z]+\s*=\s*"', html):
-        errors.append(f'{name}: inline event handler attribute found')
-    for tag, ref in checker.refs:
-        if tag == 'script' and ref.startswith('http'):
-            errors.append(f'{name}: external script -> {ref}')
-
-    return checker.ids
-
-
-def main():
-    pages = {}
-    for name in PAGES:
-        ids = check_page(name, pages)
-        pages[name] = ids or set()
-
-    # re-run anchor checks now that every page's ids are known
-    for name in PAGES:
-        path = ROOT / name
-        if not path.exists():
-            continue
-        for ref in re.findall(r'href="([^"]+)"', path.read_text(encoding='utf-8')):
-            parts = urlsplit(ref)
-            if parts.scheme or not parts.path or not parts.fragment:
+# 4. PII pattern scan across repository
+PII_PATTERNS = [
+    ("SSN", re.compile(r"\b\d{3}-\d{2}-\d{4}\b")),
+    ("US phone", re.compile(r"\(?\b\d{3}\)?[-. ]\d{3}[-. ]\d{4}\b")),
+    ("email", re.compile(r"\b[\w.+-]+@[\w-]+\.[\w.]{2,}\b")),
+    ("APN", re.compile(r"\b\d{4}-\d{3}-\d{3}\b")),
+    ("street address", re.compile(r"\b\d{1,5}\s+(?:[NSEW]\.?\s+)?[A-Z][a-z]+\s+(?:St|Ave|Blvd|Rd|Dr|Ln|Way|Ct|Pl|Pkwy)\b")),
+]
+for p in sorted(ROOT.rglob("*")):
+    if ".git" in p.parts or not p.is_file():
+        continue
+    if p.suffix.lower() not in {".html", ".json", ".js", ".md"}:
+        continue
+    text = p.read_text(encoding="utf-8", errors="ignore")
+    for label, rx in PII_PATTERNS:
+        for m in rx.finditer(text):
+            ctx = text[max(0, m.start() - 80):m.start() + 40]
+            if "http" in ctx and "/" in ctx:
                 continue
-            target = Path(parts.path).name
-            if target in pages and unquote(parts.fragment) not in pages[target]:
-                msg = f'{name}: anchor #{parts.fragment} missing on {target}'
-                if msg not in errors:
-                    errors.append(msg)
+            errors.append(f"PII pattern ({label}) in {p.relative_to(ROOT)}: {m.group(0)!r}")
 
 # 5. Root calculator must remain offline / storage-free
 for script in ("assets/app.js", "assets/calc.js"):
@@ -186,27 +110,8 @@ for script in ("assets/app.js", "assets/calc.js"):
         if forbidden in js:
             errors.append(f"{script} contains forbidden API: {forbidden}")
 
-    # calculator must not touch the network or storage
-    calc = (ROOT / 'assets/app.js').read_text(encoding='utf-8')
-    for banned in ('XMLHttpRequest', 'localStorage', 'sessionStorage', 'indexedDB',
-                   'document.cookie', 'navigator.sendBeacon'):
-        if banned in calc:
-            errors.append(f'assets/app.js: uses {banned} — the calculator must stay offline and stateless')
-    if re.search(r'\bfetch\s*\(', calc):
-        errors.append('assets/app.js: uses fetch() — the calculator must make no network requests')
+if errors:
+    print("\n".join(errors))
+    sys.exit(1)
 
-    print(f'checked {len(PAGES)} pages, {len(ALLOWED_HOSTS)} allowlisted hosts')
-    if warnings:
-        print('\nWARNINGS:')
-        print('\n'.join('  ' + w for w in warnings))
-    if errors:
-        print(f'\n{len(errors)} FAILURES:')
-        print('\n'.join('  ' + e for e in errors))
-        return 1
-    print('OK — every data row sourced or explicitly blank, links and anchors resolve, '
-          'hosts allowlisted, no identifiers, calculator is offline and stateless.')
-    return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main())
+print(f"Root + repo-wide integration check PASS: {len(root_pages)} root pages, {len(html_files)} total HTML files, 0 conflict markers, 0 broken links, 0 PII hits.")

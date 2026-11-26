@@ -246,6 +246,24 @@ for asset in sorted((ROOT / "assets").glob("*")):
 
 # -------------------------------------------------------------------- report
 verified = sum(1 for f in D["findings"] if f["status"] == "verified")
+# E. Staleness — the generated pages must match the generator and the data layer, so a
+#    merge or a hand edit cannot leave a published page disagreeing with its source.
+import subprocess
+
+_sub = subprocess.run([sys.executable, str(ROOT / "tools" / "build_root.py")],
+                      capture_output=True, text=True, cwd=ROOT)
+if _sub.returncode != 0:
+    fails.append("tools/build_root.py failed: " + (_sub.stderr.strip().splitlines() or ["?"])[-1])
+else:
+    _st = subprocess.run(["git", "status", "--porcelain", "--", "*.html"],
+                         capture_output=True, text=True, cwd=ROOT)
+    _skip = ("site/", "central-la-2026/", "docs/", "privacy-first/", "alternative-research/")
+    _drift = [ln[3:] for ln in _st.stdout.splitlines()
+              if ln[3:].endswith(".html") and not ln[3:].startswith(_skip)]
+    if _drift:
+        fails.append("generated root pages are stale versus data/root.json and tools/build_root.py: "
+                     + ", ".join(sorted(_drift)[:6]))
+
 print(f"pages: {len(pages)}  ledger rows: {len(D['findings'])} ({verified} verified)  "
       f"sources: {len(sources)}  flags: {len(flag_ids)}")
 if warns:
