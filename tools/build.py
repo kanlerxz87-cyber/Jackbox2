@@ -14,8 +14,15 @@ import json, html, pathlib, re, sys, datetime
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SITE = ROOT / "site"
-BUILT = datetime.datetime.now(datetime.timezone.utc)
-BUILT_STR = BUILT.strftime("%Y-%m-%d %H:%M UTC")
+# Keep generated output reproducible. The data ledger records the research cutoff;
+# a build timestamp would create unrelated diffs on every CI/local rebuild.
+BUILT_STR = str(json.loads((DATA / "sources.json").read_text(encoding="utf-8"))["meta"].get("compiled_utc", "date not recorded"))
+try:
+    BUILT = datetime.datetime.fromisoformat(BUILT_STR)
+except ValueError:
+    BUILT = datetime.datetime(1970, 1, 1, tzinfo=datetime.timezone.utc)
+if BUILT.tzinfo is None:
+    BUILT = BUILT.replace(tzinfo=datetime.timezone.utc)
 
 def load(name):
     return json.loads((DATA / name).read_text(encoding="utf-8"))
@@ -133,7 +140,7 @@ def page(fname, title, body, lede="", hero_extra=""):
 </main>
 <footer class="site"><div class="wrap">
   <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
-  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built {e(BUILT_STR)} from the data layer in <code>data/</code>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Research cutoff: {e(BUILT_STR)} (<code>data/sources.json</code>).</p>
   <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
 </div></footer>
 </body>
@@ -150,7 +157,9 @@ def privacy_banner():
             '<a href="privacy.html">Read the policy</a>.</div></div>')
 
 def table(headers, rows, cls=""):
-    """headers: list of (label, align). rows: list of html strings for <td>."""
+    """headers: list of (label, align). rows: list of HTML strings containing <td> cells only."""
+    if any("<tr" in row.lower() or "</tr" in row.lower() for row in rows):
+        errors.append("table() rows must contain cells only; nested <tr> markup detected")
     ths = []
     for h, a in headers:
         align = ' style="text-align:right"' if a == "r" else ''
@@ -213,11 +222,11 @@ def build_economy():
 
     body = privacy_banner()
     body += """
-<div class="note warn"><p><b>Read this before the numbers.</b> Everything below describes a <b>container</b> — Los Angeles County, the Los Angeles–Long Beach–Anaheim metro area, or the City of Los Angeles. None of it describes this parcel's trade area. A metro area of thirteen million people is not a three-mile drive-time ring. Using container figures as if they were trade-area figures is the most common way a ground-lease analysis goes wrong, so the trade-area figures live separately on the <a href="trade-area.html">trade area</a> page and are currently blank.</p></div>
+<div class="note warn"><p><b>Read this before the numbers.</b> The figures below describe county, metro or city geographies—not the subject parcel's trade area. They cannot establish neighborhood population, income, access or demand. Trade-area values remain blank until authorized advisers select a documented local catchment from secure location, access, traffic and planning evidence and apply a consistent official tract method. See the <a href="trade-area.html">trade-area workflow</a>.</p></div>
 
 <div class="grid g4">
-  <div class="stat warn"><div class="k">MSA jobs vs Oct 2019</div><div class="v">+1.29<small>%</small></div><div class="n">Six years to recover 1.3 points. Not a growth cycle.</div></div>
-  <div class="stat warn"><div class="k">City population 2020→2025</div><div class="v">−0.8<small>%</small></div><div class="n">The city is shrinking.</div></div>
+  <div class="stat info"><div class="k">MSA jobs vs Oct 2019</div><div class="v">+1.29<small>%</small></div><div class="n">Aggregate metro comparison; not a parcel forecast.</div></div>
+  <div class="stat info"><div class="k">City population 2020→2025</div><div class="v">−0.8<small>%</small></div><div class="n">Citywide estimate change; not a trade-area count.</div></div>
   <div class="stat info"><div class="k">LA CPI-U, 12-month</div><div class="v">+3.7<small>%</small></div><div class="n">Sep 2026. Tests any rent escalation clause.</div></div>
   <div class="stat warn"><div class="k">County unemployment</div><div class="v">4.6<small>%</small></div><div class="n">Oct 2026, preliminary.</div></div>
 </div>
@@ -231,7 +240,7 @@ def build_economy():
         lm_rows,
     )
     body += f"""
-  <div class="note"><p><b>What the series says.</b> MSA nonfarm employment at 6,371.5 thousand in October 2026 is 1.29% above October 2019 and only 0.19% above October 2024. A region that took six years to add 1.3 percentage points of employment has had a recovery, not an expansion. For a ground lease, that removes the growth argument from the hold case before any rent figure is even considered.</p></div>
+  <div class="note"><p><b>Geographic and forecasting limit.</b> The cited MSA nonfarm employment observations are 1.29% above October 2019 and 0.19% above October 2024. These comparisons describe the metro series only; they do not establish the parcel's trade area, property demand, tenant performance, or future growth.</p></div>
 </section>
 
 <section class="block">
@@ -243,7 +252,7 @@ def build_economy():
         im_rows,
     )
     body += """
-  <div class="note warn"><p><b>One sector is growing.</b> Education and Health Services, +3.3%. Trade/Transportation/Utilities is flat at 0.0%, Professional and Business Services +0.5%, Construction +0.2%, while Information (−2.1%), Financial Activities (−1.6%) and Manufacturing (−1.2%) are contracting. A QSR near an office corridor depends on the contracting sectors for its lunch trade. This is the detailed form of the "existing economic activity" the brief asks about, and it is not a growth story.</p></div>
+  <div class="note"><p><b>Sector observations, not a site-level conclusion.</b> The reported metro supersector changes include both increases and decreases for this period. They do not identify the tenant's customer base, nearby employment mix, lunch traffic, or the property's local demand; those require site-specific trade-area research.</p></div>
 </section>
 """
     body += """
@@ -286,8 +295,8 @@ def build_economy():
 </section>
 
 <section class="block">
-  <h2>Tenant health — the series, not one quarter</h2>
-  <p class="sub">From the tenant's own filings. The brief asks for a series of same-store sales, unit counts, closures and franchise rental revenue: here it is, with both a good-looking reading and a bad one shown side by side so the direction is visible rather than asserted.</p>
+  <h2>Tenant disclosures — company context, not store evidence</h2>
+  <p class="sub">Public filings report system-wide same-store sales, unit counts, closures and franchise rental revenue. These observations provide counterparty context but cannot be attributed to this particular location or lease without verified lease and store-level evidence.</p>
 """
     body += generic(
         eco["tenant_health"],
@@ -295,15 +304,7 @@ def build_economy():
         [("ID", "l"), ("Series", "l"), ("Value", "l"), ("Unit", "l"), ("Period", "l"), ("Class", "l"), ("Official source", "l"), ("Note", "l")],
     )
     body += """
-  <div class="note warn"><p><b>The five facts that decide this property.</b></p>
-  <ul class="tight">
-    <li>Same-store sales fell 4.2% in FY2025 and 7.4% in Q4 FY2025 — deteriorating, not stabilising. Compounded over the two years it is −5.45%.</li>
-    <li>The tenant closed 86 units in FY2025; 38 of the 47 Q4 closures were a deliberate block-closure programme ("JACK on Track").</li>
-    <li>Guidance for FY2026 is 50 to 100 <i>further</i> closures — the tenant has told the market it plans to shrink again.</li>
-    <li>Total debt of $1.70bn against guided Adjusted EBITDA of $225–240m is about <b>7.3× leverage</b>, with a shareholders' deficit of −$938m.</li>
-    <li>FY2026 guidance names "selling real estate" as part of the plan. The tenant is a <i>source of competing supply</i> in the window this owner is considering selling — and possibly a buyer.</li>
-  </ul>
-  <p>None of that proves this unit will close. It does mean a renewal probability above roughly 50% cannot be defended on the evidence available, and it means the hold case is a bet against the counterparty's own stated strategy.</p></div>
+  <div class="note"><p><b>Interpretation limit.</b> Same-store sales, system unit counts, company guidance and consolidated financial ratios are corporate disclosures. They are not a prediction of this individual unit's closure, this lease's rent collection, or the tenant's renewal decision. Do not convert them into a site-specific probability without relevant store-level data and the executed lease.</p></div>
 </section>
 
 <section class="block">
@@ -399,7 +400,7 @@ def build_flagged():
          ["S-19", "S-20", "S-21"]),
         ("I-02", "Lease expiry given as a five-year range (2030-2035)",
          "critical",
-         "A range cannot be discounted. It also means the option notice window is unknown, which is the single most common way an owner loses value on a ground lease. Every projection in this repository is run as a range because of this.",
+         "A range is insufficient for date-specific cash-flow discounting and leaves option notice dates unverified. No exact expiry date or notice calendar is asserted here.",
          "Read the term clause in the lease and fix the date, plus any option already exercised.",
          []),
         ("I-03", "Census data API unavailable without a key",
@@ -409,7 +410,7 @@ def build_flagged():
          ["S-08"]),
         ("I-04", "No verified comparable sales or rent quotes exist for the short-lease discount",
          "high",
-         "The short-lease discount is the dominant valuation input for this asset and it is not observable in any official dataset. CoStar, Reonomy, Crexi and RCA hold the data but are commercial and paywalled, so they cannot satisfy the verification rule. No value is published.",
+         "The short-lease discount is an unquantified valuation input. No verified comparable set or official ready-made dataset was obtained, so no discount value is published. Commercial market-data services would require independent review and cannot substitute for verified transaction terms.",
          "Build a comp set from Los Angeles County recorded grant deeds plus documentary transfer tax stamps — public record, no purchase required. In parallel, obtain three written bid indications.",
          []),
         ("I-05", "School system evidence not verified",
@@ -447,11 +448,21 @@ def build_flagged():
          "The landing pages already on main present Q3 FY2025 same-store sales (-7.1%, twelve weeks ended 6 July 2025) as the brand-health headline. The tenant has since filed Q4 and full-year FY2025 results on 19 November 2025 showing -7.4% in Q4 and -4.2% for the full year, plus 86 closures. Those later figures are used throughout this dashboard. The earlier page is not wrong, it is superseded.",
          "Refresh the Q3 headline to the Q4/FY2025 figures already filed, citing the newer SEC exhibit.",
          ["S-02"]),
-        ("I-12", "Three parallel dashboards exist on main with different gate counts",
+        ("I-12", "Multiple independently built dashboards are published in the repository",
          "medium",
-         "Three independent sessions each built a dashboard before seeing the others' branches, which is expected under the parallel-session instruction. They do not contradict each other on any figure, but they use different structures: this dashboard defines 12 decision gates, the root dashboard defines 6, and the alternative and docs dashboards define their own. A reader moving between them could reasonably ask which is authoritative.",
-         "Treat the root dashboard as the entry point and this one as the analytical depth behind it. Add a single cross-reference note so the relationship is explicit rather than implied.",
+         "Several independently built dashboards are preserved and have different structures, cutoffs and decision-gate counts. Their outputs are not a single synchronized application; a reader moving between them could encounter stale or differing content. Review each dashboard's own sources and flags; do not assume complete agreement.",
+         "Use the repository README to identify the entry point and each dashboard's scope. Treat the other dashboards as separate research artifacts unless their sources and cutoff are reconciled.",
          []),
+        ("I-13", "Risk impacts and likelihood are not parcel-specific estimates",
+         "high",
+         "The public repository lacks the lease abstract, exact parcel, engineering, insurance, store-level and owner-portfolio evidence needed to quantify risk. Scenario rows are illustrative stress cases only; unknown values are left blank and likelihood is not estimated.",
+         "Authorized advisers should obtain parcel-specific hazard and engineering findings, insurance indications, lease terms and financial inputs; document assumptions and test joint rent, repair and liquidity stresses before comparing decisions.",
+         ["S-19", "S-20", "S-21", "S-22"]),
+        ("I-14", "Row-level external-source links are not enforced across every dashboard table",
+         "medium",
+         "The analytical risk register now links cited observations to official documents and flags rows with no supporting official source. Other process, template and question tables across the separately maintained dashboards are not all covered by one universal row-provenance test. Do not treat a process row as a sourced property fact.",
+         "Before relying on a table, verify each populated factual value against the linked official document. Extend the shared provenance check to any remaining value-bearing rows; retain blanks and explicit flags where no official source confirms a value.",
+         ["S-01", "S-04", "S-08", "S-20", "S-21"]),
     ]
     rows = []
     for fid, title, sev, detail, fix, srcs in flags:
@@ -467,11 +478,11 @@ def build_flagged():
         )
 
     body = """
-<div class="note warn"><p><b>These items do not block publication — they block the <i>decision</i>.</b> Everything on this page is published deliberately, with its source links, so it can be reviewed after the site is live. Nothing here has been quietly dropped or filled in with an estimate. Three of the twelve are critical, and one of those (I-01, no address) is the root cause of most of the blanks elsewhere on the site.</p></div>
+<div class="note warn"><p><b>These items do not block publication — they block the <i>decision</i>.</b> Gaps are published with available source links or an explicit no-source note. Nothing is filled in with an estimate. Three of fourteen are critical; I-01 (no parcel identifier) blocks parcel-specific research.</p></div>
 <div class="grid g3">
   <div class="stat warn"><div class="k">Critical</div><div class="v">3</div><div class="n">I-01, I-02, I-07</div></div>
-  <div class="stat warn"><div class="k">High</div><div class="v">3</div><div class="n">I-03, I-04, I-08</div></div>
-  <div class="stat info"><div class="k">Medium</div><div class="v">6</div><div class="n">I-05, I-06, I-09, I-10, I-11, I-12</div></div>
+  <div class="stat warn"><div class="k">High</div><div class="v">4</div><div class="n">I-03, I-04, I-08, I-13</div></div>
+  <div class="stat info"><div class="k">Medium</div><div class="v">7</div><div class="n">I-05, I-06, I-09, I-10, I-11, I-12, I-14</div></div>
 </div>
 <section class="block">
   <h2>Flagged for review</h2>
@@ -506,25 +517,25 @@ def build_decision():
             f'<td>{e(p["summary"])}</td>'
         )
 
-    flip = "".join(f"<li>{e(x)}</li>" for x in best["what_would_flip_the_recommendation_to_hold"])
+    flip = "".join(f"<li>{e(x)}</li>" for x in best["evidence_to_assess_hold_case"])
     seq = []
     for s in best["recommended_sequence"]:
         seq.append(
-            f'<tr><td class="num"><b>{s["step"]}</b></td><td><b>{e(s["action"])}</b></td><td>{e(s["why"])}</td></tr>'
+            f'<td class="num"><b>{s["step"]}</b></td><td><b>{e(s["action"])}</b></td><td>{e(s["why"])}</td>'
         )
 
     body = privacy_banner()
     body += f"""
-<div class="note warn"><p><b>The honest answer today is "not yet" — and that is a real answer.</b> The question is binary: sell before the 2030–2035 expiry, or renew. The evidence below is strong enough to tell you which way the weight points, and it is not strong enough to tell you the price. Choosing a price without inputs would be worse than not choosing. So this page gives a <b>conditional</b> recommendation with an explicit sequence, not a verdict.</p></div>
+<div class="note warn"><p><b>No sell-or-renew winner can be selected from the information currently available.</b> Public, regional and tenant-wide evidence is useful context, but it does not establish the value of this parcel or the owner's best outcome. The lease, parcel, quotes, tax and owner-objective inputs remain unverified. This page is a decision process—not a recommendation.</p></div>
 
 <div class="grid g2">
   <div class="card">
     <h3>What the verified evidence says</h3>
     <ul class="tight">
-      <li><b>The area is not growing.</b> Metro employment is +1.29% versus October 2019 and +0.19% versus October 2024. City population is −0.8% since 2020. Seven of nine tracked sectors are contracting or flat.</li>
-      <li><b>The tenant is shrinking.</b> 86 closures in FY2025, guidance for 50–100 more, same-store sales −4.2% then −7.4%, 7.33× leverage, and a stated plan to sell real estate.</li>
-      <li><b>The tax code rewards acting.</b> Section 1031 deferral exists only if the owner sells a qualifying real-property interest, and it can move the effective tax on reinvested proceeds toward zero.</li>
-      <li><b>The tail is correlated.</b> A regional catastrophe stops rent, triggers repairs and closes the transaction market at the same moment, so holding a single illiquid asset through a long horizon is punished more than the base case suggests.</li>
+      <li><b>Regional indicators are mixed context, not a trade-area forecast.</b> Metro employment, city population and sector measures have different geographies and periods; none is a substitute for tract-level demand, traffic, competition or parcel economics.</li>
+      <li><b>Tenant-wide operating results are not this store's results.</b> Company disclosures report system-level sales and unit counts; they do not establish the specific lessee, guarantor, store sales, rent coverage, or renewal intent for this property.</li>
+      <li><b>Tax rules do not select the outcome.</b> A potential §1031 exchange has eligibility, timing, reinvestment and tax-basis conditions. A CPA must compare the owner's actual alternatives; the site does not assume deferral or a tax rate.</li>
+      <li><b>Hazard scenarios are stress tests, not parcel findings or probabilities.</b> Parcel-specific engineering, insurance and loss-of-rent evidence are required before comparing the exposure under sale and hold paths.</li>
     </ul>
   </div>
   <div class="card">
@@ -542,7 +553,7 @@ def build_decision():
 </div>
 
 <section class="block">
-  <h2>Recommended course of action</h2>
+  <h2>Decision gate and next steps</h2>
   <p class="sub">{e(best["headline"])}</p>
 """
     body += table(
@@ -550,40 +561,40 @@ def build_decision():
         seq,
     )
     body += f"""
-  <div class="note ok"><p><b>The lean, if the owner must choose direction today.</b> {e(best["lean_if_forced_today"])}</p></div>
+  <div class="note warn"><p><b>Current decision status.</b> {e(best["decision_status"])}</p></div>
   <div class="card">
-    <h3>What would flip the recommendation to hold</h3>
+    <h3>Evidence that would support evaluating a hold case</h3>
     <ul class="tight">{flip}</ul>
-    <p class="disclaimer">Each of these is checkable within weeks. That is what makes the recommendation conditional rather than vague: the conditions are testable, and the tests are listed.</p>
+    <p class="disclaimer">These are evidence items to test—not conclusions, weights, or a preference for holding. The corresponding sale case must be tested against the same verified inputs.</p>
   </div>
 </section>
 
 <section class="block">
-  <h2>The seven paths, and why most of them lose</h2>
-  <p class="sub">A complete enumeration. Any decision the owner makes is one of these — including doing nothing.</p>
+  <h2>Decision paths to compare</h2>
+  <p class="sub">A complete enumeration of alternatives, including a staged process and temporary deferral. Listing a path does not endorse it.</p>
 """
     body += table([("ID", "l"), ("Path", "l"), ("What it actually means", "l")], path_rows)
 
     body += """
   <div class="note warn"><p><b>Three paths deserve particular attention.</b></p>
   <ul class="tight">
-    <li><b>D-5, sale-leaseback to the tenant.</b> Almost nobody prices this. A tenant that owns its own rent can rationally pay more than any investor, because it is buying the elimination of its own lease obligation. The verified filing shows the tenant already acquires assets for sale-and-leaseback and has named "selling real estate" in its plan, which makes it a plausible counterparty rather than a hypothetical one.</li>
+    <li><b>D-5, sale-leaseback to the tenant.</b> Almost nobody prices this. A tenant that owns its own rent can rationally pay more than any investor, because it is buying the elimination of its own lease obligation. The verified filing shows the tenant already acquires assets for sale-and-leaseback and has named "selling real estate" in its plan, which makes it a possible counterparty whose interest and ability remain unverified.</li>
     <li><b>D-6, 1031 exchange.</b> The largest single lever on the after-tax outcome and the easiest to botch. It must be prepared <i>before</i> listing, not after the closing.</li>
-    <li><b>D-7, do nothing.</b> The default. It looks like caution and functions as a leveraged bet on a tenant that has publicly said it is shrinking.</li>
+    <li><b>D-7, defer action.</b> The default while evidence is gathered. It preserves optionality but leaves the owner exposed to lease, tenant, market, hazard and liquidity risks.</li>
   </ul></div>
 </section>
 
 <section class="block">
-  <h2>Why "based on the existing economic activity" points the way it does</h2>
-  <p class="sub">The brief asks for the decision to rest on the area's economic activity. Here is that reasoning made explicit, using only verified numbers.</p>
+  <h2>Why public economic activity cannot decide this case alone</h2>
+  <p class="sub">The requested local indicators are inputs to diligence, not a direct valuation of the property or a prediction of renewal.</p>
   <ol class="tight">
-    <li>A ground lease is a claim on a tenant's ability and willingness to pay rent. Everything else is secondary.</li>
-    <li>The tenant's willingness is measured by its own disclosures: closures up, same-store sales negative two years running, leverage above 7×, and a plan that includes selling real estate.</li>
-    <li>The tenant's ability is measured by its end market: Los Angeles is adding jobs at +0.19% over two years while the operator's wage floor rises automatically and unrestrained by local inflation of 3.7%.</li>
-    <li>The asset's alternative value is set by land use, not by the rent. That requires zoning headroom (unverified) and construction activity, which is flat at +0.2%.</li>
-    <li>Therefore the hold case rests on a renewal that the counterparty has given no indication it wants, and on a rent reset that the option mechanism may not permit.</li>
+    <li>Tenant-wide sales, closures and leverage do not identify the actual tenant, guarantor, store cash flow, or rent coverage for this lease.</li>
+    <li>Metro, city, county and tract measures describe different geographies. None should be presented as the property's trade area until secure parcel-based tract selection and a defensible drive-time/catchment method are completed.</li>
+    <li>School, income, population, jobs, access, competition and land-use evidence can inform demand, but need consistent vintages, local geographies and source-specific limitations.</li>
+    <li>Sale value depends on verified buyer bids, remaining term, rent, options, credit, title, condition and market conditions. Hold value depends on renewal terms, cash flows, costs and risk.</li>
+    <li>Tax consequences and the owner's goals (income, liquidity, diversification, legacy and risk tolerance) can materially change the preferred path.</li>
   </ol>
-  <div class="note"><p><b>None of this makes selling correct at any price.</b> It makes selling correct <i>if the price clears the owner's threshold</i>, and the threshold is only knowable once the six blocking gates close. That is why the recommendation is a sequence and not a verdict.</p></div>
+  <div class="note"><p><b>Decision rule:</b> do not rank sale, renewal or deferral until the same verified assumptions are applied to both after-tax cases, uncertainties are shown, and the owner/advisers confirm the objectives and risk limits.</p></div>
 </section>
 """
     page("decision.html", "Course of action", body,
@@ -676,7 +687,7 @@ def build_questions():
 
 <div class="note"><p><b>Why this page exists.</b> The brief asks for a clear list of questions, information and answers that must be addressed before any decision can reasonably be made — based on what we already have and do not have. That is this page. Every open question carries a mandatory <b>route to obtain</b>, because a question with no route to an answer is just anxiety. Nothing here has been answered by inference.</p></div>
 
-<div class="note warn"><p><b>The uncomfortable summary.</b> The questions that decide the outcome — rent, term, obligor, basis, price, hazard zone — are all unanswered. The questions that are answered — employment, inflation, population, cost of capital, tenant health — all point the same direction, which is why the <a href="decision.html">course of action</a> page can lean somewhere while refusing to name a price. The direction is legible. The magnitude is not.</p></div>
+<div class="note warn"><p><b>Decision status.</b> Critical lease, parcel, pricing, tax and owner-objective inputs remain unanswered. Aggregate economic and tenant disclosures do not determine which path is preferable. See the <a href="decision.html">decision process</a> for the parallel evidence needed for sale and hold cases.</p></div>
 """
     state_badge = {"answered": ("closed", "answered"), "partly-answered": ("der", "partly"), "unanswered": ("open", "unanswered")}
     prio_badge = {"critical": "crit", "high": "high", "medium": "medium"}
@@ -750,7 +761,7 @@ def build_trade():
     body = f"""
 <div class="note warn"><p><b>W-01 status: addressed, gated, not executed.</b> The method for replacing city and county proxies with real trade-area figures is specified below and every official instrument is named. The execution is blocked by one thing: selecting Census tracts requires the parcel location, which is withheld under the privacy rule. Rather than substitute a city number for a trade-area number, this page leaves the trade-area column blank.</p></div>
 
-<div class="note"><p><b>Why the distinction is not pedantic.</b> A county unemployment rate describes ten million people. A quick-service restaurant's trade area is roughly a one-to-three-mile drive-time ring holding perhaps forty to one hundred twenty thousand people. Averaging across the county smooths away the only variation that determines whether this specific unit thrives. It is the most common way a ground-lease analysis goes quietly wrong: the numbers are real, correctly sourced, and about the wrong geography.</p></div>
+<div class="note"><p><b>Why the distinction matters.</b> County and city averages cannot determine neighborhood conditions or the subject unit's likely demand. Define a local catchment using secure parcel location and documented access, travel, traffic and planning evidence; then select Census tracts under a stated, consistent rule. No radius, population, income or performance estimate is assumed on this page.</p></div>
 
 <section class="block">
   <h2>Tract selection method</h2>
@@ -779,7 +790,7 @@ def build_trade():
     body += """
 <section class="block">
   <h2>Trade-area and neighbourhood evidence — currently blank</h2>
-  <p class="sub">Every row the brief asks for, with the official route to each. Zoning and alternative-use headroom is on this list because it sets the reversion value, which is the largest cash flow in the hold case.</p>
+  <p class="sub">Every row the brief asks for, with the official route to each. Zoning and alternative-use evidence informs a reversion scenario and must be assessed alongside lease cash flows, costs, hazards and market evidence.</p>
 """
     body += table(
         [("ID", "l"), ("Metric", "l"), ("Value", "l"), ("Status", "l"), ("How to obtain", "l"), ("Official source", "l")],
@@ -944,12 +955,12 @@ def build_valuation():
 """
     body += table([("Line", "r"), ("Item", "l"), ("Formula or required input", "l"), ("Value", "l"), ("Note", "l")], renew)
     body += """
-  <div class="note"><p><b>Two assumptions deserve to be named as assumptions.</b> The escalation rate and the renewal probability. The escalation is testable against the verified 3.79% LA CPI-U compound growth. The renewal probability can be anchored on the tenant's own disclosures — 86 closures, guidance for 50–100 more, 7.33× leverage, same-store sales −4.2% — and on that anchor a probability above roughly 50% is hard to defend. Neither number is invented here; both are left blank with the anchoring evidence stated.</p></div>
+  <div class="note"><p><b>Keep assumptions separate from observations.</b> The escalation rate and renewal likelihood are not known. Regional inflation can be used as a sensitivity reference, not as a rent forecast. Tenant-wide disclosures do not establish a location-specific renewal probability. Obtain a written tenant indication and show a range of explicit scenarios without presenting any one probability as a forecast.</p></div>
 </section>
 
 <section class="block">
-  <h2>Hold case — why it is not the "safe" option</h2>
-  <p class="sub">The residual path is also a bet, and it is worth naming the three things it requires.</p>
+  <h2>Hold case — inputs and uncertainties</h2>
+  <p class="sub">The hold case requires its own verified cash flows, renewal terms, costs and risk assumptions; it should be compared with sale rather than treated as a default safe option.</p>
   <ul class="tight">
 """
     for n in V["hold_case"]["notes"]:
@@ -960,7 +971,7 @@ def build_valuation():
 
 <section class="block">
   <h2>Short-lease discount — unverified, and here is how to fix it</h2>
-  <p class="sub">The most powerful valuation input for this asset, and the one no official dataset publishes.</p>
+  <p class="sub">An important but unquantified comparison. No ready-made official dataset was identified; a defensible discount requires verified comparable transactions and lease terms.</p>
   <div class="card">
     <p><b>What it should measure.</b> {}</p>
     <p><b>What happened when we looked.</b> {}</p>
@@ -991,12 +1002,16 @@ def build_risks():
     rows = []
     for r in R["risks"]:
         aff = ", ".join(r["affects"])
+        source_ids = list(dict.fromkeys(re.findall(r"\bS-\d{2}\b", r.get("evidence", ""))))
+        source_cell = " ".join(src_link(sid) for sid in source_ids) or '<a href="flagged.html">Unverified — review gaps</a>'
+        evidence_cell = e(r["evidence"]) if source_ids else '<span class="empty">—</span>'
         rows.append(
             f'<td class="id">{e(r["id"])}</td>'
             f'<td><b>{e(r["risk"])}</b></td>'
             f'<td>{e(r["category"])}</td>'
             f'<td>{e(aff)}</td>'
-            f'<td>{e(r["evidence"])}</td>'
+            f'<td>{evidence_cell}</td>'
+            f'<td>{source_cell}</td>'
             f'<td>{e(r["likelihood"])}</td>'
             f'<td>{e(r["impact"])}</td>'
             f'<td>{e(r["preventability"])}</td>'
@@ -1014,13 +1029,13 @@ def build_risks():
         )
     body = """
 <div class="note"><p><b>No probability is assigned to any event on this page.</b> Assigning one without an insured loss model would be fabrication. The comparisons are ordinal — which risk is worse than which — not cardinal. Where verified evidence exists it is quoted with its source; where the point is structural reasoning, it is labelled as an assumption.</p></div>
-<div class="note warn"><p><b>The one risk that is not in the property at all.</b> Concentration. If this parcel is a large share of the owner's net worth, then holding it is a decision about the owner's balance sheet, not about the building — and it may justify a sale regardless of price. That is why gate G-12 exists: the objective function must be stated before the analysis can conclude anything.</p></div>
+<div class="note warn"><p><b>Portfolio concentration is an owner-specific input.</b> The other holdings and balance sheet are unknown, so this site cannot estimate concentration or recommend diversification. Gate G-12 records the need for an objective statement and risk limits before comparing paths.</p></div>
 <section class="block">
   <h2>Risk register by decision path</h2>
   <p class="sub">Path codes: D-1 sell now · D-2 market now · D-3 renew and hold · D-4 hold to expiry · D-5 sale-leaseback to tenant · D-6 1031 exchange · D-7 do nothing.</p>
 """
     body += table(
-        [("ID", "l"), ("Risk", "l"), ("Category", "l"), ("Affects", "l"), ("Evidence", "l"), ("Likelihood", "l"), ("Impact", "l"), ("Preventable", "l"), ("Mitigation", "l")],
+        [("ID", "l"), ("Risk", "l"), ("Category", "l"), ("Affects", "l"), ("Evidence", "l"), ("Official source / review status", "l"), ("Likelihood", "l"), ("Impact", "l"), ("Preventable", "l"), ("Mitigation", "l")],
         rows,
     )
     body += f"""
@@ -1034,31 +1049,32 @@ def build_risks():
         bsw,
     )
     body += f"""
-  <div class="note warn"><p><b>The design principle.</b> {e(bs["design_principle"])}</p></div>
+  <div class="note warn"><p><b>Stress-test design.</b> {e(bs["design_principle"])}</p></div>
 </section>
 <section class="block">
   <h2>Wealth preservation versus growth</h2>
-  <p class="sub">The brief asks for a balance that preserves wealth while keeping growth available at a manageable risk level. Those two goals point in opposite directions here, and pretending otherwise would be the least useful thing this site could do.</p>
+  <p class="sub">The brief asks for a balance between wealth preservation, opportunity for growth and manageable risk. The appropriate trade-off depends on verified property evidence and the owner's objectives; this page does not rank the paths.</p>
   <div class="grid g2">
     <div class="card">
-      <h3>What holding preserves</h3>
+      <h3>Potential hold considerations</h3>
       <ul class="tight">
-        <li>Optionality. The owner keeps the reversion and any land-value upside.</li>
-        <li>Tax deferral by simply not selling.</li>
-        <li>Income, if and while the tenant pays.</li>
+        <li>Retain ownership and contractual rights under the verified lease.</li>
+        <li>Continue to receive rent if due and paid, subject to costs and lease terms.</li>
+        <li>Maintain exposure to future property value changes, positive or negative.</li>
+        <li>Defer a disposition-related tax event while not selling, subject to advice about other tax consequences.</li>
       </ul>
     </div>
     <div class="card">
-      <h3>What holding costs</h3>
+      <h3>Potential hold exposures</h3>
       <ul class="tight">
-        <li>Unresolved concentration in one tenant, one building, one seismic region.</li>
-        <li>Exposure to an uncapped regulatory cost mechanism (AB 1228) that drives the tenant's closures.</li>
-        <li>Illiquidity at exactly the moment a correlated shock would make it most costly.</li>
-        <li>Term decay: every year of expiry approaching widens the buyer's spread, so waiting has a price even if nothing goes wrong.</li>
+        <li>Concentration, tenant credit, building condition and parcel hazards are unknown.</li>
+        <li>Tenant operating outcomes and regulatory costs may affect store viability, but no parcel-specific impact is established.</li>
+        <li>Liquidity and exit pricing may vary with market and property conditions.</li>
+        <li>Remaining term and option mechanics could affect future pricing; the effect must be tested with real offers and lease data.</li>
       </ul>
     </div>
   </div>
-  <div class="note"><p><b>The balance point.</b> A manageable risk level here is not achieved by choosing hold or sell in the abstract. It is achieved by (1) closing the blocking gates, (2) testing the market and the tenant at the same time, and (3) sizing the decision against a written objective statement — so that whichever path is chosen, the concentration and the tail are deliberate rather than inherited.</p></div>
+  <div class="note"><p><b>Decision process.</b> Close the blocking evidence gates, obtain a live market test and a written renewal case, and compare both against the owner's documented objectives and risk limits. This process supplies decision inputs; it does not preselect the outcome.</p></div>
 </section>
 """
     page("risks.html", "Risk register", body,
@@ -1273,7 +1289,7 @@ def build_index():
     blocked_src = sum(1 for s in S if not s.get("status","").startswith("open"))
 
     cards = [
-        ("decision.html", "Course of action", "Sell or renew: the conditional recommendation, the reasoning, and the sequence that turns an opinion into a decision."),
+        ("decision.html", "Decision process", "Sell, renew or defer: the unresolved evidence, parallel cases and sequence required before any choice."),
         ("gates.html", "Decision gates", f"{cur['gates_total']} gates, {cur['closed']} closed. What must be true before a listing, a letter of intent or a renewal negotiation is authorised."),
         ("questions.html", "Questions to resolve", f"{len(Q)} questions with a route to each answer. {open_q} are still unanswered."),
         ("economy.html", "Local economy", "Labour market, industry mix, prices, income, population and the tenant's own operating series."),
@@ -1309,10 +1325,10 @@ def build_index():
     <div class="card">
       <h3>What we can say with verified evidence</h3>
       <ul class="tight">
-        <li><b>The area is not growing.</b> Metro employment +1.29% versus October 2019, +0.19% versus October 2024. City population −0.8% since 2020. Only one of nine tracked sectors is clearly expanding.</li>
-        <li><b>The tenant is shrinking.</b> 86 closures in FY2025, guidance for 50–100 more, same-store sales −4.2% then −7.4%, about 7.3× leverage, and a stated plan that includes selling real estate.</li>
-        <li><b>Capital is not cheap.</b> The 10-year Treasury yields 4.92%, so a short-lease spread is expensive and getting more so as the term decays.</li>
-        <li><b>The tax code rewards acting deliberately.</b> Section 1031 can defer most of the gain, and it only exists if the owner sells.</li>
+        <li><b>Regional indicators are context, not this parcel's trade area.</b> Metro jobs and city population use different geographies and cannot establish site demand or a reliable local projection.</li>
+        <li><b>Tenant-system results are not the subject store's results.</b> Public filings do not establish the lease obligor, guaranty, store sales, rent coverage or renewal intent for this parcel.</li>
+        <li><b>Market rates do not price this lease.</b> A Treasury yield is not a property cap rate or short-lease discount; real offers and comparable evidence are missing.</li>
+        <li><b>Tax provisions do not select a path.</b> Any exchange or disposition treatment depends on the actual owner, basis, transaction and eligibility, to be modelled by a CPA.</li>
       </ul>
     </div>
     <div class="card">
@@ -1327,7 +1343,7 @@ def build_index():
       </ul>
     </div>
   </div>
-  <div class="note warn"><p><b>So the honest answer is "not yet" — and that is a real answer.</b> The direction is legible: the weight of verified evidence favours selling, because the hold case is a bet on a counterparty that has publicly said it is shrinking, in an area that is not growing, against a tax code that rewards acting. But the magnitude is not legible, because six gate inputs are missing. Choosing a price without them would produce a confident, precise, wrong answer. Start with the <a href="decision.html">course of action</a>.</p></div>
+  <div class="note warn"><p><b>No winner can be selected yet.</b> The missing parcel, lease, offer, tax and owner-objective inputs are decision-critical. Neither aggregate economic indicators nor tenant-wide disclosures are enough to choose sell, renew or defer. Start with the <a href="decision.html">decision process</a>.</p></div>
 </section>
 
 <section class="block">
@@ -1386,7 +1402,7 @@ def build_print():
         f'<tr><td class="num">{s["step"]}</td><td>{e(s["action"])}</td><td>{e(s["why"])}</td></tr>'
         for s in best["recommended_sequence"]
     )
-    flips = "".join(f"<li>{e(x)}</li>" for x in best["what_would_flip_the_recommendation_to_hold"])
+    flips = "".join(f"<li>{e(x)}</li>" for x in best["evidence_to_assess_hold_case"])
 
     body = f"""
 <div class="noprint" style="margin:16px 0">
@@ -1402,16 +1418,16 @@ def build_print():
 <div class="grid g2">
   <div class="card">
     <h3>Bottom line</h3>
-    <p><b>Do not commit to a sale, a renewal or a letter of intent yet.</b> {cur["closed"]} of {cur["gates_total"]} decision gates are closed. The direction of the evidence is legible; the magnitude is not.</p>
-    <p><b>Lean if forced today:</b> {e(best["lean_if_forced_today"])}</p>
+    <p><b>No sale, renewal or letter-of-intent winner is selected.</b> {cur["closed"]} of {cur["gates_total"]} decision gates are closed. Critical property, lease, offer, tax and owner-objective inputs are missing.</p>
+    <p><b>Decision status:</b> {e(best["decision_status"])}</p>
   </div>
   <div class="card">
     <h3>Verified evidence — the four points that matter</h3>
     <ul class="tight">
-      <li><b>Area is not growing:</b> metro employment +1.29% vs Oct 2019, +0.19% vs Oct 2024; city population −0.8% since 2020.</li>
-      <li><b>Tenant is shrinking:</b> 86 closures FY2025, 50–100 guided FY2026, same-store sales −4.2% FY2025 and −7.4% Q4, ~7.3× leverage.</li>
-      <li><b>Capital is not cheap:</b> 10-year Treasury 4.92% (23 Nov 2026).</li>
-      <li><b>Tax lever:</b> §1031 deferral exists only if the owner sells; recapture at up to 25% plus 3.8% NIIT plus California up to 12.3%.</li>
+      <li><b>Regional indicators:</b> the cited metro/city data are contextual, use different geographies, and do not establish this parcel's trade area or demand.</li>
+      <li><b>Tenant disclosures:</b> system-wide results do not establish this store's sales, rent coverage, lease obligor or renewal intent.</li>
+      <li><b>Property value:</b> no verified sale bids, comparable transactions, parcel hazards or renewal economics are available.</li>
+      <li><b>Tax:</b> sale and hold tax outcomes depend on owner-specific basis, structure, timing and eligibility; obtain a CPA model.</li>
     </ul>
   </div>
 </div>
@@ -1424,7 +1440,7 @@ def build_print():
 
 <div class="grid g2" style="margin-top:12px">
   <div class="card">
-    <h3>What would flip the recommendation to hold</h3>
+    <h3>Evidence to assess for the hold case</h3>
     <ul class="tight">{flips}</ul>
   </div>
   <div class="card">

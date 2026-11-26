@@ -10,13 +10,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Consolidated dashboard (root site): provenance, links, privacy, calculator
+      - name: Consolidated dashboard provenance, links and privacy
+        run: python3 tests/check_dashboard.py
+      - name: Test consolidated private calculator
+        run: node tests/calc_root.test.js
+
+      # Repo-wide integration: conflict markers, all local links, root table provenance, PII, calculator isolation
+      - name: Repo-wide links, conflict markers, PII scan and root table provenance
+        run: python3 tests/check_root.py
+      - name: Test legacy root calculator arithmetic
+        run: node tests/root_calc.test.js
+
+      # Analytical dashboard (site/) rebuilt from its own data layer
       - name: Verify local links, table references and data
         run: python3 tests/check_site.py
-      - name: Test calculator
+      - name: Test analytical calculator
         run: node tests/calc.test.js
       - name: Rebuild analytical dashboard from the verified data layer
         run: python3 tools/build.py
       - name: Analytical dashboard integrity (links, official-source allowlist, privacy patterns)
         run: python3 tools/check.py
+
+      # Independent dashboards retained from parallel sessions
       - name: Privacy-first dashboard integrity (links, provenance, source allowlist, privacy patterns)
         run: python3 privacy-first/tests/check.py
+      - name: Alternative research dashboard integrity
+        run: cd alternative-research && python3 tests/check.py
+      - name: Central LA 2026 dashboard static and runtime verification
+        run: cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs

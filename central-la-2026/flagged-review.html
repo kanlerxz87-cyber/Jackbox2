@@ -78,6 +78,11 @@
     document.addEventListener('DOMContentLoaded', () => {
       const F = window.JACKBOX_DATA && window.JACKBOX_DATA.flagged;
       if (!F) return;
+      const renderFlagSources = (row) => [1, 2, 3].map((n) => {
+        const suffix = n === 1 ? '' : String(n);
+        const url = row[`sourceUrl${suffix}`];
+        return url ? App.renderSourceLink(url, `Official source ${n}`) : '';
+      }).filter(Boolean).join('<br>') || App.renderSourceLink('', 'No official source');
 
       document.getElementById('flagged-count-sub').textContent =
         `${F.items.length} flagged items documented for manual review (zero fabricated or inferred values).`;
@@ -94,7 +99,7 @@
             <td><span class="blank-cell">${App.escapeHtml(it.currentStatus)}</span></td>
             <td>${App.escapeHtml(it.details)}</td>
             <td>${App.escapeHtml(it.manualReviewAction)}</td>
-            <td>${App.renderSourceLink(it.sourceUrl, 'Verify Officially')}</td>
+            <td>${renderFlagSources(it)}</td>
           </tr>
         `;
       }).join('');
