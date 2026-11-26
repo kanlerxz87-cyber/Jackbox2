@@ -544,3 +544,29 @@ Merged updated `origin/main` containing PRs #17–#20. `COORDINATION.md` and `RE
 ### Push synchronization note — session `2a14dbc0`
 
 Immediately before publishing, `git pull --rebase origin arena/2a14dbc0-jackbox2` attempted to replay the already-merged `origin/main` history on top of the session branch and conflicted in `COORDINATION.md` at the parallel session `7e425bfb` claim. The rebase was aborted without changing commits. `origin/main` had already been merged into this branch in `9d46816`, preserving PR #17–#20 and both coordination histories. Do not replay those main commits a second time; the session branch remains a fast-forward descendant of its remote claim commit. A normal fast-forward push is used to retain the verified merge history without rewriting or dropping another session's work.
+
+### Final integration record — session `88ea335a`
+
+| Item | Result |
+|---|---|
+| Pull request | **PR #25** https://github.com/kanlerxz87-cyber/Jackbox2/pull/25 — **MERGED** 2026-11-26T13:20:06Z |
+| Merge commit | `ec36182d4e42b2c89b4c6976b8e64bdcdc507528` |
+| Validation workflow (`Validate static site`) | run `45828137725` — **SUCCESS** (11 steps, all checks) |
+| GitHub Pages build and deployment | run `45828138840` — **SUCCESS** |
+| Live URLs checked by fetch | `index.html`, `verification.html`, `calculator.html`, `requirements.html` — all render the consolidated pages with sources and blank unverified cells |
+
+**Live:** https://kanlerxz87-cyber.github.io/Jackbox2/ · verification ledger
+`/verification.html` · flagged queue `/flagged.html` · requirements `/requirements.html`.
+
+**Caching note.** The first fetch of the bare root URL after deployment returned the pre-consolidation
+`index.html`, while nested pages returned the new build. Re-fetching `index.html` with a query string returned
+the consolidated page, so this was edge caching at the host, not a stale deployment. Anyone reviewing
+immediately after a deploy should hard-refresh once.
+
+**Concurrency note.** PRs #22 and #23 (sessions `0b940455`, `1f0cdd85`) were still open against root files when
+this merge landed. They will now conflict with the consolidated pages. The resolution they should follow: keep
+this site's structure, put any new evidence into `data/root.json` and rebuild with `tools/build_root.py`, and
+never overwrite a page by hand. Their existing dashboards are untouched and remain linked from the archive.
+
+**Nothing marked verified without an official source.** Every ledger row states its source and the date it was
+read; the twelve blank rows each point at a flagged item with the official URL needed to close it.
