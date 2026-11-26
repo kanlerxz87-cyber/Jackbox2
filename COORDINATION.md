@@ -354,3 +354,16 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
+
+---
+
+## Integration, Audit & Remediation Session `7e425bfb` (Verified 2026-11-26)
+
+- **Session ID:** `7e425bfb`
+- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`)
+- **Claimed Task Scope:**
+  - `T-7E-01` (`in progress` — `7e425bfb`): Resolve `README.md` merge conflict markers from PR #16 cleanly without discarding any session's work.
+  - `T-7E-02` (`in progress` — `7e425bfb`): Line-by-line re-verification of official sources as of `2026-11-26` (SEC EDGAR CIK `0000807882`, Census QuickFacts, FRED `CALOSA7POP`, BLS LA MSA/CPI, U.S. Treasury Yield Curve, IRS Topic 409, CA FTB, CA DIR AB 1228, LA City Measure ULA, USGS UCERF3, CAL FIRE).
+  - `T-7E-03` (`in progress` — `7e425bfb`): Remediate root dashboard calculator math (`assets/app.js` / `sell-vs-hold.html`), ensure every root table row links to an official `https://` source, and update `flagged.html` irregularities.
+  - `T-7E-04` (`in progress` — `7e425bfb`): Expand automated repo validation (`tests/check_root.py` + `.github/workflows/validate.yml`), open PR to `main`, merge, and confirm GitHub Pages deployment.
+
