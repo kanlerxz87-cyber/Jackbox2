@@ -44,3 +44,20 @@ node scripts/test_runtime.mjs
 ## GitHub Pages
 
 This repository is configured to publish its static root via GitHub Pages. The site is plain HTML/CSS/JavaScript; no visitor account or server-side calculator is used. The private worksheet runs in the reader's browser, but it is not an access-controlled private workspace—do not enter sensitive information on a shared or untrusted device.
+
+
+## Independent dashboard map
+
+The repository preserves several separately maintained static dashboards. They are not a synchronized application and may use different cutoffs or gate structures. Review each dashboard's source ledger and Flagged for Review page; do not assume the contents agree.
+
+| Dashboard | Entry point | Notes |
+|---|---|---|
+| Root | `index.html` | Main landing page, with supporting root-level sections and the root source audit. |
+| Central LA 2026 | `central-la-2026/index.html` | Separate W-01–W-10 dashboard; see its own source and flagged pages. |
+| Analytical | `site/index.html` | Generated from `data/` by `tools/build.py`; the focused decision-neutrality audit is recorded here. |
+| Alternative research | `alternative-research/index.html` | Independent research pass. |
+| Docs | `docs/index.html` | Separate documentation dashboard. |
+| Privacy-first | `privacy-first/index.html` | Privacy and decision-gate workflow. |
+| Archived session workspace | `docs/arena-75e09b85/index.html` | Additional independent research artifact. |
+
+The core validation commands also include `python3 tests/check_root.py` and `node tests/root_calc.test.js`; these validate root table provenance, privacy, links and calculator arithmetic. The checks are structural and do not replace adviser review or a fresh source verification.
