@@ -1,54 +1,155 @@
-// Private browser-only sell-vs-hold calculator. No data leaves the device.
-// All tax parameters default to IRS Topic 409 (2025) and are user-editable.
-(function(){
-  const $ = id => document.getElementById(id);
-  function num(id, def){ const v = parseFloat($(id)?.value); return isFinite(v) ? v : def; }
-  function money(n){ return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}); }
-  function calc(){
-    const rent = num('in-rent', 0);           // current annual NNN rent
-    const esc = num('in-esc', 0.02);          // annual rent escalation
-    const years = Math.max(1, Math.min(30, Math.round(num('in-years', 10))));
-    const disc = num('in-disc', 0.06);        // discount rate
-    const price = num('in-price', 0);         // gross sale price today
-    const basis = num('in-basis', 0);         // adjusted basis
-    const dep = num('in-dep', 0);             // unrecaptured §1250 gain
-    const capRate = num('in-cap', 0.06);      // cap rate for renewal value
-    const renewalRent = num('in-renewal', rent); // negotiated renewal rent
-    const costs = num('in-costs', 0.03);      // selling costs % of price
-    const t15 = num('in-t15', 0.15), t20 = num('in-t20', 0.20), t25 = num('in-t25', 0.25);
-    const niit = num('in-niit', 0.038), ca = num('in-ca', 0.093);
-    const otherOrd = num('in-ord', 0.24);     // ordinary rate on rental income (illustrative)
+/*
+ * Anonymous adviser worksheet, version 2.0.0 (2026-11-26).
+ * Deliberately no network, storage, tax-rate defaults, automatic rankings or
+ * parcel identifiers. Outputs are arithmetic on adviser-supplied inputs only.
+ */
+(function (root) {
+  'use strict';
 
-    // HOLD: NPV of escalating NNN rent, then terminal value at cap rate
-    let holdNPV = 0;
-    for(let y=1;y<=years;y++){ holdNPV += (rent*Math.pow(1+esc,y-1)) / Math.pow(1+disc,y); }
-    const terminalRent = renewalRent*Math.pow(1+esc,years-1);
-    const terminalValue = capRate>0 ? terminalRent/capRate : 0;
-    holdNPV += terminalValue / Math.pow(1+disc,years);
+  const VERSION = '2.0.0';
+  const MAX_AMOUNT = 1e12;
 
-    // SELL NOW: after-tax proceeds
-    const grossGain = Math.max(0, price - basis);
-    const recapture = Math.min(dep, grossGain);
-    const ltcg = Math.max(0, grossGain - recapture);
-    // Simplified tiering: user sets blended LTCG rate via t15/t20 inputs; default uses t15.
-    const tax = recapture*t25 + ltcg*t15 + grossGain*niit + grossGain*ca;
-    const sellNet = price*(1-costs) - tax;
-
-    // Short-lease discount sensitivity: value if sold with <5y remaining vs long lease
-    const shortDisc = num('in-shortdisc', 0.10);
-    const shortPrice = price*(1-shortDisc);
-
-    const out = $('calc-result');
-    if(!out) return;
-    out.innerHTML =
-      `<p><b>Hold NPV (${years}y, ${Math.round(disc*100)}% discount):</b> ${money(holdNPV)} <span class="muted">(rent NPV + terminal ${money(terminalValue)} at ${Math.round(capRate*100)}% cap)</span></p>`+
-      `<p><b>Sell now, after-tax (illustrative):</b> ${money(sellNet)} <span class="muted">(gross ${money(price)} − costs ${money(price*costs)} − tax ${money(tax)}; gain ${money(grossGain)}, recapture ${money(recapture)})</span></p>`+
-      `<p><b>Short-lease sensitivity:</b> at ${Math.round(shortDisc*100)}% discount, price ≈ ${money(shortPrice)}.</p>`+
-      `<p><b>Gap (Hold NPV − Sell net):</b> ${money(holdNPV - sellNet)} <span class="muted">— positive favours hold on these inputs; negative favours sell. Not a recommendation until verified inputs exist.</span></p>`+
-      `<p class="muted">Tax rates default to IRS Topic 409 (2025): 15% LTCG tier, 25% §1250 recapture, 3.8% NIIT. CA rate is illustrative — confirm with CPA. This tool is not tax advice.</p>`;
+  function amount(raw, label, options) {
+    const limits = options || {};
+    if (raw === undefined || raw === null || String(raw).trim() === '') {
+      throw new Error(label + ' is required; blank is not zero.');
+    }
+    const text = String(raw).trim();
+    if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(text)) {
+      throw new Error(label + ' must be a plain number without commas.');
+    }
+    const n = Number(text);
+    if (!Number.isFinite(n) || Math.abs(n) > MAX_AMOUNT) {
+      throw new Error(label + ' is outside the supported range.');
+    }
+    if (limits.nonnegative && n < 0) throw new Error(label + ' cannot be negative.');
+    if (limits.positive && n <= 0) throw new Error(label + ' must be greater than zero.');
+    return n;
   }
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const form = $('calc-form');
-    if(form){ form.addEventListener('input', calc); calc(); }
-  });
-})();
+
+  function annualFlows(raw) {
+    if (typeof raw !== 'string' || raw.trim() === '') {
+      throw new Error('Enter a verified after-tax cash flow for every year.');
+    }
+    const rows = raw.trim().split(/\r?\n/);
+    if (rows.length > 30) throw new Error('The worksheet supports at most 30 years.');
+    return rows.map((row, index) => amount(row, 'Year ' + (index + 1) + ' cash flow'));
+  }
+
+  function compare(inputs) {
+    const salePrice = amount(inputs.salePrice, 'Sale price', { positive: true });
+    const costs = amount(inputs.saleCosts, 'Sale costs', { nonnegative: true });
+    const debt = amount(inputs.debtPayoff, 'Debt payoff', { nonnegative: true });
+    // A negative amount is allowed only when a tax professional has supported
+    // an incremental benefit. Tax is not computed by this worksheet.
+    const tax = amount(inputs.saleTax, 'Incremental sale tax');
+    const terminal = amount(inputs.terminalEquity, 'Terminal after-tax equity');
+    const discount = amount(inputs.discountRate, 'Annual discount rate');
+    if (discount <= -100 || discount > 1000) {
+      throw new Error('Annual discount rate must be above -100% and no more than 1000%.');
+    }
+    const flows = annualFlows(inputs.cashFlows);
+    const factor = 1 + discount / 100;
+    let holdPV = 0;
+    for (let i = 0; i < flows.length; i += 1) {
+      holdPV += flows[i] / Math.pow(factor, i + 1);
+    }
+    holdPV += terminal / Math.pow(factor, flows.length);
+    const saleNet = salePrice - costs - debt - tax;
+    if (![holdPV, saleNet, holdPV - saleNet].every(Number.isFinite)) {
+      throw new Error('The result exceeds the supported numerical range.');
+    }
+    return { saleNet, holdPV, difference: holdPV - saleNet, years: flows.length };
+  }
+
+  function quoteDiscount(inputs) {
+    const long = amount(inputs.longQuote, 'Extended-lease quote', { positive: true });
+    const short = amount(inputs.shortQuote, 'Short-lease quote', { positive: true });
+    const percent = (1 - short / long) * 100;
+    if (!Number.isFinite(percent)) throw new Error('Quote difference exceeds the supported range.');
+    return { percent, difference: long - short };
+  }
+
+  const api = { VERSION, compare, quoteDiscount, annualFlows };
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  if (!root || !root.document) return;
+
+  const doc = root.document;
+  const $ = (id) => doc.getElementById(id);
+  const money = (v) => new Intl.NumberFormat('en-US', {
+    style: 'currency', currency: 'USD', maximumFractionDigits: 0
+  }).format(v);
+  const fields = ['sale-price', 'sale-costs', 'debt-payoff', 'sale-tax',
+    'terminal-equity', 'discount-rate', 'cash-flows'];
+  const quoteFields = ['long-quote', 'short-quote'];
+
+  function resultLine(label, value) {
+    const p = doc.createElement('p');
+    const strong = doc.createElement('strong');
+    strong.textContent = label + ' ';
+    p.appendChild(strong);
+    p.appendChild(doc.createTextNode(value));
+    return p;
+  }
+
+  function updateComparison() {
+    const output = $('comparison-output');
+    if (!output) return;
+    output.replaceChildren();
+    try {
+      const result = compare({
+        salePrice: $('sale-price').value,
+        saleCosts: $('sale-costs').value,
+        debtPayoff: $('debt-payoff').value,
+        saleTax: $('sale-tax').value,
+        terminalEquity: $('terminal-equity').value,
+        discountRate: $('discount-rate').value,
+        cashFlows: $('cash-flows').value
+      });
+      output.appendChild(resultLine('Sale proceeds today:', money(result.saleNet)));
+      output.appendChild(resultLine('Hold present value:', money(result.holdPV)));
+      output.appendChild(resultLine('Difference (hold minus sale):', money(result.difference)));
+      const note = doc.createElement('p');
+      note.className = 'result-note';
+      note.textContent = result.years + '-year illustration; not a tax calculation, appraisal, forecast, or recommendation. Both paths must use consistent after-tax equity assumptions.';
+      output.appendChild(note);
+    } catch (error) {
+      output.appendChild(resultLine('Not calculated.', error.message));
+    }
+  }
+
+  function updateQuote() {
+    const output = $('quote-output');
+    if (!output) return;
+    output.replaceChildren();
+    try {
+      const result = quoteDiscount({ longQuote: $('long-quote').value, shortQuote: $('short-quote').value });
+      const label = result.percent < 0 ? 'Short-lease premium:' : 'Short-lease discount:';
+      output.appendChild(resultLine(label, Math.abs(result.percent).toFixed(2) + '% (' + money(Math.abs(result.difference)) + ')'));
+      const note = doc.createElement('p');
+      note.className = 'result-note';
+      note.textContent = 'A paired quote comparison, not an independently verified market discount. Keep other terms consistent and review actual offers.';
+      output.appendChild(note);
+    } catch (error) {
+      output.appendChild(resultLine('Not calculated.', error.message));
+    }
+  }
+
+  function clearAll() {
+    fields.concat(quoteFields).forEach((id) => { const el = $(id); if (el) el.value = ''; });
+    updateComparison();
+    updateQuote();
+  }
+
+  function init() {
+    fields.forEach((id) => { const el = $(id); if (el) el.addEventListener('input', updateComparison); });
+    quoteFields.forEach((id) => { const el = $(id); if (el) el.addEventListener('input', updateQuote); });
+    const clear = $('clear-worksheet');
+    if (clear) clear.addEventListener('click', clearAll);
+    updateComparison();
+    updateQuote();
+  }
+  if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', init);
+  else init();
+  root.addEventListener('pagehide', clearAll);
+})(typeof window === 'undefined' ? null : window);
