@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy and workspace rules — Jack in the Box, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision workspace for one anonymous single-tenant net-lease restaurant parcel in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <strong>Jack in the Box · Central Los Angeles</strong>
+      <span>Single-tenant net lease · expiry window 2030–2035 (per owner brief, unverified)</span>
+      <span class="tag">Anonymous</span>
+    </div>
+  </div>
+  <nav class="groups" aria-label="Site sections"><div class="grp"><span class="lbl">Decide</span><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html">Decision gates</a><a href="verification.html">Verification ledger</a><a href="requirements.html">Requirements</a><a href="flagged.html">Flagged for review</a></div><div class="grp"><span class="lbl">Analyse</span><a href="trade-area.html">Trade area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs hold</a><a href="calculator.html">Private calculator</a><a href="risks.html">Risks</a></div><div class="grp"><span class="lbl">Workspace</span><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="sources.html">Sources</a><a href="printable-summary.html">Printable summary</a><a href="privacy.html" aria-current="page">Privacy</a></div></nav>
+</header>
+<main>
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only · verified 2026-11-26</p>
+  <h1>Privacy and workspace rules</h1>
+  <p>What is published, what is withheld, how the two layers are separated, and the threats this design reduces.</p>
+
+</div>
+
+<div class="callout ok">
+  <b>Privacy is the first constraint on this project, not a footnote.</b> The property is identifiable from a
+  street address, a parcel number, or a lease document. Those three things are therefore never published, and
+  the owner's finances never leave the adviser group. What is published is aggregate and non-identifying.
+</div>
+
+<h2>What is published, and what is not</h2>
+<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>Item</th><th>Published here?</th><th>Where it lives instead</th></tr></thead><tbody>
+<tr><td>Street address</td><td><span class="pill bad">No</span></td><td>Access-controlled internal workspace</td></tr>
+<tr><td>Parcel number / APN</td><td><span class="pill bad">No</span></td><td>Internal workspace</td></tr>
+<tr><td>Owner name or entity</td><td><span class="pill bad">No</span></td><td>Internal workspace, counsel</td></tr>
+<tr><td>Lease document, amendments, estoppel</td><td><span class="pill bad">No</span></td><td>Internal workspace, counsel</td></tr>
+<tr><td>Rent roll, operating statements, tax returns</td><td><span class="pill bad">No</span></td><td>Internal workspace, accountant</td></tr>
+<tr><td>Insurance quotes and loss history</td><td><span class="pill bad">No</span></td><td>Broker, internal workspace</td></tr>
+<tr><td>Broker opinions and buyer identities</td><td><span class="pill bad">No</span></td><td>Broker, internal workspace</td></tr>
+<tr><td>Regional statistics and statutory rates</td><td><span class="pill ok">Yes</span></td><td>Published with the official source link</td></tr>
+<tr><td>Tenant's public filings</td><td><span class="pill ok">Yes</span></td><td>Published with the filing link</td></tr>
+<tr><td>Decision gates, questions, risk register</td><td><span class="pill ok">Yes</span></td><td>Published as method, without identifiers</td></tr>
+</tbody></table></div>
+
+<h2>Placeholders used on this site</h2>
+<ul>
+  <li><code>[PARCEL — WITHHELD]</code> — stands in for the address, parcel number and any description
+  that would locate the property.</li>
+  <li><code>[OWNER — WITHHELD]</code> — stands in for the owner, the holding entity, and any guarantor.</li>
+  <li><code>[LEASE EXPIRY — 2030–2035 per owner brief — UNVERIFIED]</code> — the expiry window comes from the owner's brief and has not been
+  verified against the lease.</li>
+</ul>
+
+<h2>How the workspace is separated</h2>
+<ol>
+  <li><b>Public layer.</b> This static site. It is generated from a data file that contains no identifiers, so an
+  identifier cannot leak into a page by accident.</li>
+  <li><b>Internal layer.</b> The lease abstract, title work, hazard determinations, insurance quotes, broker
+  opinions and tax computation, held by the advisers who need them, under access control.</li>
+  <li><b>Transfer rule.</b> Only a value that is both non-identifying and independently verified crosses from the
+  internal layer to the public layer, and it crosses with its source and date.</li>
+  <li><b>No upload path.</b> The public site has no form, no upload and no analytics. The calculator runs in the
+  browser and sends nothing.</li>
+</ol>
+
+<h2>Threats this addresses</h2>
+<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>Threat</th><th>How it is reduced</th><th>Residual risk</th></tr></thead><tbody>
+<tr><td>A buyer or competitor identifies the parcel from public material</td><td>No address, parcel number, or unique combination of details; placeholders only</td><td>Local readers may still infer the property from context</td></tr>
+<tr><td>Owner finances become public</td><td>Basis, depreciation, entity and returns never published</td><td>Adviser-side handling errors</td></tr>
+<tr><td>Lease terms leak and weaken negotiation</td><td>Abstract held by counsel; only the expiry window is mentioned, labelled unverified</td><td>Discussion outside the adviser group</td></tr>
+<tr><td>Accidental publication through a build or a commit</td><td>Generator reads a data file with no identifier fields; automated scan fails the build on identifier patterns</td><td>A deliberate manual override</td></tr>
+<tr><td>Tracking of the reader</td><td>No scripts beyond the calculator, no cookies, no fonts or assets from third parties</td><td>Hosting-provider logs</td></tr>
+</tbody></table></div>
+
+<h2>Operating rules for anyone working on this project</h2>
+<ul>
+  <li>Never commit a lease, a rent roll, a tax return, an insurance quote or a parcel identifier to this repository.</li>
+  <li>Never paste such a document into a public issue, a pull request description or a commit message.</li>
+  <li>Use the placeholders above in any page, memo or summary that leaves the adviser group.</li>
+  <li>Run the identifier scan before publishing; it is part of the build, not an optional extra.</li>
+  <li>If an identifier is published by mistake, treat it as an incident: remove it, record it, and tell the owner.</li>
+</ul>
+
+<h2>Scope of this policy</h2>
+<p>This policy governs this repository and the pages published from it. It does not replace the owner's own
+confidentiality agreements with brokers, tenants, lenders or advisers, and it does not address legal discovery or
+regulatory requests, which belong with counsel.</p>
+
+</main>
+
+<footer class="site"><div class="inner">
+  <p><b>Privacy.</b> No owner name, entity, street address, parcel number, lease file or owner
+  financial record appears on this site. Identifiers are replaced with placeholders and the
+  underlying records stay in an access-controlled internal workspace. Only aggregate,
+  non-identifying findings are published. <a href="privacy.html">Privacy and workspace rules</a>.</p>
+  <p><b>Verification.</b> Every published figure links to the official page that printed it and was
+  read during the sweep dated 2026-11-26. Where a value could not be confirmed it is left blank
+  and listed on <a href="flagged.html">Flagged for review</a>. No value is inferred, estimated or
+  copied from another dashboard. <a href="verification.html">Verification ledger</a>.</p>
+  <p><b>No winner selected.</b> Nothing here recommends selling or renewing. The evidence needed to
+  price either branch is not yet in hand, and this site does not forecast. It is not legal, tax,
+  appraisal or investment advice; engage licensed advisers before acting.</p>
+  <p class="noprint">Consolidated workspace, session 88ea335a, generated from <code>data/root.json</code>.
+  Earlier parallel dashboards are kept in <a href="index.html#archive">the archive</a> with their cut-off dates.</p>
+</div></footer>
+
+
+</body>
+</html>

@@ -56,10 +56,10 @@
 ## Current review claim — session `0b940455`
 
 - **Task:** T-14 — final integration audit, privacy scrub, and landing-page/README cleanup.
-- **Status:** done (this PR's checks and deployment still pending).
+- **Status:** implementation complete; PR #23 open. Local validation passed against the latest main integration; PR CI and Pages deployment for this change are pending.
 - **Branch:** `arena/0b940455-jackbox2` (active session branch; no branch switch).
 - **File scope:** `README.md`, root `index.html`, this board, and the Central LA dashboard pages/data for source reconciliation, privacy, and calculator qualification; no other dashboard source data changed.
-- **Non-overlap:** older dashboards remain available but are labeled archival/supporting in README and are not linked as current routes from the root landing page.
+- **Integration:** the latest main branch consolidated the root dashboard after this work began. During rebase/merge, retained that newer root dashboard and README, while keeping the Central LA refresh accessible as a distinct dated workspace; no unrelated main changes were discarded.
 
 
 ### T-14 audit results — session `0b940455`
@@ -70,8 +70,9 @@
 - Corrected market table sourcing for population, density, income, poverty, housing tenure/value, LAUSD enrollment/graduation/K-12 projection, wage, transit and SCAG forecast rows. Parcel AADT, competitor counts, and broker BOVs remain blank and flagged; no proxy or quote was fabricated. Added multiple official links where a single row combines separate agency facts.
 - Corrected tax communication: federal LTCG and unrecaptured §1250 ceilings are distinct components, not a flat rate to add together. Calculator now says it has no broker quotes preloaded and is provisional scenario arithmetic, not a tax engine or back-tested parcel forecast; requires CPA-determined gain components.
 - Official pages opened during this audit: SEC EDGAR Q3 FY2026 earnings release and Nov 2026 8-K; IRS Topic 409; USGS UCERF3 FAQ; City of LA Finance Measure ULA FAQ; City of LA 2026 wage notice; Census QuickFacts (city and county); CA DOF E-1 2026 and 2026 K-12 projections; BLS metropolitan employment and unemployment; U.S. Treasury daily yields; CDE LAUSD profile and California School Dashboard; LA Metro D Line; SCAG Connect SoCal 2024 growth forecast. The Census table and CA DOF series dates were explicitly reconciled. Sources are evidence only for the cited public fact, never parcel characteristics.
-- Checks passed: `python3 tests/check_site.py`; `node tests/calc.test.js`; `python3 tools/check.py`; `python3 privacy-first/tests/check.py`; `python3 alternative-research/tests/check.py`; and from `central-la-2026/`, `node scripts/verify_site.mjs` plus `node scripts/test_runtime.mjs`. External-site availability/content is not established by structural tests; the source review above is targeted, not an audit of every historical dashboard statement.
-- Remaining limits: no private lease abstract, notice calendar, owner tax basis, sale/renewal quotes, exact tract set, school catchment, parcel hazards/insurance, or comparable sale history was obtained. No projection is calibrated/back-tested. Review remaining items on `central-la-2026/flagged-review.html` before commitment.
+- Checks passed on the integrated working tree: `python3 tests/check_site.py`; `node tests/calc.test.js`; `python3 tools/build.py`; `python3 tools/check.py`; `python3 privacy-first/tests/check.py`; `python3 tests/check_root.py`; `node tests/root_calc.test.js`; `python3 tests/check_dashboard.py`; `node tests/calc_root.test.js`; `cd alternative-research && python3 tests/check.py`; and from `central-la-2026/`, `node scripts/verify_site.mjs` plus `node scripts/test_runtime.mjs`. The consolidated dashboard checker reports one non-fatal warning (`assets/app.js` unreferenced); all structural checks passed. External-site availability/content is not established by these tests; source review was targeted, not an audit of every historical dashboard statement.
+- Follow-up reconciliation: W-01 now leaves LAUSD enrollment unresolved and flags the CDE profile's 497,105 (2025–26) versus School Dashboard's 369,830 (2024–25) counts until CDE clarifies definitions. The BLS +0.5% September 2026 MSA payroll change is labeled not statistically significant, not a parcel/QSR forecast. The landing summary again has a separate blank/unverified Broker BOV and short-lease discount row; the Treasury link is explicitly macro context only, not evidence of a quote.
+- Remaining limits: no private lease abstract, notice calendar, owner tax basis, sale/renewal quotes, exact tract set, school catchment, parcel hazards/insurance, or comparable sale history was obtained. No projection is calibrated/back-tested. Review remaining items on `central-la-2026/flagged-review.html` before commitment. PR #23 is open; its latest run and Pages deployment must be verified after the final merge update.
 
 ## Handoff rule
 
@@ -422,6 +423,121 @@ Verification rule: unchanged — every published value links to an official sour
 
 ---
 
+## Session `88ea335a` — consolidation, verification sweep, root dashboard rebuild
+
+- **Session ID:** `88ea335a` · **Branch:** `arena/88ea335a-jackbox2` (base `58407b8`).
+- **Claim (2026-11-26, committed before work):** T-20–T-27 below. Scope: root site files
+  (`index.html`, `executive-summary.html`, `decision-gates.html`, `trade-area.html`,
+  `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`,
+  `flagged.html`, `printable-summary.html`, `sources.html`, **new** `calculator.html`,
+  `privacy.html`, `verification.html`, `assets/*`, `data/root.json`, `tools/build_root.py`,
+  new `tests/check_root.py`), `README.md`, `COORDINATION.md`. No other session's branch or
+  files are edited; all six existing dashboards (`site/`, `docs/`, `docs/arena-75e09b85/`,
+  `alternative-research/`, `privacy-first/`, `central-la-2026/`) are left intact.
+
+| ID | Task | Status | Owner | Files |
+|----|------|--------|-------|-------|
+| T-20 | Coordination claim + conflict-marker cleanup in `README.md` | in progress | 88ea335a | `COORDINATION.md`, `README.md` |
+| T-21 | Re-verify every published root-dashboard figure against the official source (2026-11-26 sweep) | in progress | 88ea335a | `data/root.json`, `verification.html` |
+| T-22 | Root dashboard rebuild from a sourced data layer (`build_root.py`) | in progress | 88ea335a | `index.html`, `assets/*`, `tools/build_root.py` |
+| T-23 | W-01 trade area, W-03 gates, W-04 hazards pages re-cut to verified-today values | in progress | 88ea335a | `trade-area.html`, `decision-gates.html`, `hazards.html` |
+| T-24 | W-02 sell-vs-hold + after-tax + short-lease discount, plus private browser calculator | in progress | 88ea335a | `sell-vs-hold.html`, `calculator.html` |
+| T-25 | Risks/black-swan, questions-and-missing-information, suggestions register | in progress | 88ea335a | `risks.html`, `questions.html`, `suggestions.html` |
+| T-26 | Flagged-for-Review rebuild + W-10 printable advisor summary | in progress | 88ea335a | `flagged.html`, `printable-summary.html` |
+| T-27 | Link/provenance/privacy check wired into CI, PR to `main`, merge, Pages deploy check | in progress | 88ea335a | `tests/check_root.py`, `.github/workflows/validate.yml` |
+
+**Known irregularities found on arrival (to fix or flag in this session):**
+1. `README.md` contains unresolved merge-conflict markers (`<<<<<<< HEAD` / `=======` /
+   `>>>>>>> origin/main`) committed to `main`.
+2. `alternative-research/tests/check.py` fails with `AssertionError: table row missing source`
+   (exit code 1) — not run by CI, so the failure was invisible.
+3. Root dashboard figures are a 2025 cut-off (Q3 FY2025, −7.1% SSS) while `main` also holds
+   FY2026 filings; the root page still calls itself the entry point.
+4. Six parallel dashboards publish overlapping but differently-dated figures with no single
+   reconciliation page.
+
+### Session `88ea335a` — completion record
+
+**Status: T-20 to T-27 done.** Root site rebuilt from `data/root.json` by `tools/build_root.py`
+(16 pages). Legacy directories were not edited except `site/` being regenerated locally during a CI
+dry-run and then reverted, so no other session's files are part of this change.
+
+| ID | Task | Status | Verification |
+|----|------|--------|--------------|
+| T-20 | Claim, `README.md` conflict markers, arrival irregularities | done | Markers removed; irregularities 1–4 logged on `flagged.html` and below. |
+| T-21 | Re-verify published figures | done | 40 ledger rows: 28 verified on official pages on 2026-11-26, 12 blank + flagged (F-01…F-16 plus duplicates). Sources: SEC 8-K exhibits (Q3 FY2026, Q4/FY2025, Series 2026-1, 17 Nov 2026 C-suite), CA DOF E-1, FRED (CALOSA7POP, MHICA06037A052NCEN, DGS10), BLS (LA MSA, LA CPI), IRS Topic 409, CA FTB 2025 schedules, CA DIR, USGS, CGS, FEMA MSC, CAL FIRE OSFM. |
+| T-22 | Root dashboard rebuild | done | `tools/build_root.py`; generator aborts on an unknown source id and renders an empty cell for any non-verified row. |
+| T-23 | W-01, W-03, W-04 pages | done | Trade-area and parcel hazard rows published blank with the official lookup named; no proxy published as a trade-area fact. |
+| T-24 | W-02, after-tax, short-lease discount, calculator | done | `assets/calc.js` inert; arithmetic and break-even verified independently in `tests/calc_root.test.js`. |
+| T-25 | Risks, questions, suggestions | done | 12 risks, 6 black swans, 28 questions, 15 proposals; site changes left unimplemented for review. |
+| T-26 | Flagged review + W-10 printable summary | done | 20 flagged items with official links; 8 consolidation irregularities. |
+| T-27 | Checks in CI, PR, merge, Pages | done | `tests/check_root.py` + `tests/calc_root.test.js` added to `.github/workflows/validate.yml`; PR and deploy recorded below. |
+
+**What was newly verified in this session (nothing carried over unread):**
+- Q3 FY2026 (12 weeks ended 5 Jul 2026): system same-store sales −1.1% (franchise −1.2%, company
+  −0.9%); 4 openings, 17 closures; 2,115 units (149 company + 1,966 franchise); franchise rental
+  revenues US$242.5m for 40 weeks vs US$260.3m; systemwide sales US$944.1m; total revenues
+  US$257.7m; FY2026 guidance ~2,100 units and a low-single-digit decline.
+- FY2025 (52 weeks ended 28 Sep 2025): system −4.2%, Q4 −7.4%; 31 openings / 86 closures;
+  2,136 units; consolidated franchise rental revenues US$368.6m (FY2024 US$375.4m); FY2025 net
+  loss US$80.7m; goodwill impairment US$209.6m.
+- Series 2026-1: US$500m 7.624% Class A-2 notes, ARD May 2031, US$150m variable funding facility.
+- 17 Nov 2026 8-K: CFO departs 2 Apr 2027; COO promoted; CEO succession planned.
+- CA DOF E-1 (1 Jan 2026): LA County about 9.8m, −64,000; state 39,593,000 (−0.14%); 11,160
+  housing units lost to the Eaton and Palisades fires.
+- FRED/Census: county population 9,694,934 (2025) vs 9,810,478 (2021); median household income
+  US$90,757 (2024) vs US$77,356 (2021).
+- BLS: unemployment 4.4% (Sep 2026p); nonfarm payroll 6,371.5k (Oct 2026p, +0.9%); LA CPI-U
+  360.965 (Oct 2026, +0.6% m/m) with the 12-month cell unavailable because October 2025 was not
+  collected during the funding lapse.
+- IRS Topic 409 (2025 thresholds, §1250 max 25%), CA FTB 2025 schedules (12.3% top), CA DIR
+  (US$16.90 state, US$20.00 fast food), Treasury 10-year 4.91% (24 Nov 2026).
+- USGS UCERF3 probabilities (60% / 46% / 31%); CGS EQ Zapp (updated 18 Nov 2026); FEMA MSC;
+  CAL FIRE FHSZ (2026 SRA comment window 9 Nov 2026 – 8 Jan 2027).
+
+**Could not be verified (blank + flagged, no substitute used):** Q4 FY2026 filings (none on EDGAR
+at the sweep date); 2026 federal capital-gain thresholds; NIIT rate; California 1% surcharge;
+city/county transfer taxes; Proposition 13 levy; city median income; city minimum wage; parcel
+zone determinations; insurance terms; seismic condition; school, traffic and competitor data;
+short-lease comparable set; owner basis and entity.
+
+**Pages that did not respond during the sweep:** Census QuickFacts; `finance.lacity.gov` /
+`lacity.gov`; `rrcc.lacounty.gov`; `boe.ca.gov`; CDE DataQuest. Each affected value is blank with the
+official URL published for manual review.
+
+**Tests run before merge:** `tests/check_root.py` (pass), `tests/calc_root.test.js` (pass),
+`tests/check_site.py` (pass), `tests/calc.test.js` (pass), `tools/build.py` + `tools/check.py`
+(pass), `privacy-first/tests/check.py` (pass). `alternative-research/tests/check.py` still fails
+(`AssertionError: table row missing source`) — pre-existing, outside this session's scope, logged
+rather than edited.
+
+### Session `88ea335a` — merge resolution with main @ `6896d3a` (PRs #17–#20)
+
+Main advanced while this branch was in progress; sessions `2e15994d` and `7e425bfb` had already
+touched the same root files, fixed `README.md` and added their own `tests/check_root.py` and
+`tests/root_calc.test.js`. Resolution, with nothing discarded:
+
+1. **Root pages** — rebuilt from `data/root.json`, so the consolidated 16-page site stands. All
+   source links that session `7e425bfb` added remain present, because the generator attaches a
+   source to every ledger row by construction.
+2. **`tests/check_root.py`** — kept as main's repo-wide integration check (conflict markers, every
+   local link, PII, calculator isolation). This session's dashboard-specific check moved to
+   `tests/check_dashboard.py` rather than overwriting it.
+3. **`tests/root_calc.test.js` and `assets/app.js`** — kept and still passing. The legacy
+   calculator script is retained and unit-tested even though the new pages use `assets/calc.js`.
+4. **Provenance rule** — the repo-wide check now recognises a table explicitly marked
+   `class="nosource"` as a register, legend, method or archive of links. No table that carries a
+   figure is exempt: every ledger row still needs an official `https://` link, and the dashboard
+   check independently fails any row that shows a Verified badge without one.
+5. **Workflow** — both sessions' steps run, deduplicated: 11 checks, all passing locally.
+6. **Values not restated** — session `7e425bfb` reports live verification of Measure ULA
+   thresholds, Census QuickFacts city and county detail, and a 25 November Treasury close. Those
+   pages did not load, or were not re-read, during this session's sweep, so the values remain on
+   that session's dashboards but are not restated in this ledger. They are listed for manual
+   review on the flagged page rather than merged on trust.
+
+---
+
 ## Handoff / claim — session `2a14dbc0` (2026-11-26)
 
 The latest prior integration entry was `arena/ae0d8ac3-jackbox2`, dated 2026-11-25; its work is marked complete and no active work/commits were found for more than 60 minutes. Per the handoff rule, this session takes over one focused audit/remediation task. The older `arena-21b26fee` board's site/data claim is stale; no work is being coordinated in parallel in this workspace.
@@ -450,3 +566,10 @@ Merged updated `origin/main` containing PRs #17–#20. `COORDINATION.md` and `RE
 ### Push synchronization note — session `2a14dbc0`
 
 Immediately before publishing, `git pull --rebase origin arena/2a14dbc0-jackbox2` attempted to replay the already-merged `origin/main` history on top of the session branch and conflicted in `COORDINATION.md` at the parallel session `7e425bfb` claim. The rebase was aborted without changing commits. `origin/main` had already been merged into this branch in `9d46816`, preserving PR #17–#20 and both coordination histories. Do not replay those main commits a second time; the session branch remains a fast-forward descendant of its remote claim commit. A normal fast-forward push is used to retain the verified merge history without rewriting or dropping another session's work.
+
+### PR #21 integration and publication record — session `2a14dbc0`
+
+- **PR:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/21 — merged to `main` at `2026-11-26T13:18:26Z`; merge commit `884cb6d1558ad60a30e9ff4ffe7c231d67aca22c`.
+- **PR validation:** `Validate static site` passed on the PR (`gh pr checks 21 --watch`; validate job success).
+- **Pages publication:** `pages build and deployment` run `45827866818` completed successfully; build, deploy and report-build-status jobs passed for the merge commit. Pages API returned a successful build status.
+- **Public entry points:** https://kanlerxz87-cyber.github.io/Jackbox2/ and the analytical dashboard at https://kanlerxz87-cyber.github.io/Jackbox2/site/ . Publication status is verified from GitHub Pages build/deploy; this session did not separately browser-fetch every dashboard page after deployment.

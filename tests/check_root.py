@@ -45,10 +45,17 @@ class RootTableParser(HTMLParser):
         super().__init__()
         self.row = None
         self.unsourced = 0
+        self.nosource_depth = 0
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
-        if tag == "tr":
+        if tag == "table":
+            # A table explicitly marked nosource is a register, legend, method or
+            # archive of links: it carries no figure, so it cannot carry a source.
+            if "nosource" in (a.get("class") or ""):
+                self.nosource_depth += 1
+                return
+        if tag == "tr" and self.nosource_depth == 0:
             self.row = {"td": False, "https": False}
         if tag == "td" and self.row is not None:
             self.row["td"] = True
@@ -61,6 +68,8 @@ class RootTableParser(HTMLParser):
             if self.row["td"] and not self.row["https"]:
                 self.unsourced += 1
             self.row = None
+        if tag == "table" and self.nosource_depth:
+            self.nosource_depth -= 1
 
 root_pages = sorted(ROOT.glob("*.html"))
 for page in root_pages:
@@ -91,10 +100,15 @@ for p in sorted(ROOT.rglob("*")):
             errors.append(f"PII pattern ({label}) in {p.relative_to(ROOT)}: {m.group(0)!r}")
 
 # 5. Root calculator must remain offline / storage-free
-app_js = (ROOT / "assets" / "app.js").read_text(encoding="utf-8")
-for forbidden in ["fetch(", "XMLHttpRequest", "localStorage", "sessionStorage", "document.cookie", "navigator.sendBeacon"]:
-    if forbidden in app_js:
-        errors.append(f"assets/app.js contains forbidden API: {forbidden}")
+for script in ("assets/app.js", "assets/calc.js"):
+    script_path = ROOT / script
+    if not script_path.is_file():
+        errors.append(f"missing calculator script: {script}")
+        continue
+    js = script_path.read_text(encoding="utf-8")
+    for forbidden in ["fetch(", "XMLHttpRequest", "localStorage", "sessionStorage", "document.cookie", "navigator.sendBeacon"]:
+        if forbidden in js:
+            errors.append(f"{script} contains forbidden API: {forbidden}")
 
 if errors:
     print("\n".join(errors))
