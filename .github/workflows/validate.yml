@@ -11,16 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Consolidated dashboard (root site): provenance, links, privacy, calculator
+      # Consolidated dashboard: structural checks cannot replace a source audit.
       - name: Consolidated dashboard provenance, links and privacy
         run: python3 tests/check_dashboard.py
-      - name: Test consolidated private calculator
+      - name: Every canonical row, input label, privacy guard and reproducible build
+        run: python3 tests/root_check.py
+      - name: Test published worksheet markup and after-tax arithmetic
         run: node tests/calc_root.test.js
+      - name: Test worksheet validation, quotes and browser behavior
+        run: node tests/root_calculator.test.js
+      - name: Verify supported root build is reproducible
+        run: |
+          python3 tools/build_root.py
+          git diff --exit-code -- '*.html' assets/calc.js
 
       # Repo-wide integration: conflict markers, all local links, root table provenance, PII, calculator isolation
       - name: Repo-wide links, conflict markers, PII scan and root table provenance
         run: python3 tests/check_root.py
-      - name: Test legacy root calculator arithmetic
+      - name: Test worksheet regression cases
         run: node tests/root_calc.test.js
 
       # Analytical dashboard (site/) rebuilt from its own data layer

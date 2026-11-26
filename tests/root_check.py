@@ -126,6 +126,8 @@ for path, parsed in pages.items():
             parsed.fail(f'broken local anchor: {url}')
 
 js = (ROOT / 'assets/app.js').read_text(encoding='utf-8')
+if (ROOT / 'assets/calc.js').read_text(encoding='utf-8') != js:
+    ERRORS.append('generated worksheet engine differs from its reviewed source')
 if re.search(r'\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|sendBeacon|localStorage|sessionStorage|indexedDB)\b|document\s*\.\s*cookie', js):
     ERRORS.append('worksheet contains a network or persistent-storage capability')
 

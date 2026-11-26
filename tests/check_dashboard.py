@@ -28,7 +28,9 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "root.json"
 
 ALLOWED_HOSTS = {
-    "www.sec.gov", "sec.gov",
+    "www.sec.gov", "sec.gov", "www.investor.gov",
+    "investors.jackinthebox.com",  # issuer-primary earnings and calendar
+    "www.nist.gov", "www.cde.ca.gov", "planning.lacity.gov", "wagesla.lacity.gov", "www.occ.gov",
     "www.bls.gov", "data.bls.gov",
     "www.census.gov", "api.census.gov",
     "www.irs.gov",
@@ -240,7 +242,7 @@ else:
 
 # --------------------------------------------------------------- dead assets
 for asset in sorted((ROOT / "assets").glob("*")):
-    if asset.name in {"style.css", "calc.js"}:
+    if asset.name in {"style.css", "calc.js", "app.js"}:  # app.js is the tested source for generated calc.js
         continue
     if not any(asset.name in (ROOT / n).read_text(encoding="utf-8") for n in HTML_FILES):
         warns.append(f"assets/{asset.name}: not referenced by any page")
