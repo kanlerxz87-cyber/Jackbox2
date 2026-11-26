@@ -55,7 +55,7 @@
       "ownerRole": "CPA + 3 Independent SoCal NNN Brokers + Land Broker",
       "defaultStatus": "blocked",
       "publicStatus": "BLOCKED — Requires Real Broker BOVs & Private Tax Basis",
-      "blockingItems": "Obtain 3 written BOVs pricing BOTH current WALT and extended 10–15 yr WALT + unencumbered vacant land value; obtain CPA verified adjusted basis, Sec. 1250 depreciation recapture, CA/Federal rates, Measure ULA impact, and §1031 vs. Prop 19 estate comparison; run & back-test versioned W-02 model.",
+      "blockingItems": "Obtain 3 written BOVs pricing BOTH current WALT and extended 10–15 yr WALT + unencumbered vacant land value; obtain CPA verified adjusted basis, CPA-determined unrecaptured §1250 gain component, CA/Federal rates, Measure ULA impact, and §1031 vs. Prop 19 estate comparison; run & back-test versioned W-02 model.",
       "exitCriteria": "Audited, apples-to-apples after-tax Net Present Value & wealth-risk comparison across Sell Taxable, Sell §1031, Early Renewal/Blend-and-Extend, and Hold-to-Expiry.",
       "sourceLabel": "IRS Form 8824, IRS Topic 409, CA FTB & U.S. Treasury",
       "sourceUrl": "https://www.irs.gov/pub/irs-pdf/i8824.pdf"
