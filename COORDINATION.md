@@ -354,3 +354,17 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
+
+---
+
+## Active integration claim — session `27fc43e8` (2026-11-26)
+
+The Arena-assigned current branch is `arena/27fc43e8-jackbox2`; branch naming cannot be changed in this session. Existing task claims above are complete or need review, not active. The last published root calculator compares a pre-tax hold with an after-tax sale and fills missing values with defaults; that inconsistency requires immediate correction. Multiple older dashboards and an unresolved README merge-marker artifact also require clear disclosure. No owner or parcel information is to be added.
+
+| ID | Task | Status | Owner session | Exclusive file scope |
+|---|---|---|---|---|
+| I27-01 | Integrate a single privacy-first root dashboard, official-source evidence, gates, risk, questions, suggestions, printable brief and safe like-for-like calculator | in progress | 27fc43e8 | root `*.html`, `assets/style.css`, `assets/app.js` |
+| I27-02 | Verify root links, row provenance, privacy and calculator behavior; integrate tests with CI | in progress | 27fc43e8 | `tests/root_*`, `.github/workflows/validate.yml` |
+| I27-03 | Documentation, discrepancy log, final integration/PR/Pages verification | in progress | 27fc43e8 | `README.md`, `COORDINATION.md` |
+
+Scope does not include any existing alternate dashboard or another session's incomplete claim. Sensitive data remain offline with authorized advisers. Unknown trade-area, parcel, tax, lease, insurance and quote values will remain blank and publicly flagged. The public calculator must not store or transmit inputs and must not invent tax parameters or rank paths with missing data.
