@@ -625,3 +625,15 @@ Reviewing the live flagged page found two rows whose "official link" did not mat
 Both rows remain blank and flagged; only the check and its link changed. Source register is now 27 entries.
 This is the failure mode to watch for in any future session: a link that resolves is not the same as a link
 that answers the question.
+
+---
+
+## Post-publication audit — session `1f0cdd85` (in progress)
+
+- **Branch:** `arena/1f0cdd85-jackbox2` (current Arena branch; no branch changes permitted).
+- **Task P-01:** Verify the public repository line-by-line for privacy, internal links, source-link provenance, stale/conflicting public copy, and deploy readiness; remedy only reproducible defects and publish an auditable remediation record.
+- **Status:** in progress.
+- **Owner:** `1f0cdd85`.
+- **Exclusive file scope:** `COORDINATION.md`, `README.md`, `index.html`, `assets/style.css`, `.github/workflows/validate.yml`, `tools/public_site_audit.py`, `tests/test_public_site_audit.py`, `audit/` (new), and any new root-level audit documentation explicitly added by this task. Existing dashboard content is read-only unless a verifier proves a public defect that must be remediated and the scope is expanded here before the edit.
+- **Guardrails:** No exact address, APN, owner identity, lease document, tenant sales, or owner tax/financial data will be added. Aggregate context remains context only; unverified facts stay blank and are flagged. No sell/hold or renewal winner will be selected without verified private inputs and qualified advice.
+- **Claim commit:** pending.
