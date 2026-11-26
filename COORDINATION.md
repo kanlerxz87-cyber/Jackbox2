@@ -52,6 +52,14 @@
 - GitHub Pages: https://kanlerxz87-cyber.github.io/Jackbox2/ — status `built`, deploy run `45625826028` success.
 - Verification: internal link check passed (12 pages); every table row links to an official source; unverified = blank + flagged (F1–F10). No winner selected.
 
+## Current review claim — session `0b940455`
+
+- **Task:** T-13 — final integration audit, privacy scrub, and landing-page/README cleanup.
+- **Status:** in progress.
+- **Branch:** `arena/0b940455-jackbox2` (the active session branch; do not switch branches).
+- **File scope:** `README.md`, `index.html`, `COORDINATION.md`, and privacy-related executive transition text in `central-la-2026/{index.html,advisor-summary.html,data/tenant.json,assets/js/data-bundle.js}`.
+- **Non-overlap:** prior dashboards and their data are not otherwise being changed. The aim is to remove the extant README conflict markers, make the current dated dashboard discoverable, and omit personal names from public output in line with the privacy requirement.
+
 ## Handoff rule
 
 If a claim is >60 min old with no commits, another session may take over and

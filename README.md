@@ -1,49 +1,57 @@
-# Jack in the Box — Central LA Decision Dashboard
+# Jack in the Box — Central Los Angeles property decision workspace
 
-Anonymous sell-vs-hold decision workspace for one Central Los Angeles Jack in the Box NNN parcel (expiry 2030–2035, per brief).
+A public, static evidence and decision-support site for an **anonymous** Jack in the Box NNN property described in the project brief as being in the Central Los Angeles area, with a lease-expiry window of 2030–2035. Those property and lease particulars are user-supplied, not independently verified.
 
-**Privacy:** No personal identifiers, APN, lease files, or owner finances are published. Placeholders only (`[PARCEL — WITHHELD]`). Publish only aggregate, non-identifying findings.
+## Start here
 
-**Verification:** Every table row links to an official source (SEC, Census, BLS, FRED, IRS, USGS, FEMA, CAL FIRE). Unverified values are blank and listed on `flagged.html`. Never inferred.
+- **[Dashboard](index.html)** — landing page and current-workspace navigation.
+- **[Central LA 2026 evidence workspace](central-la-2026/index.html)** — latest dated workstream dashboard (evidence cutoff stated on its pages); includes trade-area evidence framework, tenant disclosures, hazard framework, gate board, browser-only calculator, questions, suggestions, advisor summary, and Flagged for Review.
+- **[Flagged for Review](central-la-2026/flagged-review.html)** — missing private inputs, unresolved geography, pending data, and limitations.
+- **[Printable advisor summary](central-la-2026/advisor-summary.html)**.
+- **[Privacy-first workflow](privacy-first/index.html)** — additional privacy and process materials.
 
-## Site map (GitHub Pages, static — no build step)
+Other analytical and historical dashboards are retained in `site/`, `docs/`, `alternative-research/`, and `docs/arena-75e09b85/`. Their reporting cutoffs and scope differ. They are supporting/archival material, not interchangeable snapshots; use the dated source and limitations on each page. Do not treat older dashboard values as current.
 
-| Page | Purpose |
-|------|---------|
-| `index.html` | Landing dashboard + key verified findings |
-| `executive-summary.html` | Bottom line, knowns/unknowns, recommended path |
-| `decision-gates.html` | W-03 progress board (no commitment until gates clear) |
-| `trade-area.html` | W-01 county context + blank tract table (pending APN) |
-| `hazards.html` | W-04 parcel hazard screening framework |
-| `sell-vs-hold.html` | W-02 after-tax comparison + private browser calculator |
-| `risks.html` | Risks per decision + black-swan stress tests |
-| `questions.html` | Open questions + missing-info discovery plan |
-| `suggestions.html` | Suggestions backlog (review before implementing) |
-| `flagged.html` | Flagged for Review (blank/unverified + irregularities) |
-| `printable-summary.html` | W-10 one-page printable advisor summary |
-| `sources.html` | Official source list |
+## Decision posture
 
-See `COORDINATION.md` for the shared task board and session log.
+**No sell, renew, or hold winner is selected.** The public workspace does not contain the executed lease, verified notice deadlines, parcel identity, verified rent/NOI, basis/depreciation, broker bids, exact tract set, or parcel-level hazard/insurance determinations. The brief's expiry window is not a substitute for a lease abstract. A decision should follow the documented gates and private verification with authorized legal, tax, brokerage, and insurance advisers.
 
----
+## Privacy boundary
 
-## This repository contains seven dashboards
+This repository and the GitHub Pages site are public. They are **not** an access-controlled internal workspace. Do not add an owner name, address, APN, lease file, owner financial information, contact details, or other identifying information here. Keep those materials offline in a suitably access-controlled adviser workflow. The calculator runs in the reader's browser and does not provide a secure vault; do not enter sensitive facts on a shared or untrusted device. Public reporting should remain aggregate and non-identifying.
 
-Multiple parallel sessions built dashboards before seeing the others' branches. Rather than
-delete work, all are retained. They do not contradict each other on any verified figure; they
-differ in structure, depth, and filing cutoff date.
+## Verification policy
 
-| Dashboard | Entry point | Character |
-|---|---|---|
-| Root dashboard | `index.html` | Entry point. Seven decision gates, executive summary, key findings, browser calculator. |
-| **Central LA 2026 Refresh (Nov 2026 verified)** | `central-la-2026/index.html` | Latest filing cutoff (verified 2026-11-25, spot-checked 2026-11-26): 11-page W-01–W-10 dashboard incorporating Jack in the Box FY2022–Q3 FY2026 SEC series (Del Taco sale Dec 2025, `$500M` Series 2026-1 `7.624%` refinancing, Nov 17, 2026 C-suite 8-K), post-June 30, 2026 Measure ULA `$5.4M/$10.9M` cliff detector, May 2026 CA DOF E-1 & Metro D Line Sec. 1 opening, Jan 2025 LA wildfire / CDI FAIR Plan orders, Notice Calendar tool, and 100% client-side W-02 calculator (`v1.0.0-2026.11`). |
-| **Analytical dashboard** | `site/index.html` | Depth. Twelve gates, full evidence ledger, after-tax templates, browser calculator, 12 flagged items. Generated from `data/` by `tools/build.py`. |
-| Alternative research | `alternative-research/index.html` | Independently researched second pass. |
-| Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
-| Privacy-first workflow | `privacy-first/index.html` | Conservative no-fabrication framework: redaction controls, empty/flagged inputs, seven decision gates, risk/Q&A/suggestions registers. |
-| Session `75e09b85` workspace | `docs/arena-75e09b85/index.html` | Anonymized static decision workspace (market research, risk analysis, client-side calculator, flagged review, source registry). |
+- Use primary official sources for public facts where available (SEC EDGAR, Census, BLS, IRS, state/local agencies, USGS, FEMA, CAL FIRE).
+- A linked source supports only the specific public fact stated; it does not verify this private property's attributes.
+- Leave unknown property-specific values blank and list the route to verify them on **Flagged for Review**. Do not infer results from a county or city proxy.
+- Regional hazard rates are context, not parcel hazard status. Brokerage opinions and comparable transactions are not available unless specifically sourced and documented.
+- Model outputs are scenarios, not a forecast, valuation, legal opinion, or tax advice. No recommendation is calculated until verified inputs exist.
 
-The analytical dashboard and the Central LA 2026 Refresh present **later** reporting periods than the root dashboard's Q3 FY2025 headline (Q4/FY2025 filed 19 November 2025; Q3 FY2026 filed 12 August 2026; Form 8-K filed 17 November 2026). Both are cross-referenced on the Flagged for Review pages.
+## Repository layout and checks
 
-No figure in any dashboard is estimated. Where an official value could not be obtained it is
-blank and flagged.
+| Path | Purpose |
+|---|---|
+| `central-la-2026/` | Dated W-01–W-10 dashboard, its JSON evidence, browser scripts, and verification scripts |
+| `index.html`, root `*-*.html` | Public landing and supporting pages |
+| `data/`, `tools/` | Analytical evidence layer, generator, and checks |
+| `privacy-first/`, `site/`, `docs/`, `alternative-research/` | Additional/archival dashboards and supporting documents |
+| `COORDINATION.md` | Historical task log and current audit notes |
+
+Run from repository root:
+
+```sh
+python3 tests/check_site.py
+node tests/calc.test.js
+python3 tools/build.py
+python3 tools/check.py
+python3 privacy-first/tests/check.py
+python3 alternative-research/tests/check.py
+(cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs)
+```
+
+The checks validate local links, provenance markup, data shape, privacy patterns, and calculator/runtime behavior. They do **not** independently verify every external source's current availability or prove every fact correct; source review and flagged limitations remain necessary.
+
+## GitHub Pages
+
+The repository's configured Pages endpoint is [kanlerxz87-cyber.github.io/Jackbox2](https://kanlerxz87-cyber.github.io/Jackbox2/). The primary dated dashboard is available at [`/central-la-2026/`](https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/).
