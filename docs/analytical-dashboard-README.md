@@ -77,10 +77,11 @@ Deployment is automatic on push to `main` via GitHub Actions + GitHub Pages.
 | Tenant total debt / guided EBITDA | ≈7.3× | SEC (derived) |
 | 10-year Treasury | 4.92% | Federal Reserve H.15 via FRED |
 
-**Decision readiness: 0 of 12 gates closed.** The direction of the evidence is legible — the
-weight favours acting, and specifically favours selling once a real price exists. The magnitude
-is not, because rent, term, obligor, basis, price and parcel hazard status are all unknown.
-See the [course of action](https://kanlerxz87-cyber.github.io/Jackbox2/decision.html) page.
+**Decision readiness: 0 of 12 gates closed.** No sell/renew winner can be selected from the
+public and aggregate evidence. Rent, exact term, obligor, basis, offers, renewal terms, parcel
+hazard status, trade-area evidence and owner objectives are missing. Regional and tenant-wide
+observations are context only, not parcel-level proof. See the
+[decision process](https://kanlerxz87-cyber.github.io/Jackbox2/decision.html).
 
 ## Flagged items
 
