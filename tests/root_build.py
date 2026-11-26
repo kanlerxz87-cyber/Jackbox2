@@ -89,6 +89,8 @@ def nav(active):
         for href, title in items:
             current = ' aria-current="page"' if href == active else ''
             groups.append(f'<a href="{href}"{current}>{escape(title)}</a>')
+    # The independently maintained audit is preserved and linked on every page.
+    groups.append('<a href="audit/index.html">Publication audit</a>')
     return '<nav class="side-nav" aria-label="Site navigation">' + ''.join(groups) + '</nav>'
 
 
@@ -142,6 +144,7 @@ def build():
     body += section('Explore the workspace', 'Follow the questions, not assumptions.', '<div class="card-grid">' + card_link('↗', 'Market & trade area', 'What regional data says, and what only a private local study can answer.', 'trade-area.html', 'Explore market evidence') + card_link('≋', 'Compare the paths', 'An optional, blank-by-default after-tax worksheet for authorized advisers.', 'sell-vs-hold.html', 'Open the worksheet') + card_link('◇', 'Risks & resilience', 'Ordinary risks and joint disaster, rent-loss and exit-liquidity stresses.', 'risks.html', 'Review scenarios') + '</div>')
     body += '<div id="archive">' + section('Earlier dashboards, preserved', 'Historical parallel work is independently maintained and may contain dated evidence, unsupported defaults or inconsistent calculators; review the flags before relying on it.', '<div class="card-grid">' + card_link('01', 'Central LA 2026', 'A prior multi-page research refresh.', 'central-la-2026/index.html', 'Open historical dashboard') + card_link('02', 'Analytical dashboard', 'An earlier data-generated site.', 'site/index.html', 'Open historical dashboard') + card_link('03', 'Other research archives', 'Earlier independent source and privacy frameworks.', 'alternative-research/index.html', 'Open research archive') + '</div><p style="margin-top:12px;font-size:12px"><a href="docs/index.html">Docs archive</a> · <a href="docs/arena-75e09b85/index.html">Additional research</a> · <a href="privacy-first/index.html">Privacy-first framework</a> · <a href="verification.html">Prior integration ledger</a></p>') + '</div>'
     body += '<div class="note warning"><strong>Privacy boundary.</strong> The public site is not an access-controlled workspace. Do not publish an address, parcel number, owner information, lease, financial details, local search results, or adviser documents here. <a href="privacy.html">Read the privacy policy →</a></div>'
+    body += '<p class="lead" style="margin-top:16px;font-size:12px">The public evidence ledger is maintained in data/root.json; see the <a href="verification.html">verification ledger</a> and independent <a href="audit/index.html">publication audit</a> for scope and limitations.</p>'
     page('index.html', 'Dashboard', body)
 
     # Executive summary

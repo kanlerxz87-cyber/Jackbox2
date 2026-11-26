@@ -214,6 +214,9 @@ def nav(active):
             cur = ' aria-current="page"' if f == active else ""
             links.append(f'<a href="{f}"{cur}>{e(label)}</a>')
         out.append(f'<div class="grp"><span class="lbl">{e(group)}</span>{"".join(links)}</div>')
+    # The audit is a nested, static transparency record rather than a generated
+    # evidence page, but it remains visible from every current dashboard page.
+    out.append('<div class="grp"><span class="lbl">Review</span><a href="audit/index.html">Publication audit</a></div>')
     return f'<nav class="groups" aria-label="Site sections">{"".join(out)}</nav>'
 
 

@@ -25,6 +25,7 @@ The immediate recommendation is procedural: have counsel commission a private le
 | `printable-summary.html` | Anonymous, print-oriented adviser brief |
 | `verification.html` / `sources.html` / `flagged.html` / `requirements.html` | Source ledger, reference library, open discrepancies and honest delivery status |
 | `privacy.html` | Public/private boundary and residual risks |
+| `audit/index.html` | Independent publication-integrity audit and limits on archival provenance |
 
 The worksheet does **not** calculate tax, infer a lease discount, forecast a sale price, or recommend a winner. It requires a CPA-supplied incremental sale tax, all sale costs and debt, after-tax annual hold equity cash flows, terminal after-tax equity, and a consistent annual discount rate. All fields are blank; an explicit zero is accepted only when supplied. Quote arithmetic is not a market observation until actual matched quotes are obtained. It cannot replace professional review of basis, §1250, NIIT, California tax, transfer taxes, §1031 timing, entity structure or future cash needs.
 
@@ -42,6 +43,7 @@ node tests/root_calc.test.js                # explicit-zero and invalid-input re
 node tests/root_calculator.test.js          # arithmetic, quotes, clearing and browser harness
 python3 tests/check_site.py && node tests/calc.test.js
 python3 tools/build.py && python3 tools/check.py
+python3 tools/public_site_audit.py && python3 tests/test_public_site_audit.py
 python3 privacy-first/tests/check.py
 (cd alternative-research && python3 tests/check.py)
 (cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs)
