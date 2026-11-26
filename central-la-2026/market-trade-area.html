@@ -149,6 +149,11 @@
     document.addEventListener('DOMContentLoaded', () => {
       const M = window.JACKBOX_DATA && window.JACKBOX_DATA.market;
       if (!M) return;
+      const renderRowSources = (row) => [1, 2, 3, 4, 5, 6].map((n) => {
+        const suffix = n === 1 ? '' : String(n);
+        const url = row[`sourceUrl${suffix}`];
+        return url ? App.renderSourceLink(url, row[`sourceLabel${suffix}`]) : '';
+      }).filter(Boolean).join('<br>') || App.renderSourceLink('', 'No official source');
 
       document.getElementById('w01-tbody').innerHTML = M.indicators.map((r) => `
         <tr data-category="${App.escapeHtml(r.domain)}">
@@ -158,7 +163,7 @@
           <td>${App.renderValueOrBlank(r.parcelTradeArea, 'BLANK — OFFLINE PARCEL WORKFLOW')}</td>
           <td>${App.escapeHtml(r.impact)}</td>
           <td>${App.renderStatusBadge(r.status)}</td>
-          <td>${App.renderSourceLink(r.sourceUrl, r.sourceLabel)}</td>
+          <td>${renderRowSources(r)}</td>
         </tr>
       `).join('');
       App.wireTableFilter('w01-search', 'w01-domain-filter', 'w01-table');
@@ -170,7 +175,7 @@
           <td>${App.escapeHtml(p.upsideCase)}</td>
           <td>${App.escapeHtml(p.downsideCase)}</td>
           <td><span class="badge badge-proxy">${App.escapeHtml(p.classification)}</span></td>
-          <td>${App.renderSourceLink(p.sourceUrl, p.sourceLabel)}</td>
+          <td>${renderRowSources(p)}</td>
         </tr>
       `).join('');
     });

@@ -69,10 +69,12 @@
       "category": "Cross-Agency Data Divergence",
       "severity": "Medium",
       "item": "LA County & City Population Estimate Divergence (U.S. Census V2025 vs. CA DOF Jan 2026 E-1)",
-      "currentStatus": "FLAGGED FOR RECONCILIATION",
-      "details": "U.S. Census QuickFacts shows LA County July 1, 2025 population at 9,694,934 (-3.2% vs. 2020) and marks LA City V2025 as NA (V2024: 3,878,704). CA Dept. of Finance E-1 (May 2026) estimates LA County Jan 1, 2026 at 9,837,286 (-0.6% YoY) and LA City at 3,806,201 (-0.9% YoY).",
-      "manualReviewAction": "Note methodological difference (CA DOF uses housing-unit/driver-license/birth-death records; Census PEP uses federal IRS/Medicare/immigration models). Both confirm negative recent momentum.",
-      "sourceUrl": "https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf"
+      "currentStatus": "FLAGGED — DIFFERENT DATES / METHODS; DO NOT COMPARE DIRECTLY",
+      "details": "Current QuickFacts shows July 1, 2025 V2025 population of 9,694,934 for LA County and 3,869,089 for LA City. CA DOF E-1 shows Jan 1, 2026 values of 9,837,286 (-0.6% YoY) and 3,806,201 (-0.9% YoY), respectively. These dates and estimation methods differ; CA DOF explicitly says the series generally should not be compared directly. Keep the series separate and do not treat their difference as a same-date discrepancy.",
+      "manualReviewAction": "For trend work, select one official series and retain its vintage/date consistently; record the other series only as contextual cross-check, with CA DOF’s comparability warning.",
+      "sourceUrl": "https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf",
+      "sourceUrl2": "https://www.census.gov/quickfacts/losangelescountycalifornia",
+      "sourceUrl3": "https://www.census.gov/quickfacts/losangelescitycalifornia"
     },
     {
       "flagId": "FLG-08",
@@ -103,6 +105,17 @@
       "details": "FY2023–FY2025 consolidated revenue totals in FY2025 10-K included Del Taco, while FY2026 10-Qs moved Del Taco to Discontinued Operations. All figures in our Tenant Analysis table are isolated to the standalone Jack in the Box segment for apples-to-apples continuity.",
       "manualReviewAction": "When reviewing third-party broker OMs or financial aggregators, confirm they are not mixing pre-divestiture consolidated revenues with post-divestiture standalone Jack in the Box revenues.",
       "sourceUrl": "https://www.sec.gov/Archives/edgar/data/807882/000080788226000091/jack-20260705.htm"
+    },
+    {
+      "flagId": "FLG-11",
+      "category": "Cross-Source Definition Conflict",
+      "severity": "Medium",
+      "item": "LAUSD Enrollment Count — CDE District Profile vs California School Dashboard",
+      "currentStatus": "FLAGGED — DO NOT PUBLISH AN ENROLLMENT VALUE UNTIL RECONCILED",
+      "details": "The CDE LAUSD district profile reports enrollment of 497,105 for 2025–26, while the 2025 California School Dashboard reports 369,830. The periods and/or enrollment definitions differ; this dashboard does not determine which population is comparable. The W-01 enrollment cell is therefore explicitly unresolved. The separate 2024–25 graduation-rate figure is not an enrollment count.",
+      "manualReviewAction": "Ask CDE/LAUSD to identify the precise reporting date, student-population definition, and coverage behind each value; then select one consistently defined series. Keep parcel school assignment separate and verify it offline.",
+      "sourceUrl": "https://www.cde.ca.gov/sdprofile/details.aspx?cds=19647330000000",
+      "sourceUrl2": "https://www.caschooldashboard.org/reports/19647330000000/2025"
     }
   ]
 }

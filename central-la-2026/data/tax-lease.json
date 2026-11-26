@@ -14,9 +14,9 @@
     },
     {
       "jurisdiction": "Federal (IRS)",
-      "rule": "Unrecaptured Section 1250 Depreciation Recapture",
-      "verifiedRule": "Maximum 25% federal rate on real property gain attributable to prior straight-line depreciation deductions (limited to total realized gain).",
-      "calculatorDefault": "25.0% on cumulative depreciation",
+      "rule": "Unrecaptured Section 1250 Gain (rate ceiling; not a flat tax on all depreciation)",
+      "verifiedRule": "Maximum 25% federal rate may apply to the eligible unrecaptured §1250 gain component. The component is not automatically equal to total depreciation; determine it under IRS rules from the transaction facts.",
+      "calculatorDefault": "No default tax base: enter the CPA-determined eligible gain component and an applicable rate (maximum 25%)",
       "sourceLabel": "IRS Topic No. 409 & Publication 550 (2025)",
       "sourceUrl": "https://www.irs.gov/publications/p550"
     },
