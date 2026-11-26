@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Post-publication integrity audit for the anonymous Central Los Angeles decision workspace.">
+  <meta name="robots" content="index,follow">
+  <title>Publication Audit — Jack in the Box Central LA Workspace</title>
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>Post-publication audit · privacy and provenance first</small>
+  </div>
+  <nav class="main" aria-label="Audit navigation">
+    <a href="../index.html">Start here</a>
+    <a href="../central-la-2026/index.html">Current dashboard</a>
+    <a href="../central-la-2026/flagged-review.html">Flagged for review</a>
+    <a class="active" href="index.html" aria-current="page">Publication audit</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow">Audit scope P-01 · 2026-11-26</p>
+    <h1>Public-site integrity audit</h1>
+    <p>This page distinguishes a local build-and-provenance check from verification of a property fact. A working link or an allowed government domain is not proof that a private lease, parcel, owner financial record, quote, or tax calculation is correct. Those items stay blank and are flagged.</p>
+    <p><span class="pill info">Current public dashboard: Central LA 2026 Refresh</span> <span class="pill warn">No outcome selected</span> <span class="pill blank">Legacy copies are not current decision surfaces</span></p>
+  </section>
+
+  <section aria-labelledby="scope-heading">
+    <h2 id="scope-heading">What this audit checks</h2>
+    <div class="grid">
+      <article class="card"><h3>Privacy signals</h3><p>Scans public HTML, JSON, CSS, JavaScript, and Markdown for common SSN, email, phone, ZIP, street-address, and parcel-number patterns. It is a safety net, not a guarantee that every sensitive fact is detectable by regex.</p></article>
+      <article class="card"><h3>Link integrity</h3><p>Checks local targets and anchors, blocks insecure HTTP and browser-facing localhost links, and reports direct official-source-link coverage in static tables.</p></article>
+      <article class="card"><h3>Current dashboard behavior</h3><p>The Central LA dashboard’s own verifier validates its JSON records and trusted domains; its runtime test confirms each dynamically rendered table row contains an HTTPS source link.</p></article>
+      <article class="card"><h3>Honest boundary</h3><p>No automated public check can validate private lease terms, parcel zone status, broker quotes, tax basis, or owner objectives. Those remain decision gates, not assumptions.</p></article>
+    </div>
+  </section>
+
+  <section aria-labelledby="findings-heading">
+    <h2 id="findings-heading">Audit findings and remediation</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>ID</th><th>Finding</th><th>Disposition</th><th>Evidence / manual review route</th></tr></thead>
+        <tbody>
+          <tr><td>P-01</td><td>Committed Git conflict markers were present in the public README.</td><td><span class="pill ok">Remediated</span> The README was rewritten without conflict markers and now names the designated current workspace.</td><td><a href="../README.md">Review README</a> · <a href="https://docs.github.com/en/get-started/using-git/resolving-merge-conflicts-after-a-git-rebase">GitHub Docs — resolving merge conflicts</a></td></tr>
+          <tr><td>P-02</td><td>The root landing page exposed an older baseline alongside newer work without a clear primary route.</td><td><span class="pill ok">Remediated</span> The root now directs readers to the Central LA 2026 dashboard, questions, gates, flags, and this audit. It does not select a winner.</td><td><a href="../central-la-2026/index.html">Current dashboard</a> · <a href="../central-la-2026/flagged-review.html">Current flagged review</a></td></tr>
+          <tr><td>P-03</td><td>Historic working copies contain process/register rows that are not all direct evidence rows; the generated <code>site/</code> copy also contains historical directional language.</td><td><span class="pill warn">Flagged + contained</span> The root baseline, <code>site/</code>, selected Docs artifacts, and privacy-first process tables are retained for traceability only. Every generated <code>site/</code> page now carries an archival, non-decisional notice; none of these paths is promoted as the current decision route.</td><td><a href="../site/index.html">Archived analytical copy</a> · <a href="../central-la-2026/decision-gates.html">Use current gates instead</a></td></tr>
+          <tr><td>P-04</td><td>The deploy workflow previously did not execute all independently supplied dashboard verifiers.</td><td><span class="pill ok">Remediated</span> CI now runs the root audit, analytical build checks, alternative-research checker, and Central LA verifier plus runtime test in their required working directories.</td><td><a href="https://github.com/kanlerxz87-cyber/Jackbox2/actions">GitHub Actions — validation history</a></td></tr>
+          <tr><td>P-05</td><td>External sources can change, move, or become unavailable after publication.</td><td><span class="pill warn">Open manual-review item</span> Local checks validate the URL shape, allowed provenance, and rendered link—not the continuing availability or substantive accuracy of the remote document.</td><td><a href="../central-la-2026/flagged-review.html">Current flag register</a> · official routes below</td></tr>
+          <tr><td>P-06</td><td>Parcel-specific facts and owner facts cannot be publicly checked without disclosing protected identifiers.</td><td><span class="pill blank">Intentionally blank</span> Keep them offline; use the secure discovery steps in the current dashboard. This is a privacy control, not a missing estimate.</td><td><a href="../central-la-2026/questions-gaps.html">Questions &amp; discovery plan</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="official-routes-heading">
+    <h2 id="official-routes-heading">Official routes for manual source review</h2>
+    <p class="muted">These are verification routes only. They establish regional, regulatory, or issuer context; no link here validates a withheld parcel-level or owner-level fact.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Area</th><th>Official source</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Issuer filings</td><td><a href="https://www.sec.gov/edgar/browse/?CIK=807882&amp;owner=exclude">SEC EDGAR — Jack in the Box Inc.</a></td><td>Review issuer-filed restaurant, performance, financing, and corporate disclosures.</td></tr>
+          <tr><td>Employment</td><td><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">U.S. Bureau of Labor Statistics — Los Angeles MSA</a></td><td>Review regional labor-market context, never as a parcel trade-area substitute.</td></tr>
+          <tr><td>Population and demographics</td><td><a href="https://www.census.gov/">U.S. Census Bureau</a></td><td>After confidential geocoding, select consistent tracts and retain only anonymous aggregate findings publicly.</td></tr>
+          <tr><td>Federal tax rules</td><td><a href="https://www.irs.gov/taxtopics/tc409">Internal Revenue Service — Topic no. 409</a></td><td>Validate general rules; a CPA must apply them to actual private facts.</td></tr>
+          <tr><td>Flood</td><td><a href="https://msc.fema.gov/portal/home">FEMA Flood Map Service Center</a></td><td>Complete a confidential parcel lookup; do not publish the address or map result here.</td></tr>
+          <tr><td>Earthquake</td><td><a href="https://www.usgs.gov/programs/earthquake-hazards">U.S. Geological Survey — Earthquake Hazards Program</a></td><td>Regional context and screening route; engineering and insurance review remain private.</td></tr>
+          <tr><td>Fire hazard</td><td><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">California OSFM — Fire Hazard Severity Zones</a></td><td>Use confidential location lookup; distinguish zone status from actual insurance availability.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="callout danger" aria-labelledby="no-winner-heading">
+    <h2 id="no-winner-heading">Decision rule remains unchanged</h2>
+    <p><strong>Do not select sell, renew, or hold from public context alone.</strong> A defensible choice requires verified private inputs and aligned dates: lease abstract and notice calendar, tenant/guarantor obligation, rent and capex obligations, parcel-level hazards and insurance, broker bids and renewal terms, owner tax basis/depreciation/entity facts, debt/reinvestment constraints, and written owner objectives.</p>
+  </section>
+
+  <section class="callout info" aria-labelledby="next-heading">
+    <h2 id="next-heading">Review-before-implement improvement path</h2>
+    <p>Review proposed enhancements before adding any data or features. The current Suggestions page includes the secure trade-area workflow, versioned cash-flow model, broker-quote tracker, and hazard-screening improvements—none should publish private information.</p>
+    <p><a href="../central-la-2026/suggestions.html">Open suggestions review queue →</a> · <a href="../central-la-2026/advisor-summary.html">Open printable advisor summary →</a></p>
+  </section>
+</main>
+
+<footer>
+  <p>Audit scope: local integrity and provenance controls · not a valuation, appraisal, legal opinion, tax opinion, or private-record verification</p>
+  <p><a href="../index.html">← Start here</a> · <a href="../central-la-2026/index.html">Current dashboard</a> · <a href="../central-la-2026/flagged-review.html">Flagged for Review</a></p>
+</footer>
+</body>
+</html>

@@ -58,13 +58,23 @@ for page in sorted(SITE.glob("*.html")):
             if host not in ALLOWED_HOSTS:
                 fails.append(f"{page.name}: non-allowlisted external host {host} -> {href}")
             continue
-        # relative
+        # relative. Most links stay inside site/, but the archival notice also links
+        # to the designated current workspace one directory above it.
         target = href.split("#")[0].split("?")[0]
         if not target:
             continue
         if target.startswith("assets/"):
             if target.split("/")[-1] not in ASSETS:
                 fails.append(f"{page.name}: missing asset {target}")
+        elif target.startswith("../"):
+            resolved = (page.parent / target).resolve()
+            try:
+                resolved.relative_to(ROOT.resolve())
+            except ValueError:
+                fails.append(f"{page.name}: relative link escapes repository -> {target}")
+            else:
+                if not resolved.exists():
+                    fails.append(f"{page.name}: broken cross-workspace link -> {target}")
         elif target.endswith(".html"):
             if target not in PAGES:
                 fails.append(f"{page.name}: broken internal link -> {target}")
@@ -141,6 +151,15 @@ for jf in sorted(DATA.glob("*.json")):
         for sid in [p.strip() for p in re.split(r"[/,]", m.group(1)) if p.strip()]:
             if sid not in sources:
                 fails.append(f"{jf.name}: cites unknown source id {sid}")
+
+# Every generated page is deliberately preserved as an archival analytical pass,
+# not a current decision surface. A rebuild must not quietly remove that control.
+for page in SITE.glob("*.html"):
+    t = page.read_text(encoding="utf-8")
+    if "ARCHIVED ANALYTICAL WORKSPACE" not in t:
+        fails.append(f"{page.name}: missing archival no-decision notice")
+    if "../central-la-2026/index.html" not in t:
+        fails.append(f"{page.name}: missing link to current dashboard")
 
 # every page must carry the privacy statement
 for page in SITE.glob("*.html"):
