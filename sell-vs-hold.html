@@ -1,125 +1,20 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sell vs hold — Jack in the Box, Central Los Angeles</title>
-<meta name="description" content="Verified, source-linked decision workspace for one anonymous single-tenant net-lease restaurant parcel in Central Los Angeles. Aggregate findings only; no personal data.">
-<meta name="robots" content="index,follow">
-<link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-<header class="site">
-  <div class="bar">
-    <div class="brand">
-      <strong>Jack in the Box · Central Los Angeles</strong>
-      <span>Single-tenant net lease · expiry window 2030–2035 (per owner brief, unverified)</span>
-      <span class="tag">Anonymous</span>
-    </div>
-  </div>
-  <nav class="groups" aria-label="Site sections"><div class="grp"><span class="lbl">Decide</span><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html">Decision gates</a><a href="verification.html">Verification ledger</a><a href="requirements.html">Requirements</a><a href="flagged.html">Flagged for review</a></div><div class="grp"><span class="lbl">Analyse</span><a href="trade-area.html">Trade area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html" aria-current="page">Sell vs hold</a><a href="calculator.html">Private calculator</a><a href="risks.html">Risks</a></div><div class="grp"><span class="lbl">Workspace</span><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="sources.html">Sources</a><a href="printable-summary.html">Printable summary</a><a href="privacy.html">Privacy</a></div></nav>
-</header>
-<main>
-<div class="hero">
-  <p class="eyebrow">Decision support · aggregate findings only · verified 2026-11-26</p>
-  <h1>Sell vs hold</h1>
-  <p>The after-tax module and the short-lease discount, defined precisely — with the verified tax rules and a refusal to publish a comparison built on missing inputs.</p>
-  
-</div>
-
-<div class="callout danger">
-  <b>W-02, without a winner.</b> A sell-versus-hold comparison needs two numbers computed on the same day from
-  the same inputs: after-tax net sale proceeds, and the present value of holding. Only one of the inputs is
-  available today — the statutory tax rules. The rent, the price, the basis and the exit cap rate are not.
-  So this page publishes the method and the verified rules, and refuses to publish a comparison.
-</div>
-
-<h2>The two numbers, defined</h2>
-<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>Branch</th><th>What is computed</th><th>Inputs it needs</th><th>Inputs in hand</th></tr></thead><tbody>
-<tr><td><b>Sell today</b></td>
-<td>Net proceeds = price − selling costs − transfer taxes − federal tax − state tax.<br>
-Federal tax = recapture × 25% + remaining gain × capital-gain rate + gain × net investment income rate.<br>
-State tax = gain × marginal rate (California does not give a separate rate to capital gains).</td>
-<td>Price, costs, basis, accumulated depreciation, filing status, residency, entity, transfer-tax rates</td>
-<td>Statutory rates only. Price, basis and depreciation are private.</td></tr>
-<tr><td><b>Hold</b></td>
-<td>Net present value = present value of net operating income over the remaining term + present value of the
-terminal sale at the exit cap rate, net of exit costs.</td>
-<td>Rent, escalation, owner-retained costs, vacancy allowance, discount rate, exit cap rate, remaining term</td>
-<td>The Treasury reference only. Rent, term and costs are private.</td></tr>
-</tbody></table></div>
-<p>Because both branches are computed on the same date with the same discount rate, the difference between them
-is a single number the owner can act on: <b>hold value minus after-tax sale proceeds</b>. A positive difference
-favours holding <i>on those inputs</i>; a negative one favours selling. The calculator computes that difference
-and the price at which it becomes zero.</p>
-
-<h2>The after-tax module — verified rules</h2>
-<div class="tablewrap"><table><thead><tr><th>ID</th><th>Item</th><th>Value</th><th>Period</th><th>Official source</th><th>Note</th></tr></thead><tbody><tr><td><code>C-01</code></td><td>10-year Treasury constant maturity yield <span class="pill ok">Verified</span></td><td class="num">4.91%</td><td>24 Nov 2026</td><td><a href="https://fred.stlouisfed.org/series/DGS10" rel="noopener">10-Year Treasury Constant Maturity (DGS10)</a></td><td class="small">4.92% on 23 November; 5.07% on 18 November.</td></tr><tr><td><code>C-02</code></td><td>Long-term capital gain rate — 15% bracket ceiling, single filer <span class="pill ok">Verified</span></td><td class="num">US$533,400 of taxable income</td><td>2025 tax year</td><td><a href="https://www.irs.gov/taxtopics/tc409" rel="noopener">Topic no. 409, Capital gains and losses</a></td><td class="small">0% up to US$48,350; 20% above the 15% ceiling. The page states 2025 thresholds; 2026 thresholds were not shown — flagged F-06.</td></tr><tr><td><code>C-03</code></td><td>Unrecaptured section 1250 gain — maximum federal rate <span class="pill ok">Verified</span></td><td class="num">25%</td><td>2025 tax year</td><td><a href="https://www.irs.gov/taxtopics/tc409" rel="noopener">Topic no. 409, Capital gains and losses</a></td><td class="small">Applies to the part of the gain attributable to prior straight-line depreciation.</td></tr><tr><td><code>C-04</code></td><td>Net investment income tax <span class="pill warn">Unverified</span></td><td class="blank">—</td><td>current</td><td><a href="https://www.irs.gov/taxtopics/tc409" rel="noopener">Topic no. 409, Capital gains and losses</a></td><td class="small">Topic 409 refers to the tax without stating the rate; the rate page (Topic 559) was not retrieved in this sweep. The calculator treats it as a user-supplied input. Flagged F-07.</td></tr><tr><td><code>C-05</code></td><td>California top marginal income tax rate <span class="pill ok">Verified</span></td><td class="num">12.3%</td><td>2025 tax year</td><td><a href="https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf" rel="noopener">2025 California Tax Rate Schedules (Form 540)</a></td><td class="small">Schedule X applies 12.3% above US$742,953 of taxable income for a single filer. The 1% Mental Health Services Tax above US$1 million is not shown on that schedule and is not published here — flagged F-08.</td></tr><tr><td><code>C-06</code></td><td>City of Los Angeles real property transfer tax (Measure ULA) thresholds <span class="pill warn">Unverified</span></td><td class="blank">—</td><td>current</td><td><a href="https://finance.lacity.gov/measure-ula" rel="noopener">Measure ULA (city real property transfer tax)</a></td><td class="small">Office of Finance page did not load. No rate or threshold is published. Flagged F-09.</td></tr><tr><td><code>C-07</code></td><td>Los Angeles County documentary transfer tax rate <span class="pill warn">Unverified</span></td><td class="blank">—</td><td>current</td><td><a href="https://rrcc.lacounty.gov/Document-Transfer-Tax" rel="noopener">Documentary Transfer Tax</a></td><td class="small">Registrar-Recorder page did not load. Flagged F-10.</td></tr><tr><td><code>C-08</code></td><td>Proposition 13 base levy and annual inflation cap <span class="pill warn">Unverified</span></td><td class="blank">—</td><td>current</td><td><a href="https://www.boe.ca.gov/proptaxes/prop13.htm" rel="noopener">Proposition 13 — property tax limitation</a></td><td class="small">Board of Equalization page did not load. Flagged F-11.</td></tr></tbody></table></div>
-<p class="small muted">Where the value cell is empty, the rule could not be confirmed on an official page during
-the sweep, so no rate is shown. Those inputs are set by hand in the calculator.</p>
-
-<h2>Short-lease discount — priced from quotes, not assumed</h2>
-<p>The discount for a short lease is not a single market number; it is the difference between what buyers pay
-for the same rent with a long term and with a short one. It can only be measured from comparable sales and
-broker opinions, using the cap rate each transaction implies:</p>
-<div class="callout info">
-  <b>Method.</b> For the same rent, value is inversely proportional to the cap rate. If a comparable with a
-  long lease trades at cap rate A and a comparable with a short lease trades at cap rate B, the observed
-  short-lease discount is <b>1 − (A ÷ B)</b>, expressed as a percentage. The discount is then applied to the
-  subject's long-lease value to establish what a buyer would pay today.
-  <br><br>
-  Example of the arithmetic only, with invented cap rates to show the shape: 5.50% against 6.75% implies
-  <b>1 − (5.50 ÷ 6.75) = 18.5%</b>. Those numbers are illustrative and are not a market observation. The
-  calculator applies this formula to whatever cap rates the comparable set actually supports.
-</div>
-<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>Comparable</th><th>Character</th><th>Remaining term (years)</th><th>Implied cap rate</th><th>Status</th><th>Source</th></tr></thead>
-<tbody><tr><td>Comparable A</td><td class="small">long lease, same corridor</td><td class="blank">—</td><td class="blank">—</td><td><span class="pill warn">Unverified</span></td><td class="small">Broker opinion comparable set</td></tr><tr><td>Comparable B</td><td class="small">short lease, same corridor</td><td class="blank">—</td><td class="blank">—</td><td><span class="pill warn">Unverified</span></td><td class="small">Broker opinion comparable set</td></tr><tr><td>Comparable C</td><td class="small">short lease, adjacent submarket</td><td class="blank">—</td><td class="blank">—</td><td><span class="pill warn">Unverified</span></td><td class="small">Broker opinion comparable set</td></tr></tbody></table></div>
-<p>Three comparables are not enough for a statistical claim, but they are enough to price a discount honestly,
-provided each one's remaining term and rent are known. A single blended "short-lease discount" quoted without
-comparables should be treated as an assumption.</p>
-
-<h2>What the capital markets currently say</h2>
-<p>The 10-year Treasury closed at 4.91% on 24 November 2026. Separately, the tenant itself raised US$500 million
-of senior secured notes at 7.624% in June 2026, secured partly by real estate and franchise cash flows. A buyer
-of this lease will want a yield above the risk-free rate and above the tenant's own secured cost of debt, since
-a lease claim is unsecured and subordinated in practice. That does not produce a cap rate — only comparable
-sales do — but it does explain why a short lease is unlikely to be priced generously.</p>
-<div class="tablewrap"><table><thead><tr><th>ID</th><th>Item</th><th>Value</th><th>Period</th><th>Official source</th><th>Note</th></tr></thead><tbody><tr><td><code>T-11</code></td><td>Securitised debt issued June 2026 <span class="pill ok">Verified</span></td><td class="num">US$500 million at 7.624%</td><td>closed 23 Jun 2026</td><td><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000079/jack-20260623.htm" rel="noopener">Form 8-K — Series 2026-1 securitisation closing</a></td><td class="small">Class A-2 fixed rate senior secured notes, anticipated repayment date May 2031, legal final 2056; US$150 million variable funding facility. Collateral includes franchise agreements and real estate assets.</td></tr><tr><td><code>C-01</code></td><td>10-year Treasury constant maturity yield <span class="pill ok">Verified</span></td><td class="num">4.91%</td><td>24 Nov 2026</td><td><a href="https://fred.stlouisfed.org/series/DGS10" rel="noopener">10-Year Treasury Constant Maturity (DGS10)</a></td><td class="small">4.92% on 23 November; 5.07% on 18 November.</td></tr></tbody></table></div>
-
-<h2>What would make this page a comparison</h2>
-<ol>
-  <li>A sale price from at least three written broker opinions.</li>
-  <li>The adjusted basis and accumulated depreciation from the accountant.</li>
-  <li>Rent, escalation, remaining term and owner-retained costs from the lease abstract and operating statements.</li>
-  <li>Transfer-tax rates confirmed by escrow, not by memory.</li>
-  <li>A discount rate agreed in advance: either the owner's cost of capital or the Treasury rate plus a stated
-  spread.</li>
-  <li>An exit cap rate supported by comparables, tested at two percentage points either side.</li>
-</ol>
-
-<div class="actions">
-  <a class="btn" href="calculator.html" style="display:inline-block;background:#16324f;color:#fff;padding:10px 16px;border-radius:9px;text-decoration:none;font-weight:600">Open the private calculator</a>
-  <a class="btn secondary" href="questions.html" style="display:inline-block;background:#fff;color:#16324f;border:1px solid #cbd5e1;padding:10px 16px;border-radius:9px;text-decoration:none;font-weight:600">See the questions that unblock it</a>
-</div>
-
-</main>
-
-<footer class="site"><div class="inner">
-  <p><b>Privacy.</b> No owner name, entity, street address, parcel number, lease file or owner
-  financial record appears on this site. Identifiers are replaced with placeholders and the
-  underlying records stay in an access-controlled internal workspace. Only aggregate,
-  non-identifying findings are published. <a href="privacy.html">Privacy and workspace rules</a>.</p>
-  <p><b>Verification.</b> Every published figure links to the official page that printed it and was
-  read during the sweep dated 2026-11-26. Where a value could not be confirmed it is left blank
-  and listed on <a href="flagged.html">Flagged for review</a>. No value is inferred, estimated or
-  copied from another dashboard. <a href="verification.html">Verification ledger</a>.</p>
-  <p><b>No winner selected.</b> Nothing here recommends selling or renewing. The evidence needed to
-  price either branch is not yet in hand, and this site does not forecast. It is not legal, tax,
-  appraisal or investment advice; engage licensed advisers before acting.</p>
-  <p class="noprint">Consolidated workspace, session 88ea335a, generated from <code>data/root.json</code>.
-  Earlier parallel dashboards are kept in <a href="index.html#archive">the archive</a> with their cut-off dates.</p>
-</div></footer>
-
-
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><title>Sell vs. hold · Property Decision Brief</title><link rel="stylesheet" href="assets/style.css"><script src="assets/calc.js" defer></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="app">
+<aside class="sidebar"><a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">◇</span><span class="logo-name">Decision brief<small>Property research</small></span></a><nav class="side-nav" aria-label="Site navigation"><div class="nav-label">Overview</div><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html">Decision gates</a><div class="nav-label">Research</div><a href="trade-area.html">Market &amp; trade area</a><a href="tenant.html">Tenant health</a><a href="hazards.html">Hazard screening</a><a href="risks.html">Risk scenarios</a><div class="nav-label">Decision tools</div><a href="sell-vs-hold.html" aria-current="page">Sell vs. hold</a><a href="calculator.html">Private worksheet</a><a href="projection.html">Projection method</a><a href="questions.html">Open questions</a><a href="suggestions.html">Suggestions</a><a href="printable-summary.html">Advisor brief</a><div class="nav-label">Accountability</div><a href="verification.html">Verification ledger</a><a href="requirements.html">Requirements</a><a href="flagged.html">Flagged for review</a><a href="sources.html">Source library</a><a href="privacy.html">Privacy</a></nav><div class="side-note"><strong>Private by design</strong>No parcel identifiers or owner records are published here. Private evidence belongs with authorized advisers.</div></aside>
+<div class="workspace"><header class="topbar"><div class="breadcrumb">PROPERTY RESEARCH &nbsp; / &nbsp; <span>Sell vs. hold</span></div><div class="top-status"><span class="pill">Privacy first</span><span class="updated">Evidence reviewed 26 Nov 2026</span></div><details class="mobile-nav"><summary>Browse the workspace</summary><nav class="side-nav" aria-label="Site navigation"><div class="nav-label">Overview</div><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html">Decision gates</a><div class="nav-label">Research</div><a href="trade-area.html">Market &amp; trade area</a><a href="tenant.html">Tenant health</a><a href="hazards.html">Hazard screening</a><a href="risks.html">Risk scenarios</a><div class="nav-label">Decision tools</div><a href="sell-vs-hold.html" aria-current="page">Sell vs. hold</a><a href="calculator.html">Private worksheet</a><a href="projection.html">Projection method</a><a href="questions.html">Open questions</a><a href="suggestions.html">Suggestions</a><a href="printable-summary.html">Advisor brief</a><div class="nav-label">Accountability</div><a href="verification.html">Verification ledger</a><a href="requirements.html">Requirements</a><a href="flagged.html">Flagged for review</a><a href="sources.html">Source library</a><a href="privacy.html">Privacy</a></nav></details></header>
+<main id="main" class="content"><div class="page-heading"><p class="eyebrow">W-02 · Optional adviser worksheet</p><h1>Sell vs. hold, after tax</h1><p class="lead">No input is needed to browse this site. This optional worksheet accepts adviser-prepared numbers only; it does not calculate taxes, appraise the property, validate inputs, or select a winner.</p><span class="pill warn">Blank until verified inputs exist</span></div><div class="note warning"><strong>Private by design, not a secure vault.</strong> The worksheet code has no network or storage functions and has no submission form. Inputs stay in the current page’s memory, but the hosting provider, browser, extensions, device and external sites have their own privacy risks. Use a trusted device and, where practical, a trusted offline copy. Do not enter names, addresses, lease text or identifiers. Clear the page when finished.</div><div class="card-grid two"><div class="card"><h3>Sale, today</h3><p>Gross sale price − transaction/transfer costs − debt payoff − CPA-calculated incremental income tax = after-tax sale equity today. Avoid double-counting taxes or costs.</p></div><div class="card"><h3>Hold, same valuation date</h3><p>Present value of each year’s after-tax cash flow plus terminal after-tax sale equity. Annual flows and terminal equity must already include the relevant tax, costs and debt, with no double count.</p></div></div><section class="section"><div class="section-head"><div><h2>What the tax professional must determine</h2><p>General rules are not a calculation of this owner’s tax.</p></div></div><div class="table-wrap" tabindex="0"><table><thead><tr><th scope="col">Item</th><th scope="col">What must be reviewed</th><th scope="col">Subject amount</th><th scope="col">Official source / reference</th></tr></thead><tbody><tr><td>Basis, gains and depreciation</td><td>Adjusted basis, selling costs, holding period and applicable gain character are fact-specific. Unrecaptured §1250 gain may be subject to a maximum 25% federal rate.</td><td><span class="empty" aria-label="Unverified, value blank">—<small>Unverified</small></span></td><td><a href="https://www.irs.gov/taxtopics/tc409" rel="noopener noreferrer" referrerpolicy="no-referrer">IRS · capital gains ↗</a></td></tr>
+<tr><td>Federal and California income tax</td><td>CPA calculates incremental tax using entity, income, losses, credits and applicable rules; withholding is not automatically the final tax. IRS describes a conditional 3.8% net investment income tax, not a universal rate.</td><td><span class="empty" aria-label="Unverified, value blank">—<small>Unverified</small></span></td><td><a href="https://www.irs.gov/taxtopics/tc409" rel="noopener noreferrer" referrerpolicy="no-referrer">IRS · capital gains ↗</a> · <a href="https://www.irs.gov/taxtopics/tc559" rel="noopener noreferrer" referrerpolicy="no-referrer">IRS · net investment income tax ↗</a> · <a href="https://www.ftb.ca.gov/forms/misc/1016.html" rel="noopener noreferrer" referrerpolicy="no-referrer">CA FTB · real-estate withholding ↗</a></td></tr>
+<tr><td>Transfer tax and Measure ULA</td><td>For qualifying city conveyances closing after June 30, 2026, ULA is 4% above $5.4m and below $10.9m, or 5.5% at $10.9m or above; the city base tax is additional. Thresholds change annually; jurisdiction, exemptions and timing need verification.</td><td><span class="empty" aria-label="Unverified, value blank">—<small>Unverified</small></span></td><td><a href="https://finance.lacity.gov/faq/measure-ula" rel="noopener noreferrer" referrerpolicy="no-referrer">LA Finance · Measure ULA ↗</a></td></tr>
+<tr><td>Deferred exchange</td><td>A qualified exchange may defer gain; identification and receipt deadlines and California reporting require specialized advice.</td><td><span class="empty" aria-label="Unverified, value blank">—<small>Unverified</small></span></td><td><a href="https://www.irs.gov/instructions/i8824" rel="noopener noreferrer" referrerpolicy="no-referrer">IRS · Form 8824 instructions ↗</a> · <a href="https://www.ftb.ca.gov/forms/misc/1016.html" rel="noopener noreferrer" referrerpolicy="no-referrer">CA FTB · real-estate withholding ↗</a></td></tr></tbody></table></div></section><section class="section"><div class="section-head"><div><h2>Optional, local-only arithmetic</h2><p>All fields are intentionally empty. Enter explicit zero only where a verified input is actually zero.</p></div></div><div class="card"><div class="field-grid">
+<div><div class="field"><label for="sale-price">Sale price today ($)</label><input id="sale-price" type="number" inputmode="decimal" step="any" autocomplete="off"><p class="hint">Private broker offer or supported scenario.</p></div>
+<div class="field"><label for="sale-costs">Sale and transfer costs ($)</label><input id="sale-costs" type="number" inputmode="decimal" step="any" autocomplete="off"><p class="hint">Include transaction/transfer taxes here, once.</p></div>
+<div class="field"><label for="debt-payoff">Debt payoff and prepayment costs ($)</label><input id="debt-payoff" type="number" inputmode="decimal" step="any" autocomplete="off"></div>
+<div class="field"><label for="sale-tax">Incremental income tax on sale ($)</label><input id="sale-tax" type="number" inputmode="decimal" step="any" autocomplete="off"><p class="hint">CPA’s total; a negative amount must be a substantiated incremental tax benefit.</p></div></div>
+<div><div class="field"><label for="cash-flows">Hold cash flows: one year per line ($)</label><textarea id="cash-flows" inputmode="decimal" autocomplete="off" spellcheck="false" aria-describedby="flows-help"></textarea><p class="hint" id="flows-help">Year 1 first; use plain numbers with no commas, up to 30 years. After-tax, after debt service, including each year’s costs. Losses may be negative.</p></div>
+<div class="field"><label for="terminal-equity">Terminal after-tax sale equity ($)</label><input id="terminal-equity" type="number" inputmode="decimal" step="any" autocomplete="off"><p class="hint">Net of terminal costs, debt and taxes; exclude the final operating cash flow above.</p></div>
+<div class="field"><label for="discount-rate">After-tax annual discount rate (%)</label><input id="discount-rate" type="number" inputmode="decimal" step="any" autocomplete="off"><p class="hint">Adviser-supplied, consistent with nominal cash flows and the alternative use of funds.</p></div></div></div>
+<div id="comparison-output" class="result" aria-live="polite"><p>Not calculated. Verified inputs are required.</p></div><p class="hint" style="margin-top:12px">End-of-year flows and terminal equity are discounted to today. Comparing a current sale with a hold present value uses the discount rate as the opportunity-cost assumption; it is not a separate reinvestment forecast. Risk, liquidity and different future outcomes require additional analysis.</p>
+<noscript><p>JavaScript is required for this optional arithmetic; no information is sent by the page.</p></noscript></div></section><section class="section"><div class="section-head"><div><h2>Short-lease discount from paired quotes</h2><p>Obtain written opinions on comparable terms. A difference in quotes is not an independently verified market discount.</p></div></div><div class="card"><div class="field-grid"><div class="field"><label for="long-quote">Extended-lease quote ($)</label><input id="long-quote" type="number" inputmode="decimal" step="any" autocomplete="off"></div><div class="field"><label for="short-quote">Current short-lease quote ($)</label><input id="short-quote" type="number" inputmode="decimal" step="any" autocomplete="off"></div></div><p class="formula">Paired difference = (1 − short-lease quote ÷ extended-lease quote) × 100. A negative result is a premium, not a discount.</p><div id="quote-output" class="result" aria-live="polite"><p>Not calculated. Two quotes are required.</p></div><p class="hint" style="margin-top:12px">A hypothetical extension is not a signed renewal. If rent, guarantee, concessions, capital costs, timing or other terms differ, the difference does not isolate lease length. Review assumptions and actual comparables privately. <a href="https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/commercial-real-estate-lending/pub-ch-commercial-real-estate.pdf" rel="noopener noreferrer" referrerpolicy="no-referrer">OCC · commercial real-estate lending ↗</a></p><p style="margin-top:14px"><button id="clear-worksheet" type="button" class="button secondary">Clear all worksheet inputs</button></p></div></section><p class="lead" style="margin-top:16px">Model version 2.0.0 · Illustrative arithmetic only · No property inputs, assumptions or quotes are supplied by the site. A separate, independently validated model and professional advice are required for a decision.</p>
+<footer><span>No winner selected · Not legal, tax, or investment advice.</span><span><a href="privacy.html">Privacy</a> · <a href="sources.html">Sources</a> · <a href="flagged.html">Review flags</a></span></footer></main></div></div></body></html>

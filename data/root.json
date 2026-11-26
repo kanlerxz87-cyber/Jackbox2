@@ -8,7 +8,7 @@
   "ownerPlaceholder": "[OWNER — WITHHELD]",
   "leasePlaceholder": "[LEASE EXPIRY — 2030–2035 per owner brief — UNVERIFIED]",
   "privacyRule": "No owner name, entity, street address, parcel number, lease document or owner financial record is published anywhere on this site. Those records stay with authorised advisers in an access-controlled internal workspace. Everything published here is aggregate and non-identifying, and identifiers are replaced with placeholders.",
-  "verificationRule": "A value is published only when it was read on an official source page during the verification sweep recorded on the Verification page. If a value could not be confirmed, the cell is left blank and the item appears on the Flagged for Review page with a link for manual checking. No value is inferred, estimated or carried over from memory.",
+  "verificationRule": "Public values are tied to a reviewed official source and reference period; agency estimates retain their estimate labels, and any arithmetic is labeled. Unconfirmed subject-specific values remain blank and flagged; no private inputs are inferred.",
   "decisionRule": "No winner between sell and renew is selected. The evidence is not sufficient to price either branch, so the deliverable is a decision gate sequence plus the arithmetic that turns verified inputs into one comparable number."
  },
  "sources": [
@@ -197,9 +197,9 @@
    "label": "Measure ULA (city real property transfer tax)",
    "publisher": "City of Los Angeles Office of Finance",
    "date": "current",
-   "retrieved": "2026-11-26 — page did not load",
-   "url": "https://finance.lacity.gov/measure-ula",
-   "supports": "Manual-review link only. Thresholds and rates are not published from it in this sweep."
+   "retrieved": "2026-11-26",
+   "url": "https://finance.lacity.gov/faq/measure-ula",
+   "supports": "City transfer tax thresholds, rates, effective dates and exemptions; subject applicability is unverified."
   },
   {
    "id": "RRCC-DTT",
@@ -224,9 +224,9 @@
    "label": "DataQuest — school and district performance data",
    "publisher": "California Department of Education",
    "date": "current",
-   "retrieved": "2026-11-26 — not retrieved",
-   "url": "https://dq.cde.ca.gov/dataquest/",
-   "supports": "Manual-review link only. No school metric is published in this sweep."
+   "retrieved": "2026-11-26",
+   "url": "https://www.cde.ca.gov/ds/ad/dataquest.asp",
+   "supports": "Official school data access and program description; no local school result has been identified."
   },
   {
    "id": "CDI-INSURANCE",
@@ -254,6 +254,42 @@
    "retrieved": "2026-11-26",
    "url": "https://rrcc.lacounty.gov/",
    "supports": "Where a memorandum of lease, options and amendments to a Los Angeles County property would be recorded. The site did not load during the sweep, so it is listed for manual review only."
+  },
+  {
+   "id": "LA-WAGE",
+   "label": "Office of Wage Standards — city minimum wage",
+   "publisher": "City of Los Angeles",
+   "date": "effective 2026-07-01",
+   "retrieved": "2026-11-26",
+   "url": "https://wagesla.lacity.gov/",
+   "supports": "Citywide general minimum wage; location, fast-food coverage and any higher applicable law require separate verification."
+  },
+  {
+   "id": "IRS-559",
+   "label": "Topic no. 559 — Net investment income tax",
+   "publisher": "Internal Revenue Service",
+   "date": "current",
+   "retrieved": "2026-11-26",
+   "url": "https://www.irs.gov/taxtopics/tc559",
+   "supports": "3.8% NIIT and conditional calculation for individuals, estates and trusts; owner applicability remains unknown."
+  },
+  {
+   "id": "TREASURY-YIELD",
+   "label": "Daily Treasury par yield curve — November 2026",
+   "publisher": "U.S. Department of the Treasury",
+   "date": "2026-11-25",
+   "retrieved": "2026-11-26",
+   "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202611",
+   "supports": "10-year par Treasury yield 4.85% on November 25, 2026; not a property cap rate or required return."
+  },
+  {
+   "id": "OCC-CRE",
+   "label": "Commercial Real Estate Lending — Comptroller’s Handbook",
+   "publisher": "Office of the Comptroller of the Currency",
+   "date": "2022; revised 2025",
+   "retrieved": "2026-11-26",
+   "url": "https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/commercial-real-estate-lending/pub-ch-commercial-real-estate.pdf",
+   "supports": "General credit, lease, appraisal, vacancy and market-value risk context; does not establish a property-specific discount."
   }
  ],
  "findings": [
@@ -275,7 +311,7 @@
    "period": "12 weeks ended 28 Sep 2025",
    "sourceId": "SEC-Q4FY25",
    "status": "verified",
-   "note": "Franchise −7.6%; the weakest quarter in the published series."
+   "note": "Franchise −7.6%; company −5.3% for the same quarter."
   },
   {
    "id": "T-03",
@@ -320,7 +356,7 @@
   {
    "id": "T-07",
    "category": "Tenant",
-   "label": "Franchise rental revenues, FY2025",
+   "label": "Consolidated franchise rental revenues including Del Taco, FY2025",
    "value": "US$368.6 million",
    "period": "FY2025",
    "sourceId": "SEC-Q4FY25",
@@ -335,12 +371,12 @@
    "period": "40 weeks ended 5 Jul 2026",
    "sourceId": "SEC-Q3FY26",
    "status": "verified",
-   "note": "Down 6.8% year over year; the release attributes part of the decline to the closure programme."
+   "note": "Arithmetic on the reported figures gives a 6.8% decline; the issuer cites restaurant closures among contributing factors."
   },
   {
    "id": "T-09",
    "category": "Tenant",
-   "label": "Systemwide sales, Q3 FY2026",
+   "label": "Systemwide sales including franchisee sales, Q3 FY2026",
    "value": "US$944.1 million (−1.4%)",
    "period": "12 weeks ended 5 Jul 2026",
    "sourceId": "SEC-Q3FY26",
@@ -490,12 +526,12 @@
   {
    "id": "E-10",
    "category": "Economy",
-   "label": "California fast food minimum wage",
+   "label": "California covered fast-food minimum wage at 1 Apr 2024",
    "value": "US$20.00 per hour",
    "period": "effective 1 Apr 2024",
    "sourceId": "DIR-FFMW",
    "status": "verified",
-   "note": "Applies to franchisees as well as the brand owner. The page did not show a later adjustment; any 2026 change is unverified — flagged F-03."
+   "note": "The DIR states $20 effective April 2024 for covered employees, including covered franchisees. Any later adjustment and coverage of the subject location are unverified (F-03)."
   },
   {
    "id": "E-11",
@@ -511,21 +547,21 @@
    "id": "E-12",
    "category": "Economy",
    "label": "Los Angeles city minimum wage",
-   "value": "",
-   "period": "current",
-   "sourceId": "LA-ULA",
-   "status": "unverified",
-   "note": "City sites did not load during the sweep. Flagged F-05."
+   "value": "US$18.42 per hour",
+   "period": "effective 1 Jul 2026",
+   "sourceId": "LA-WAGE",
+   "status": "verified",
+   "note": "General City of Los Angeles minimum for covered employees; site jurisdiction and interaction with any higher applicable fast-food rate are not established. Flagged F-05."
   },
   {
    "id": "C-01",
    "category": "Capital markets and tax",
-   "label": "10-year Treasury constant maturity yield",
-   "value": "4.91%",
-   "period": "24 Nov 2026",
-   "sourceId": "FRED-DGS10",
+   "label": "10-year Treasury par yield",
+   "value": "4.85%",
+   "period": "25 Nov 2026",
+   "sourceId": "TREASURY-YIELD",
    "status": "verified",
-   "note": "4.92% on 23 November; 5.07% on 18 November."
+   "note": "The Treasury par yield is a market reference, not a property cap rate or an assumed discount rate."
   },
   {
    "id": "C-02",
@@ -550,12 +586,12 @@
   {
    "id": "C-04",
    "category": "Capital markets and tax",
-   "label": "Net investment income tax",
-   "value": "",
-   "period": "current",
-   "sourceId": "IRS-409",
-   "status": "unverified",
-   "note": "Topic 409 refers to the tax without stating the rate; the rate page (Topic 559) was not retrieved in this sweep. The calculator treats it as a user-supplied input. Flagged F-07."
+   "label": "Net investment income tax rate (conditional)",
+   "value": "3.8%",
+   "period": "current IRS Topic 559",
+   "sourceId": "IRS-559",
+   "status": "verified",
+   "note": "Applies only when the statutory conditions are met, generally on the lesser of net investment income and the excess of MAGI over the applicable threshold; owner applicability remains blank (F-07)."
   },
   {
    "id": "C-05",
@@ -570,12 +606,12 @@
   {
    "id": "C-06",
    "category": "Capital markets and tax",
-   "label": "City of Los Angeles real property transfer tax (Measure ULA) thresholds",
-   "value": "",
-   "period": "current",
+   "label": "City of Los Angeles Measure ULA thresholds and rates",
+   "value": "Over $5.4m and under $10.9m: 4%; $10.9m or more: 5.5%",
+   "period": "closings after 30 Jun 2026",
    "sourceId": "LA-ULA",
-   "status": "unverified",
-   "note": "Office of Finance page did not load. No rate or threshold is published. Flagged F-09."
+   "status": "verified",
+   "note": "City Office of Finance: thresholds adjust annually; exemptions, allocation and jurisdiction must be checked. Its separate base transfer tax is additional. This does not establish subject liability (F-09)."
   },
   {
    "id": "C-07",
@@ -615,7 +651,7 @@
    "period": "current",
    "sourceId": "CGS-EQZAPP",
    "status": "unverified",
-   "note": "Requires the parcel address or APN inside the secure workspace; not published. Flagged F-12."
+   "note": "Requires the parcel location in an authorized private workflow; not published. Flagged F-12."
   },
   {
    "id": "H-03",
@@ -625,7 +661,7 @@
    "period": "current",
    "sourceId": "FEMA-MSC",
    "status": "unverified",
-   "note": "Requires a Flood Map Service Center address search inside the secure workspace. Flagged F-13."
+   "note": "Requires a private Flood Map Service Center location search, with attention to third-party logging. Flagged F-13."
   },
   {
    "id": "H-04",
@@ -645,7 +681,7 @@
    "period": "current",
    "sourceId": "CDI-INSURANCE",
    "status": "unverified",
-   "note": "Requires a broker quote and a FAIR Plan comparison inside the secure workspace. Flagged F-15."
+   "note": "Requires a broker quote and, where relevant, a FAIR Plan comparison in an authorized private workflow. Flagged F-15."
   },
   {
    "id": "H-06",
@@ -653,9 +689,9 @@
    "label": "Building seismic performance and retrofit status",
    "value": "",
    "period": "current",
-   "sourceId": "CDE-DATAQUEST",
+   "sourceId": "CGS-EQZAPP",
    "status": "unverified",
-   "note": "No public source; needs an engineering assessment and the certificate of occupancy. Listed because it is a required input, not because a link confirms it. Flagged F-16."
+   "note": "No parcel or building-specific engineering report has been provided. Public records may be incomplete; the CGS reference is regional hazard context, not proof of structural condition. Flagged F-16."
   }
  ],
  "gates": [
@@ -791,7 +827,7 @@
   {
    "id": "R-09",
    "decision": "Any decision",
-   "risk": "Deciding on stale or conflicting demographic figures. Two official agencies currently publish county population estimates that differ by more than 140,000 persons.",
+   "risk": "Different official county estimates use different methods and dates. The linked state figure is rounded, so a precise gap is not established.",
    "evidence": "State estimate about 9.8 million for January 2026 (E-01) against Census 9,694,934 for July 2025 (E-04).",
    "severity": "Medium",
    "mitigation": "Use one agency consistently, state which one, and test the direction rather than the level; prefer tract-level ACS for the trade area."
@@ -1317,7 +1353,7 @@
    "id": "F-01",
    "item": "Q4 and full-year FY2026 tenant results",
    "value": "",
-   "reason": "No Q4 FY2026 earnings Form 8-K appeared in the EDGAR filing list on the sweep date, so the fiscal year ended 27 September 2026 is not yet reported.",
+   "reason": "No Q4 FY2026 earnings Form 8-K was located in the EDGAR filing list on the sweep date; a conflicting issuer calendar lists an earlier date, so publication is not established.",
    "verify": "Re-check the EDGAR filing index for the Q4 release and update T-01 to T-10 when it appears.",
    "sourceId": "SEC-EDGAR"
   },
@@ -1325,7 +1361,7 @@
    "id": "F-02",
    "item": "Los Angeles County population — two official figures disagree",
    "value": "",
-   "reason": "State estimate about 9.8 million for January 2026 against Census 9,694,934 for July 2025. Different agencies, methods and reference dates; the gap is larger than the annual change.",
+   "reason": "The state reports about 9.8 million for January 2026 and Census estimates 9,694,934 for July 2025. Different methods, dates and rounding prevent a precise gap calculation from the cited rounded state figure.",
    "verify": "Use one series consistently and disclose which; compare tract-level ACS for the trade area.",
    "sourceId": "CA-DOF-E1"
   },
@@ -1349,9 +1385,9 @@
    "id": "F-05",
    "item": "Los Angeles city minimum wage",
    "value": "",
-   "reason": "City sites did not load during the sweep; the state minimum wage is verified but a city rate may be higher.",
-   "verify": "Check the city minimum wage ordinance page and the current rate letter.",
-   "sourceId": "LA-ULA"
+   "reason": "The city general minimum was verified as $18.42 effective July 2026, but the site jurisdiction and coverage under potentially higher state fast-food rules remain unverified.",
+   "verify": "Privately confirm city boundaries, coverage, any subsequent changes and the applicable current rate.",
+   "sourceId": "LA-WAGE"
   },
   {
    "id": "F-06",
@@ -1363,11 +1399,11 @@
   },
   {
    "id": "F-07",
-   "item": "Net investment income tax rate",
+   "item": "Owner applicability of the net investment income tax",
    "value": "",
-   "reason": "Topic 409 refers to the tax but does not state the rate; the rate page was not retrieved.",
-   "verify": "Read IRS Topic 559 and the instructions to Form 8960, then set the rate in the calculator.",
-   "sourceId": "IRS-409"
+   "reason": "IRS Topic 559 states a conditional 3.8% NIIT, but the owner’s entity, income and activity classification are unavailable.",
+   "verify": "CPA applies current law to the actual owner and incorporates the result in incremental sale or hold tax.",
+   "sourceId": "IRS-559"
   },
   {
    "id": "F-08",
@@ -1381,8 +1417,8 @@
    "id": "F-09",
    "item": "City of Los Angeles transfer tax thresholds and rates",
    "value": "",
-   "reason": "The Office of Finance page did not load, so no rate or threshold is published.",
-   "verify": "Re-verify on the Office of Finance site and obtain an escrow estimate before marketing.",
+   "reason": "The city publishes 2026 ULA thresholds and rates, but city jurisdiction, transaction timing, consideration and any exemption are unverified.",
+   "verify": "CPA and escrow verify the actual transaction, current thresholds, jurisdiction, base tax and exemptions.",
    "sourceId": "LA-ULA"
   },
   {
@@ -1398,14 +1434,14 @@
    "item": "Property tax base levy and inflation cap",
    "value": "",
    "reason": "The Board of Equalization page did not load; no levy is published.",
-   "verify": "Read the county tax bill for this parcel inside the secure workspace.",
+   "verify": "Read the county tax bill for this parcel through an authorized private workflow.",
    "sourceId": "BOE-PROP13"
   },
   {
    "id": "F-12",
    "item": "Parcel earthquake hazard zone",
    "value": "",
-   "reason": "Publishing a zone determination would identify the parcel. The check must occur in the secure workspace.",
+   "reason": "Publishing a zone determination could identify the parcel. The check belongs in an authorized private workflow.",
    "verify": "Run the address in the California Geological Survey application and record the result with its date.",
    "sourceId": "CGS-EQZAPP"
   },
@@ -1430,14 +1466,14 @@
    "item": "Insurance premium, deductible and exclusions",
    "value": "",
    "reason": "Requires the parcel and the owner's loss history; quotes are confidential.",
-   "verify": "Obtain two broker quotes plus a FAIR Plan comparison inside the secure workspace.",
+   "verify": "Obtain broker quotes and, where relevant, a FAIR Plan comparison through an authorized private workflow.",
    "sourceId": "CDI-INSURANCE"
   },
   {
    "id": "F-16",
    "item": "Building seismic performance and retrofit status",
    "value": "",
-   "reason": "No public source exists for a specific building's structural condition.",
+   "reason": "No parcel-specific engineering assessment or complete retrofit record was supplied; official maps do not establish a building’s structural condition.",
    "verify": "Commission an engineering assessment and obtain the certificate of occupancy and any retrofit records.",
    "sourceId": "CGS-EQZAPP"
   },
@@ -1445,7 +1481,7 @@
    "id": "F-17",
    "item": "School assignment and performance for the parcel",
    "value": "",
-   "reason": "Requires the address for assignment, and the state data portal was not retrieved during the sweep.",
+   "reason": "The CDE DataQuest overview is available, but the school assignment and metrics require a private location-based check.",
    "verify": "Use the district assignment lookup and the state data portal for the identified schools.",
    "sourceId": "CDE-DATAQUEST"
   },
@@ -1462,16 +1498,16 @@
    "item": "Recorded memorandum of lease, options and amendments",
    "value": "",
    "reason": "The brief describes a net lease; the lease itself has not been read, so the characterisation is the owner's and the recorded documents have not been pulled.",
-   "verify": "Order the recorded documents from the county recorder and abstract the cost-sharing, reimbursement, capital-repair, option and notice clauses; reconcile against three years of statements.",
+   "verify": "Obtain the executed lease and amendments from authorized parties; check the county recorder for recorded documents, and reconcile cost-sharing, options and notices against statements.",
    "sourceId": "RRCC-RECORDS"
   },
   {
    "id": "F-20",
    "item": "Short-lease discount percentage",
    "value": "",
-   "reason": "No comparable sale data exist in the public record for this asset. Any percentage would be an assumption.",
-   "verify": "Derive it from the broker opinion comparable set and publish the observed range with each comparable's remaining term.",
-   "sourceId": "FRED-DGS10"
+   "reason": "No matched short-lease and extended-lease quotes or comparable set were supplied; the official reference discusses valuation factors but not this asset.",
+   "verify": "Keep matched written broker opinions and comparable identifiers private; disclose only approved non-identifying aggregates, if any.",
+   "sourceId": "OCC-CRE"
   }
  ]
 }

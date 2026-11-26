@@ -2,7 +2,11 @@
 """
 Build the consolidated public dashboard from the sourced data layer.
 
-Rules enforced by this generator (they are the project's point, not decoration):
+The original templates below are retained as historical work; build() delegates
+only to tests/root_build.py. In particular, the historical CALC_JS and calculator
+markup are unsafe and must never be generated or used for a decision.
+
+Rules enforced by the current integration:
 
   1. No verified figure renders without a clickable link to the official source
      that printed it. A finding whose source id is not in sources.json aborts
@@ -1842,35 +1846,23 @@ regulatory requests, which belong with counsel.</p>
 
 
 def build():
-    (ROOT / "assets").mkdir(exist_ok=True)
-    (ROOT / "assets" / "style.css").write_text(CSS, encoding="utf-8")
-    (ROOT / "assets" / "calc.js").write_text(CALC_JS, encoding="utf-8")
-    written = [
-        build_index(),
-        build_exec(),
-        build_verification(),
-        build_requirements(),
-        build_gates(),
-        build_trade_area(),
-        build_hazards(),
-        build_sell(),
-        build_calculator(),
-        build_risks(),
-        build_questions(),
-        build_suggestions(),
-        build_flagged(),
-        build_printable(),
-        build_sources(),
-        build_privacy(),
-    ]
-    for fname, markers in NOSOURCE_MARKERS.items():
-        mark_nosource(fname, markers)
+    """Build the current integration, retaining prior templates above as history.
 
-    verified = sum(1 for r in D["findings"] if r["status"] == "verified")
-    unverified = len(D["findings"]) - verified
-    print(f"built {len(written)} pages from data/root.json")
-    print(f"ledger: {verified} verified, {unverified} blank, {len(D['sources'])} sources, "
-          f"{len(D['questions'])} questions, {len(D['suggestions'])} suggestions, {len(D['flagged'])} flags")
+    The prior templates and CALC_JS are historical artifacts: their old
+    calculator used defaults and did not calculate the terminal tax, so they
+    must not be generated or used for decisions. The current builder retains
+    the source ledger and question/proposal inventory while requiring genuinely
+    comparable after-tax inputs. There is exactly one supported build entry.
+    """
+    import importlib.util
+
+    path = ROOT / "tests" / "root_build.py"
+    spec = importlib.util.spec_from_file_location("canonical_root_build", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    module.build()
+    count = sum(len(items) for _, items in module.NAV)
+    print(f"built {count} canonical pages; earlier data/root.json ledger retained")
 
 
 if __name__ == "__main__":

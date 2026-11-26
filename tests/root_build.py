@@ -6,8 +6,12 @@ row is a contextual reference, not proof of an answer about the subject parcel.
 """
 from html import escape
 from pathlib import Path
+import json
 
-ROOT = Path(__file__).resolve().parents[1]
+REPO = Path(__file__).resolve().parents[1]
+ROOT = REPO
+# Preserve the completed parallel integration's source ledger and work inventory.
+PRIOR = json.loads((REPO / 'data' / 'root.json').read_text(encoding='utf-8'))
 S = {
     'sec23': ('SEC · FY2023 10-K', 'https://www.sec.gov/Archives/edgar/data/807882/000080788223000020/jack-20231001.htm'),
     'sec25': ('SEC · FY2025 10-K', 'https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm'),
@@ -37,13 +41,24 @@ S = {
     'ula': ('LA Finance · Measure ULA', 'https://finance.lacity.gov/faq/measure-ula'),
     'privacy': ('NIST · privacy framework', 'https://www.nist.gov/privacy-framework'),
     'diversify': ('SEC · diversification', 'https://www.investor.gov/introduction-investing/getting-started/asset-allocation'),
+    'record': ('LA County · recorded documents', 'https://rrcc.lacounty.gov/'),
+    'wage': ('CA DIR · minimum wage', 'https://www.dir.ca.gov/dlse/faq_minimumwage.htm'),
+    'fastwage': ('CA DIR · fast-food minimum wage', 'https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm'),
+    'citywage': ('LA · Office of Wage Standards', 'https://wagesla.lacity.gov/'),
+    'niit': ('IRS · net investment income tax', 'https://www.irs.gov/taxtopics/tc559'),
+    'occ': ('OCC · commercial real-estate lending', 'https://www.occ.gov/publications-and-resources/publications/comptrollers-handbook/files/commercial-real-estate-lending/pub-ch-commercial-real-estate.pdf'),
+    'insurance': ('CA Department of Insurance', 'https://www.insurance.ca.gov/'),
 }
+# The earlier ledger is preserved rather than overwritten; individual findings
+# retain their original source and verification date for manual review.
+for item in PRIOR['sources']:
+    S['prior:' + item['id']] = (item['label'], item['url'])
 
 NAV = [
     ('Overview', [ ('index.html','Dashboard'), ('executive-summary.html','Executive summary'), ('decision-gates.html','Decision gates') ]),
     ('Research', [ ('trade-area.html','Market & trade area'), ('tenant.html','Tenant health'), ('hazards.html','Hazard screening'), ('risks.html','Risk scenarios') ]),
-    ('Decision tools', [ ('sell-vs-hold.html','Sell vs. hold'), ('projection.html','Projection method'), ('questions.html','Open questions'), ('suggestions.html','Suggestions'), ('printable-summary.html','Advisor brief') ]),
-    ('Accountability', [ ('flagged.html','Flagged for review'), ('sources.html','Source library'), ('privacy.html','Privacy') ]),
+    ('Decision tools', [ ('sell-vs-hold.html','Sell vs. hold'), ('calculator.html','Private worksheet'), ('projection.html','Projection method'), ('questions.html','Open questions'), ('suggestions.html','Suggestions'), ('printable-summary.html','Advisor brief') ]),
+    ('Accountability', [ ('verification.html','Verification ledger'), ('requirements.html','Requirements'), ('flagged.html','Flagged for review'), ('sources.html','Source library'), ('privacy.html','Privacy') ]),
 ]
 
 
@@ -92,7 +107,7 @@ def card_link(icon, title, text, url, label):
 
 def page(filename, title, body, script=False, print_page=False):
     n = nav(filename)
-    script_tag = '<script src="assets/app.js" defer></script>' if script else ''
+    script_tag = '<script src="assets/calc.js" defer></script>' if script else ''
     cls = 'content print-sheet' if print_page else 'content'
     html = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -101,7 +116,7 @@ def page(filename, title, body, script=False, print_page=False):
 <aside class="sidebar"><a class="logo" href="index.html"><span class="logo-mark" aria-hidden="true">◇</span><span class="logo-name">Decision brief<small>Property research</small></span></a>{n}<div class="side-note"><strong>Private by design</strong>No parcel identifiers or owner records are published here. Private evidence belongs with authorized advisers.</div></aside>
 <div class="workspace"><header class="topbar"><div class="breadcrumb">PROPERTY RESEARCH &nbsp; / &nbsp; <span>{escape(title)}</span></div><div class="top-status"><span class="pill">Privacy first</span><span class="updated">Evidence reviewed 26 Nov 2026</span></div><details class="mobile-nav"><summary>Browse the workspace</summary>{n}</details></header>
 <main id="main" class="{cls}">{body}
-<footer><span>Anonymous decision workspace · Not legal, tax, or investment advice.</span><span><a href="privacy.html">Privacy</a> · <a href="sources.html">Sources</a> · <a href="flagged.html">Review flags</a></span></footer></main></div></div></body></html>'''
+<footer><span>No winner selected · Not legal, tax, or investment advice.</span><span><a href="privacy.html">Privacy</a> · <a href="sources.html">Sources</a> · <a href="flagged.html">Review flags</a></span></footer></main></div></div></body></html>'''
     (ROOT / filename).write_text(html + '\n', encoding='utf-8')
 
 
@@ -111,6 +126,9 @@ PROPOSED = '<span class="pill neutral">Proposed</span>'
 
 
 def build():
+    # Both historical entry points run the same, independently tested safe engine.
+    (ROOT / 'assets').mkdir(exist_ok=True)
+    (ROOT / 'assets' / 'calc.js').write_text((REPO / 'assets' / 'app.js').read_text(encoding='utf-8'), encoding='utf-8')
     # Dashboard
     body = '''<div class="hero"><div><p class="eyebrow">An evidence-led property decision</p><h1>Clarity before commitment.</h1><p>A privacy-first workspace for weighing a possible sale against a negotiated renewal of an anonymous quick-service property.</p><div class="actions"><a class="button light" href="executive-summary.html">Read the decision brief →</a><a class="button ghost" href="decision-gates.html">View decision gates</a></div></div><div class="hero-panel"><span class="mini-label">Current position</span><h2>Keep both paths open.</h2><p>No sale or renewal winner can be supported without a private lease abstract, real quotes, tax calculations, and parcel-specific risk screening.</p></div></div>'''
     body += section('The evidence at a glance', 'Public benchmarks are context, not a valuation of this property.', '''<div class="stat-grid">
@@ -122,6 +140,7 @@ def build():
     focus = '''<div class="card"><span class="mini-label">Recommended next step</span><h3 style="margin-top:10px">Protect the option to choose.</h3><p>Have counsel reconcile all notice rights first. In parallel, request private broker opinions and a CPA-prepared after-tax comparison.</p><a class="card-arrow" href="questions.html">See the discovery plan →</a></div>'''
     body += section('Decision readiness', 'Statuses reflect only evidence available to this public site; they are not confirmations of private work.', '<div class="split">' + gates + focus + '</div>', ('decision-gates.html', 'All gates'))
     body += section('Explore the workspace', 'Follow the questions, not assumptions.', '<div class="card-grid">' + card_link('↗', 'Market & trade area', 'What regional data says, and what only a private local study can answer.', 'trade-area.html', 'Explore market evidence') + card_link('≋', 'Compare the paths', 'An optional, blank-by-default after-tax worksheet for authorized advisers.', 'sell-vs-hold.html', 'Open the worksheet') + card_link('◇', 'Risks & resilience', 'Ordinary risks and joint disaster, rent-loss and exit-liquidity stresses.', 'risks.html', 'Review scenarios') + '</div>')
+    body += '<div id="archive">' + section('Earlier dashboards, preserved', 'Historical parallel work is independently maintained and may contain dated evidence, unsupported defaults or inconsistent calculators; review the flags before relying on it.', '<div class="card-grid">' + card_link('01', 'Central LA 2026', 'A prior multi-page research refresh.', 'central-la-2026/index.html', 'Open historical dashboard') + card_link('02', 'Analytical dashboard', 'An earlier data-generated site.', 'site/index.html', 'Open historical dashboard') + card_link('03', 'Other research archives', 'Earlier independent source and privacy frameworks.', 'alternative-research/index.html', 'Open research archive') + '</div><p style="margin-top:12px;font-size:12px"><a href="docs/index.html">Docs archive</a> · <a href="docs/arena-75e09b85/index.html">Additional research</a> · <a href="privacy-first/index.html">Privacy-first framework</a> · <a href="verification.html">Prior integration ledger</a></p>') + '</div>'
     body += '<div class="note warning"><strong>Privacy boundary.</strong> The public site is not an access-controlled workspace. Do not publish an address, parcel number, owner information, lease, financial details, local search results, or adviser documents here. <a href="privacy.html">Read the privacy policy →</a></div>'
     page('index.html', 'Dashboard', body)
 
@@ -129,7 +148,7 @@ def build():
     body = heading('01 · Decision brief', 'The decision, in plain language', 'For an anonymous Jack in the Box property described as having a triple-net lease expiring in the 2030–2035 window. The lease and exact location have not been verified.', '<span class="pill warn">No winner selected</span>')
     body += '''<div class="card"><span class="mini-label">Interim recommendation</span><h2 style="margin:9px 0">Preserve optionality; verify before committing.</h2><p>Do not choose a sale or renewal on regional indicators alone. Ask counsel to commission a private lease abstract and reconcile every notice right; simultaneously obtain comparable short-lease and renewal quotes, an accountant’s tax analysis, and a parcel-specific hazard and insurance review. This is a process recommendation, not a valuation or individualized financial advice.</p><p>Only after those inputs exist should the owner and advisers compare after-tax sale equity with the present value of after-tax hold cash flows, alongside liquidity, concentration, estate needs and acceptable downside.</p></div>'''
     rows = [
-        (['Lease description and expiry window', 'NNN and 2030–2035 were supplied in the brief; the exact contract is not available.', BLANK, 'Counsel: abstract all amendments and reconcile notices before negotiating.'], ['sec25']),
+        (['Lease description and expiry window', 'NNN and 2030–2035 were supplied in the brief; the exact contract is not available.', BLANK, 'Counsel: abstract all amendments and reconcile notices before negotiating.'], ['record','occ']),
         (['Brand operating trend', 'FY2025 system same-store sales −4.2%; Q3 FY2026 −1.1%.', 'Verified issuer disclosures', 'Monitor tenant and guarantor separately; brand results do not prove this location’s sales.'], ['secq425','q326']),
         (['Local demand', 'City/county and metro statistics are broader than a trade area.', BLANK, 'Privately define a consistent catchment, then obtain tract, traffic, school and competition evidence.'], ['acs','traffic','school']),
         (['Tax and liquidity', 'Rules depend on ownership, basis, income, jurisdiction and transaction terms.', BLANK, 'CPA prepares the incremental tax and net-equity figures for each path.'], ['irs','ftb','ula']),
@@ -143,21 +162,21 @@ def build():
     body = heading('W-03 · Progress board', 'Decision gates', 'A public progress view without private documents. “Not evidenced” means no verified private attestation was supplied to this site; it does not prove the task has not been done.')
     gates = [
         (['00 · Privacy controls', PENDING, 'Authorized advisers keep identifiers and records in an access-controlled, offline workflow; approve any aggregate publication.'], ['privacy']),
-        (['01 · Lease & notices', PENDING, 'Counsel commissions a private abstract; verifies expiry, options, service rules, deadlines, guaranty, repairs and transfer restrictions; reconciles a private calendar.'], ['sec25']),
+        (['01 · Lease & notices', PENDING, 'Counsel commissions a private abstract; verifies expiry, options, service rules, deadlines, guaranty, repairs and transfer restrictions; reconciles a private calendar.'], ['record','occ']),
         (['02 · Local evidence', PENDING, 'Select a consistent catchment privately and document tracts, vintage, margins of error, traffic, schools, competition and planning.'], ['acs','traffic','school','planning']),
-        (['03 · Quotes & renewal terms', PENDING, 'Obtain comparable written opinions for current short term and a negotiated extension, plus real renewal terms and costs.'], ['sec25']),
+        (['03 · Quotes & renewal terms', PENDING, 'Obtain comparable written opinions for current short term and a negotiated extension, plus real renewal terms and costs.'], ['occ']),
         (['04 · Taxes & owner objectives', PENDING, 'CPA calculates incremental tax, debt payoff and closing costs; owner and adviser assess liquidity, concentration and estate constraints privately.'], ['irs','ftb','diversify']),
         (['05 · Hazard & insurance', PENDING, 'Geologist/engineer and broker confirm parcel map status, structural vulnerability, policy limits, deductibles and interruption coverage.'], ['cgs','fema','fire']),
         (['06 · Joint stress & decision', PENDING, 'Back-test when sufficient history exists; compare after-tax cases and joint downside, document assumptions and only then authorize a commitment.'], ['diversify','irs']),
     ]
     body += section('Gates before a binding commitment', 'A source explains the topic or process; it does not attest that an adviser has completed the gate.', table(['Gate','Public status','Evidence needed privately'], gates))
     body += section('Notice-calendar reconciliation', 'Dates are deliberately blank: they can only come from the governing lease and amendments.', table(['Calendar item','Date','Private verification'], [
-        (['Base-term expiry', BLANK, 'Counsel identifies the controlling executed provision and amendments.'], ['sec25']),
-        (['Earliest and latest option-notice dates', BLANK, 'Calculate from the actual clause; verify whether the option is exercisable and by whom.'], ['sec25']),
-        (['Delivery method and recipients', BLANK, 'Confirm address, delivery method, business-day rules and evidence of receipt with counsel.'], ['sec25']),
-        (['Internal lead time and escalation', BLANK, 'Authorized advisers set reminders and reconcile them independently; do not guess a notice period.'], ['sec25']),
+        (['Base-term expiry', BLANK, 'Counsel identifies the controlling executed provision and amendments.'], ['record','occ']),
+        (['Earliest and latest option-notice dates', BLANK, 'Calculate from the actual clause; verify whether the option is exercisable and by whom.'], ['record','occ']),
+        (['Delivery method and recipients', BLANK, 'Confirm address, delivery method, business-day rules and evidence of receipt with counsel.'], ['record','occ']),
+        (['Internal lead time and escalation', BLANK, 'Authorized advisers set reminders and reconcile them independently; do not guess a notice period.'], ['record','occ']),
     ]))
-    body += '<div class="note warning">No abstract has been commissioned, no notice calendar has been reconciled, and no private adviser has been contacted by this website.</div>'
+    body += '<div class="note warning">No abstract or reconciled calendar has been supplied to this site, and this website has not commissioned work or contacted advisers. Recorded documents may not contain the complete lease or amendments; counsel must obtain and reconcile the executed documents.</div>'
     page('decision-gates.html', 'Decision gates', body)
 
     # Market and neighborhood
@@ -167,6 +186,8 @@ def build():
         (['LA County median household income', '$90,757', '2024 SAIPE estimate, annual nominal dollars; not a tract estimate or the ACS five-year measure.'], ['income']),
         (['LA metro unemployment', '4.4%', 'September 2026, preliminary, not seasonally adjusted.'], ['bls']),
         (['LA metro payroll growth', '+0.9%', 'October 2026, preliminary 12-month change; metro-wide.'], ['bls']),
+        (['California general minimum wage', '$16.90 per hour', 'Effective January 1, 2026; covered fast-food employees and local laws may require a higher rate.'], ['wage','fastwage']),
+        (['LA City general minimum wage', '$18.42 per hour', 'Effective July 1, 2026 for covered employees in the City; subject jurisdiction and any higher applicable rate are unverified.'], ['citywage','fastwage']),
     ]))
     body += '<div class="note">Census revises an entire population series with each vintage; use the same vintage for comparisons. The SAIPE income measure is not interchangeable with a five-year ACS median. Regional results do not establish local demand or a property price.</div>'
     body += section('Neighborhood evidence still needed', 'Every subject-specific value is blank. Do not put a tract number, address or map result on the public site.', table(['Factor','Subject value','Private discovery route'], [
@@ -184,12 +205,12 @@ def build():
 
     # Tenant operating series
     body = heading('Tenant health · SEC evidence', 'A longer view of the brand', 'System-level operating disclosures can inform tenant diligence, but they do not identify the lease counterparty, guarantee, or performance of the subject restaurant.')
-    body += section('Annual Jack in the Box brand series', 'Same-store sales are year-over-year system changes; rental revenue is the Jack in the Box segment, not the owner’s rent.', table(['Fiscal year','System same-store sales','Ending units','Closures','Franchise rental revenue'], [
-        (['2022', '+0.9%', '2,181', '54', '$335.936 million'], ['sec23']),
-        (['2023', '+7.3%', '2,186', '15', '$351.283 million'], ['sec23']),
-        (['2024', '−1.3%', '2,191', '25', '$347.227 million'], ['sec25']),
-        (['2025', '−4.2%', '2,136', '86', '$332.735 million'], ['sec25','secq425']),
-        (['2026 full year', BLANK, BLANK, BLANK, BLANK], ['edgar','schedule']),
+    body += section('Annual Jack in the Box brand series', 'Same-store sales are year-over-year system changes. Systemwide sales include franchisee sales, which the issuer does not book as its own revenue; rental revenue is the brand segment, not the owner’s rent.', table(['Fiscal year','System same-store sales','Systemwide sales','Ending units','Closures','Franchise rental revenue'], [
+        (['2022', '+0.9%', '$4,111.042 million', '2,181', '54', '$335.936 million'], ['sec23']),
+        (['2023', '+7.3%', '$4,419.733 million', '2,186', '15', '$351.283 million'], ['sec23']),
+        (['2024', '−1.3%', '$4,396.257 million', '2,191', '25', '$347.227 million'], ['sec25']),
+        (['2025', '−4.2%', '$4,208.937 million', '2,136', '86', '$332.735 million'], ['sec25','secq425']),
+        (['2026 full year', BLANK, BLANK, BLANK, BLANK, BLANK], ['edgar','schedule']),
     ]))
     body += section('Recent quarterly observations', 'Fiscal Q1 has 16 weeks; Q2 and Q3 have 12 weeks. Quarters should not be added to produce annual same-store sales.', table(['Period','System same-store sales','Ending units','Openings / closures'], [
         (['Q1 FY2026 · Jan 18', '−6.7%', '2,128', '6 / 14'], ['q126']),
@@ -208,7 +229,7 @@ def build():
         (['Ground shaking / building resilience', BLANK, 'Ask a licensed engineer for a building-specific assessment; regional event probability is not a building damage probability.'], ['quake','cgs']),
         (['Flood', BLANK, 'Check the current effective FEMA map, map date and amendments; discuss coverage and exclusions with an insurance broker.'], ['fema']),
         (['Wildfire / smoke / access', BLANK, 'Check the adopted local or state responsibility area map, plus building exposure, access and business interruption.'], ['fire']),
-        (['Insurance, deductibles and rent loss', BLANK, 'Obtain actual property, earthquake, flood and loss-of-rents terms, limits, exclusions, deductibles and premiums.'], ['fema','fire']),
+        (['Insurance, deductibles and rent loss', BLANK, 'Obtain actual property, earthquake, flood and loss-of-rents terms, limits, exclusions, deductibles and premiums.'], ['insurance','fema']),
     ]))
     body += '<div class="note warning"><strong>Map limitations:</strong> CGS says its maps do not show every hazard and do not replace site-specific investigations. CAL FIRE distinguishes hazard from risk. A location outside a mapped zone is not proof of zero loss.</div>'
     body += section('Stress the combined loss', 'An event may affect income and the ability to sell at the same time.', '''<div class="card-grid"><div class="card"><span class="mini-label">01 · Income</span><h3>Loss of rent</h3><p>Review abatement, interruption coverage, tenant obligations, repair time and uninsured downtime together.</p></div><div class="card"><span class="mini-label">02 · Cost</span><h3>Repairs &amp; deductibles</h3><p>Include structural repairs, deductibles, uncovered expenses and financing needs in the same scenario.</p></div><div class="card"><span class="mini-label">03 · Exit</span><h3>Liquidity shock</h3><p>Consider delayed sale, weaker pricing and insurance availability after the same event. Do not assume independence.</p></div></div>''')
@@ -219,12 +240,12 @@ def build():
     body = heading('Risk & resilience', 'Understand the trade-offs', 'A useful decision considers routine events, tail events and the owner’s ability to absorb loss. No risk score or event probability is assigned without evidence.')
     body += section('Decision-path risk matrix', 'These are prospective possibilities, not claims that any outcome will occur.', table(['Path','Potential benefit','Key risks / verification needed'], [
         (['Sell before expiry', 'Potential liquidity and reduced single-property concentration.', 'Short remaining term may affect bids; tax, selling costs, debt payoff and replacement-investment risk remain unknown.'], ['irs','diversify']),
-        (['Negotiate an early renewal', 'Could preserve rent and extend the contractual income stream if agreed.', 'Tenant may decline or demand concessions; guarantee, notice rights, capex and future credit require verification.'], ['sec25']),
-        (['Hold through expiry', 'Keeps future leasing or use options open.', 'Vacancy, rent loss, re-leasing cost and uncertain market rent can coincide; review legal rights and reserves.'], ['sec25','diversify']),
+        (['Negotiate an early renewal', 'Could preserve rent and extend the contractual income stream if agreed.', 'Tenant may decline or demand concessions; guarantee, notice rights, capex and future credit require verification.'], ['occ','record']),
+        (['Hold through expiry', 'Keeps future leasing or use options open.', 'Vacancy, rent loss, re-leasing cost and uncertain market rent can coincide; review legal rights and reserves.'], ['occ','diversify']),
         (['Qualifying §1031 exchange', 'May defer eligible gain when all requirements are satisfied.', 'Replacement-property availability, timing, boot, financing and future taxes are material; CPA and qualified intermediary required.'], ['exchange','ftb']),
         (['Refinance / borrow', 'Could provide liquidity while retaining the asset.', 'Debt service, maturity, covenants and refinancing risk can magnify loss. No financing terms are known.'], ['diversify']),
         (['Re-tenant or redevelop', 'May create optionality if allowed and economically feasible.', 'Zoning, approvals, environmental conditions, construction cost, vacancy and demand are unknown.'], ['planning','cgs']),
-        (['Do nothing / miss notice', 'No transaction cost today.', 'Inaction can eliminate an option or create an unintended holdover; verify the actual contract and dates.'], ['sec25']),
+        (['Do nothing / miss notice', 'No transaction cost today.', 'Inaction can eliminate an option or create an unintended holdover; verify the actual contract and dates.'], ['record','occ']),
     ]))
     body += section('Stress events together', 'The inputs and probability of each event are unknown. These are tests to design with advisers, not predictions.', table(['Scenario','Joint effects to model','Data to obtain'], [
         (['Business-as-usual slowdown', 'Weaker sales and credit, rent renegotiation, higher expenses and longer marketing time.', 'Private unit sales, guaranty, comparable offers and insurance renewal terms.'], ['q326','bls']),
@@ -243,8 +264,8 @@ def build():
     body += '''<div class="card-grid two"><div class="card"><h3>Sale, today</h3><p>Gross sale price − transaction/transfer costs − debt payoff − CPA-calculated incremental income tax = after-tax sale equity today. Avoid double-counting taxes or costs.</p></div><div class="card"><h3>Hold, same valuation date</h3><p>Present value of each year’s after-tax cash flow plus terminal after-tax sale equity. Annual flows and terminal equity must already include the relevant tax, costs and debt, with no double count.</p></div></div>'''
     body += section('What the tax professional must determine', 'General rules are not a calculation of this owner’s tax.', table(['Item','What must be reviewed','Subject amount'], [
         (['Basis, gains and depreciation', 'Adjusted basis, selling costs, holding period and applicable gain character are fact-specific. Unrecaptured §1250 gain may be subject to a maximum 25% federal rate.', BLANK], ['irs']),
-        (['Federal and California income tax', 'CPA calculates incremental tax using entity, income, losses, credits, withholding and applicable rules; withholding is not automatically the final tax.', BLANK], ['irs','ftb']),
-        (['Transfer tax and Measure ULA', 'Jurisdiction, timing, exemptions, consideration and allocation need verification. ULA applies only within the City of Los Angeles when applicable.', BLANK], ['ula']),
+        (['Federal and California income tax', 'CPA calculates incremental tax using entity, income, losses, credits and applicable rules; withholding is not automatically the final tax. IRS describes a conditional 3.8% net investment income tax, not a universal rate.', BLANK], ['irs','niit','ftb']),
+        (['Transfer tax and Measure ULA', 'For qualifying city conveyances closing after June 30, 2026, ULA is 4% above $5.4m and below $10.9m, or 5.5% at $10.9m or above; the city base tax is additional. Thresholds change annually; jurisdiction, exemptions and timing need verification.', BLANK], ['ula']),
         (['Deferred exchange', 'A qualified exchange may defer gain; identification and receipt deadlines and California reporting require specialized advice.', BLANK], ['exchange','ftb']),
     ]))
     body += section('Optional, local-only arithmetic', 'All fields are intentionally empty. Enter explicit zero only where a verified input is actually zero.', '''<div class="card"><div class="field-grid">
@@ -257,9 +278,11 @@ def build():
 <div class="field"><label for="discount-rate">After-tax annual discount rate (%)</label><input id="discount-rate" type="number" inputmode="decimal" step="any" autocomplete="off"><p class="hint">Adviser-supplied, consistent with nominal cash flows and the alternative use of funds.</p></div></div></div>
 <div id="comparison-output" class="result" aria-live="polite"><p>Not calculated. Verified inputs are required.</p></div><p class="hint" style="margin-top:12px">End-of-year flows and terminal equity are discounted to today. Comparing a current sale with a hold present value uses the discount rate as the opportunity-cost assumption; it is not a separate reinvestment forecast. Risk, liquidity and different future outcomes require additional analysis.</p>
 <noscript><p>JavaScript is required for this optional arithmetic; no information is sent by the page.</p></noscript></div>''')
-    body += section('Short-lease discount from paired quotes', 'Obtain written opinions on comparable terms. A difference in quotes is not an independently verified market discount.', '''<div class="card"><div class="field-grid"><div class="field"><label for="long-quote">Extended-lease quote ($)</label><input id="long-quote" type="number" inputmode="decimal" step="any" autocomplete="off"></div><div class="field"><label for="short-quote">Current short-lease quote ($)</label><input id="short-quote" type="number" inputmode="decimal" step="any" autocomplete="off"></div></div><p class="formula">Paired difference = (1 − short-lease quote ÷ extended-lease quote) × 100. A negative result is a premium, not a discount.</p><div id="quote-output" class="result" aria-live="polite"><p>Not calculated. Two quotes are required.</p></div><p style="margin-top:14px"><button id="clear-worksheet" type="button" class="button secondary">Clear all worksheet inputs</button></p></div>''')
+    body += section('Short-lease discount from paired quotes', 'Obtain written opinions on comparable terms. A difference in quotes is not an independently verified market discount.', '''<div class="card"><div class="field-grid"><div class="field"><label for="long-quote">Extended-lease quote ($)</label><input id="long-quote" type="number" inputmode="decimal" step="any" autocomplete="off"></div><div class="field"><label for="short-quote">Current short-lease quote ($)</label><input id="short-quote" type="number" inputmode="decimal" step="any" autocomplete="off"></div></div><p class="formula">Paired difference = (1 − short-lease quote ÷ extended-lease quote) × 100. A negative result is a premium, not a discount.</p><div id="quote-output" class="result" aria-live="polite"><p>Not calculated. Two quotes are required.</p></div><p class="hint" style="margin-top:12px">A hypothetical extension is not a signed renewal. If rent, guarantee, concessions, capital costs, timing or other terms differ, the difference does not isolate lease length. Review assumptions and actual comparables privately. ''' + src('occ') + '''</p><p style="margin-top:14px"><button id="clear-worksheet" type="button" class="button secondary">Clear all worksheet inputs</button></p></div>''')
     body += '<p class="lead" style="margin-top:16px">Model version 2.0.0 · Illustrative arithmetic only · No property inputs, assumptions or quotes are supplied by the site. A separate, independently validated model and professional advice are required for a decision.</p>'
     page('sell-vs-hold.html', 'Sell vs. hold', body, script=True)
+    # Preserve the previous calculator URL while using the exact same safe worksheet.
+    page('calculator.html', 'Private worksheet', body, script=True)
 
     # Forecasting method
     body = heading('Research design · Version 0.1', 'A projection system, not a prediction', 'No reliable parcel forecast or back-test is possible with the available evidence. This specification sets out what must exist before a model is built and used.')
@@ -279,17 +302,17 @@ def build():
     # Questions and discovery
     body = heading('Decision intelligence', 'Questions before any decision', 'Every answer below is blank because the source evidence is not available to this public site. A linked official reference supplies context, not the private answer.')
     questions = [
-        ('Q01 · When does the base lease end?', 'Attorney obtains the executed lease and every amendment; records the exact date privately.', ['sec25']),
-        ('Q02 · Who controls renewal options?', 'Attorney identifies each option, conditions, rent-setting method and whether the right remains exercisable.', ['sec25']),
-        ('Q03 · What are the notice deadlines and delivery rules?', 'Counsel calculates dates from the actual contract, confirms recipient and service method, and reconciles an independent private calendar.', ['sec25']),
-        ('Q04 · Who is the tenant and who guarantees rent?', 'Counsel checks the contracting entity, guaranty, assignments and estoppel; do not infer from the brand.', ['sec25']),
-        ('Q05 · What rent and escalation actually apply?', 'Reconcile the rent roll, amendments, payment history and any percentage-rent clause privately.', ['sec25']),
-        ('Q06 · What does NNN really allocate?', 'Abstract taxes, insurance, common expenses, roof, structure, HVAC, environmental and capital obligations.', ['sec25']),
+        ('Q01 · When does the base lease end?', 'Attorney obtains the executed lease and every amendment; records the exact date privately.', ['record','occ']),
+        ('Q02 · Who controls renewal options?', 'Attorney identifies each option, conditions, rent-setting method and whether the right remains exercisable.', ['record','occ']),
+        ('Q03 · What are the notice deadlines and delivery rules?', 'Counsel calculates dates from the actual contract, confirms recipient and service method, and reconciles an independent private calendar.', ['record','occ']),
+        ('Q04 · Who is the tenant and who guarantees rent?', 'Counsel checks the contracting entity, guaranty, assignments and estoppel; do not infer from the brand.', ['record','occ']),
+        ('Q05 · What rent and escalation actually apply?', 'Reconcile the rent roll, amendments, payment history and any percentage-rent clause privately.', ['occ']),
+        ('Q06 · What does NNN really allocate?', 'Abstract taxes, insurance, common expenses, roof, structure, HVAC, environmental and capital obligations.', ['occ']),
         ('Q07 · What happens after casualty or interruption?', 'Review restoration, rent abatement, termination, insurance proceeds and repair responsibility in the lease.', ['cgs','fema']),
-        ('Q08 · What restrictions affect sale or financing?', 'Counsel reviews assignment, consent, first-offer rights, easements, use restrictions, title and existing loan terms.', ['sec25']),
+        ('Q08 · What restrictions affect sale or financing?', 'Counsel reviews assignment, consent, first-offer rights, easements, use restrictions, title and existing loan terms.', ['record','occ']),
         ('Q09 · How healthy is the actual restaurant?', 'Request permitted unit-level sales, rent coverage and guarantor financial information privately; compare with system disclosures.', ['q326']),
-        ('Q10 · What renewal could actually be negotiated?', 'Obtain a non-binding written proposal including rent, term, guarantee, options, concessions and capital obligations.', ['sec25']),
-        ('Q11 · What are executable short- and long-lease prices?', 'Obtain multiple contemporaneous, written, matched broker opinions; document terms, comps and uncertainty.', ['sec25']),
+        ('Q10 · What renewal could actually be negotiated?', 'Obtain a non-binding written proposal including rent, term, guarantee, options, concessions and capital obligations.', ['occ']),
+        ('Q11 · What are executable short- and long-lease prices?', 'Obtain multiple contemporaneous, written, matched broker opinions; document terms, comps and uncertainty.', ['occ']),
         ('Q12 · What is the owner’s adjusted basis and tax?', 'CPA reconciles acquisition records, improvements, depreciation, entity, losses, income and federal/state consequences privately.', ['irs','ftb']),
         ('Q13 · What debt and exit costs are due?', 'Review payoff, prepayment, brokerage, transfer tax, escrow and the relevant sale-date jurisdiction.', ['ula','ftb']),
         ('Q14 · Is an exchange viable?', 'CPA and qualified intermediary assess eligibility, replacement supply, financing and identification/receipt deadlines before any closing.', ['exchange','ftb']),
@@ -306,19 +329,33 @@ def build():
         ('Q25 · Is a projection actually reliable?', 'Collect sufficient compatible history, freeze versions and run a genuine walk-forward back-test before using projections.', ['acs','census']),
     ]
     body += section('Open questions and discovery routes', 'All answers are unverified; the role/action describes a suggested way to obtain them privately.', table(['Question','Answer','Suggested discovery action'], [([q, BLANK, action], keys) for q, action, keys in questions]))
+    # Retain the earlier integration's complete question inventory, without
+    # treating its proposed radii or conditional answers as verified facts.
+    qrefs = {
+        'Lease': ['record'], 'Title': ['record'], 'Tenant': ['q326'],
+        'Trade area': ['acsdata'], 'Schools': ['school'], 'Hazards': ['cgs','fema','fire'],
+        'Valuation': ['occ'], 'Tax': ['irs','exchange'], 'Process': ['privacy'],
+    }
+    prior_questions = []
+    for q in PRIOR['questions']:
+        refs = ['traffic'] if q['id'] == 'Q-13' else qrefs[q['area']]
+        answer = BLANK
+        action = escape(q['owner']) + '; ' + escape(q['document'])
+        prior_questions.append(([escape(q['id'] + ' · ' + q['question']), answer, action], refs))
+    body += section('Earlier question inventory', 'Retained from the prior consolidation. Proposed radii are examples, not a confirmed catchment; references give context, not the private answers.', table(['Question','Answer','Suggested document / reviewer'], prior_questions))
     body += '<div class="note warning">No advisers have been commissioned or contacted by this site. Some missing facts cannot be discovered safely from public regional data and require authorized access to private records.</div>'
     page('questions.html', 'Open questions', body)
 
     # Suggestions and review-before-change
     body = heading('Review before implementation', 'Suggestions & next paths', 'A decision backlog for review—not a record that private work or a site change has already been approved.')
     body += section('Choose a research path', 'These are proposed approaches. The recommendation is to assemble decision-grade inputs before committing, not to choose sale or renewal.', table(['Path','Scope','Trade-off','Status'], [
-        (['A · Minimum', 'Lease and notice abstract, actual bids and CPA sale/renewal comparison.', 'Fastest starting point, but local and disaster evidence remains incomplete.', PROPOSED], ['sec25','irs']),
+        (['A · Minimum', 'Lease and notice abstract, actual bids and CPA sale/renewal comparison.', 'Fastest starting point, but local and disaster evidence remains incomplete.', PROPOSED], ['occ','irs']),
         (['B · Decision-grade', 'Path A plus private trade-area, hazard, insurance and joint stress review.', 'Recommended process for a balanced decision; requires adviser work and verified records.', PROPOSED], ['acs','cgs','fema']),
         (['C · Evidence-grade', 'Path B plus versioned, walk-forward model and continued comparable collection.', 'More analytical depth, but only credible if enough reliable history exists.', PROPOSED], ['acs','census']),
     ]))
     suggestions = [
-        (['S01 · Commission lease abstract', 'Protect option deadlines and reconcile the private calendar before negotiating.', 'Attorney', PROPOSED], ['sec25']),
-        (['S02 · Matched broker quotes', 'Get separate short-lease and extension opinions on the same assumptions; retain actual quotes privately.', 'Broker / adviser', PROPOSED], ['sec25']),
+        (['S01 · Commission lease abstract', 'Protect option deadlines and reconcile the private calendar before negotiating.', 'Attorney', PROPOSED], ['record','occ']),
+        (['S02 · Matched broker quotes', 'Get separate short-lease and extension opinions on the same assumptions; retain actual quotes privately.', 'Broker / adviser', PROPOSED], ['occ']),
         (['S03 · Professional tax comparison', 'Compare current-sale equity, negotiated renewal and feasible exchange on a consistent after-tax basis.', 'CPA / qualified intermediary', PROPOSED], ['irs','exchange','ftb']),
         (['S04 · Local evidence pack', 'Define tract boundaries privately; include ACS uncertainty, traffic, schools and planning, not only regional proxies.', 'Local analyst', PROPOSED], ['acs','traffic','school','planning']),
         (['S05 · Engineering and insurance', 'Verify adopted parcel zones and coverage; quantify downtime, repairs and financing needs together.', 'Engineer / insurance broker', PROPOSED], ['cgs','fema','fire']),
@@ -327,20 +364,22 @@ def build():
         (['S08 · Privacy and accessibility review', 'Independently test disclosure risk, keyboard use and print output before future publishing.', 'Privacy / accessibility reviewer', PROPOSED], ['privacy']),
     ]
     body += section('Suggestions awaiting review', 'Each item stays proposed until the authorized reviewer decides whether to act.', table(['Suggestion','Why it could help','Suggested owner','Status'], suggestions))
+    previous_proposals = ''.join('<li><strong>' + escape(s['id'] + ' · ' + s['title']) + '</strong> — proposed, not approved or implemented.</li>' for s in PRIOR['suggestions'])
+    body += section('Earlier proposal inventory', 'The earlier consolidation’s suggestions are retained for review. “Retire” means preserve an archive, not delete another session’s work.', '<div class="card"><ul class="list">' + previous_proposals + '</ul></div>')
     body += '<div class="note">Choose among the paths with authorized advisers after reviewing cost, timing, privacy and evidence quality. No approval mechanism or private task tracker is provided by the public site.</div>'
     page('suggestions.html', 'Suggestions', body)
 
     # Flag register
     body = heading('Transparency & exceptions', 'Flagged for review', 'Unverified values are blank. These items remain visible and are not reasons to invent an answer. A reference helps investigate the topic; it is not proof of the subject result.', '<span class="pill warn">Review required</span>')
     flags = [
-        (['F01 · Exact lease and notice terms', BLANK, 'Brief says NNN and 2030–2035; controlling contract, expiry and notice dates were not provided.', 'Private counsel abstract and reconciled calendar.'], ['sec25']),
+        (['F01 · Exact lease and notice terms', BLANK, 'Brief says NNN and 2030–2035; controlling contract, expiry and notice dates were not provided.', 'Private counsel abstract and reconciled calendar.'], ['record','occ']),
         (['F02 · Tenant / guarantor / store sales', BLANK, 'Brand filings do not establish the identity or credit of this lease counterparty or unit.', 'Review executed documents and permitted unit data privately.'], ['q326','sec25']),
         (['F03 · Trade area and tract trends', BLANK, 'Location withheld; regional data cannot be relabeled as parcel-level evidence.', 'Authorized analyst defines catchment and obtains consistent ACS data and margins.'], ['acs','acsdata']),
         (['F04 · Parcel hazards and insurance', BLANK, 'Fault, flood, fire, structure and coverage are not known.', 'Use current official layers, engineering and actual private policies/quotes.'], ['cgs','fema','fire']),
-        (['F05 · Real broker quotes / discount', BLANK, 'No short-lease or extended-lease bids have been obtained.', 'Request matched written opinions; do not substitute a default discount.'], ['sec25']),
+        (['F05 · Real broker quotes / discount', BLANK, 'No short-lease or extended-lease bids have been supplied to this site.', 'Request matched written opinions; do not substitute a default discount.'], ['occ']),
         (['F06 · Owner tax, debt and objectives', BLANK, 'Basis, income, ownership, payoff and acceptable loss are private and unavailable.', 'CPA and owner/adviser calculate the incremental after-tax cases privately.'], ['irs','ftb','diversify']),
         (['F07 · Private workspace / commissioning', BLANK, 'This is a public static site, not an access-controlled internal workspace; no advisers were contacted.', 'Use a separately controlled adviser workspace and authorize private work.'], ['privacy']),
-        (['F08 · Historical calculator inconsistency', BLANK, 'The former root calculator compared pre-tax hold value against after-tax sale proceeds and used defaults. The canonical root worksheet was replaced; other historical dashboards have not been fully audited and may still contain assumptions or inconsistent calculators.', 'Use only the blank-by-default root worksheet with CPA-prepared inputs; separately audit legacy materials.'], ['irs']),
+        (['F08 · Historical calculator inconsistency', BLANK, 'Earlier root calculators and the retained site/ calculator compare pre-tax or partially taxed hold value with after-tax sale proceeds and use defaults. Other historical dashboards have not been fully audited.', 'Use the blank-by-default root worksheet with CPA-prepared inputs; separately audit legacy materials before relying on them.'], ['irs']),
         (['F09 · Historical dashboards / row provenance', BLANK, 'Several prior dashboards are retained in the repository; some historical table rows lack per-row external citations and may use older data. They are not the canonical reviewed dashboard.', 'Re-verify each historical row and calculator before relying on it; do not treat an archive as current.'], ['edgar','acs']),
         (['F10 · FY2026 release date discrepancy', BLANK, 'The October 26 announcement says December 9; the issuer reference calendar lists November 18. Neither establishes that full-year results are available as of this review.', 'Check EDGAR and issuer updates for the actual release.'], ['schedule','schedule2','edgar']),
         (['F11 · Tax jurisdiction and ULA', BLANK, 'Central Los Angeles in the brief does not establish the City boundary, tax application or an exemption.', 'Counsel/CPA verify jurisdiction and time-specific transfer tax rules.'], ['ula']),
@@ -348,6 +387,12 @@ def build():
         (['F13 · Census income source access', BLANK, 'QuickFacts could not be opened directly during this review. The root site uses separately accessible SAIPE county income instead of treating the ACS five-year value as verified here.', 'Manually check QuickFacts / ACS and preserve the differing program and vintage definitions.'], ['acs','income']),
     ]
     body += section('Open items and irregularities', 'Review status is a public evidence status; it does not disclose or attest to private work.', table(['Item','Subject value','Finding','Resolution'], flags))
+    flag_refs = {'F-01': ['edgar','schedule','schedule2'], 'F-02': ['prior:CA-DOF-E1','census']}
+    prior_flags = []
+    for f in PRIOR['flagged']:
+        refs = flag_refs.get(f['id'], ['prior:' + f['sourceId']])
+        prior_flags.append(([escape(f['id'] + ' · ' + f['item']), BLANK, escape(f['reason']), escape(f['verify'])], refs))
+    body += section('Earlier review register, retained', 'Prior session’s open items remain visible. Some contextual links have been corrected; an official reference is not proof of a parcel or owner-specific answer.', table(['Earlier flag','Subject value','Earlier finding','Suggested check'], prior_flags))
     page('flagged.html', 'Flagged for review', body)
 
     # One page printable brief
@@ -395,6 +440,49 @@ def build():
     body += section('Evidence ledger', 'External links open only when selected; external websites have their own privacy practices.', table(['Reference','What it supports'], source_rows))
     page('sources.html', 'Source library', body)
 
+    # Preserve the earlier integration's ledger, with clearer scope and corrected
+    # guidance links for several private or unverified rows. It remains distinct
+    # from a parcel-level finding and is never used as a calculator default.
+    body = heading('Evidence continuity', 'Verification ledger', 'The prior integration’s public ledger is retained here with its original periods and official sources. Values reviewed on 26 November 2026 are regional, brand or general tax context—not evidence about this lease or owner.')
+    ledger_rows = []
+    for f in PRIOR['findings']:
+        label = f['label']
+        if f['id'] == 'T-09':
+            label += ' (not all issuer revenue)'
+        elif f['id'] == 'C-05':
+            label += ' in tax schedule; possible additional taxes not included'
+        elif f['id'] == 'E-09':
+            label += ' baseline; coverage and local rules vary'
+        val = escape(f['value']) if f['status'] == 'verified' else BLANK
+        status = 'Reviewed · 26 Nov 2026' if f['status'] == 'verified' else 'Blank · review needed'
+        key = 'prior:' + f['sourceId']
+        ledger_rows.append(([escape(f['id']), escape(label), val, escape(f['period']), escape(f['note']) or '—', status], [key]))
+    body += section('Source-linked observations and blanks', 'Retained source IDs and values are checked against the original period; the Del Taco-inclusive consolidated rent row is explicitly distinguished from the brand series.', table(['ID','Observation','Value','Period','Notes / limitations','Status'], ledger_rows))
+    body += '<div class="note warning">Source links on blank rows are discovery references only. A linked map, government page or company filing does not establish a private property fact. Recheck dynamic data before acting.</div>'
+    page('verification.html', 'Verification ledger', body)
+
+    # Current requirements trace avoids overstating delivery of private or
+    # back-testing tasks. The original detailed requirements remain in the
+    # preserved previous builder for historical audit.
+    body = heading('Accountability', 'Requirements & delivery status', 'A transparent mapping of the requested work to public methods and the private evidence still needed. No owner input is required to browse.')
+    requirement_rows = [
+        (['W-01 · Trade area', 'Method and regional context published; tract results blank.', '<a href="trade-area.html">Market &amp; trade area</a>'], ['acs']),
+        (['W-02 · Sell vs. hold', 'Like-for-like after-tax arithmetic only; no verified property comparison.', '<a href="sell-vs-hold.html">Decision worksheet</a>'], ['irs']),
+        (['W-03 · Decision gates', 'Progress board published; private completion not evidenced.', '<a href="decision-gates.html">Decision gates</a>'], ['privacy']),
+        (['W-04 · Hazard screening', 'Methods and sources published; parcel zones and insurance blank.', '<a href="hazards.html">Hazard screening</a>'], ['cgs','fema','fire']),
+        (['W-10 · Adviser summary', 'Printable anonymous briefing published; private work remains offline.', '<a href="printable-summary.html">Advisor brief</a>'], ['privacy']),
+        (['Tenant history', 'Multiple years and recent quarters sourced; site-level sales and obligor unknown.', '<a href="tenant.html">Tenant health</a>'], ['sec23','q326']),
+        (['Tax and real quotes', 'General rules and formula published; actual taxes and matched quotes unavailable.', '<a href="calculator.html">Private worksheet</a>'], ['irs','ula']),
+        (['Scenarios and loss tolerance', 'Normal and compound stresses specified; property losses and owner thresholds blank.', '<a href="risks.html">Risk scenarios</a>'], ['diversify','quake']),
+        (['Reliable projection / back-test', 'Protocol only; no prediction or validated model without sufficient history.', '<a href="projection.html">Projection method</a>'], ['acs','census']),
+        (['Questions and suggestions', 'Discovery routes and proposals are published for review, not executed.', '<a href="questions.html">Open questions</a> · <a href="suggestions.html">Suggestions</a>'], ['privacy']),
+        (['Private lease abstract', 'Not commissioned or available through the public site; counsel must reconcile notices.', '<a href="decision-gates.html">Lease gate</a>'], ['record']),
+        (['Publication and privacy', 'Static public site; no access-controlled private workspace created or verified.', '<a href="privacy.html">Privacy</a>'], ['privacy']),
+    ]
+    body += section('Requested work and remaining blockers', 'References are contextual, not attestations that private work has been completed.', table(['Requirement','Honest status','Where addressed'], requirement_rows))
+    body += '<div class="note">A decision, parcel-specific analysis, commissioned advice and a back-tested forecast remain unavailable without authorized private evidence. They are not silently marked complete.</div>'
+    page('requirements.html', 'Requirements', body)
+
     # Privacy policy
     body = heading('Highest priority', 'Privacy comes first', 'This public site contains only broad, non-identifying context and placeholders. It is not an internal document repository or a substitute for access controls.')
     body += section('What belongs where', 'Never upload private property evidence to this repository or a public issue, pull request, comment, screenshot or deployment.', table(['Information','Public site','Private workflow'], [
@@ -410,4 +498,4 @@ def build():
 
 if __name__ == '__main__':
     build()
-    print('Built 15 canonical static pages from official-source references; no private inputs used.')
+    print(f'Built {sum(len(items) for _, items in NAV)} canonical static pages from official-source references; no private inputs used.')
