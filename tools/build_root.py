@@ -333,6 +333,58 @@ def kpi_card(label, value, note, link, href, source_id=None):
             f'<p>{e(note)}</p>{s}<a class="more" href="{href}">{e(link)} →</a></div>')
 
 
+
+# Tables that are registers, legends, methods or archives rather than evidence.
+# They are labelled so the repository-wide provenance check can distinguish them
+# from tables that carry a figure and must cite an official source.
+NOSOURCE_MARKERS = {
+    "index.html": ["<th>Location</th>"],
+    "executive-summary.html": ["<th>Path</th>"],
+    "decision-gates.html": ["<th>Question the gate must answer</th>",
+                            "<th>Artefact that closes it</th>",
+                            "<th>Meaning</th>"],
+    "verification.html": ["<th>Irregularity</th>"],
+    "trade-area.html": ["<th>What it covers</th>",
+                        "<th>Can the county answer it?</th>"],
+    "hazards.html": ["<th>Driver</th>"],
+    "sell-vs-hold.html": ["<th>What is computed</th>", "<th>Character</th>"],
+    "calculator.html": ["<th>Meaning</th>"],
+    "risks.html": ["<th>Decision</th>", "<th>Event</th>", "<th>Scenario</th>"],
+    "questions.html": ["<th>Question and why it matters</th>", "<th>Missing information</th>"],
+    "suggestions.html": ["<th>Proposal</th>", "<th>Why it would help</th>"],
+    "flagged.html": ["<th>What was found</th>"],
+    "printable-summary.html": ["<th>Subject</th>", "<th>Question</th>"],
+    "privacy.html": ["<th>Published here?</th>", "<th>Threat</th>"],
+    "requirements.html": ["<th>Brief ref</th>", "<th>Conflict</th>"],
+}
+
+
+def mark_nosource(fname, markers):
+    """Label non-evidence tables so a provenance check can tell them apart.
+
+    A table is non-evidence when its header matches one of the markers: it is a
+    register, a legend, a method table or an archive of links. Every such table on
+    the page is labelled, not just the first.
+    """
+    path = ROOT / fname
+    text = path.read_text(encoding="utf-8")
+    pattern = re.compile(r'<div class="tablewrap">\s*<table>(.*?)</table>\s*</div>', re.S)
+    marked = {"count": 0}
+
+    def repl(m):
+        inner = m.group(1)
+        header = inner[:2500]
+        if any(marker in header for marker in markers):
+            marked["count"] += 1
+            return ('<div class="tablewrap nosource"><table class="nosource">'
+                    + inner + '</table></div>')
+        return m.group(0)
+
+    text = pattern.sub(repl, text)
+    if marked["count"] == 0:
+        raise SystemExit(f"build error: no non-evidence table matched in {fname}")
+    path.write_text(text, encoding="utf-8")
+
 # ----------------------------------------------------------------- index
 def build_index():
     tenant = by_cat("Tenant")
@@ -760,7 +812,8 @@ def build_hazards():
          "The premium, deductible and exclusions decide whether the owner or the insurer bears the loss."),
     ]
     prow = "".join(
-        f'<tr><td><b>{e(name)}</b></td><td class="small">{e(official)}</td><td class="blank">—</td>'
+        f'<tr><td><b>{e(name)}</b></td><td class="small">{e(official)}<br>{src(sid, short=True)}</td>'
+        f'<td class="blank">—</td>'
         f'<td><span class="pill warn">Unverified</span></td>'
         f'<td class="small">{e(impact)}</td><td class="small"><a href="flagged.html">{e(flag)}</a></td></tr>'
         for name, official, sid, flag, impact in parcel_rows)
@@ -1810,6 +1863,9 @@ def build():
         build_sources(),
         build_privacy(),
     ]
+    for fname, markers in NOSOURCE_MARKERS.items():
+        mark_nosource(fname, markers)
+
     verified = sum(1 for r in D["findings"] if r["status"] == "verified")
     unverified = len(D["findings"]) - verified
     print(f"built {len(written)} pages from data/root.json")
