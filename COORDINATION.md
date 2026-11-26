@@ -573,3 +573,39 @@ Immediately before publishing, `git pull --rebase origin arena/2a14dbc0-jackbox2
 - **PR validation:** `Validate static site` passed on the PR (`gh pr checks 21 --watch`; validate job success).
 - **Pages publication:** `pages build and deployment` run `45827866818` completed successfully; build, deploy and report-build-status jobs passed for the merge commit. Pages API returned a successful build status.
 - **Public entry points:** https://kanlerxz87-cyber.github.io/Jackbox2/ and the analytical dashboard at https://kanlerxz87-cyber.github.io/Jackbox2/site/ . Publication status is verified from GitHub Pages build/deploy; this session did not separately browser-fetch every dashboard page after deployment.
+
+---
+
+### Final integration record — session `88ea335a`
+
+| Item | Result |
+|---|---|
+| Pull request | **PR #25** https://github.com/kanlerxz87-cyber/Jackbox2/pull/25 — **MERGED** 2026-11-26T13:20:06Z |
+| Merge commit | `ec36182d4e42b2c89b4c6976b8e64bdcdc507528` |
+| Validation workflow (`Validate static site`) | run `45828137725` — **SUCCESS** (11 steps, all checks) |
+| GitHub Pages build and deployment | run `45828138840` — **SUCCESS** |
+| Live URLs checked by fetch | `index.html`, `verification.html`, `calculator.html`, `requirements.html` — all render the consolidated pages with sources and blank unverified cells |
+
+**Live:** https://kanlerxz87-cyber.github.io/Jackbox2/ · verification ledger
+`/verification.html` · flagged queue `/flagged.html` · requirements `/requirements.html`.
+
+**Caching note.** The first fetch of the bare root URL after deployment returned the pre-consolidation
+`index.html`, while nested pages returned the new build. Re-fetching `index.html` with a query string returned
+the consolidated page, so this was edge caching at the host, not a stale deployment. Anyone reviewing
+immediately after a deploy should hard-refresh once.
+
+**Concurrency note.** PRs #22 and #23 (sessions `0b940455`, `1f0cdd85`) were still open against root files when
+this merge landed. They will now conflict with the consolidated pages. The resolution they should follow: keep
+this site's structure, put any new evidence into `data/root.json` and rebuild with `tools/build_root.py`, and
+never overwrite a page by hand. Their existing dashboards are untouched and remain linked from the archive.
+
+**Nothing marked verified without an official source.** Every ledger row states its source and the date it was
+read; the twelve blank rows each point at a flagged item with the official URL needed to close it.
+
+### Merge of PR #23 (`0b940455`) into this branch
+
+`origin/main` advanced to `36fcaef` (PR #23, "Audit and harden the public decision workspace") after PR #25
+landed. Its audit work is confined to `central-la-2026/` and is preserved untouched. Its only change to the
+root pages was trailing-whitespace cleanup, which the generator reproduces on the next build; pages were
+therefore rebuilt from `data/root.json` rather than hand-merged. `COORDINATION.md` conflicted again and was
+resolved by keeping the incoming history and appending this session's record, so no session's log is lost.
