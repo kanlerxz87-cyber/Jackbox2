@@ -1,63 +1,113 @@
-# Jack in the Box — Central Los Angeles Decision Workspace
+# Jack in the Box — Central Los Angeles decision workspace
 
-A public, anonymous decision-support site for the scenario described in the brief: a Jack in the Box NNN property in Central Los Angeles with an unverified lease-expiry window of 2030–2035. The repository does **not** contain an address, APN, lease, owner identity, tax records, bids, or other private inputs.
+An anonymous, source-linked workspace for one decision: **sell this single-tenant Jack in the Box net-lease
+parcel before the lease expires, or renew it?** The lease expiry window is 2030–2035 according to the owner's
+brief and is not yet verified against the lease.
 
-## Start here
+The site does not answer that question. On verified evidence, neither branch can be priced, so the deliverable
+is a decision-gate sequence, the incidence of each risk, and the arithmetic that turns verified inputs into one
+comparable number the day those inputs arrive.
 
-- [`index.html`](index.html) — simple landing dashboard and main site navigation.
-- [`central-la-2026/index.html`](central-la-2026/index.html) — expanded November 2026 research dashboard, including tenant filings through Q3 FY2026, lease/notice workflow, market context, hazards framework, questions, and a browser calculator.
-- [`site/index.html`](site/index.html) — evidence-led analytical dashboard generated from `data/` by `tools/build.py`.
-- [`flagged.html`](flagged.html) — root dashboard's review items; each expanded dashboard has its own corresponding flagged page.
+## Two rules that shape everything
 
-The repository also preserves independently built dashboards in `privacy-first/`, `alternative-research/`, `docs/`, and `docs/arena-75e09b85/`. These are separately maintained outputs, not a single synchronized application. Check each dashboard's own sources, cutoff and flagged items; do not assume a figure in one dashboard applies to another.
+**Privacy.** No owner name, entity, street address, parcel number, lease document or owner financial record is
+published. Placeholders are used (`[PARCEL — WITHHELD]`, `[OWNER — WITHHELD]`). Those records stay with
+authorised advisers in an access-controlled internal workspace. Only aggregate, non-identifying findings appear
+on the site. See the [privacy page](privacy.html).
 
-## Decision rule
+**Verification.** Every published figure links to the official page that printed it and carries the date it was
+read. Where a value could not be confirmed it is left blank and listed on the
+[Flagged for review](flagged.html) page with the official link needed to check it. No value is inferred,
+estimated, interpolated or copied from another dashboard.
 
-**No sell/renew winner is selected.** The lease abstract, exact notice dates, current sale bids, renewal economics, tax basis, parcel-level hazards and trade-area evidence, and the owner's objectives are not present in this public repository. Aggregate regional indicators and tenant-wide disclosures are context only, not parcel-level proof. A qualified adviser team must verify the missing inputs and compare sale and hold outcomes on a consistent after-tax basis before a commitment.
+## The site (static, no build step required to view)
 
-## Privacy
+| Page | Purpose |
+|---|---|
+| `index.html` | Landing dashboard, key verified figures, archive of earlier parallel work |
+| `executive-summary.html` | Bottom line, three candidate paths with written tests, the eight-week sequence |
+| `decision-gates.html` | Seven gates in order, the artefact that clears each, what reopens it |
+| `verification.html` | Line-by-line ledger: every figure, source, period and check date |
+| `flagged.html` | Twenty blank items with the exact check to run, plus irregularities found |
+| `trade-area.html` | County and metro context, explicitly labelled as context; tract selection rule |
+| `hazards.html` | Earthquake, flood, fire and insurance screening; the three stresses run together |
+| `sell-vs-hold.html` | After-tax module, short-lease discount priced from quotes, what would make it a comparison |
+| `calculator.html` | Private browser calculator: no network, no storage, nothing sent anywhere |
+| `risks.html` | Risk by decision, black swan register, three thresholds that make "manageable" checkable |
+| `questions.html` | 28 questions with owner, document, gate and what changes with the answer |
+| `suggestions.html` | 15 proposals, ordered; site changes left unimplemented for review |
+| `sources.html` | Official source register and the hierarchy applied |
+| `printable-summary.html` | One page for advisers |
+| `privacy.html` | What is published, what is withheld, how the layers are separated |
 
-Personal information and property identifiers must stay offline with authorized advisers in an access-controlled workspace. This public repository is not that workspace. Do not submit confidential or identifying information to the site or commit it here. Public pages use placeholders and aggregate information only. See [`docs/PRIVACY.md`](docs/PRIVACY.md).
+## Build and check
 
-## Verification
-
-The site distinguishes observations, derived values, legal rules, templates and unverified inputs. Missing values are left blank and listed on a “Flagged for Review” page. A passing local checker establishes structural checks only; it does not independently establish the correctness or continued availability of every external source.
-
-Run the core checks from the repository root:
-
-```sh
-python3 tests/check_site.py
-node tests/calc.test.js
-python3 tools/build.py
-python3 tools/check.py
-python3 privacy-first/tests/check.py
+```bash
+python3 tools/build_root.py      # regenerate all 15 pages from data/root.json
+python3 tests/check_root.py      # provenance, links, privacy patterns, calculator inertness
 ```
 
-For the November 2026 dashboard's own checks, run from its directory:
+`tools/build_root.py` refuses to render a verified value without a known source id, and renders an empty cell
+for any row not marked verified. `tests/check_root.py` fails on a missing source, a broken internal link, a
+non-official external host, an identifier pattern, or a single line of network or storage code in the
+calculator.
 
-```sh
-cd central-la-2026
-node scripts/verify_site.mjs
-node scripts/test_runtime.mjs
-```
+The data layer is `data/root.json`: sources, findings, gates, risks, black swans, questions, suggestions and
+flags. Nothing in it identifies the property or the owner.
 
-## GitHub Pages
+## Archive — earlier parallel work, kept and dated
 
-This repository is configured to publish its static root via GitHub Pages. The site is plain HTML/CSS/JavaScript; no visitor account or server-side calculator is used. The private worksheet runs in the reader's browser, but it is not an access-controlled private workspace—do not enter sensitive information on a shared or untrusted device.
+Several sessions worked on this repository concurrently. Their dashboards are retained rather than deleted.
+They do not agree on every figure because they were built at different cut-off dates; this site's
+[verification ledger](verification.html) is the reference.
 
-
-## Independent dashboard map
-
-The repository preserves several separately maintained static dashboards. They are not a synchronized application and may use different cutoffs or gate structures. Review each dashboard's source ledger and Flagged for Review page; do not assume the contents agree.
-
-| Dashboard | Entry point | Notes |
+| Location | What it is | Cut-off it states |
 |---|---|---|
-| Root | `index.html` | Main landing page, with supporting root-level sections and the root source audit. |
-| Central LA 2026 | `central-la-2026/index.html` | Separate W-01–W-10 dashboard; see its own source and flagged pages. |
-| Analytical | `site/index.html` | Generated from `data/` by `tools/build.py`; the focused decision-neutrality audit is recorded here. |
-| Alternative research | `alternative-research/index.html` | Independent research pass. |
-| Docs | `docs/index.html` | Separate documentation dashboard. |
-| Privacy-first | `privacy-first/index.html` | Privacy and decision-gate workflow. |
-| Archived session workspace | `docs/arena-75e09b85/index.html` | Additional independent research artifact. |
+| `central-la-2026/index.html` | Eleven-page refresh with notice calendar and local calculator | Verified through 25 November 2026; FY2026 Q1–Q3 |
+| `site/index.html` | Analytical dashboard generated from `data/` by `tools/build.py` | FY2025 fourth-quarter and full-year release |
+| `docs/index.html` | Session fb776066 pages | FY2025 filings |
+| `docs/arena-75e09b85/index.html` | Session 75e09b85 pages | FY2025 filings |
+| `privacy-first/index.html` | Conservative no-fabrication framework | Framework only |
+| `alternative-research/index.html` | Independent second research pass | FY2025 issuer report |
 
-The core validation commands also include `python3 tests/check_root.py` and `node tests/root_calc.test.js`; these validate root table provenance, privacy, links and calculator arithmetic. The checks are structural and do not replace adviser review or a fresh source verification.
+## What this repository deliberately does not contain
+
+- Personal or parcel-identifying information.
+- A property valuation, appraisal, cap rate or sale price.
+- A projection or forecast for the trade area, because a defensible projection needs verified inputs and
+  back-testing that do not yet exist.
+- A recommendation to sell or to renew.
+
+## Coordination and change history
+
+Session claims, evidence logs, handoffs and merge records are in [`COORDINATION.md`](COORDINATION.md).
+Contributions are welcome, subject to the two rules above: no identifiers, and no unsourced figure.
+
+Nothing here is legal, tax, appraisal or investment advice.
+
+## Repository status after consolidation
+
+The three navigation groups above are the single entry point. Independently built dashboards are preserved in
+`central-la-2026/`, `site/`, `docs/`, `docs/arena-75e09b85/`, `privacy-first/` and `alternative-research/`.
+They are separately maintained outputs with their own cut-off dates and their own flagged pages — not a
+synchronised copy of this site. Do not assume a figure in one applies to another; the
+[verification ledger](verification.html) states the period for every value published here.
+
+## Full check set
+
+```bash
+python3 tests/check_dashboard.py   # this site: provenance, links, privacy, calculator
+node    tests/calc_root.test.js    # this site's calculator arithmetic and inertness
+python3 tests/check_root.py        # repo-wide: conflict markers, every local link, PII, root tables
+node    tests/root_calc.test.js    # legacy root calculator
+python3 tests/check_site.py        # analytical dashboard links and provenance
+node    tests/calc.test.js         # analytical dashboard calculator
+python3 tools/build.py && python3 tools/check.py
+python3 privacy-first/tests/check.py
+cd alternative-research && python3 tests/check.py
+cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs
+```
+
+A passing check establishes structure, provenance wiring and the absence of identifier patterns. It does not
+prove that an external page still says what it said on the check date, which is why every row carries its
+own date.

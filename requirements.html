@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Requirements traceability — Jack in the Box, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision workspace for one anonymous single-tenant net-lease restaurant parcel in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <strong>Jack in the Box · Central Los Angeles</strong>
+      <span>Single-tenant net lease · expiry window 2030–2035 (per owner brief, unverified)</span>
+      <span class="tag">Anonymous</span>
+    </div>
+  </div>
+  <nav class="groups" aria-label="Site sections"><div class="grp"><span class="lbl">Decide</span><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html">Decision gates</a><a href="verification.html">Verification ledger</a><a href="requirements.html" aria-current="page">Requirements</a><a href="flagged.html">Flagged for review</a></div><div class="grp"><span class="lbl">Analyse</span><a href="trade-area.html">Trade area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs hold</a><a href="calculator.html">Private calculator</a><a href="risks.html">Risks</a></div><div class="grp"><span class="lbl">Workspace</span><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="sources.html">Sources</a><a href="printable-summary.html">Printable summary</a><a href="privacy.html">Privacy</a></div></nav>
+</header>
+<main>
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only · verified 2026-11-26</p>
+  <h1>Requirements traceability</h1>
+  <p>Every requirement in the brief, the page that addresses it, the honest status, and the two that cannot be completed on available evidence.</p>
+  
+</div>
+
+<div class="callout info">
+  <b>Traceability, including what was refused.</b> The brief asked for a full list of requirements, organised
+  and analysed. This page maps each requirement to the page that addresses it, states the status honestly, and
+  records the two that cannot be completed on available evidence. A requirement marked delivered is delivered
+  as a <i>method</i> when the underlying values are private; the wording says which.
+</div>
+
+<div class="grid">
+  <div class="card"><h3>Requirements traced</h3><p class="kpi">23</p><p>Every item in the brief, deduplicated.</p></div>
+  <div class="card"><h3>Delivered</h3><p class="kpi">17</p><p>Page exists, is sourced, and is checked in continuous integration.</p></div>
+  <div class="card"><h3>Blocked by privacy</h3><p class="kpi">7</p><p>The value cannot be published without identifying the property.</p></div>
+  <div class="card"><h3>Cannot be completed</h3><p class="kpi">2</p><p>The decision itself, and the projection, both for stated reasons.</p></div>
+</div>
+
+<h2>Traceability matrix</h2>
+<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>ID</th><th>Brief ref</th><th>Requirement</th><th>Status</th><th>Where addressed</th><th>What is actually there</th></tr></thead>
+<tbody><tr><td><code>R-01</code></td><td><b>W-01</b></td><td>Replace city and county proxies with trade-area figures</td><td><span class="pill ok">Delivered as a method; figures blocked</span></td><td class="small"><a href="trade-area.html">trade-area.html</a></td><td class="small">Six-step tract selection rule, weighting, two-vintage direction test, and eleven trade-area rows left blank. County figures are published but labelled as context, not as trade-area evidence.</td></tr><tr><td><code>R-02</code></td><td><b>W-02</b></td><td>Extend the private worksheet to a sell-versus-hold comparison</td><td><span class="pill ok">Delivered as a method; comparison blocked</span></td><td class="small"><a href="sell-vs-hold.html">sell-vs-hold.html</a></td><td class="small">Both branches defined formulaically, the difference identified as the decision number, and the six inputs that would make it a comparison listed. No comparison published, because the inputs are private.</td></tr><tr><td><code>R-03</code></td><td><b>W-03</b></td><td>Decision-gate progress board</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="decision-gates.html">decision-gates.html</a></td><td class="small">Seven gates with question, status, evidence required, evidence in hand, artefact that clears it, owner and what reopens it.</td></tr><tr><td><code>R-04</code></td><td><b>W-04</b></td><td>Parcel-level hazard screening</td><td><span class="pill warn">Framework delivered; parcel status blocked</span></td><td class="small"><a href="hazards.html">hazards.html</a></td><td class="small">Earthquake, liquefaction, landslide, flood, fire, structural and insurance rows, each with the official determination source; all parcel results blank for privacy.</td></tr><tr><td><code>R-05</code></td><td><b>W-10</b></td><td>One-page printable summary for advisors</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="printable-summary.html">printable-summary.html</a></td><td class="small">Print stylesheet, eighteen verified figures with sources, gate status, seven questions, three next actions and four prohibitions.</td></tr><tr><td><code>R-06</code></td><td><b>X-01</b></td><td>A private calculator that runs in the reader&#x27;s browser</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="calculator.html">calculator.html</a></td><td class="small">Client-side only: no network, storage, cookies or analytics; enforced by an automated test that fails the build on any of them.</td></tr><tr><td><code>R-07</code></td><td><b>X-02</b></td><td>Neighbourhood-level data around the parcel</td><td><span class="pill warn">Blocked by privacy</span></td><td class="small"><a href="trade-area.html">trade-area.html</a></td><td class="small">Requires the parcel to fix the rings. The selection rule and the indicator list are published; the values are not.</td></tr><tr><td><code>R-08</code></td><td><b>X-03</b></td><td>An after-tax module</td><td><span class="pill ok">Delivered as rules; owner computation blocked</span></td><td class="small"><a href="sell-vs-hold.html">sell-vs-hold.html</a></td><td class="small">Verified federal rate tiers, section 1250 maximum, California brackets, and an explicit list of the owner-specific inputs the accountant must supply.</td></tr><tr><td><code>R-09</code></td><td><b>X-04</b></td><td>Price the short-lease discount from real quotes</td><td><span class="pill warn">Method delivered; quotes blocked</span></td><td class="small"><a href="sell-vs-hold.html">sell-vs-hold.html</a></td><td class="small">Discount defined as 1 − (long-lease cap rate ÷ short-lease cap rate), applied through a comparable table that is empty pending broker opinions.</td></tr><tr><td><code>R-10</code></td><td><b>X-05</b></td><td>Tract-level trend evidence alongside the regional figures</td><td><span class="pill warn">Blocked by privacy</span></td><td class="small"><a href="trade-area.html">trade-area.html</a></td><td class="small">Regional series published with sources; the tract trend is specified but not published.</td></tr><tr><td><code>R-11</code></td><td><b>X-06</b></td><td>Executive summary</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="executive-summary.html">executive-summary.html</a></td><td class="small">Three candidate paths, each with a test it must pass and a kill criterion; what is known; what is missing; an eight-week sequence.</td></tr><tr><td><code>R-12</code></td><td><b>X-07</b></td><td>Risks, including black swan events</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="risks.html">risks.html</a></td><td class="small">Twelve decision-specific risks with sourced evidence, six black swans with transmission channels and preparation, and three checkable thresholds.</td></tr><tr><td><code>R-13</code></td><td><b>X-08</b></td><td>Questions, information and answers needed before a decision</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="questions.html">questions.html</a></td><td class="small">Twenty-eight questions with owner, document, gate, and what changes depending on the answer, plus nine discovery routes and lead times.</td></tr><tr><td><code>R-14</code></td><td><b>X-09</b></td><td>A suggestions section, reviewed before anything is implemented</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="suggestions.html">suggestions.html</a></td><td class="small">Fifteen proposals ordered by whether delay has a cost; site changes described, not built.</td></tr><tr><td><code>R-15</code></td><td><b>X-10</b></td><td>Flag irregular and unverified items for review</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="flagged.html">flagged.html</a></td><td class="small">Twenty blank items with the exact check and official link, plus eight consolidation irregularities with their handling.</td></tr><tr><td><code>R-16</code></td><td><b>X-11</b></td><td>Anonymise all personal information; placeholders only</td><td><span class="pill ok">Delivered and enforced</span></td><td class="small"><a href="privacy.html">privacy.html</a></td><td class="small">Placeholder discipline, layer separation, threat table, operating rules, and an automated identifier scan in the build.</td></tr><tr><td><code>R-17</code></td><td><b>X-12</b></td><td>Verify every figure against an official source, with links</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="verification.html">verification.html</a></td><td class="small">Forty ledger rows: twenty-eight verified with source and date, twelve blank and flagged, zero inferred.</td></tr><tr><td><code>R-18</code></td><td><b>X-13</b></td><td>A clean live GitHub Pages site with categorised subpages</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="index.html">index.html</a></td><td class="small">Fifteen pages in three navigation groups, generated from a data layer, with a link and provenance check in continuous integration.</td></tr><tr><td><code>R-19</code></td><td><b>X-14</b></td><td>Coordinate parallel sessions through a shared board</td><td><span class="pill ok">Delivered</span></td><td class="small"><a href="COORDINATION.md">COORDINATION.md</a></td><td class="small">Session claim, file scope, verification log, irregularity log, and an archive of every earlier dashboard with its cut-off date.</td></tr><tr><td><code>R-20</code></td><td><b>—</b></td><td>Decide whether to sell before expiry or renew</td><td><span class="pill bad">Cannot be completed on available evidence</span></td><td class="small"><a href="executive-summary.html">executive-summary.html</a></td><td class="small">The decision is the deliverable the brief asks for and the one thing this site refuses to fake. Three paths are specified; the inputs that would choose between them are listed and missing.</td></tr><tr><td><code>R-21</code></td><td><b>—</b></td><td>Balance wealth preservation against growth at a manageable risk level</td><td><span class="pill ok">Delivered as a framework</span></td><td class="small"><a href="risks.html">risks.html</a></td><td class="small">Three thresholds tied to the owner&#x27;s balance sheet — uninsured loss, rent-free downtime, and concentration — instead of an invented risk score.</td></tr><tr><td><code>R-22</code></td><td><b>—</b></td><td>Build a reliable projection system for the area</td><td><span class="pill bad">Deliberately not delivered</span></td><td class="small"><a href="suggestions.html">suggestions.html</a></td><td class="small">A projection needs a target with history, predictors at the same geography, and back-testing. None exists yet, so the site publishes scenarios labelled as assumptions and states the preconditions.</td></tr><tr><td><code>R-23</code></td><td><b>—</b></td><td>Work without manual input from the owner</td><td><span class="pill ok">Delivered within the privacy limit</span></td><td class="small"><a href="questions.html">questions.html</a></td><td class="small">Everything obtainable from official sources was obtained and verified. The remainder requires documents that must not be published, and is specified rather than requested ad hoc.</td></tr></tbody></table></div>
+
+<h2>Why "delivered as a method" is the honest label</h2>
+<p>Four requirements — trade-area figures, the sell-versus-hold comparison, parcel hazard status and the
+neighbourhood data — cannot be finished without records that identify the property. Publishing those records
+would breach the owner's first instruction, which outranks the analytical instruction. The compromise is
+deliberate: publish the rule, the formula, the official lookup and the blank, so a reader can see exactly what
+remains and who holds it. That is more useful than a number with no provenance, and it is the only version of
+this project that respects both instructions at once.</p>
+
+<h2>Requirements that conflict, and how the conflict was resolved</h2>
+<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>Conflict</th><th>Resolution</th></tr></thead><tbody>
+<tr><td>"Deep research to build a reliable projection system" against "no hallucinations" and "never infer"</td>
+<td>The projection is specified, not fabricated. Preconditions are listed on <a href="suggestions.html">Suggestions</a>.</td></tr>
+<tr><td>"Tell me the best decision" against "do not select a winner until verified inputs exist"</td>
+<td>The decision is refused and replaced with three testable paths, each with a kill criterion.</td></tr>
+<tr><td>"No manual input from me" against "commission a private lease abstract"</td>
+<td>Everything public was obtained without input. Documents only the owner holds are specified precisely, so the handover is one email rather than an interview.</td></tr>
+<tr><td>"Include all findings" against "no personal information on the site"</td>
+<td>Findings are published; identifiers are not. The archive keeps earlier work rather than deleting it.</td></tr>
+</tbody></table></div>
+
+</main>
+
+<footer class="site"><div class="inner">
+  <p><b>Privacy.</b> No owner name, entity, street address, parcel number, lease file or owner
+  financial record appears on this site. Identifiers are replaced with placeholders and the
+  underlying records stay in an access-controlled internal workspace. Only aggregate,
+  non-identifying findings are published. <a href="privacy.html">Privacy and workspace rules</a>.</p>
+  <p><b>Verification.</b> Every published figure links to the official page that printed it and was
+  read during the sweep dated 2026-11-26. Where a value could not be confirmed it is left blank
+  and listed on <a href="flagged.html">Flagged for review</a>. No value is inferred, estimated or
+  copied from another dashboard. <a href="verification.html">Verification ledger</a>.</p>
+  <p><b>No winner selected.</b> Nothing here recommends selling or renewing. The evidence needed to
+  price either branch is not yet in hand, and this site does not forecast. It is not legal, tax,
+  appraisal or investment advice; engage licensed advisers before acting.</p>
+  <p class="noprint">Consolidated workspace, session 88ea335a, generated from <code>data/root.json</code>.
+  Earlier parallel dashboards are kept in <a href="index.html#archive">the archive</a> with their cut-off dates.</p>
+</div></footer>
+
+
+</body>
+</html>
