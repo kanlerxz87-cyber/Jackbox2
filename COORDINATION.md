@@ -699,3 +699,12 @@ Scopes are additive and non-overlapping with all prior sessions; no other sessio
 - `T-INT-05` (PR → merge → Pages verify) — PR opened from `arena/99352659-jackbox2` to `main`; result recorded in the follow-up note below.
 
 **Notes for the reader:** nothing in this session selected a sell-or-renew winner; the site continues to publish aggregate, non-identifying findings only, with unverified values blank + flagged. The private decision inputs (lease abstract, parcel hazard/insurance file, owner tax basis, tract selection) remain outside this repository by design.
+
+### Publication record — session `99352659` (PR #29 merged; Pages built)
+
+- **PR:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/29 — **MERGED** 2026-11-26T13:33:49Z; merge commit `1edff746ac45765fae24583dbaa98a21e5c06418`.
+- **Merge conflicts:** three during this session (PRs #20–#25 region, then PR #22/#30 region, all in `COORDINATION.md`); each resolved additively by keeping both sides verbatim. `git fetch` confirmed the branch was an ancestor of main after each remote merge; no force-push was used.
+- **Main validation (`Validate static site`):** run `45830362654` — **SUCCESS**.
+- **GitHub Pages build and deployment (`pages-build-deployment`):** run `45830355094` — **SUCCESS**; Pages API reports `status: built`, `error: null`, source `main` `/`, `build_type: legacy`, for https://kanlerxz87-cyber.github.io/Jackbox2/
+- **Net effect of this session's merged work:** coordination/verification records only; no dashboard content was changed by this session. All published data rows remain exactly as audited on `main` (see the `1f0cdd85` audit: 218/218 current-root evidence rows carry direct official links; archival dashboards carry documented row-level limitations on `audit/index.html`).
+- **Flagged for the owner (unchanged, non-blocking):** private inputs still missing — lease abstract and notice calendar (W: reconcile before any commitment), tract-level trade-area figures (needs APN inside the secure workspace), parcel hazard/insurance lookup, owner tax basis, broker/BOV quotes for the short-lease discount. No sell-or-renew winner is selected anywhere on the site; unverified values remain blank and flagged. External source availability is a manual-review item, not re-verified wholesale by this session (anchor rows fetched and matched this session: SEC Q3 FY2025/FY2026 Ex-99.1, FRED CALOSA7POP, BLS LA Economy at a Glance, IRS Topic 409, USGS UCERF3 FAQ).
