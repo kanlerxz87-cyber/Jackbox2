@@ -32,7 +32,7 @@
 | T-10 | Suggestions & site-improvement backlog (review-before-implement) | done | 26811aa3 | `suggestions.html` |
 | T-11 | Flagged for Review page + printable advisor summary (W-10) | done | 26811aa3 | `flagged.html`, `printable-summary.html` |
 | T-12 | Final integration: re-verify, link-check, build check, PR → merge → Pages deploy | done | 26811aa3 | all (integration only) |
-| T-13 | Current-branch audit: privacy scrub, dated landing, source/value corrections, calculator/tax wording, release verification | done | 0b940455 | `README.md`, `index.html`, `COORDINATION.md`, `central-la-2026/*` |
+| T-14 | Current-branch audit: privacy scrub, dated landing, source/value corrections, calculator/tax wording, release verification | done | 0b940455 | `README.md`, `index.html`, `COORDINATION.md`, `central-la-2026/*` |
 
 ## Log
 
@@ -55,14 +55,14 @@
 
 ## Current review claim — session `0b940455`
 
-- **Task:** T-13 — final integration audit, privacy scrub, and landing-page/README cleanup.
+- **Task:** T-14 — final integration audit, privacy scrub, and landing-page/README cleanup.
 - **Status:** done (this PR's checks and deployment still pending).
 - **Branch:** `arena/0b940455-jackbox2` (active session branch; no branch switch).
 - **File scope:** `README.md`, root `index.html`, this board, and the Central LA dashboard pages/data for source reconciliation, privacy, and calculator qualification; no other dashboard source data changed.
 - **Non-overlap:** older dashboards remain available but are labeled archival/supporting in README and are not linked as current routes from the root landing page.
 
 
-### T-13 audit results — session `0b940455`
+### T-14 audit results — session `0b940455`
 
 - Replaced README merge-conflict markers and rewrote the root landing page so the dated Central LA dashboard is the obvious primary route. Added explicit limits: the brief's location/lease window are unverified, there is no access-controlled workspace here, and no sell/renew winner is selected.
 - Applied the privacy direction by removing named executive/individual names from current public Central LA output and replacing them with roles only. A public SEC source may itself contain names; the site does not reproduce them.
