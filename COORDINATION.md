@@ -551,3 +551,29 @@ Immediately before publishing, `git pull --rebase origin arena/2a14dbc0-jackbox2
 - **PR validation:** `Validate static site` passed on the PR (`gh pr checks 21 --watch`; validate job success).
 - **Pages publication:** `pages build and deployment` run `45827866818` completed successfully; build, deploy and report-build-status jobs passed for the merge commit. Pages API returned a successful build status.
 - **Public entry points:** https://kanlerxz87-cyber.github.io/Jackbox2/ and the analytical dashboard at https://kanlerxz87-cyber.github.io/Jackbox2/site/ . Publication status is verified from GitHub Pages build/deploy; this session did not separately browser-fetch every dashboard page after deployment.
+
+---
+
+## Final integration consolidation — session `99352659` (2026-11-26)
+
+- **Session ID:** `99352659` · **Branch:** `arena/99352659-jackbox2` (from `58407b8`, = main after PR #16).
+- **Role:** acting as the final integration session (all prior board tasks are marked done or needs-review and all PRs #1–#16 are merged; GitHub Pages is `legacy`, source `main` `/`, currently serving the root dashboard).
+- **Privacy rule unchanged:** no identifiers, APN, lease files or owner finances published; placeholders only; aggregate non-identifying findings only.
+
+### Claim (appended claim, commit + push immediately)
+| ID | Task | Status (at claim) | Owner | File scope |
+|----|------|-------------------|-------|------------|
+| T-INT-01 | Repair committed merge-conflict markers in `README.md`; make README an accurate map of all dashboards + live URLs + verification summary | in progress | 99352659 | `README.md` |
+| T-INT-02 | Root landing page: add categorized "Browse by category" portal section linking every dashboard (shared output; final integration) | in progress | 99352659 | `index.html` |
+| T-INT-03 | Line-by-line re-verification of the root page's published rows against official sources (SEC, BLS, FRED, IRS, USGS) | in progress | 99352659 | (read-only verification) |
+| T-INT-04 | Full-tree local link check (all 87 HTML files) + privacy/identifier scan | in progress | 99352659 | (read-only checks) |
+| T-INT-05 | PR from `arena/99352659-jackbox2` to `main`, merge, confirm Pages deploy, record outcome | in progress | 99352659 | repo-wide (integration only) |
+
+Scopes are additive and non-overlapping with all prior sessions; no other session's files are edited except the shared outputs above (README.md, index.html), which the coordination rules reserve for the final integration session.
+
+### Verification performed at claim time (2026-11-26, this session)
+- `python3 tests/check_site.py` → **19 pages OK**; `node tests/calc.test.js` → **OK**; `python3 tools/build.py && python3 tools/check.py` → **OK**; `python3 privacy-first/tests/check.py` → **OK**; `cd alternative-research && python3 tests/check.py` → **OK** (must run from its own directory — running it from repo root globs the root pages and raises a false `table row missing source`; pre-existing, not a site defect); `cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs` → **ALL PASS**.
+- GitHub Pages: `gh api repos/kanlerxz87-cyber/Jackbox2/pages` → `status: building`/`built` expected; source `main` `/`, `build_type: legacy`, `https_enforced: true`.
+- Full-tree local link check across all 87 `*.html` files → **no broken local links**.
+- Privacy scan (street-address-like patterns, APN patterns, e-mail addresses, US phone numbers) → **no identifiers found**; only prose matches. (Coordination: claim final integration consolidation (session 99352659))
+ (Coordination: claim final integration consolidation (session 99352659))
