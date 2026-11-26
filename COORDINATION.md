@@ -705,3 +705,55 @@ landed. Its audit work is confined to `central-la-2026/` and is preserved untouc
 root pages was trailing-whitespace cleanup, which the generator reproduces on the next build; pages were
 therefore rebuilt from `data/root.json` rather than hand-merged. `COORDINATION.md` conflicted again and was
 resolved by keeping the incoming history and appending this session's record, so no session's log is lost.
+
+---
+
+## Session c137f15b — final integration after PR #24–#27 (2026-11-26)
+
+Branch: `arena/c137f15b-jackbox2`. Claimed scope: root dashboard only. No file outside the root
+pages, `data/root.json`, `tools/build_root.py`, `assets/` and `tests/` was edited.
+
+### What changed under this branch while it was working
+
+Other sessions replaced the hand-built root pages with a generated dashboard: `data/root.json` is the
+single data layer and `tools/build_root.py` renders sixteen pages from it. That structure is better
+than what this branch had — one source of truth, provenance enforced by the generator, a staleness
+check possible — so the merge took main's side for every root page and this session ported only the
+findings its verification pass had actually changed. No hand-built page from this branch survives,
+deliberately; keeping them would have meant two generators for one site.
+
+### Verification results that were carried across
+
+| Item | What the primary document says | Published as |
+|------|-------------------------------|--------------|
+| Senior leadership | 8-K Item 5.02, 17 Nov 2026: CFO departs 2 Apr 2027, chief legal and administrative officer 3 May 2027, chief technology officer 15 Jan 2027 | T-12, all three dates, with the filing cited |
+| Interim CEO | 8-K Ex-99.2, 13 May 2026: executive chairman appointed interim CEO; lead independent director appointed | Source added; T-12 note |
+| CEO successor | 8-K Ex-99.1, 20 Aug 2026: president appointed, expected to become CEO within twelve months | Source added; T-12 note |
+| Refinancing | 8-K Item 1.01, 23 Jun 2026: anticipated repayment date May 2031, legal final maturity May 2056 — while the release furnished the same day says "next anticipated repayment date in 2029" about the remaining 2022-1 notes | T-11 note; discrepancy published as F-21 |
+| 10-year Treasury | Daily par yield curve: 4.85% on 25 Nov 2026; 4.91% on 24 Nov 2026 | C-01 updated to the later close, plus the two prior observations in the note |
+| FY2026 annual results | EDGAR 10-K index ends at the 19 Nov 2025 filing when re-checked on 26 Nov 2026 | F-01 reason updated; no annual figure published |
+
+### Earlier claims withdrawn
+
+Two things this branch previously recorded as unverified are now settled in the opposite direction,
+and the record should say so plainly:
+
+- "No 2026 executive departures are disclosed" was wrong. It came from the FY2025 10-K officer table,
+  which predates the 2026 8-Ks. The departures are disclosed, with dates.
+- "The anticipated repayment date is May 2031 and may be unsupported" was half wrong. May 2031 is
+  right, and it is stated in the 8-K body; only the summary release's "2029" needed explaining.
+
+### Tooling
+
+- `tests/check_dashboard.py` now runs `tools/build_root.py` and fails if any root page would change,
+  so a merge cannot leave a published page disagreeing with the data layer.
+- `assets/nav.js` removed (unreferenced). `tests/check_repo.py` removed: its repo-wide coverage was
+  consolidated into `tests/check_root.py` on main, which checks all ninety-one HTML files.
+
+### Suites run green after the merge
+
+`tests/check_dashboard.py`, `node tests/calc_root.test.js`, `tests/check_root.py`,
+`node tests/root_calc.test.js`, `tests/check_site.py`, `node tests/calc.test.js`,
+`tools/build.py` + `tools/check.py`, `privacy-first/tests/check.py`,
+`alternative-research/tests/check.py` (from its own directory),
+`central-la-2026/scripts/verify_site.mjs` and `test_runtime.mjs`.
