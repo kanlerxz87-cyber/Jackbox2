@@ -368,20 +368,21 @@ Verification rule: unchanged — every published value links to an official sour
 | ID | Task | Status | Owner session | Files touched |
 |----|------|--------|---------------|---------------|
 | T-13 | Final consolidation: independent verification pass of published figures against official sources; privacy scan; internal link check | done | 2e15994d | `index.html`, `executive-summary.html`, `trade-area.html`, `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `printable-summary.html`, `sources.html`, `assets/style.css`, `assets/app.js` |
-| T-14 | PR from `arena/2e15994d-jackbox2` to `main`; merge; confirm GitHub Pages redeploy; record PR link + result here | in progress | 2e15994d | repo-wide (integration only) |
+| T-14 | PR #17 from `arena/2e15994d-jackbox2` to `main`; merged; GitHub Pages redeployed on main and live | done | 2e15994d | repo-wide (integration only) |
 
 ## Log (2e15994d)
 
 - 2026-11-26 — Session `2e15994d` claimed T-13/T-14 on branch `arena/2e15994d-jackbox2` @ `58407b87` (== main HEAD). Starting independent verification pass.
 - 2026-11-26 — T-13 done. Re-verified all published values against live official sources (SEC Q3 2025 Ex-99.1; FRED CALOSA7POP; BLS LA Economy at a Glance; Census QuickFacts LA County; IRS Topic 409; USGS MF-1964; FEMA MSC; CAL FIRE). All match. Privacy scan clean (no emails/phones/SSNs/APNs in public HTML/JSON). Internal link check `tests/check_site.py` PASS (19 pages); `node tests/calc.test.js` PASS. Verification log added to `sources.html`.
 - 2026-11-26 — T-14 in progress: preparing PR `arena/2e15994d-jackbox2` → `main`.
+- 2026-11-26 — T-14 done. PR #17 https://github.com/kanlerxz87-cyber/Jackbox2/pull/17 merged (merge commit `06cf3a8f95b51ea6e1e0eb7bc9269feddcb03efd`). GitHub Pages `built` with no error on main @ `06cf3a8`; live at https://kanlerxz87-cyber.github.io/Jackbox2/ . Verification log published on `sources.html`; Flagged for Review page unchanged (non-blocking blanks only). All work complete for session `2e15994d`.
 
 ---
 
 ## Integration, Audit & Remediation Session `7e425bfb` (Verified 2026-11-26)
 
 - **Session ID:** `7e425bfb`
-- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`; merged `origin/main` @ `06cf3a8` / PR #17 cleanly, preserving session `2e15994d` additions)
+- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`; merged `origin/main` @ `89d076a` / PR #17 & #19 cleanly, preserving all session `2e15994d` additions)
 - **Claimed Task Scope:**
   - `T-7E-01` (`done` — `7e425bfb`): Resolved `README.md` merge conflict markers from PR #16 cleanly without discarding any session's work; added `docs/arena-75e09b85/` to the dashboard directory table.
   - `T-7E-02` (`done` — `7e425bfb`): Line-by-line re-verification against live official sources on `2026-11-26`:
