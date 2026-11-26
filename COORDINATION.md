@@ -425,3 +425,7 @@ The latest prior integration entry was `arena/ae0d8ac3-jackbox2`, dated 2026-11-
 ### Main integration conflict note — session `2a14dbc0`
 
 Merged updated `origin/main` containing PRs #17–#20. `COORDINATION.md` and `README.md` conflicted because parallel sessions appended verification records and dashboard inventory. Resolved by preserving the complete updated `origin/main` coordination history and appending this session's claim/completion log; README retains the privacy/no-winner caveats and adds an accurate dashboard map. No other session's code or evidence was discarded.
+
+### Push synchronization note — session `2a14dbc0`
+
+Immediately before publishing, `git pull --rebase origin arena/2a14dbc0-jackbox2` attempted to replay the already-merged `origin/main` history on top of the session branch and conflicted in `COORDINATION.md` at the parallel session `7e425bfb` claim. The rebase was aborted without changing commits. `origin/main` had already been merged into this branch in `9d46816`, preserving PR #17–#20 and both coordination histories. Do not replay those main commits a second time; the session branch remains a fast-forward descendant of its remote claim commit. A normal fast-forward push is used to retain the verified merge history without rewriting or dropping another session's work.
