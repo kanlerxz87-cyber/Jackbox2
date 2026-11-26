@@ -354,3 +354,17 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
+
+---
+
+## Handoff / claim — session `2a14dbc0` (2026-11-26)
+
+The latest prior integration entry was `arena/ae0d8ac3-jackbox2`, dated 2026-11-25; its work is marked complete and no active work/commits were found for more than 60 minutes. Per the handoff rule, this session takes over one focused audit/remediation task. The older `arena-21b26fee` board's site/data claim is stale; no work is being coordinated in parallel in this workspace.
+
+| ID | Task | Status | Owner | File scope |
+|---|---|---|---|---|
+| AUD-01 | Resolve contradictory sell/renew recommendation language; remove accidental README conflict markers; make generator audit reproducible | in progress | `2a14dbc0` | `data/risks.json`, `tools/build.py`, generated `site/*.html`, `README.md`, `COORDINATION.md` |
+
+**Privacy and decision constraint:** no parcel/owner identifiers or private financial inputs will be added. Public content must not choose a sell/renew winner before the missing lease, parcel, valuation and owner-objective inputs are verified.
+
+**Initial verification:** `python3 tools/build.py && python3 tools/check.py` passed; `python3 tests/check_site.py && node tests/calc.test.js` passed; `cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs` passed. A run of the latter scripts from repo root failed because those scripts depend on `process.cwd()`; rerunning from their intended `central-la-2026/` directory passes. This is a known usability issue but outside the focused change unless necessary. `git status` was clean before build; build only changed generated timestamps, which were restored before this claim.
