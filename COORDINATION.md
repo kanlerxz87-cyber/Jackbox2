@@ -357,10 +357,31 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 
 ---
 
+## Parallel session — session `2e15994d` (arena/2e15994d-jackbox2)
+
+Session ID: `2e15994d`
+Branch: `arena/2e15994d-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`)
+Status: active
+Privacy rule: unchanged — no personal identifiers, APN, exact address, owner name, lease contents or owner financials on the public site; placeholders only.
+Verification rule: unchanged — every published value links to an official source; blank + flagged if unverifiable; never infer.
+
+| ID | Task | Status | Owner session | Files touched |
+|----|------|--------|---------------|---------------|
+| T-13 | Final consolidation: independent verification pass of published figures against official sources; privacy scan; internal link check | done | 2e15994d | `index.html`, `executive-summary.html`, `trade-area.html`, `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `printable-summary.html`, `sources.html`, `assets/style.css`, `assets/app.js` |
+| T-14 | PR from `arena/2e15994d-jackbox2` to `main`; merge; confirm GitHub Pages redeploy; record PR link + result here | in progress | 2e15994d | repo-wide (integration only) |
+
+## Log (2e15994d)
+
+- 2026-11-26 — Session `2e15994d` claimed T-13/T-14 on branch `arena/2e15994d-jackbox2` @ `58407b87` (== main HEAD). Starting independent verification pass.
+- 2026-11-26 — T-13 done. Re-verified all published values against live official sources (SEC Q3 2025 Ex-99.1; FRED CALOSA7POP; BLS LA Economy at a Glance; Census QuickFacts LA County; IRS Topic 409; USGS MF-1964; FEMA MSC; CAL FIRE). All match. Privacy scan clean (no emails/phones/SSNs/APNs in public HTML/JSON). Internal link check `tests/check_site.py` PASS (19 pages); `node tests/calc.test.js` PASS. Verification log added to `sources.html`.
+- 2026-11-26 — T-14 in progress: preparing PR `arena/2e15994d-jackbox2` → `main`.
+
+---
+
 ## Integration, Audit & Remediation Session `7e425bfb` (Verified 2026-11-26)
 
 - **Session ID:** `7e425bfb`
-- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`)
+- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`; merged `origin/main` @ `06cf3a8` / PR #17 cleanly, preserving session `2e15994d` additions)
 - **Claimed Task Scope:**
   - `T-7E-01` (`done` — `7e425bfb`): Resolved `README.md` merge conflict markers from PR #16 cleanly without discarding any session's work; added `docs/arena-75e09b85/` to the dashboard directory table.
   - `T-7E-02` (`done` — `7e425bfb`): Line-by-line re-verification against live official sources on `2026-11-26`:
@@ -371,4 +392,3 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
     * **Tax, Labor & Hazard Agencies:** Re-verified IRS Topic 409 (`$48,350` / `$533,400` single 2025 tiers, `25%` §1250 max), CA FTB (capital gains taxed as ordinary income), LA City Office of Finance Measure ULA (`$5.4M` 4.0% / `$10.9M` 5.5% post-June 30, 2026), CA DIR AB 1228 (`$20.00/hr`), USGS UCERF3 (`60%` ≥M6.7 / `46%` ≥M7.0 / `31%` ≥M7.5), and `fire.ca.gov`.
   - `T-7E-03` (`done` — `7e425bfb`): Fixed `assets/app.js` calculator bugs (IRC §1001 amount realized now deducts selling costs before computing gain; `in-ord` now computes after-tax Hold NPV alongside pre-tax Hold NPV and deducts terminal exit selling costs; removed unused `in-t20` read); added CA FTB & Measure ULA reference row to `sell-vs-hold.html`; added official `https://` source links to every table row across all 12 root HTML pages (`executive-summary.html`, `decision-gates.html`, `trade-area.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `sources.html`, `index.html`).
   - `T-7E-04` (`done` — `7e425bfb`): Added `tests/check_root.py` and `tests/root_calc.test.js`, extended `.github/workflows/validate.yml` to run all repo test suites (`tests/check_site.py`, `tests/calc.test.js`, `tools/build.py`, `tools/check.py`, `privacy-first/tests/check.py`, `tests/check_root.py`, `tests/root_calc.test.js`, `alternative-research/tests/check.py`, `central-la-2026/scripts/verify_site.mjs`, `central-la-2026/scripts/test_runtime.mjs`). All checks pass locally (`0` conflict markers, `0` broken links across 87 HTML files, `0` PII hits).
-
