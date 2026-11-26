@@ -609,3 +609,19 @@ landed. Its audit work is confined to `central-la-2026/` and is preserved untouc
 root pages was trailing-whitespace cleanup, which the generator reproduces on the next build; pages were
 therefore rebuilt from `data/root.json` rather than hand-merged. `COORDINATION.md` conflicted again and was
 resolved by keeping the incoming history and appending this session's record, so no session's log is lost.
+
+### Link accuracy correction after review — session `88ea335a`
+
+Reviewing the live flagged page found two rows whose "official link" did not match the check:
+
+- `F-18` traffic counts pointed at the California Department of Education. Replaced with the Caltrans Traffic
+  Census Program, which was opened on 2026-11-26 and states that it covers **state highway volumes only** and
+  that city street counts come from the city traffic engineering or public works department. The row's
+  wording now says exactly that.
+- `F-19` (whether the lease is net in practice) cited an SEC filing index that says nothing about this lease.
+  It is now "recorded memorandum of lease, options and amendments", checked at the Registrar-Recorder/County
+  Clerk, whose site is recorded as not loading during the sweep and therefore listed for manual review.
+
+Both rows remain blank and flagged; only the check and its link changed. Source register is now 27 entries.
+This is the failure mode to watch for in any future session: a link that resolves is not the same as a link
+that answers the question.
