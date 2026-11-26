@@ -64,10 +64,10 @@
 <section class="block">
   <h2>Stress design — the three legs together</h2>
   <p class="sub">R-17 requires seismic, flood and fire to be stressed together with loss of rent, repairs and exit liquidity - not as three separate footnotes.</p>
-<div class="twrap"><table class=""><thead><tr><th>Leg</th><th>Driver</th><th>Note</th></tr></thead><tbody><tr><td><b>Loss of rent</b></td><td>Months from event to rent resumption, times monthly rent</td><td>In a NNN lease confirmed by HZ-05 style findings the tenant may still owe rent while closed - check the lease, do not assume.</td></tr>
-<tr><td><b>Repairs</b></td><td>Repair cost not covered by insurance, i.e. the deductible plus uninsured exclusions plus code-upgrade cost</td><td>Older buildings commonly face code-triggered upgrade obligations after a loss.</td></tr>
-<tr><td><b>Exit liquidity</b></td><td>Probability that a buyer will transact at all in the 12 months after an event</td><td>This is the leg owners forget. After a regional event, transaction volume in the affected submarket goes to near zero for an extended period, so the owner cannot sell to avoid the other two legs.</td></tr></tbody></table></div>
-  <div class="note warn"><p><b>Why the legs must be treated as one event.</b> The three legs are correlated, not independent. A regional seismic event simultaneously stops rent, triggers repair obligations and closes the transaction market. Treating them as independent understates the tail by a wide margin.</p></div>
+<div class="twrap"><table class=""><thead><tr><th>Leg</th><th>Driver</th><th>Note</th></tr></thead><tbody><tr><td><b>Loss of rent</b></td><td>Scenario months of rent interruption × verified monthly rent; reconcile with lease, tenant performance and insurance.</td><td>Do not assume rent stops or continues: verify lease obligations, business-interruption coverage and any applicable exclusions.</td></tr>
+<tr><td><b>Repairs</b></td><td>Verified repair estimate less applicable insurance recovery, including deductibles, exclusions and code upgrades.</td><td>Obtain property-specific engineering and insurance evidence; no repair amount is estimated here.</td></tr>
+<tr><td><b>Exit liquidity</b></td><td>Scenario sale timing and pricing under reduced market activity; do not assign a probability without evidence.</td><td>No parcel- or submarket-specific post-event transaction dataset was verified for this workspace.</td></tr></tbody></table></div>
+  <div class="note warn"><p><b>Why the legs must be treated as one event.</b> Run rent interruption, repairs/insurance and exit liquidity jointly as a severe stress scenario. Their degree of correlation and magnitude are not quantified without parcel, policy and market evidence.</p></div>
   <div class="card">
     <h3>The leg owners forget</h3>
     <p>Exit liquidity. After a regional event, transaction volume in the affected submarket goes to near zero for an extended period. That means the owner cannot sell to escape the other two legs — the usual response to a problem is unavailable at exactly the moment it is needed. Any hold decision should be tested against that scenario before it is made, not after.</p>
@@ -77,7 +77,7 @@
 </main>
 <footer class="site"><div class="wrap">
   <p><b>Privacy:</b> this site publishes aggregate, non-identifying findings only. No owner name, entity, address, APN, lease document or financial record appears here, by design. All identifiers are replaced with placeholders. See <a href="privacy.html">the privacy policy</a>.</p>
-  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Built 2026-11-26 13:20 UTC from the data layer in <code>data/</code>.</p>
+  <p><b>Verification:</b> every figure links to the official source that printed it. Where a value could not be confirmed against an official source it is left blank and flagged, never inferred. Research cutoff: 2026-11-25 (<code>data/sources.json</code>).</p>
   <p>Not investment, legal, tax or appraisal advice. Nothing here is a property valuation. Engage licensed advisers before acting.</p>
 </div></footer>
 </body>

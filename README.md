@@ -1,73 +1,115 @@
-# Jack in the Box — Central LA Decision Dashboard
+# Jack in the Box — Central Los Angeles decision workspace
 
-Anonymous sell-vs-hold decision workspace for one Central Los Angeles Jack in the Box NNN parcel (expiry 2030–2035, per brief).
+An anonymous, source-linked workspace for one decision: **sell this single-tenant Jack in the Box net-lease
+parcel before the lease expires, or renew it?** The lease expiry window is 2030–2035 according to the owner's
+brief and is not yet verified against the lease.
 
-**Privacy:** No personal identifiers, APN, lease files, or owner finances are published. Placeholders only (`[PARCEL — WITHHELD]`). Publish only aggregate, non-identifying findings.
+The site does not answer that question. On verified evidence, neither branch can be priced, so the deliverable
+is a decision-gate sequence, the incidence of each risk, and the arithmetic that turns verified inputs into one
+comparable number the day those inputs arrive.
 
-**Verification:** Every table row links to an official source (SEC, Census, BLS, FRED, IRS, USGS, FEMA, CAL FIRE). Unverified values are blank and listed on `flagged.html`. Never inferred.
+## Two rules that shape everything
 
-## Site map (GitHub Pages, static — no build step)
+**Privacy.** No owner name, entity, street address, parcel number, lease document or owner financial record is
+published. Placeholders are used (`[PARCEL — WITHHELD]`, `[OWNER — WITHHELD]`). Those records stay with
+authorised advisers in an access-controlled internal workspace. Only aggregate, non-identifying findings appear
+on the site. See the [privacy page](privacy.html).
+
+**Verification.** Every published figure links to the official page that printed it and carries the date it was
+read. Where a value could not be confirmed it is left blank and listed on the
+[Flagged for review](flagged.html) page with the official link needed to check it. No value is inferred,
+estimated, interpolated or copied from another dashboard.
+
+## The site (static, no build step required to view)
 
 Live site: **https://kanlerxz87-cyber.github.io/Jackbox2/**
 
 | Page | Purpose |
-|------|---------|
-| `index.html` | Landing dashboard + key verified findings (re-verified 26 Nov 2026) |
-| `executive-summary.html` | Bottom line, knowns/unknowns, recommended path |
-| `decision-gates.html` | W-03 progress board (no commitment until gates clear) |
-| `trade-area.html` | W-01 tenant trend, footprint, metro and county context, plus a blank tract table (pending APN) |
-| `hazards.html` | W-04 verified regional hazard record + parcel lookup checklist |
-| `sell-vs-hold.html` | W-02 after-tax comparison + private browser calculator (federal tiering, §1250, NIIT, CA, Measure ULA, stress test) |
-| `risks.html` | Risks per decision + black-swan stress tests + red/green flags |
-| `questions.html` | 10 answered questions, 22 open ones, and how to close each |
-| `suggestions.html` | Site suggestions and decision strategies, review before implementing |
-| `flagged.html` | Flagged for Review: F-01–F-22 blanks, source conflicts, repository audit |
-| `printable-summary.html` | W-10 one-page printable advisor summary |
-| `sources.html` | Official source list |
-
-See `COORDINATION.md` for the shared task board and session log.
-
-## Verification
-
-Every figure on the root pages was re-checked against the issuing agency on 26 November 2026
-by opening the source page and reading the specific table or sentence, rather than relying on a
-summary. The rules the site enforces on itself are executable:
-
-| Command | What it enforces |
 |---|---|
-| `python3 tests/check_root.py` | Every table row has an official source link or is explicitly blank; local links and anchors resolve; every external host is on the official allowlist; no personal identifiers; the calculator is offline and stateless |
-| `node tests/calc_root.test.js` | Federal LTCG tiering, §1250 cap, Measure ULA thresholds, LA city transfer-tax rounding, and that the calculator never calls the network or storage |
-| `python3 tests/check_site.py`, `python3 tools/check.py`, `python3 privacy-first/tests/check.py`, `cd alternative-research && python3 tests/check.py`, `cd central-la-2026 && node scripts/verify_site.mjs` | The other dashboards' own integrity suites |
+| `index.html` | Landing dashboard, key verified figures, archive of earlier parallel work |
+| `executive-summary.html` | Bottom line, three candidate paths with written tests, the eight-week sequence |
+| `decision-gates.html` | Seven gates in order, the artefact that clears each, what reopens it |
+| `verification.html` | Line-by-line ledger: every figure, source, period and check date |
+| `flagged.html` | Twenty blank items with the exact check to run, plus irregularities found |
+| `trade-area.html` | County and metro context, explicitly labelled as context; tract selection rule |
+| `hazards.html` | Earthquake, flood, fire and insurance screening; the three stresses run together |
+| `sell-vs-hold.html` | After-tax module, short-lease discount priced from quotes, what would make it a comparison |
+| `calculator.html` | Private browser calculator: no network, no storage, nothing sent anywhere |
+| `risks.html` | Risk by decision, black swan register, three thresholds that make "manageable" checkable |
+| `questions.html` | 28 questions with owner, document, gate and what changes with the answer |
+| `suggestions.html` | 15 proposals, ordered; site changes left unimplemented for review |
+| `sources.html` | Official source register and the hierarchy applied |
+| `printable-summary.html` | One page for advisers |
+| `privacy.html` | What is published, what is withheld, how the layers are separated |
 
-All of the above run in `.github/workflows/validate.yml` on every pull request and on every push
-to `main`. See `flagged.html` for the items that are deliberately blank and the irregularities
-found during the audit (R-01 to R-05).
+## Build and check
 
----
+```bash
+python3 tools/build_root.py      # regenerate all 15 pages from data/root.json
+python3 tests/check_root.py      # provenance, links, privacy patterns, calculator inertness
+```
 
-## This repository contains seven dashboards
+`tools/build_root.py` refuses to render a verified value without a known source id, and renders an empty cell
+for any row not marked verified. `tests/check_root.py` fails on a missing source, a broken internal link, a
+non-official external host, an identifier pattern, or a single line of network or storage code in the
+calculator.
 
-Multiple parallel sessions built dashboards before seeing the others' branches. Rather than
-delete work, all are retained. They do not contradict each other on any verified figure; they
-differ in structure, depth, and filing cutoff date.
+The data layer is `data/root.json`: sources, findings, gates, risks, black swans, questions, suggestions and
+flags. Nothing in it identifies the property or the owner.
 
-| Dashboard | Entry point | Character |
+## Archive — earlier parallel work, kept and dated
+
+Several sessions worked on this repository concurrently. Their dashboards are retained rather than deleted.
+They do not agree on every figure because they were built at different cut-off dates; this site's
+[verification ledger](verification.html) is the reference.
+
+| Location | What it is | Cut-off it states |
 |---|---|---|
-| Root dashboard | `index.html` | Entry point. Seven decision gates, executive summary, key findings, browser calculator. |
-| **Central LA 2026 Refresh (Nov 2026 verified)** | `central-la-2026/index.html` | Latest filing cutoff (verified 2026-11-25, spot-checked 2026-11-26): 11-page W-01–W-10 dashboard incorporating Jack in the Box FY2022–Q3 FY2026 SEC series (Del Taco sale Dec 2025, `$500M` Series 2026-1 `7.624%` refinancing, Nov 17, 2026 C-suite 8-K), post-June 30, 2026 Measure ULA `$5.4M/$10.9M` cliff detector, May 2026 CA DOF E-1 & Metro D Line Sec. 1 opening, Jan 2025 LA wildfire / CDI FAIR Plan orders, Notice Calendar tool, and 100% client-side W-02 calculator (`v1.0.0-2026.11`). |
-| **Analytical dashboard** | `site/index.html` | Depth. Twelve gates, full evidence ledger, after-tax templates, browser calculator, 12 flagged items. Generated from `data/` by `tools/build.py`. |
-| Alternative research | `alternative-research/index.html` | Independently researched second pass. |
-| Docs dashboard | `docs/index.html` | Session `fb776066`'s board and pages. |
-| Privacy-first workflow | `privacy-first/index.html` | Conservative no-fabrication framework: redaction controls, empty/flagged inputs, seven decision gates, risk/Q&A/suggestions registers. |
-| Session `75e09b85` workspace | `docs/arena-75e09b85/index.html` | Anonymized static decision workspace (market research, risk analysis, client-side calculator, flagged review, source registry). |
+| `central-la-2026/index.html` | Eleven-page refresh with notice calendar and local calculator | Verified through 25 November 2026; FY2026 Q1–Q3 |
+| `site/index.html` | Analytical dashboard generated from `data/` by `tools/build.py` | FY2025 fourth-quarter and full-year release |
+| `docs/index.html` | Session fb776066 pages | FY2025 filings |
+| `docs/arena-75e09b85/index.html` | Session 75e09b85 pages | FY2025 filings |
+| `privacy-first/index.html` | Conservative no-fabrication framework | Framework only |
+| `alternative-research/index.html` | Independent second research pass | FY2025 issuer report |
 
-The analytical dashboard and the Central LA 2026 Refresh present **later** reporting periods than the root dashboard's Q3 FY2025 headline (Q4/FY2025 filed 19 November 2025; Q3 FY2026 filed 12 August 2026; Form 8-K filed 17 November 2026). Both are cross-referenced on the Flagged for Review pages.
+## What this repository deliberately does not contain
 
-No figure in any dashboard is estimated. Where an official value could not be obtained it is
-blank and flagged.
+- Personal or parcel-identifying information.
+- A property valuation, appraisal, cap rate or sale price.
+- A projection or forecast for the trade area, because a defensible projection needs verified inputs and
+  back-testing that do not yet exist.
+- A recommendation to sell or to renew.
 
----
+## Coordination and change history
 
-## Session 75e09b85 Addendum
+Session claims, evidence logs, handoffs and merge records are in [`COORDINATION.md`](COORDINATION.md).
+Contributions are welcome, subject to the two rules above: no identifiers, and no unsourced figure.
 
-This session added an anonymized, static decision workspace at [`docs/arena-75e09b85/`](docs/arena-75e09b85/index.html). It includes executive summary, market research, risk analysis, decision framework with a client-side calculator, questions/missing-info, suggestions/decision-gate board, flagged review, privacy, and source registry pages. All claimed values are linked to official sources; unverified/missing inputs are left blank and flagged. No personal or parcel-identifying information is published.
+Nothing here is legal, tax, appraisal or investment advice.
+
+## Repository status after consolidation
+
+The three navigation groups above are the single entry point. Independently built dashboards are preserved in
+`central-la-2026/`, `site/`, `docs/`, `docs/arena-75e09b85/`, `privacy-first/` and `alternative-research/`.
+They are separately maintained outputs with their own cut-off dates and their own flagged pages — not a
+synchronised copy of this site. Do not assume a figure in one applies to another; the
+[verification ledger](verification.html) states the period for every value published here.
+
+## Full check set
+
+```bash
+python3 tests/check_dashboard.py   # this site: provenance, links, privacy, calculator
+node    tests/calc_root.test.js    # this site's calculator arithmetic and inertness
+python3 tests/check_root.py        # repo-wide: conflict markers, every local link, PII, root tables
+node    tests/root_calc.test.js    # legacy root calculator
+python3 tests/check_site.py        # analytical dashboard links and provenance
+node    tests/calc.test.js         # analytical dashboard calculator
+python3 tools/build.py && python3 tools/check.py
+python3 privacy-first/tests/check.py
+cd alternative-research && python3 tests/check.py
+cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs
+```
+
+A passing check establishes structure, provenance wiring and the absence of identifier patterns. It does not
+prove that an external page still says what it said on the check date, which is why every row carries its
+own date.

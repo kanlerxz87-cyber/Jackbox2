@@ -3,208 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Suggestions — Review and Choose Before Implementing</title>
+<title>Suggestions — Jack in the Box, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision workspace for one anonymous single-tenant net-lease restaurant parcel in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header class="top">
-  <div class="brand">Jack in the Box · Central Los Angeles
-    <small>Suggestions · nothing here is implemented without your choice</small></div>
-  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <strong>Jack in the Box · Central Los Angeles</strong>
+      <span>Single-tenant net lease · expiry window 2030–2035 (per owner brief, unverified)</span>
+      <span class="tag">Anonymous</span>
+    </div>
+  </div>
+  <nav class="groups" aria-label="Site sections"><div class="grp"><span class="lbl">Decide</span><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html">Decision gates</a><a href="verification.html">Verification ledger</a><a href="requirements.html">Requirements</a><a href="flagged.html">Flagged for review</a></div><div class="grp"><span class="lbl">Analyse</span><a href="trade-area.html">Trade area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs hold</a><a href="calculator.html">Private calculator</a><a href="risks.html">Risks</a></div><div class="grp"><span class="lbl">Workspace</span><a href="questions.html">Questions</a><a href="suggestions.html" aria-current="page">Suggestions</a><a href="sources.html">Sources</a><a href="printable-summary.html">Printable summary</a><a href="privacy.html">Privacy</a></div></nav>
 </header>
-
-<div class="wrap">
+<main>
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only · verified 2026-11-26</p>
   <h1>Suggestions</h1>
-  <p>This page exists so that recommendations can be reviewed and chosen rather than silently applied. Each suggestion
-    states what it would add, what it costs in time or money, and what it would change about the decision. Nothing below
-    has been implemented. Pick the ones you want and they can be built; ignore the rest.</p>
-
-  <div class="callout info">
-    <b>How to choose.</b> Read the "decision value" column, not the "effort" column. A high-value, low-effort item is
-    worth starting today. A low-value, high-effort item is worth ignoring even if it sounds thorough. Three suggestions
-    below are marked as the ones that would actually change the answer.
-  </div>
-
-  <h2>A · Improvements to this site</h2>
-  <div class="scroll">
-  <table>
-    <thead><tr><th>#</th><th>Suggestion</th><th>What it would add</th><th>Effort</th><th>Decision value</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="flag-id">S-01</td>
-        <td><b>Tract-level trade-area pull, once you supply the APN privately</b></td>
-        <td>Replaces the eight blank rows on <a href="trade-area.html">Trade Area</a> with real Census figures for the
-          tract and the one and three-mile rings, each carrying its ACS table link. This is the difference between
-          "the county is shrinking" and "this neighbourhood is shrinking".</td>
-        <td>Low — a few hours once the APN is available. Draws on the <a href="https://www.census.gov/programs-surveys/acs/">Census ACS</a></td>
-        <td class="src"><b>High.</b> It is the only way to judge whether this specific location is a closure candidate
-          at the tenant's next review.</td>
-        <td><span class="pill blank">Not started — needs private APN</span></td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-02</td>
-        <td><b>Parcel hazard overlay: one map, three zones</b></td>
-        <td>A single page showing the FEMA flood zone, the CGS seismic zone and the CAL FIRE severity zone for the
-          parcel, each with the official map link and the date checked. Would replace the ten blank rows on
-          <a href="hazards.html">Hazards</a>.</td>
-        <td>Low — one afternoon across the <a href="https://msc.fema.gov/portal/home">FEMA MSC</a>, <a href="https://www.conservation.ca.gov/cgs">CGS</a> and <a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">CAL FIRE FHSZ</a> viewers</td>
-        <td class="src"><b>High.</b> Hazard exposure is the variable most likely to make the property hard to sell or
-          expensive to insure, and it is the cheapest thing on this list to establish.</td>
-        <td><span class="pill blank">Not started — needs private address</span></td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-03</td>
-        <td><b>Broker-quote tracker with an implied-discount calculation</b></td>
-        <td>A page that records each written broker opinion with its date, term assumption, capitalisation rate and
-          implied short-lease discount, then shows the spread. Would replace the blank short-lease discount everywhere
-          it appears.</td>
-        <td>Low — the page is trivial; the quotes take two to four weeks. Benchmark against the <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611">Treasury par yield curve</a></td>
-        <td class="src"><b>High.</b> The short-lease discount is the single number that decides the sale price, and no
-          public source can supply it.</td>
-        <td><span class="pill blank">Not started — needs quotes</span></td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-04</td>
-        <td><b>Notice-calendar countdown</b></td>
-        <td>Once the abstract is in hand, a dated countdown to each notice window, with the consequence of missing each
-          one. Would convert G1 on <a href="decision-gates.html">Decision Gates</a> from blocked to green.</td>
-        <td>Low, once the abstract exists. Notice obligations trace to the lease the tenant describes in its <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a></td>
-        <td class="src"><b>High.</b> A missed notice date is the one error in this file that cannot be fixed with money
-          afterwards.</td>
-        <td><span class="pill blank">Not started — needs abstract</span></td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-05</td>
-        <td><b>Versioned cash-flow model with a back-test</b></td>
-        <td>A dated, versioned projection of rent, expenses, capital and exit value, plus a back-test against realised
-          outcomes once two or three years of actuals exist. Each input labelled observation or assumption.</td>
-        <td>Medium to high. Built on the verified <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC</a> and <a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS</a> series already on this site</td>
-        <td class="src">Medium. Genuinely useful, but only after verified inputs exist. Building it now would produce a
-          precise model of invented numbers.</td>
-        <td><span class="pill warn">Deferred until gates clear</span></td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-06</td>
-        <td><b>§1031 replacement screener</b></td>
-        <td>A side-by-side comparison of two or three replacement properties against the hold case: same tax basis,
-          same discount rate, same stress test.</td>
-        <td>Medium. Requires a qualified intermediary and the <a href="https://www.irs.gov/pub/irs-pdf/f8824.pdf">IRS Form 8824</a> rules</td>
-        <td class="src">Medium to high, but only if you are seriously considering an exchange. Without a candidate
-          replacement the exchange is a tax structure with no destination.</td>
-        <td><span class="pill blank">Not started — needs candidates</span></td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-07</td>
-        <td><b>Single-page printable decision brief for each adviser</b></td>
-        <td>Separate one-pagers for the attorney, the CPA and the broker, each listing only the inputs that adviser is
-          responsible for and the questions they need to answer.</td>
-        <td>Low. Each adviser pack cites the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a>, <a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a> and the <a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB 540 schedules</a> already used on this site</td>
-        <td class="src">Medium. It shortens meetings and reduces the chance an item is missed between advisers.</td>
-        <td><span class="pill warn">Not built</span> — one combined brief exists on <a href="printable-summary.html">Printable</a>; separate per-adviser versions are pending</td>
-      </tr>
-      <tr>
-        <td class="flag-id">S-08</td>
-        <td><b>Quarterly monitoring reminders tied to the tenant's filings</b></td>
-        <td>A checklist of what to re-check each quarter: same-store sales, unit count, closures, debt terms, and any
-          Form 8-K. Prevents the analysis going stale between now and 2030.</td>
-        <td>Low. Each reminder links back to the <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=&dateb=&owner=include&count=40">SEC EDGAR filing index</a> and the <a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS LA MSA</a> series</td>
-        <td class="src">Medium. The tenant's trajectory is the main variable, and it reports every quarter.</td>
-        <td><span class="pill blank">Not started</span></td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-
-  <h2>B · Decision strategies worth weighing</h2>
-  <p>These are the actual paths available. Each is stated with the conditions under which it is the right choice, so you
-    can see which conditions you meet.</p>
-  <div class="scroll">
-  <table data-nodata="1">
-    <thead><tr><th>#</th><th>Strategy</th><th>Choose it when</th><th>Principal cost</th><th>Principal benefit</th></tr></thead>
-    <tbody>
-      <tr>
-        <td class="flag-id">D-01</td>
-        <td><b>Renew early with a shorter term and a fixed option</b></td>
-        <td>The lease abstract shows the tenant controls the extension, the store covers rent comfortably, and the
-          renewal rent is at or below market. You keep the asset, avoid tax, and keep the option to sell later.</td>
-        <td>You lock in a rent for several years with a tenant whose sales are still falling.</td>
-        <td>Avoids the entire tax bill, preserves the land option and keeps the income.</td>
-      </tr>
-      <tr>
-        <td class="flag-id">D-02</td>
-        <td><b>Sell now, before the term shortens further</b></td>
-        <td>The after-tax number beats the stressed hold case by a margin larger than your pricing error, and the
-          parcel's hazard or insurance profile is weak.</td>
-        <td>Large and irreversible tax leakage, including Measure ULA on gross price if inside the City.</td>
-        <td>Removes single-tenant, single-site and seismic concentration in one transaction.</td>
-      </tr>
-      <tr>
-        <td class="flag-id">D-03</td>
-        <td><b>Sell into a §1031 exchange</b></td>
-        <td>You want out of this asset but not out of real estate, and you have identified a credible replacement with
-          better fundamentals.</td>
-        <td>45-day identification and 180-day closing deadlines; a replacement that may be worse than what you sold.</td>
-        <td>Defers federal and California income tax and recapture, while diversifying away from this parcel.</td>
-      </tr>
-      <tr>
-        <td class="flag-id">D-04</td>
-        <td><b>Hold to expiry, then re-tenant or redevelop</b></td>
-        <td>Zoning permits a materially higher-value use, the site is in a transit corridor, and you can carry twelve
-          months of vacancy without a forced sale.</td>
-        <td>Highest short-lease discount, re-tenanting cost, and complete loss of rent at expiry.</td>
-        <td>Captures land value that a burger tenant's rent cannot express.</td>
-      </tr>
-      <tr>
-        <td class="flag-id">D-05</td>
-        <td><b>Do nothing until the gates clear</b></td>
-        <td>Always, for the next two to three weeks. This is the recommendation today.</td>
-        <td>A few thousand dollars and some time.</td>
-        <td>Converts a guess into a decision, and prevents the two expensive mistakes: selling too cheap and renewing
-          into a rent the store cannot cover.</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-
-  <h2>C · Things this site deliberately does not do</h2>
-  <div class="two">
-    <div class="card">
-      <h3>Not done, on purpose</h3>
-      <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px">
-        <li>No automated valuation or algorithm-derived price estimate. Every AVM in commercial property is an
-          interpolation over stale comparables.</li>
-        <li>No fill-in of missing values from a data vendor. Vendors are not official sources and their errors are
-          indistinguishable from their data.</li>
-        <li>No recommendation of one strategy as "the" answer while the private inputs are unknown.</li>
-        <li>No collection of any data from you. The calculator is client-side only.</li>
-        <li>No personal or parcel-identifying information anywhere in the repository.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Available if you want it</h3>
-      <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px">
-        <li>A tract-level build once the APN is supplied privately (S-01).</li>
-        <li>A hazard overlay once the address is available (S-02).</li>
-        <li>A broker-quote tracker once quotes exist (S-03).</li>
-        <li>A notice calendar once the abstract exists (S-04).</li>
-        <li>A versioned cash-flow model once verified inputs exist (S-05).</li>
-        <li>A replacement-property screener if an exchange becomes live (S-06).</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout ok">
-    <b>Recommended next three actions, in order.</b> (1) Send the abstract request to an attorney today — it gates
-    everything and takes the longest to come back. (2) Ask a CPA for the basis and depreciation schedule in the same
-    week. (3) Do the free hazard lookups yourself this week, because they cost nothing and remove the most uncertainty
-    per hour spent. Everything else on this page can wait until those three are done.
-  </div>
+  <p>Fifteen proposals, ordered by whether delay has a cost — with the site changes left unimplemented so they can be reviewed first.</p>
+  
 </div>
 
-<footer>
-  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated ·
-  <a href="sources.html">Full source list</a> · <a href="flagged.html">Flagged for Review</a>
-</footer>
-<script src="assets/nav.js"></script>
+<div class="callout">
+  <b>Nothing on this page has been implemented.</b> These are proposals, written so they can be reviewed,
+  argued with and chosen one at a time. The site changes are described here rather than built, because the
+  owner asked to review suggestions before anything is implemented.
+</div>
+
+<h2>How to choose</h2>
+<ol>
+  <li><b>Start with the four that protect optionality</b> (S-01 to S-04). They are low effort, high impact, and
+  they are the only ones where delay has a cost.</li>
+  <li><b>Then the three that produce the number</b> (S-03, S-07, S-08). Without them there is no comparison, only
+  an opinion.</li>
+  <li><b>Then governance</b> (S-09, S-10). They cost nothing and stop the decision drifting.</li>
+  <li><b>Site changes last</b> (S-11 to S-13). They improve how the evidence is maintained, not what the evidence
+  says.</li>
+</ol>
+
+<h2>The register</h2>
+<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>ID</th><th>Proposal</th><th>Type</th><th>Effort</th><th>Impact</th><th>Decision needed before anyone starts</th></tr></thead>
+<tbody><tr><td><code>S-01</code></td><td><b>Reconcile the notice calendar before anything else</b><br><span class="small muted">Abstract the lease, list every notice and option date, and set reminders. This is the only action that prevents an option being lost by default. It requires no judgement about value.</span></td><td class="small">Information gathering</td><td class="small">Low</td><td class="small">High</td><td class="small">Owner approves counsel engagement</td></tr><tr><td><code>S-02</code></td><td><b>Request an estoppel certificate and renewal indication together</b><br><span class="small muted">A single request for an estoppel certificate plus a written renewal indication resolves the largest unknown in the renewal branch. Timing matters: advisers should confirm that approaching the tenant does not weaken the owner&#x27;s position.</span></td><td class="small">Information gathering</td><td class="small">Low</td><td class="small">High</td><td class="small">Owner approves the tenant approach and wording</td></tr><tr><td><code>S-03</code></td><td><b>Order three broker opinions instead of one appraisal</b><br><span class="small muted">Three independent opinions expose the range and the disagreement. Ask each broker specifically for short-lease comparables with remaining term and cap rate so the discount is observed rather than assumed.</span></td><td class="small">Information gathering</td><td class="small">Medium</td><td class="small">High</td><td class="small">Owner approves the engagement and fee</td></tr><tr><td><code>S-04</code></td><td><b>Build the hazard file with dated determinations</b><br><span class="small muted">Record the CGS zone result, FEMA flood zone and base flood elevation, and fire hazard severity zone, each with the date of determination. Then obtain two insurance quotes plus a FAIR Plan comparison.</span></td><td class="small">Information gathering</td><td class="small">Medium</td><td class="small">High</td><td class="small">Owner authorises parcel lookups in the secure workspace</td></tr><tr><td><code>S-05</code></td><td><b>Select census tracts once and document the rule</b><br><span class="small muted">Fix the three-mile and ten-minute drive-time rings, list the tracts, and record how they were chosen. Reuse the same list for every indicator so the trend is comparable across years.</span></td><td class="small">Information gathering</td><td class="small">Medium</td><td class="small">Medium</td><td class="small">Analyst confirms the ring definition with the owner</td></tr><tr><td><code>S-06</code></td><td><b>Pull two ACS vintages for the same tracts</b><br><span class="small muted">Compare two five-year vintages on matched geography and check the Census Bureau&#x27;s comparability guidance first. Publish direction rather than a point forecast.</span></td><td class="small">Analysis</td><td class="small">Medium</td><td class="small">Medium</td><td class="small">Analyst confirms vintage comparability</td></tr><tr><td><code>S-07</code></td><td><b>Commission a re-leasing and conversion study</b><br><span class="small muted">Estimate downtime, tenant improvement cost and alternative-use feasibility. This sets the floor under the hold decision and defines the walk-away rent in a renewal.</span></td><td class="small">Analysis</td><td class="small">Medium</td><td class="small">High</td><td class="small">Owner approves the study</td></tr><tr><td><code>S-08</code></td><td><b>Run the after-tax comparison only with verified inputs</b><br><span class="small muted">Use the private calculator to produce the net sale proceeds and the hold net present value on the same day, from the same inputs. Keep the output as a dated record, not as a live dashboard number.</span></td><td class="small">Analysis</td><td class="small">Low</td><td class="small">High</td><td class="small">Accountant supplies basis and depreciation</td></tr><tr><td><code>S-09</code></td><td><b>Adopt a three-scenario rule and pre-commit to triggers</b><br><span class="small muted">Define base, downside and black swan cases, and write down in advance what would change the decision, such as a second year of population decline or a failed insurance renewal. Pre-commitment is what stops a drift into the default.</span></td><td class="small">Governance</td><td class="small">Low</td><td class="small">High</td><td class="small">Owner adopts the rule in writing</td></tr><tr><td><code>S-10</code></td><td><b>Keep a decision log with dates and authors</b><br><span class="small muted">Record each input, its source, the date it was verified and who verified it. This site&#x27;s verification ledger is the template.</span></td><td class="small">Governance</td><td class="small">Low</td><td class="small">Medium</td><td class="small">Owner nominates a keeper</td></tr><tr><td><code>S-11</code></td><td><b>Add a monthly release watch to this dashboard</b><br><span class="small muted">A dated list of scheduled releases (employment, CPI, population, tenant filings) with links. It keeps the evidence current without re-research. Proposed only; not implemented.</span></td><td class="small">Site improvement</td><td class="small">Low</td><td class="small">Medium</td><td class="small">Owner reviews before implementation</td></tr><tr><td><code>S-12</code></td><td><b>Turn the verification ledger into a machine-checked build</b><br><span class="small muted">The pages on this site are generated from a sourced data file and checked by a script that fails on a missing source, a broken link or an identifier pattern. Extending the same check to every legacy dashboard would stop the older pages drifting out of date.</span></td><td class="small">Site improvement</td><td class="small">Medium</td><td class="small">Medium</td><td class="small">Owner reviews before implementation</td></tr><tr><td><code>S-13</code></td><td><b>Retire the six overlapping dashboards into one</b><br><span class="small muted">Parallel sessions produced six dashboards with different cut-off dates. This site is the consolidated entry point; the others are listed under Archive with their cut-off dates so no work is lost and no figure silently conflicts.</span></td><td class="small">Site improvement</td><td class="small">Medium</td><td class="small">Medium</td><td class="small">Owner chooses whether to keep the archive</td></tr><tr><td><code>S-14</code></td><td><b>Add a rent-coverage watch at the store level</b><br><span class="small muted">Track the operating entity&#x27;s sales and occupancy cost against the lease rent once disclosed. Coverage is the earliest observable warning of a closure or a renewal demand for relief.</span></td><td class="small">Analysis</td><td class="small">Medium</td><td class="small">High</td><td class="small">Tenant disclosure required</td></tr><tr><td><code>S-15</code></td><td><b>Pre-negotiate the sale mechanics before marketing</b><br><span class="small muted">Draft the estoppel, the assignment consent path and the data-room contents before going to market, so a buyer&#x27;s diligence cannot stall the transaction at the price-discovery stage.</span></td><td class="small">Process</td><td class="small">Medium</td><td class="small">Medium</td><td class="small">Owner and counsel approve</td></tr></tbody></table></div>
+
+<h2>Site improvements, awaiting a decision</h2>
+<p>These are suggestions about this dashboard itself. Each is written as a change the owner can accept or reject;
+none has been made.</p>
+<div class="tablewrap nosource"><table class="nosource"><thead><tr><th>Change</th><th>Why it would help</th><th>Cost or risk of doing it</th><th>What it would not fix</th></tr></thead><tbody>
+<tr><td><b>S-11</b> — a release watch</td><td>Employment, price, population and tenant filings arrive on a schedule; a dated list keeps the evidence current without another research pass.</td><td>Maintenance discipline; dates drift if nobody owns it.</td><td>It does not create parcel-level evidence.</td></tr>
+<tr><td><b>S-12</b> — machine-checked provenance</td><td>The build already fails on a missing source id. Extending the same check to every legacy dashboard would stop the older pages drifting.</td><td>Another session's directory would need editing; that requires their agreement.</td><td>It checks that a source exists, not that the source says what the page claims.</td></tr>
+<tr><td><b>S-13</b> — retire the overlapping dashboards</td><td>Six dashboards with different cut-off dates invite the wrong number being quoted.</td><td>Some historical context is lost unless the archive is kept.</td><td>It does not resolve the underlying data gaps.</td></tr>
+<tr><td><b>Show a source column in every table</b></td><td>Already done: each row links to its official page. Keeping the habit in future pages is the point.</td><td>Wider tables on small screens; handled with horizontal scroll.</td><td>It does not make an unavailable value available.</td></tr>
+<tr><td><b>Keep the no-forecast rule</b></td><td>A projection would look decisive and would be unsupported. The brief asks for a reliable projection system; reliability requires back-testing against real history.</td><td>The site gives less comfort than a forecast would.</td><td>It does not by itself produce a decision.</td></tr>
+</tbody></table></div>
+
+<h2>What a reliable projection system would require</h2>
+<p>The brief asks for a deep, reliable projection system for the area. That is a reasonable ambition and it has
+preconditions that are not yet met. A model that could be trusted would need:</p>
+<ol>
+  <li><b>A target with history.</b> Store-level sales for this unit, or failing that, a comparable set of
+  drive-through units with five or more years of observations.</li>
+  <li><b>Predictors measured at the same geography and frequency.</b> Tract or ring-level population, income,
+  employment and traffic, not county proxies.</li>
+  <li><b>Back-testing.</b> Fit on the earlier period, predict the later one, and report the error honestly. A
+  model that has never been back-tested is a hypothesis.</li>
+  <li><b>Explicit separation of observation and assumption.</b> Every input labelled as one or the other, so a
+  reader can see which part of the output is evidence.</li>
+  <li><b>Versioning.</b> Each run dated, with its inputs, so a later reader can reproduce it.</li>
+</ol>
+<div class="callout info">
+  <b>Proposed rule.</b> Do not publish a point forecast for this parcel until items 1 to 3 are satisfied. Until
+  then, publish scenario ranges labelled as assumptions, which is what this site does.
+</div>
+
+</main>
+
+<footer class="site"><div class="inner">
+  <p><b>Privacy.</b> No owner name, entity, street address, parcel number, lease file or owner
+  financial record appears on this site. Identifiers are replaced with placeholders and the
+  underlying records stay in an access-controlled internal workspace. Only aggregate,
+  non-identifying findings are published. <a href="privacy.html">Privacy and workspace rules</a>.</p>
+  <p><b>Verification.</b> Every published figure links to the official page that printed it and was
+  read during the sweep dated 2026-11-26. Where a value could not be confirmed it is left blank
+  and listed on <a href="flagged.html">Flagged for review</a>. No value is inferred, estimated or
+  copied from another dashboard. <a href="verification.html">Verification ledger</a>.</p>
+  <p><b>No winner selected.</b> Nothing here recommends selling or renewing. The evidence needed to
+  price either branch is not yet in hand, and this site does not forecast. It is not legal, tax,
+  appraisal or investment advice; engage licensed advisers before acting.</p>
+  <p class="noprint">Consolidated workspace, session 88ea335a, generated from <code>data/root.json</code>.
+  Earlier parallel dashboards are kept in <a href="index.html#archive">the archive</a> with their cut-off dates.</p>
+</div></footer>
+
+
 </body>
 </html>

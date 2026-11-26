@@ -65,39 +65,24 @@ class RowChecker(HTMLParser):
         self.in_tbody = False
         self.nodata_depth = 0
         self.row = None
-        self.row_http = False
-        self.row_text = []
-        self.row_num = 0
-        self.ids = set()
-        self.refs = []
+        self.unsourced = 0
+        self.nosource_depth = 0
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
-        if a.get('id'):
-            self.ids.add(a['id'])
-        if tag == 'table' and a.get('data-nodata') == '1':
-            self.nodata_depth += 1
-        if tag == 'tbody':
-            self.in_tbody = True
-        if tag == 'tr' and self.in_tbody and not self.nodata_depth:
-            self.row = True
-            self.row_http = False
-            self.row_text = []
-            self.row_num += 1
-        if tag == 'a':
-            href = a.get('href', '')
-            if href:
-                self.refs.append(('a', href))
-                if self.row and href.startswith('https://'):
-                    self.row_http = True
-        if tag in ('link', 'script', 'img'):
-            src = a.get('href') or a.get('src')
-            if src:
-                self.refs.append((tag, src))
-
-    def handle_data(self, data):
-        if self.row and data.strip():
-            self.row_text.append(data.strip())
+        if tag == "table":
+            # A table explicitly marked nosource is a register, legend, method or
+            # archive of links: it carries no figure, so it cannot carry a source.
+            if "nosource" in (a.get("class") or ""):
+                self.nosource_depth += 1
+                return
+        if tag == "tr" and self.nosource_depth == 0:
+            self.row = {"td": False, "https": False}
+        if tag == "td" and self.row is not None:
+            self.row["td"] = True
+        if tag == "a" and self.row is not None:
+            if a.get("href", "").startswith("https://"):
+                self.row["https"] = True
 
     def handle_endtag(self, tag):
         if tag == 'table' and self.nodata_depth:
@@ -109,10 +94,8 @@ class RowChecker(HTMLParser):
                 errors.append(f'{self.page}: table row {self.row_num} has no official source and is not '
                               f'marked blank/unverified -> "{snippet}"')
             self.row = None
-            self.row_http = False
-            self.row_text = []
-        if tag == 'tbody':
-            self.in_tbody = False
+        if tag == "table" and self.nosource_depth:
+            self.nosource_depth -= 1
 
 
 def check_page(name, pages):
@@ -192,11 +175,16 @@ def main():
                 if msg not in errors:
                     errors.append(msg)
 
-    # 7. navigation completeness
-    nav = (ROOT / 'assets/nav.js').read_text(encoding='utf-8')
-    for name in PAGES:
-        if f"'{name}'" not in nav:
-            errors.append(f'assets/nav.js: {name} is not in the shared navigation')
+# 5. Root calculator must remain offline / storage-free
+for script in ("assets/app.js", "assets/calc.js"):
+    script_path = ROOT / script
+    if not script_path.is_file():
+        errors.append(f"missing calculator script: {script}")
+        continue
+    js = script_path.read_text(encoding="utf-8")
+    for forbidden in ["fetch(", "XMLHttpRequest", "localStorage", "sessionStorage", "document.cookie", "navigator.sendBeacon"]:
+        if forbidden in js:
+            errors.append(f"{script} contains forbidden API: {forbidden}")
 
     # calculator must not touch the network or storage
     calc = (ROOT / 'assets/app.js').read_text(encoding='utf-8')

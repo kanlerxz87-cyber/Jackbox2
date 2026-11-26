@@ -16,9 +16,9 @@
           <div class="page-kicker">Workstream W-02 · Private Local-Only Browser Calculator (Model v1.0.0-2026.11)</div>
           <h2>Sell-vs-Hold, Short-Lease Discount &amp; After-Tax Comparison Model</h2>
           <p class="page-lead">
-            Runs <strong>100% locally inside your browser</strong> — zero data is ever transmitted to any server.
-            Combines real broker BOV quotes (short-lease discount), verified Federal/California/Measure ULA tax rules
-            into one net after-tax comparison number, and a versioned 10-year cash-flow comparison across
+            Runs <strong>100% locally inside your browser</strong> — the calculator script does not transmit inputs.
+            No broker BOV quotes are preloaded: enter actual written quotes privately to compare short-lease and renewal cases.
+            Tax inputs are user-supplied scenario assumptions; the output is not an individualized tax calculation. The 10-year comparison is an unvalidated scenario model, not a forecast, across
             <strong>Sell (Taxable)</strong>, <strong>Sell (IRC §1031)</strong>, <strong>Negotiated Early Renewal</strong>, and
             <strong>Hold-to-Expiry / Re-Tenant Stress</strong>.
           </p>
@@ -120,7 +120,7 @@
             <div class="card-header">
               <div>
                 <h3>2. After-Tax Sale Module (Verified IRS, CA FTB &amp; Measure ULA Rules)</h3>
-                <p class="card-sub">Turns verified federal, California, LA County ($1.10/$1,000), LA City Base ($2.25/$500), and Measure ULA (4.0% &gt;$5.4M; 5.5% ≥$10.9M post-Jun 30, 2026) rules into one net after-tax comparison figure.</p>
+                <p class="card-sub">Uses official rate/threshold references as context, but relies on CPA-reviewed gain components, filing/entity facts, and user-entered rates. Any result is provisional scenario arithmetic—not a tax computation or advice. IRS maximum rates apply to different gain components and are not simply added to each other.</p>
               </div>
             </div>
             <div class="form-grid">
@@ -136,8 +136,8 @@
                 <input type="number" id="adjustedBasis" step="10000" min="0" placeholder="Original cost + capex - dep">
               </div>
               <div class="field">
-                <label for="accumDep">Cumulative Straight-Line Depreciation ($) <span class="tag-priv">CPA PRIVATE</span></label>
-                <input type="number" id="accumDep" step="10000" min="0" placeholder="Subject to 25% Sec 1250">
+                <label for="accumDep">CPA-estimated unrecaptured §1250 gain component ($) <span class="tag-priv">CPA PRIVATE</span></label>
+                <input type="number" id="accumDep" step="10000" min="0" placeholder="Do not enter total depreciation without CPA allocation">
               </div>
               <div class="field">
                 <label for="fedLtcgRate">Federal LTCG Rate (%) <span class="tag-obs">IRS MAX 20%</span></label>
@@ -164,6 +164,9 @@
                 <input type="number" id="otherClosingPct" step="0.1" min="0" max="5" placeholder="e.g., 0.5">
               </div>
             </div>
+            <div class="banner banner-warn" role="note">
+              <strong>Tax-model limitation:</strong> This arithmetic applies the entered rates to entered gain components. It does not determine recognized gain, unrecaptured §1250 gain, taxable income, NIIT eligibility/base, entity treatment, state sourcing, exchange qualification, or all closing adjustments. The 20% long-term capital-gain and 25% unrecaptured §1250 figures are statutory maximums for different components—not a combined flat rate. Obtain a CPA's transaction-specific calculation before relying on any output.
+            </div>
             <div id="aftertax-results" style="margin-top:16px;"></div>
           </section>
 
@@ -171,7 +174,8 @@
           <section class="card">
             <div class="card-header">
               <div>
-                <h3>3. Versioned 10-Year Cash-Flow Comparison (v1.0.0-2026.11)</h3>
+                <h3>3. Versioned 10-Year Scenario Comparison (v1.0.0-2026.11)</h3>
+                <p class="card-sub">Illustrative cash-flow scenarios only. No property inputs or closed comparable history have been verified, so this model has not been calibrated or back-tested and is not a reliable projection for this parcel.</p>
                 <p class="card-sub">Explicitly separates scenario assumptions so advisors can stress-test reinvestment yield, renewal concessions, vacancy downtime, and urban land floor.</p>
               </div>
             </div>
