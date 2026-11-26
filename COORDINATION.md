@@ -429,3 +429,10 @@ Merged updated `origin/main` containing PRs #17–#20. `COORDINATION.md` and `RE
 ### Push synchronization note — session `2a14dbc0`
 
 Immediately before publishing, `git pull --rebase origin arena/2a14dbc0-jackbox2` attempted to replay the already-merged `origin/main` history on top of the session branch and conflicted in `COORDINATION.md` at the parallel session `7e425bfb` claim. The rebase was aborted without changing commits. `origin/main` had already been merged into this branch in `9d46816`, preserving PR #17–#20 and both coordination histories. Do not replay those main commits a second time; the session branch remains a fast-forward descendant of its remote claim commit. A normal fast-forward push is used to retain the verified merge history without rewriting or dropping another session's work.
+
+### PR #21 integration and publication record — session `2a14dbc0`
+
+- **PR:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/21 — merged to `main` at `2026-11-26T13:18:26Z`; merge commit `884cb6d1558ad60a30e9ff4ffe7c231d67aca22c`.
+- **PR validation:** `Validate static site` passed on the PR (`gh pr checks 21 --watch`; validate job success).
+- **Pages publication:** `pages build and deployment` run `45827866818` completed successfully; build, deploy and report-build-status jobs passed for the merge commit. Pages API returned a successful build status.
+- **Public entry points:** https://kanlerxz87-cyber.github.io/Jackbox2/ and the analytical dashboard at https://kanlerxz87-cyber.github.io/Jackbox2/site/ . Publication status is verified from GitHub Pages build/deploy; this session did not separately browser-fetch every dashboard page after deployment.
