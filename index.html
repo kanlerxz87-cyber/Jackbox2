@@ -1,44 +1,205 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jack in the Box — Central LA Decision Dashboard</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jack in the Box — Central LA Sell vs Renew Decision Dashboard</title>
+<meta name="description" content="Anonymous, source-verified decision workspace for one Central Los Angeles Jack in the Box NNN parcel: sell before expiry or renew. Every figure links to an official source.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>NNN lease expiring 2030–2035 · Sell-vs-hold decision workspace (anonymous)</small></div>
-<nav class="main"><a class="active" href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<header class="top">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>NNN lease expiring 2030–2035 · sell-vs-renew decision workspace · anonymous</small></div>
+  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+</header>
+
 <div class="wrap">
-<div class="hero"><h1>Sell before expiry, or renew?</h1>
-<p>A verified-evidence dashboard for one anonymous Central-LA Jack in the Box NNN parcel. Every number links to an official source. Anything unverified is blank and flagged — never estimated.</p>
-<p><span class="pill info">Privacy: placeholders only</span> <span class="pill warn">No sale/renewal winner selected until verified inputs exist</span></p></div>
 
-<div class="grid">
-<div class="card"><h3>Parcel (anonymous)</h3><p class="kpi">[PARCEL — WITHHELD]</p><p class="muted">Central Los Angeles · APN withheld · Owner withheld · Lease type: NNN (per brief, unverified — see Flagged)</p><p><a href="questions.html">What we still need →</a></p></div>
-<div class="card"><h3>Lease window</h3><p class="kpi">2030–2035</p><p class="muted">Expiry range from brief. Exact dates, options, escalations and notice calendar require the lease abstract (private).</p><p><a href="decision-gates.html">Gate 1: lease abstract →</a></p></div>
-<div class="card"><h3>Brand health (verified)</h3><p class="kpi">−7.1% SSS</p><p class="muted">Jack in the Box system same-store sales, Q3 2025 (12 wks ended Jul 6, 2025). Source: SEC filing.</p><p><a href="trade-area.html">Brand evidence →</a></p></div>
-<div class="card"><h3>County population trend</h3><p class="kpi">9.69M (2025)</p><p class="muted">LA County resident population, Census via FRED. Down from 9.81M (2021).</p><p><a href="trade-area.html">Trade-area data →</a></p></div>
+  <div class="hero">
+    <h1>Sell before the lease expires, or renew it?</h1>
+    <p>A decision workspace for one anonymous Central Los Angeles Jack in the Box NNN parcel. Every number on this
+      site links to an official source: SEC filings, Census, BLS, IRS, CA FTB, LA City, USGS, FEMA, CAL FIRE.
+      Where a value could not be confirmed, the cell is blank and the item is listed on
+      <a href="flagged.html" style="color:#fff;text-decoration:underline">Flagged for Review</a>. Nothing is estimated.</p>
+    <p style="margin-top:14px">
+      <span class="pill warn">No seller or renewer winner selected — inputs still missing</span>
+      <span class="pill ok">Personal data: placeholders only</span>
+      <span class="pill info">Calculator runs offline in your browser</span>
+    </p>
+  </div>
+
+  <div class="callout info">
+    <b>How to read this site in five minutes.</b> Start with the four cards below, then read
+    <a href="executive-summary.html">Executive Summary</a>. The <a href="decision-gates.html">Decision Gates</a> board
+    shows exactly what is blocking a decision. <a href="questions.html">Questions</a> lists what is missing and how to
+    get it. <a href="flagged.html">Flagged for Review</a> is the list of things you personally should check.
+    <a href="printable-summary.html">Printable</a> is a one-page brief for your CPA, attorney and broker.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Parcel (anonymised)</h3>
+      <p class="kpi">[PARCEL — WITHHELD]</p>
+      <p class="muted">Central Los Angeles · APN withheld · owner withheld · NNN lease per your brief
+        (unverified until abstracted).</p>
+    </div>
+    <div class="card">
+      <h3>Lease window</h3>
+      <p class="kpi">2030–2035</p>
+      <p class="muted">Expiry range from your brief. Exact date, options, escalations and notice dates come from the
+        private lease abstract, not from this site.</p>
+    </div>
+    <div class="card">
+      <h3>Tenant momentum (verified)</h3>
+      <p class="kpi neg">−4.2% FY25 · −1.1% Q3 FY26</p>
+      <p class="muted">Jack in the Box system same-store sales. Improving but still negative for three consecutive
+        quarters. Source: SEC earnings releases.</p>
+    </div>
+    <div class="card">
+      <h3>LA County population (verified)</h3>
+      <p class="kpi warn">9,694,934</p>
+      <p class="muted">July 1, 2025 estimate, down 115,544 from 9,810,478 in 2021. Census via FRED (CALOSA7POP).</p>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <b>The one-sentence answer.</b> On verified public evidence a <b>renewal is not yet defensible</b> — the tenant is
+    shrinking, closing stores and carrying more expensive debt — but a <b>sale is not yet defensible either</b>,
+    because the four inputs that decide it (the lease terms, your tax basis, the parcel's hazard zone and real
+    broker quotes) are still private and unverified. The correct move today is to clear those four gates, which is
+    roughly two to three weeks of adviser work, and then let the comparison decide.
+  </div>
+
+  <h2>Start here</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>1 · Executive summary</h3>
+      <p>The bottom line, what is verified, what is missing, and the recommended sequence of actions.</p>
+      <p><a class="btn" href="executive-summary.html">Read the summary</a></p>
+    </div>
+    <div class="card">
+      <h3>2 · Decision gates</h3>
+      <p>Seven gates. Nothing gets committed until each one is either green or explicitly waived in writing.</p>
+      <p><a class="btn secondary" href="decision-gates.html">View the board</a></p>
+    </div>
+    <div class="card">
+      <h3>3 · Sell vs hold calculator</h3>
+      <p>After-tax sale against a discounted hold-and-renew case, including the Measure ULA cliff and a stress test.
+        Nothing you type leaves your device.</p>
+      <p><a class="btn" href="sell-vs-hold.html">Open the calculator</a></p>
+    </div>
+    <div class="card">
+      <h3>4 · Flagged for review</h3>
+      <p>Every blank, unverified or conflicting item with the source link for you to check yourself.</p>
+      <p><a class="btn secondary" href="flagged.html">Review the flags</a></p>
+    </div>
+  </div>
+
+  <h2>Key verified findings</h2>
+  <p class="muted">Every row carries its official source. Values were re-checked against the issuing agency on
+    26 November 2026.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Finding</th><th>Value</th><th>Period</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Jack in the Box system same-store sales</td><td>−4.2%</td><td>FY2025 (ended 28 Sep 2025)</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K, FY2025</a></td></tr>
+      <tr><td>Jack in the Box system same-store sales</td><td>−1.1%</td><td>Q3 FY2026 (12 wks to 5 Jul 2026)</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">SEC Q3 FY2026 earnings release</a></td></tr>
+      <tr><td>Jack in the Box restaurant count</td><td>2,115 <span class="muted">(149 company + 1,966 franchise)</span></td><td>End of Q3 FY2026</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">SEC Q3 FY2026 earnings release</a></td></tr>
+      <tr><td>Restaurant closures, full fiscal year</td><td>86 <span class="muted">(51 via "JACK on Track")</span></td><td>FY2025</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K, FY2025</a></td></tr>
+      <tr><td>LA County resident population</td><td>9,694,934</td><td>1 Jul 2025 estimate</td>
+        <td class="src"><a href="https://fred.stlouisfed.org/series/CALOSA7POP">FRED / U.S. Census Bureau (CALOSA7POP)</a></td></tr>
+      <tr><td>LA County population change, Jan 2025 → Jan 2026</td><td>−64,000 <span class="muted">(state E-1 estimate)</span></td><td>Jan 2026</td>
+        <td class="src"><a href="https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf">CA Dept. of Finance E-1 press release, May 2026</a></td></tr>
+      <tr><td>LA metro unemployment rate</td><td>4.4% <span class="muted">(preliminary)</span></td><td>Sep 2026</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS — LA-Long Beach-Anaheim Economy at a Glance</a></td></tr>
+      <tr><td>LA metro nonfarm payroll, 12-month change</td><td>+0.5%</td><td>Sep 2026</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS — LA-Long Beach-Anaheim Economy at a Glance</a></td></tr>
+      <tr><td>LA area CPI-U, 12-month change</td><td>+3.7%</td><td>Sep 2026</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/news-release/consumerpriceindex_losangeles.htm">BLS — CPI, Los Angeles area, Oct 2026 release</a></td></tr>
+      <tr><td>LA County median household income</td><td>$90,112 <span class="muted">(2024 dollars)</span></td><td>2020–2024 ACS</td>
+        <td class="src"><a href="https://www.census.gov/quickfacts/losangelescountycalifornia">Census QuickFacts, LA County</a></td></tr>
+      <tr><td>LA County persons in poverty</td><td>13.3%</td><td>2025 estimate</td>
+        <td class="src"><a href="https://www.census.gov/quickfacts/losangelescountycalifornia">Census QuickFacts, LA County</a></td></tr>
+      <tr><td>California fast-food minimum wage</td><td>$20.00/hour</td><td>From 1 Apr 2024 (AB 1228)</td>
+        <td class="src"><a href="https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm">CA Dept. of Industrial Relations</a></td></tr>
+      <tr><td>Unrecaptured §1250 gain maximum rate</td><td>25%</td><td>Tax year 2025</td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>LA City Measure ULA transfer-tax rates</td><td>4% over $5.4M; 5.5% at/above $10.9M</td><td>Closings after 30 Jun 2026</td>
+        <td class="src"><a href="https://finance.lacity.gov/faq/measure-ula">LA Office of Finance — ULA FAQ</a></td></tr>
+      <tr><td>10-year U.S. Treasury par yield</td><td>4.91%</td><td>24 Nov 2026</td>
+        <td class="src"><a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611">U.S. Dept. of the Treasury — Daily Par Yield Curve</a></td></tr>
+      <tr><td>Los Angeles region seismic risk characterisation</td><td>"the greatest seismic risk of any part of the United States"</td><td>USGS MF-1964 (1989)</td>
+        <td class="src"><a href="https://www.usgs.gov/maps/map-showing-late-quaternary-faults-and-1978-84-seismicity-los-angeles-region-california">USGS Publications Warehouse — MF-1964</a></td></tr>
+      <tr><td>Probability of a ≥M6.7 earthquake in the LA region, 30 years</td><td>60%</td><td>UCERF3</td>
+        <td class="src"><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS — earthquake probability FAQ</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>What is verified, missing and unverified</h2>
+  <div class="grid">
+    <div class="card">
+      <h3><span class="pill ok">Verified</span></h3>
+      <p class="muted">Tenant financials, county and metro economics, federal and California tax rules, LA transfer
+        tax and the regional hazard record. Each is linked to the issuing agency above.</p>
+    </div>
+    <div class="card">
+      <h3><span class="pill blank">Missing (private)</span></h3>
+      <p class="muted">Lease terms and notice dates, your basis and depreciation, the parcel's actual hazard zone,
+        insurance quotes, and real broker pricing for a short-lease QSR. These decide the answer and cannot be
+        published.</p>
+    </div>
+    <div class="card">
+      <h3><span class="pill warn">Unverified</span></h3>
+      <p class="muted">Trade-area (census-tract) figures, school and traffic detail, competitor counts, and the
+        short-lease discount. Blank on this site by design, with the lookup route listed on
+        <a href="flagged.html">Flagged for Review</a>.</p>
+    </div>
+  </div>
+
+  <h2>Privacy: what this site will never show</h2>
+  <div class="callout ok">
+    No parcel address, no APN, no owner name or entity, no lease document, no rent roll, no bank or loan details and
+    no tax returns appear anywhere in this repository or on this site. The calculator is a static page: it performs
+    <b>no network requests</b>, sets no cookies and stores nothing. Anything you type is discarded when you close the
+    tab. Keep the identifiers and documents in the access-controlled workspace with your advisers.
+  </div>
+
+  <h2>Other dashboards in this repository</h2>
+  <p class="muted">Parallel work sessions built separate dashboards before seeing each other's branches. Rather than
+    delete work, all are retained. They agree on every verified figure; they differ in depth and in filing cutoff date.
+    This root dashboard is the entry point and the one that was re-verified against the issuing agencies on
+    26 November 2026.</p>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>Dashboard</th><th>Entry point</th><th>What is different about it</th></tr></thead>
+    <tbody>
+      <tr><td><b>This dashboard</b></td><td><a href="index.html">index.html</a></td>
+        <td>Entry point. Re-verified 26 Nov 2026. Full after-tax calculator with ULA cliff, stress test and quote-based short-lease discount.</td></tr>
+      <tr><td>November 2026 verified edition</td><td><a href="central-la-2026/index.html">central-la-2026/</a></td>
+        <td>Eleven-page W-01–W-10 build with the FY2022–Q3 FY2026 SEC series, a notice-calendar tool and its own flagged audit.</td></tr>
+      <tr><td>Analytical dashboard</td><td><a href="site/index.html">site/</a></td>
+        <td>Twelve gates and a generated evidence ledger built from the <code>data/</code> layer by <code>tools/build.py</code>.</td></tr>
+      <tr><td>Independent research</td><td><a href="alternative-research/index.html">alternative-research/</a></td>
+        <td>A second research pass with its own source set.</td></tr>
+      <tr><td>Docs dashboard</td><td><a href="docs/index.html">docs/</a></td>
+        <td>Neighbourhood, tract-trend and short-lease-discount pages.</td></tr>
+      <tr><td>Privacy-first workflow</td><td><a href="privacy-first/index.html">privacy-first/</a></td>
+        <td>Most conservative build: every input empty and flagged, redaction controls, seven gates.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
 </div>
-
-<h2>Start here</h2>
-<div class="grid">
-<div class="card"><h3>1 · Executive summary</h3><p>Bottom line, what we know, what we don't, and the recommended next actions.</p><p><a class="btn" href="executive-summary.html">Read summary</a></p></div>
-<div class="card"><h3>2 · Decision gates</h3><p>Progress board: no commitment until each gate clears with verified inputs.</p><p><a class="btn secondary" href="decision-gates.html">View gates</a></p></div>
-<div class="card"><h3>3 · Sell-vs-hold calculator</h3><p>Private, in-browser after-tax comparison. Nothing you type leaves your device.</p><p><a class="btn" href="sell-vs-hold.html">Open calculator</a></p></div>
-<div class="card"><h3>4 · Flagged for Review</h3><p>Blank/unverified items with source links for your manual review.</p><p><a class="btn secondary" href="flagged.html">Review flags</a></p></div>
-</div>
-
-<h2>Key verified findings (each row links to its official source)</h2>
-<table><thead><tr><th>Finding</th><th>Value</th><th>Period</th><th>Source</th></tr></thead><tbody>
-<tr><td>Jack in the Box system same-store sales</td><td>−7.1%</td><td>Q3 2025</td><td><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000042/ex991-q325earningsrelease.htm">SEC EDGAR — Q3 2025 earnings release (Ex-99.1)</a></td></tr>
-<tr><td>Jack in the Box total restaurants (end of Q3 2025)</td><td>2,168</td><td>Jul 6, 2025</td><td><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000042/ex991-q325earningsrelease.htm">SEC EDGAR — Q3 2025 earnings release</a></td></tr>
-<tr><td>Jack in the Box closures in Q3 2025 (13 via “JACK on Track” block program)</td><td>21</td><td>Q3 2025</td><td><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000042/ex991-q325earningsrelease.htm">SEC EDGAR — Q3 2025 earnings release</a></td></tr>
-<tr><td>LA County resident population</td><td>9,694,934</td><td>2025 estimate</td><td><a href="https://fred.stlouisfed.org/series/CALOSA7POP">FRED / U.S. Census Bureau (CALOSA7POP)</a></td></tr>
-<tr><td>LA metro unemployment rate</td><td>4.4% (prelim.)</td><td>Sep 2026</td><td><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS — Los Angeles Economy at a Glance</a></td></tr>
-<tr><td>LA metro total nonfarm payroll (12-mo change)</td><td>+0.5%</td><td>Sep 2026</td><td><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS — Los Angeles Economy at a Glance</a></td></tr>
-<tr><td>Long-term capital gains — 15% tier ceiling (single)</td><td>$533,400 taxable income</td><td>2025</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
-<tr><td>Unrecaptured §1250 gain max rate</td><td>25%</td><td>2025</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
-<tr><td>LA seismic risk characterisation</td><td>“Greatest seismic risk of any part of the U.S.”</td><td>USGS MF-1964</td><td><a href="https://www.usgs.gov/maps/map-showing-late-quaternary-faults-and-1978-84-seismicity-los-angeles-region-california">USGS Publications Warehouse</a></td></tr>
-<tr><td>Flood-map lookup (official)</td><td>Address search available</td><td>Current</td><td><a href="https://msc.fema.gov/portal/home">FEMA Flood Map Service Center</a></td></tr>
-</tbody></table>
-
-<div class="callout info"><b>How to read this site:</b> County/regional figures are <i>context only</i> — they are not trade-area figures. Tract-level values require the parcel APN and are intentionally blank until verified (see <a href="trade-area.html">Trade Area</a> and <a href="flagged.html">Flagged for Review</a>). No winner is selected between sell and renew on this page. <strong>Deeper analysis:</strong> an independent analytical dashboard — 12 decision gates, 30 questions with resolution routes, a 23-source verification ledger and a browser-only after-tax calculator — is at <a href="site/index.html">site/</a>. It uses the tenant's later FY2025 filing (−4.2% full year, −7.4% Q4, 86 closures; see its Flagged page, item I-11). <strong>November 2026 Verified Edition:</strong> an updated 11-page W-01–W-10 dashboard verified through November 25, 2026 — adding FY2026 Q1–Q3 SEC filings (Del Taco sale, $500M 7.624% Series 2026-1 refinancing, Nov 17, 2026 C-suite 8-K), post-June 2026 Measure ULA ($5.4M/$10.9M) cliff modeling, May 2026 CA DOF E-1 &amp; Metro D Line Sec. 1 data, Notice Calendar tool, and local W-02 calculator — is at <a href="central-la-2026/index.html">central-la-2026/</a> (flagged audit at <a href="central-la-2026/flagged-review.html">central-la-2026/flagged-review.html</a>).</div>
-</div>
-<footer>Anonymous decision workspace · Official sources only · Unverified = blank + flagged · <a href="sources.html">Full source list</a></footer>
-</body></html>
+<footer>
+  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated ·
+  <a href="sources.html">Full source list</a> · <a href="flagged.html">Flagged for Review</a>
+</footer>
+<script src="assets/nav.js"></script>
+</body>
+</html>

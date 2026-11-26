@@ -1,54 +1,255 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sell vs Hold — W-02 After-Tax Comparison</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sell vs Hold — After-Tax Calculator (private, in-browser)</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Sell-vs-hold + after-tax calculator (W-02)</small></div>
-<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a class="active" href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<header class="top">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>W-02 · After-tax sell-versus-hold comparison</small></div>
+  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+</header>
+
 <div class="wrap">
-<h1>Sell-vs-hold comparison (private, in-browser)</h1>
-<p class="muted">Runs entirely in your browser. Nothing you enter is sent anywhere. Defaults use IRS Topic 409 (2025). This is a sensitivity tool, not tax or investment advice. No winner is selected until verified inputs exist.</p>
+  <h1>Sell before expiry, or hold and renew?</h1>
+  <p>This page turns a sale and a hold into two numbers you can compare after tax. It is one page of arithmetic over
+    inputs <em>you</em> supply from verified documents. It runs entirely in your browser: no network request, no
+    cookie, no local storage, nothing saved. Close the tab and the numbers are gone.</p>
 
-<h2>Verified tax rules used as defaults</h2>
-<table><thead><tr><th>Rule</th><th>Value (2025)</th><th>Source</th></tr></thead><tbody>
-<tr><td>LTCG 0% ceiling (single)</td><td>$48,350 taxable income</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
-<tr><td>LTCG 15% ceiling (single)</td><td>$533,400 taxable income</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
-<tr><td>Unrecaptured §1250 gain max rate</td><td>25%</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
-<tr><td>Short-term gains</td><td>Taxed as ordinary income</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
-</tbody></table>
+  <div class="callout danger">
+    <b>Leave a box blank if you do not have the document.</b> The tool refuses to compute rather than fill a gap with
+    a default. A guessed basis or a guessed cap rate produces a confident wrong answer, which is worse than no answer.
+    Every input below is marked either <span class="pill ok">verified rule</span> (the tax law is fixed and sourced)
+    or <span class="pill warn">your assumption</span> (you must supply it and be able to defend it).
+  </div>
 
-<h2>Calculator</h2>
-<form id="calc-form" class="card">
-<div class="grid">
-<div><label>Current annual NNN rent ($)</label><input id="in-rent" type="number" value="0" step="any">
-<label>Rent escalation (%/yr)</label><input id="in-esc" type="number" value="0.02" step="any">
-<label>Hold horizon (years)</label><input id="in-years" type="number" value="10">
-<label>Discount rate (%)</label><input id="in-disc" type="number" value="0.06" step="any"></div>
-<div><label>Gross sale price today ($)</label><input id="in-price" type="number" value="0" step="any">
-<label>Adjusted basis ($)</label><input id="in-basis" type="number" value="0" step="any">
-<label>Unrecaptured §1250 gain ($)</label><input id="in-dep" type="number" value="0" step="any">
-<label>Selling costs (% of price)</label><input id="in-costs" type="number" value="0.03" step="any"></div>
-<div><label>Renewal rent ($/yr)</label><input id="in-renewal" type="number" value="0" step="any">
-<label>Terminal cap rate (%)</label><input id="in-cap" type="number" value="0.06" step="any">
-<label>Short-lease discount (%)</label><input id="in-shortdisc" type="number" value="0.10" step="any">
-<label>CA tax rate — illustrative (%)</label><input id="in-ca" type="number" value="0.093" step="any"></div>
-</div>
-<div class="grid">
-<div><label>LTCG rate (%)</label><input id="in-t15" type="number" value="0.15" step="any">
-<label>§1250 recapture (%)</label><input id="in-t25" type="number" value="0.25" step="any">
-<label>NIIT (%)</label><input id="in-niit" type="number" value="0.038" step="any">
-<label>Ordinary rate (info) (%)</label><input id="in-ord" type="number" value="0.24" step="any"></div>
-</div>
-<div id="calc-result" class="calc-out">Enter verified inputs to see the comparison.</div>
-</form>
+  <h2>Tax rules the calculation uses</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Rule</th><th>Value used</th><th>Status</th><th>Official source</th></tr></thead>
+    <tbody>
+      <tr><td>Long-term capital gain tiers</td><td>0% / 15% / 20% by taxable income</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>2025 tier thresholds, single</td><td>0% to $48,350; 15% to $533,400; 20% above</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>2025 tier thresholds, married filing jointly</td><td>0% to $96,700; 15% to $600,050; 20% above</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>Unrecaptured §1250 gain (depreciation taken)</td><td>Maximum 25%</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>Net investment income tax</td><td>3.8% on net investment income above the statutory threshold</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc559">IRS Topic 559</a></td></tr>
+      <tr><td>California capital-gain treatment</td><td>No preferential rate: gain is taxed as ordinary income</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB 540 rate schedules</a></td></tr>
+      <tr><td>California top marginal rate</td><td>12.3% on the 2024 schedules, plus the 1% Mental Health Services Tax above $1M</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB 540 rate schedules</a></td></tr>
+      <tr><td>LA City base real property transfer tax</td><td>$2.25 per $500 of value (0.45%), rounded up to the next $500</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://finance.lacity.gov/faq/measure-ula">LA Office of Finance — ULA FAQ</a></td></tr>
+      <tr><td>LA City Measure ULA surtax</td><td>4% over $5,400,000 and under $10,900,000; 5.5% at $10,900,000 or more</td>
+        <td><span class="pill ok">verified rule</span></td>
+        <td class="src"><a href="https://finance.lacity.gov/faq/measure-ula">LA Office of Finance — ULA FAQ</a></td></tr>
+      <tr><td>Your California marginal rate</td><td>Whatever your CPA confirms for your bracket and entity</td>
+        <td><span class="pill warn">ask your CPA</span></td>
+        <td class="src"><a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB — schedules to read from</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">The ULA thresholds are indexed annually to the Chained CPI, so re-check the FAQ before you rely on
+    them for a closing date. The calculator applies ULA as a percentage of gross price and uses the City's rounding
+    rule for the base tax only, which is what the FAQ specifies.</p>
 
-<h2>How to use it honestly</h2>
-<ol>
-<li>Enter only verified inputs (lease abstract, CPA basis, broker quotes). Leave unknowns blank — the tool will show $0, which is a signal to stop, not a valuation.</li>
-<li>Run the short-lease discount sensitivity at several levels (e.g. 5% / 10% / 15% / 20%) until real quotes replace the assumption.</li>
-<li>Stress the hold case: 12-month rent loss, major repair, and a 200 bps cap-rate widening at exit — together, not separately.</li>
-</ol>
-<div class="callout"><b>Short-lease discount:</b> currently <span class="pill blank">unverified — blank</span>. Do not quote a discount until broker opinions for short-lease QSR in LA are obtained privately. The calculator's default 10% is an illustrative placeholder only.</div>
+  <h2>The calculator</h2>
+  <form id="calc-form" autocomplete="off">
+
+    <fieldset class="fieldset">
+      <legend>1 · Lease you actually hold <span class="pill warn">your documents</span></legend>
+      <div class="grid" style="margin:8px 0 0">
+        <div>
+          <label for="c-rent">Current annual NNN rent ($/year)</label>
+          <input id="c-rent" type="number" step="any" min="0" placeholder="from the lease abstract" inputmode="decimal">
+        </div>
+        <div>
+          <label for="c-esc">Rent escalation (% per year)</label>
+          <input id="c-esc" type="number" step="any" min="0" placeholder="e.g. 2">
+        </div>
+        <div>
+          <label for="c-term">Years remaining on the lease at the decision date</label>
+          <input id="c-term" type="number" step="any" min="0" placeholder="2032 expiry − 2026 = 6">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>2 · Renewal case <span class="pill warn">broker / negotiation</span></legend>
+      <div class="grid" style="margin:8px 0 0">
+        <div>
+          <label for="c-renew-rent">Negotiated renewal rent ($/year) — blank uses current rent</label>
+          <input id="c-renew-rent" type="number" step="any" min="0" placeholder="optional">
+        </div>
+        <div>
+          <label for="c-renew-term">Renewal term (years) — blank uses 10</label>
+          <input id="c-renew-term" type="number" step="any" min="0" placeholder="optional">
+        </div>
+        <div>
+          <label for="c-cap">Exit cap rate (%)</label>
+          <input id="c-cap" type="number" step="any" min="0" placeholder="from a broker opinion, not a guess">
+        </div>
+        <div>
+          <label for="c-disc">Discount rate (%)</label>
+          <input id="c-disc" type="number" step="any" min="0" placeholder="your required return">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>3 · Sale today <span class="pill warn">broker + CPA</span></legend>
+      <div class="grid" style="margin:8px 0 0">
+        <div>
+          <label for="c-price">Gross sale price today ($)</label>
+          <input id="c-price" type="number" step="any" min="0" placeholder="a real offer or BOV, not a wish">
+        </div>
+        <div>
+          <label for="c-costs">Selling costs (% of gross price)</label>
+          <input id="c-costs" type="number" step="any" min="0" value="3" placeholder="commission + closing">
+        </div>
+        <div>
+          <label for="c-basis">Adjusted basis ($) — CPA</label>
+          <input id="c-basis" type="number" step="any" min="0" placeholder="cost + improvements − depreciation">
+        </div>
+        <div>
+          <label for="c-dep">Depreciation already taken ($) — CPA</label>
+          <input id="c-dep" type="number" step="any" min="0" placeholder="drives the 25% recapture">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>4 · Your tax position <span class="pill warn">CPA</span></legend>
+      <div class="grid" style="margin:8px 0 0">
+        <div>
+          <label for="c-filing">Filing status (sets the LTCG tiers)</label>
+          <select id="c-filing">
+            <option value="single">Single</option>
+            <option value="marriedJoint">Married filing jointly</option>
+            <option value="marriedSeparate">Married filing separately</option>
+            <option value="headOfHousehold">Head of household</option>
+          </select>
+        </div>
+        <div>
+          <label for="c-other-inc">Other taxable income this year ($)</label>
+          <input id="c-other-inc" type="number" step="any" min="0" placeholder="stacks the gain into the right tier">
+        </div>
+        <div>
+          <label for="c-ca-rate">California marginal rate (%) — from your CPA</label>
+          <input id="c-ca-rate" type="number" step="any" min="0" placeholder="e.g. 9.3 or 13.3">
+        </div>
+        <div>
+          <label style="margin-top:26px"><input id="c-niit" type="checkbox" checked style="width:auto;margin-right:6px">
+            Apply NIIT at 3.8%</label>
+          <label><input id="c-in-ula" type="checkbox" style="width:auto;margin-right:6px">
+            Parcel is inside the City of Los Angeles (applies ULA + base tax)</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>5 · Short-lease discount from real quotes <span class="pill blank">unverified until you get quotes</span></legend>
+      <div class="grid" style="margin:8px 0 0">
+        <div>
+          <label for="c-quotes">Quoted discount to long-lease value (%)</label>
+          <input id="c-quotes" type="number" step="any" min="0" max="100" placeholder="leave blank if you have no written quotes">
+        </div>
+        <div>
+          <p class="muted" style="margin:26px 0 0">Ask two or three brokers for the same asset class: a QSR box with
+            under five years of term left, in Central LA. The spread between a long-lease cap rate and a short-lease
+            cap rate is the discount. Until you have that in writing the cell stays blank, as it does on
+            <a href="flagged.html">Flagged for Review</a>.</p>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>6 · Stress the hold case <span class="pill warn">what could go wrong</span></legend>
+      <div class="grid" style="margin:8px 0 0">
+        <div>
+          <label for="c-rent-loss">Months of lost rent to absorb (tenant dark or re-tenanting)</label>
+          <input id="c-rent-loss" type="number" step="any" min="0" value="0" placeholder="e.g. 12">
+        </div>
+        <div>
+          <label for="c-repair">Repair or tenant-improvement cost to absorb ($)</label>
+          <input id="c-repair" type="number" step="any" min="0" value="0" placeholder="engineer estimate">
+        </div>
+        <div>
+          <label for="c-cap-stress">Exit cap-rate widening to absorb (basis points)</label>
+          <input id="c-cap-stress" type="number" step="any" min="0" value="0" placeholder="e.g. 200">
+        </div>
+      </div>
+    </fieldset>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+      <button class="btn" id="calc-run" type="submit">Recalculate</button>
+      <button class="btn ghost" id="calc-reset" type="button">Clear all inputs</button>
+      <button class="btn ghost" id="calc-print" type="button">Print / save as PDF</button>
+      <button class="btn ghost" id="calc-export" type="button">Download anonymous text copy</button>
+    </div>
+
+    <div id="calc-result" class="calc-out" aria-live="polite">
+      <p class="muted">Enter verified inputs to see the comparison.</p>
+    </div>
+  </form>
+
+  <h2>What the comparison does and does not do</h2>
+  <div class="two">
+    <div class="card">
+      <h3>It does</h3>
+      <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px">
+        <li>Compute the federal and California tax on a sale, including §1250 recapture at 25%, NIIT, and the tier the
+          capital gain actually lands in given your other income.</li>
+        <li>Apply the LA City base transfer tax and the Measure ULA surtax, including the cliff at $5.4M and $10.9M.</li>
+        <li>Discount the hold-and-renew rent stream and exit value to today, then subtract stress you choose.</li>
+        <li>Show you which case wins, and whether the answer flips when the stress is switched on.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>It does not</h3>
+      <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px">
+        <li><b>Tax the hold case's rent.</b> Ordinary income tax on rent depends on your bracket and entity, which are
+          not verified here, so it is excluded rather than guessed. This <em>flatters</em> the hold case.</li>
+        <li>Model depreciation recapture on the renewal capex, or a §1031 exchange. Both are real options and both need
+          your CPA, not a web page.</li>
+        <li>Value the land under a redevelopment scenario. Transit-oriented zoning upside is discussed on
+          <a href="trade-area.html">Trade Area</a> as context only.</li>
+        <li>Give advice. This is a sensitivity tool. The recommendation is to get the five documents listed on
+          <a href="questions.html">Questions</a> and then run it again.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Reading a result honestly.</b> If the gap between hold and sell is small relative to the size of your
+    assumptions, you do not have an answer, you have noise. Change the discount rate by one point and the cap rate by
+    50 basis points; if the winner flips, the decision is not yet determined by the data you have.
+  </div>
+
+  <p class="muted">No data entered here is transmitted, stored or logged. The page contains no analytics, no fonts
+    loaded from third parties and no external scripts.</p>
 </div>
+
+<footer>
+  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated ·
+  <a href="sources.html">Full source list</a> · <a href="flagged.html">Flagged for Review</a>
+</footer>
+<script src="assets/nav.js"></script>
 <script src="assets/app.js"></script>
-<footer><a href="index.html">← Dashboard</a></footer>
-</body></html>
+</body>
+</html>

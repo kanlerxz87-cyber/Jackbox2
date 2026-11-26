@@ -1,22 +1,161 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Decision Gates — W-03 Progress Board</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision Gates — W-03 Progress Board</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Decision-gate progress board (W-03)</small></div>
-<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a class="active" href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<header class="top">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>W-03 · Decision-gate progress board</small></div>
+  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+</header>
+
 <div class="wrap">
-<h1>Decision gates — no commitment until all gates clear</h1>
-<p class="muted">Status reflects verified evidence on this public site. Private documents (lease, tax, APN) are never published.</p>
-<table><thead><tr><th>Gate</th><th>Requirement</th><th>Status</th><th>Evidence / next step</th></tr></thead><tbody>
-<tr><td><b>G1 · Lease abstract + notice calendar</b></td><td>Private abstract reconciled with notice dates before any sale/renewal commitment.</td><td><span class="pill warn">Blocked — private</span></td><td>Commission abstract; publish only the resulting date range. See <a href="questions.html">Q1–Q4</a>.</td></tr>
-<tr><td><b>G2 · Trade-area figures (W-01)</b></td><td>City/county proxies replaced with Census-tract trade-area data.</td><td><span class="pill warn">In progress</span></td><td>County context verified; tract pull pending APN in secure workflow. <a href="trade-area.html">Trade Area</a></td></tr>
-<tr><td><b>G3 · Parcel hazards (W-04)</b></td><td>Actual zone status for earthquake, fire, flood (not regional context).</td><td><span class="pill warn">In progress</span></td><td>Official lookup tools identified; parcel lookup pending. <a href="hazards.html">Hazards</a></td></tr>
-<tr><td><b>G4 · After-tax sell-vs-hold (W-02)</b></td><td>One after-tax number vs hold case, from verified tax rules + verified inputs.</td><td><span class="pill info">Tool ready, inputs pending</span></td><td>Browser calculator live; needs basis/depreciation/CPA rates. <a href="sell-vs-hold.html">Calculator</a></td></tr>
-<tr><td><b>G5 · Short-lease discount from real quotes</b></td><td>Discount priced from broker quotes, not assumed.</td><td><span class="pill blank">Unverified</span></td><td>Blank until quotes obtained (private). Flagged.</td></tr>
-<tr><td><b>G6 · Risk &amp; black-swan stress</b></td><td>Rent loss + repairs + exit liquidity stressed together.</td><td><span class="pill info">Framework ready</span></td><td>Scenario table published. <a href="risks.html">Risks</a></td></tr>
-<tr><td><b>G7 · Advisor printable (W-10)</b></td><td>One-page anonymous summary for advisers.</td><td><span class="pill ok">Done</span></td><td><a href="printable-summary.html">Printable summary</a></td></tr>
-</tbody></table>
-<div class="callout danger"><b>Rule:</b> A sale or renewal commitment made before G1–G5 clear would be based on unverified inputs. This board stays red/amber until each gate has an official-source link or a private-document attestation (date + preparer, no contents published).</div>
+  <h1>Decision gates</h1>
+  <p>Seven gates stand between today and a decision you can defend. Each has a defined pass criterion: what
+    "done" means, who signs it off, and what document proves it. A gate is only green when that document exists.
+    Nothing on this board requires you to publish anything — the proof stays private, and only the fact that it
+    exists gets recorded here.</p>
+
+  <div class="grid" style="margin-bottom:6px">
+    <div class="card"><h3>Gates open</h3><p class="kpi neg">5 of 7</p>
+      <p class="muted">G1, G2, G3, G4 and G5 need private documents before a sale or renewal decision is defensible.</p></div>
+    <div class="card"><h3>Gates framework-ready</h3><p class="kpi warn">1 of 7</p>
+      <p class="muted">G6 stress framework is built and published; it needs the numbers from G1–G5 to be meaningful.</p></div>
+    <div class="card"><h3>Gates green</h3><p class="kpi pos">1 of 7</p>
+      <p class="muted">G7, the one-page adviser brief, exists and is printable.</p></div>
+    <div class="card"><h3>Critical path</h3><p class="kpi">G1 → G4 → G5</p>
+      <p class="muted">Lease abstract, then the CPA run, then broker quotes. These three unlock the calculator honestly.</p></div>
+  </div>
+
+  <h2>The board</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>Gate</th><th>Question it answers</th><th>Pass criterion</th><th>Proof needed</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>G1</b><br>Lease abstract</td>
+        <td>When exactly does the lease expire, what options exist, and by when must each notice be served?</td>
+        <td>A signed abstract stating the expiry date, every renewal and termination option, the rent schedule, the
+          escalation formula, the notice windows and any assignment or sale restrictions.</td>
+        <td>Attorney-signed abstract, reconciled line by line against the notice calendar.</td>
+        <td><span class="pill bad">Blocked — private</span></td>
+      </tr>
+      <tr>
+        <td><b>G2</b><br>Trade area, W-01</td>
+        <td>What does the neighbourhood around this specific parcel look like, rather than the county?</td>
+        <td>Census-tract level population, income, education and trend for the tract(s) containing the parcel,
+          with the ACS table or QuickFacts link recorded for each.</td>
+        <td>ACS pull keyed to the parcel's tract, done in the secure workflow.</td>
+        <td><span class="pill warn">In progress</span></td>
+      </tr>
+      <tr>
+        <td><b>G3</b><br>Parcel hazards, W-04</td>
+        <td>What is this parcel's actual seismic, flood and fire zone status — not the region's?</td>
+        <td>A determination for each of the three hazards from the official lookup, plus insurance availability and
+          a written premium indication.</td>
+        <td>FEMA flood determination, CGS or USGS seismic hazard map for the site, CAL FIRE FHSZ designation,
+          insurer quote.</td>
+        <td><span class="pill warn">In progress</span></td>
+      </tr>
+      <tr>
+        <td><b>G4</b><br>After-tax sell versus hold, W-02</td>
+        <td>What does a sale actually net, and does it beat holding after tax?</td>
+        <td>CPA-stated adjusted basis, accumulated depreciation, holding entity and effective California rate; then
+          one after-tax number compared against a discounted hold case.</td>
+        <td>CPA letter or signed schedule. The <a href="sell-vs-hold.html">calculator</a> is ready for the numbers.</td>
+        <td><span class="pill info">Tool ready, inputs pending</span></td>
+      </tr>
+      <tr>
+        <td><b>G5</b><br>Short-lease discount from real quotes</td>
+        <td>What discount does the market actually charge for a QSR box with under five years of term in Central LA?</td>
+        <td>Two or three written broker opinions stating both the long-lease and short-lease value for a comparable
+          asset, so the discount is a quoted number rather than an assumption.</td>
+        <td>Written BOVs, dated and addressed to you.</td>
+        <td><span class="pill blank">Unverified</span></td>
+      </tr>
+      <tr>
+        <td><b>G6</b><br>Risk and black-swan stress</td>
+        <td>What happens to the hold case if the rent stops, the building needs work and the exit market freezes at once?</td>
+        <td>The three stresses applied together, not separately, with a stated reserve that covers the combined hit.</td>
+        <td>Published framework on <a href="risks.html">Risks</a>; populated with G1–G5 numbers.</td>
+        <td><span class="pill info">Framework ready</span></td>
+      </tr>
+      <tr>
+        <td><b>G7</b><br>Adviser one-pager, W-10</td>
+        <td>Can an adviser pick this up cold and understand what is known, unknown and needed?</td>
+        <td>A single page, anonymous, printable, that carries the verified figures with sources and the open items.</td>
+        <td><a href="printable-summary.html">Printable summary</a>.</td>
+        <td><span class="pill ok">Done</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>What "green" means, and what it does not</h2>
+  <div class="two">
+    <div class="card">
+      <h3>Green means</h3>
+      <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px">
+        <li>A named professional has put the answer in writing.</li>
+        <li>The document exists in your private workspace and can be shown to a lender, buyer or court if needed.</li>
+        <li>The figure on the site, if any, traces to an official source or is left blank.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Green does not mean</h3>
+      <ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px">
+        <li>That the answer is favourable. A green gate can kill the renewal case entirely, which is a useful outcome.</li>
+        <li>That you must publish the document. Only the fact that it exists is recorded.</li>
+        <li>That the decision is made. Green gates make the comparison valid; they do not make the choice for you.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Sequence, and why it is this sequence</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>Order</th><th>Gate</th><th>Roughly how long</th><th>What it unblocks</th><th>Cost tier</th></tr></thead>
+    <tbody>
+      <tr><td>1st</td><td>G1 lease abstract</td><td>1–2 weeks</td>
+        <td>Everything. The exact expiry and notice windows set the whole timeline, including whether a §1031 exchange is even feasible.</td>
+        <td>Low — attorney hours</td></tr>
+      <tr><td>2nd, in parallel</td><td>G3 parcel hazards</td><td>1–3 weeks</td>
+        <td>The insurance line in the hold case and the discount a buyer would apply.</td><td>Low to medium</td></tr>
+      <tr><td>2nd, in parallel</td><td>G4 CPA run</td><td>1–3 weeks</td>
+        <td>The entire sell case. Without it the calculator cannot run.</td><td>Low — CPA hours</td></tr>
+      <tr><td>3rd</td><td>G5 broker quotes</td><td>2–4 weeks</td>
+        <td>The market price of the remaining term, and a renewal rent indication.</td><td>Usually free, occasionally a fee</td></tr>
+      <tr><td>4th</td><td>G2 trade area</td><td>Days once the APN is available</td>
+        <td>Context on whether the location itself is improving or weakening.</td><td>Free</td></tr>
+      <tr><td>5th</td><td>G6 stress</td><td>Hours once G1–G5 are in</td>
+        <td>The risk-adjusted comparison that your stated objective actually requires.</td><td>Free</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout danger">
+    <b>The rule this board exists to enforce.</b> A renewal signed, or a sale agreed, before G1, G4 and G5 are green
+    is a decision made without knowing the expiry date, without knowing the after-tax proceeds, and without knowing
+    what the market pays for the remaining term. Each of those can individually reverse the answer. Signing first and
+    modelling later is how a good asset gets sold badly.
+  </div>
+
+  <div class="callout info">
+    <b>If you are time-constrained.</b> The one date that matters is the earliest notice deadline in the lease. Until
+    G1 tells you what that date is, treat the whole 2030–2035 window as live and assume you may need to act a full
+    12 months before the earliest possible expiry. That gives you until roughly 2029 — comfortable, but not
+    indefinite, and the broker and CPA work should be finished well before the notice window opens, not during it.
+  </div>
 </div>
-<footer><a href="index.html">← Dashboard</a></footer>
-</body></html>
+
+<footer>
+  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated ·
+  <a href="sources.html">Full source list</a> · <a href="flagged.html">Flagged for Review</a>
+</footer>
+<script src="assets/nav.js"></script>
+</body>
+</html>

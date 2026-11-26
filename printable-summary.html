@@ -1,23 +1,149 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>One-Page Printable Summary — W-10</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One-Page Adviser Summary — W-10</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top no-print"><div class="brand">Jack in the Box · Central Los Angeles<small>One-page printable summary (W-10)</small></div>
-<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a class="active" href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<header class="top no-print">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>W-10 · One-page printable summary for advisers</small></div>
+  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+</header>
+
 <div class="wrap">
-<p class="no-print"><button class="btn" onclick="window.print()">Print this page</button></p>
-<h1>Advisor one-pager (anonymous)</h1>
-<p><b>Asset:</b> Jack in the Box, Central Los Angeles · NNN lease (per brief, unverified) · Expiry 2030–2035 · Parcel/owner withheld.</p>
-<table><thead><tr><th>Verified fact</th><th>Value</th><th>Source</th></tr></thead><tbody>
-<tr><td>Brand SSS (Q3 2025)</td><td>−7.1%</td><td><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000042/ex991-q325earningsrelease.htm">SEC</a></td></tr>
-<tr><td>System restaurants</td><td>2,168</td><td><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000042/ex991-q325earningsrelease.htm">SEC</a></td></tr>
-<tr><td>County population (2025)</td><td>9,694,934</td><td><a href="https://fred.stlouisfed.org/series/CALOSA7POP">FRED/Census</a></td></tr>
-<tr><td>Metro unemployment (Sep 2026)</td><td>4.4%</td><td><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS</a></td></tr>
-<tr><td>LTCG 15% ceiling (single, 2025)</td><td>$533,400</td><td><a href="https://www.irs.gov/taxtopics/tc409">IRS</a></td></tr>
-</tbody></table>
-<p><b>Decision status:</b> No winner selected. Gates G1–G5 open (lease abstract, tract data, hazards, after-tax inputs, broker quotes). Calculator is sensitivity-only until verified inputs exist.</p>
-<p><b>Next actions:</b> (1) Lease abstract + notice calendar, (2) tract pull via secure workflow, (3) parcel hazard lookups, (4) CPA after-tax run, (5) broker quotes.</p>
-<p class="muted">Full dashboard: <a href="index.html">index.html</a> · Flagged items: <a href="flagged.html">flagged.html</a> · Sources: <a href="sources.html">sources.html</a></p>
+  <p class="no-print">
+    <button class="btn" data-print>Print or save as PDF</button>
+    <span class="muted">This page is formatted to print on one or two sides with source URLs included.</span>
+  </p>
+
+  <h1>Central Los Angeles Jack in the Box — anonymous adviser brief</h1>
+  <p class="muted">Prepared 26 November 2026. All figures below were re-checked against the issuing agency on that date.
+    No parcel, owner, lease or financial identifier appears in this document.</p>
+
+  <h2>The asset</h2>
+  <table data-nodata="1">
+    <tbody>
+      <tr><th style="width:28%">Property</th><td>Single-tenant quick-service restaurant, free-standing, Central Los Angeles.</td></tr>
+      <tr><th>Tenant</th><td>Jack in the Box (NASDAQ: JACK), a franchisor that owns the land and leases it to the operator.</td></tr>
+      <tr><th>Lease structure</th><td>Triple net per the owner's brief. <b>Not yet verified against the document.</b></td></tr>
+      <tr><th>Expiry</th><td>Within the 2030–2035 window per the owner's brief. Exact date, options and notice periods
+        are pending the lease abstract.</td></tr>
+      <tr><th>Identifiers</th><td>Parcel, APN, owner and rent withheld under the privacy rule.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The question</h2>
+  <p>Sell before expiry, renew, hold to expiry for re-tenanting, or sell into a §1031 exchange — and which of those best
+    preserves capital while keeping room for growth at a manageable level of risk.</p>
+
+  <h2>The answer today</h2>
+  <div class="callout danger">
+    <b>Neither sell nor renew is defensible on current evidence.</b> Public sources establish the tenant's direction and
+    the local economy. They do not establish the lease terms, the owner's tax basis, the parcel's hazard zone or the
+    market price of the remaining term. Each of those can independently reverse the conclusion.
+  </div>
+
+  <h2>Verified public facts a decision must be consistent with</h2>
+  <table>
+    <thead><tr><th>Fact</th><th>Figure</th><th>Period</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Jack in the Box system same-store sales</td><td>−4.2%</td><td>FY2025</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K FY2025</a></td></tr>
+      <tr><td>Same-store sales, most recent quarters</td><td>−6.7%, −3.8%, −1.1%</td><td>Q1–Q3 FY2026</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">SEC Q3 FY2026 release</a></td></tr>
+      <tr><td>Restaurant count</td><td>2,115 <span class="muted">(from 2,191 at FY2024 year-end)</span></td><td>End Q3 FY2026</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">SEC Q3 FY2026 release</a></td></tr>
+      <tr><td>Closures</td><td>86 in FY2025, 51 via "JACK on Track"</td><td>FY2025</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K FY2025</a></td></tr>
+      <tr><td>Franchise rental revenue</td><td>$332.7M <span class="muted">(down $14.5M; percentage rent −$16.5M)</span></td><td>FY2025</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K FY2025</a></td></tr>
+      <tr><td>Total shareholder return, $100 in Sep 2020</td><td>$28 at Sep 2025 <span class="muted">(S&amp;P 500: $214)</span></td><td>2020–2025</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K FY2025, performance graph</a></td></tr>
+      <tr><td>Restaurants in California</td><td>941 of 2,136 <span class="muted">(about 44%)</span></td><td>28 Sep 2025</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC Form 10-K FY2025, Item 2</a></td></tr>
+      <tr><td>LA County population change</td><td>−64,000</td><td>Jan 2025 → Jan 2026</td>
+        <td class="src"><a href="https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf">CA DOF E-1, May 2026</a></td></tr>
+      <tr><td>LA metro unemployment</td><td>4.4% <span class="muted">(prelim.)</span></td><td>Sep 2026</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS Economy at a Glance</a></td></tr>
+      <tr><td>LA metro payroll, 12-month change</td><td>+0.5%</td><td>Sep 2026</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS Economy at a Glance</a></td></tr>
+      <tr><td>LA area consumer prices, 12-month change</td><td>+3.7%</td><td>Sep 2026</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/news-release/consumerpriceindex_losangeles.htm">BLS CPI Los Angeles</a></td></tr>
+      <tr><td>California fast-food minimum wage</td><td>$20.00/hour <span class="muted">(tenant attributes 7.6% FY2025 wage inflation primarily to it)</span></td><td>From 1 Apr 2024</td>
+        <td class="src"><a href="https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm">CA DIR — AB 1228 FAQ</a></td></tr>
+      <tr><td>Earthquake probability, LA region</td><td>60% at ≥M6.7 within 30 years</td><td>UCERF3</td>
+        <td class="src"><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS earthquake probability FAQ</a></td></tr>
+      <tr><td>10-year Treasury par yield</td><td>4.91%</td><td>24 Nov 2026</td>
+        <td class="src"><a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611">U.S. Treasury par yield curve</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>What each adviser needs to supply</h2>
+  <table data-nodata="1">
+    <thead><tr><th>Adviser</th><th>Deliverable</th><th>Why it is the gating item</th></tr></thead>
+    <tbody>
+      <tr><td><b>Real estate attorney</b></td>
+        <td>Written lease abstract: expiry, options, notice windows, rent schedule, escalation, guaranty, assignment
+          restrictions, capital obligations, casualty and condemnation terms.</td>
+        <td>Sets the timeline and reveals whether the tenant or the owner controls the extension.</td></tr>
+      <tr><td><b>CPA</b></td>
+        <td>Adjusted basis, accumulated depreciation, holding entity, effective California rate, and after-tax proceeds
+          at two or three candidate prices including one below a Measure ULA threshold.</td>
+        <td>Without it the sale case cannot be computed at all.</td></tr>
+      <tr><td><b>Insurance broker</b></td>
+        <td>Property, earthquake, flood and business-interruption quotes, with deductibles stated in dollars, plus a
+          renewal indication.</td>
+        <td>Premium and deductible are direct deductions from the hold case.</td></tr>
+      <tr><td><b>Structural engineer</b></td>
+        <td>Retrofit status and a repair estimate for roof, structure and accessibility.</td>
+        <td>Converts an unknown into a reserve figure the stress test can use.</td></tr>
+      <tr><td><b>Broker</b></td>
+        <td>Two or three written opinions stating both a long-lease and a short-lease value, plus a market-rent
+          indication for renewal.</td>
+        <td>The short-lease discount cannot be derived from public data.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Tax parameters that frame the sale (verify before use)</h2>
+  <table data-nodata="1">
+    <thead><tr><th>Item</th><th>Rate or threshold</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Federal long-term capital gain</td><td>0% / 15% / 20% by taxable income</td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>Unrecaptured §1250 gain</td><td>Maximum 25%</td><td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a></td></tr>
+      <tr><td>Net investment income tax</td><td>3.8% above the statutory threshold</td><td class="src"><a href="https://www.irs.gov/taxtopics/tc559">IRS Topic 559</a></td></tr>
+      <tr><td>California capital gain</td><td>No preferential rate; ordinary rates apply</td>
+        <td class="src"><a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB 540 schedules</a></td></tr>
+      <tr><td>LA City base transfer tax</td><td>$2.25 per $500, rounded up</td><td class="src"><a href="https://finance.lacity.gov/faq/measure-ula">LA Office of Finance — ULA FAQ</a></td></tr>
+      <tr><td>Measure ULA</td><td>4% over $5.4M; 5.5% at or above $10.9M, on gross price</td>
+        <td class="src"><a href="https://finance.lacity.gov/faq/measure-ula">LA Office of Finance — ULA FAQ</a></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Decision status</h2>
+  <table data-nodata="1">
+    <tbody>
+      <tr><th style="width:28%">Winner selected</th><td>None. Selecting one now would be unsupported.</td></tr>
+      <tr><th>Gates open</th><td>Lease abstract, trade area, parcel hazards, after-tax inputs, broker quotes.</td></tr>
+      <tr><th>Calculator</th><td>Working and private. Sensitivity only until the inputs above are verified.</td></tr>
+      <tr><th>Flagged items</th><td>Twenty-two, listed on <a href="flagged.html">Flagged for Review</a> with sources.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="muted">Full working papers: <a href="index.html">Dashboard</a> ·
+    <a href="executive-summary.html">Executive summary</a> ·
+    <a href="decision-gates.html">Decision gates</a> ·
+    <a href="questions.html">Questions</a> ·
+    <a href="flagged.html">Flagged for review</a> ·
+    <a href="sources.html">Sources</a></p>
 </div>
-<footer><a href="index.html">← Dashboard</a></footer>
-</body></html>
+
+<footer class="no-print">
+  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated
+</footer>
+<script src="assets/nav.js"></script>
+</body>
+</html>

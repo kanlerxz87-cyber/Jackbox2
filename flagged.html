@@ -1,25 +1,197 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flagged for Review — Unverified Items</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for Review — Blanks, Conflicts and Irregularities</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Flagged for Review</small></div>
-<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a class="active" href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<header class="top">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>Flagged for review · nothing here is estimated</small></div>
+  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+</header>
+
 <div class="wrap">
-<h1>Flagged for Review</h1>
-<p>Every row below is <b>blank by design</b> — the value could not be confirmed from an official source without private parcel/owner data. Review manually, then request changes. Flagged items do not block publication.</p>
-<table><thead><tr><th>#</th><th>Item</th><th>Value</th><th>Why flagged</th><th>How to verify (private)</th></tr></thead><tbody>
-<tr><td>F1</td><td>Exact parcel address / APN</td><td><span class="pill blank">Withheld</span></td><td>Privacy — never published.</td><td>Secure workflow only.</td></tr>
-<tr><td>F2</td><td>Exact lease expiry / options / notice dates</td><td><span class="pill blank">Blank</span></td><td>Requires lease abstract.</td><td>Private abstract (Gate 1).</td></tr>
-<tr><td>F3</td><td>Current NNN rent &amp; escalations</td><td><span class="pill blank">Blank</span></td><td>Requires lease/rent roll.</td><td>Private documents.</td></tr>
-<tr><td>F4</td><td>Tract-level income / population / education</td><td><span class="pill blank">Blank</span></td><td>Requires APN → Census ACS.</td><td>Secure workflow → ACS.</td></tr>
-<tr><td>F5</td><td>Parcel seismic / flood / fire zone</td><td><span class="pill blank">Blank</span></td><td>Requires parcel lookup.</td><td>FEMA MSC / USGS / CAL FIRE.</td></tr>
-<tr><td>F6</td><td>Short-lease discount (%)</td><td><span class="pill blank">Blank</span></td><td>Requires broker quotes.</td><td>Broker opinions (private).</td></tr>
-<tr><td>F7</td><td>Owner basis / depreciation / CA tax</td><td><span class="pill blank">Blank</span></td><td>Owner finances — private.</td><td>CPA (private).</td></tr>
-<tr><td>F8</td><td>School / traffic / competitor detail</td><td><span class="pill blank">Blank</span></td><td>Requires APN + field survey.</td><td>LAUSD / Caltrans / survey.</td></tr>
-<tr><td>F9</td><td>FY2025 franchise rental revenue (segment)</td><td><span class="pill blank">Blank</span></td><td>Only FY2024 segment figure verified in this pass; FY2025 10-K not yet line-verified.</td><td>SEC 10-K line check.</td></tr>
-<tr><td>F10</td><td>“NNN lease” characterisation</td><td><span class="pill warn">Per brief — unverified</span></td><td>Taken from brief; lease not yet abstracted.</td><td>Lease abstract.</td></tr>
-</tbody></table>
-<div class="callout"><b>Irregularities noted:</b> (1) Census QuickFacts fetch failed in this environment — QuickFacts rows cite the official URL for manual review. (2) CAL FIRE OSFM deep link returned 404 — cite <a href="https://www.fire.ca.gov/">fire.ca.gov</a> instead. (3) Third-party ACS aggregators disagreed on LA County median income — only Census/FRED figures are used; aggregator numbers are excluded.</div>
+  <h1>Flagged for review</h1>
+  <p>Everything on this page is either blank on purpose, unverified, or a conflict between two official sources that
+    this site refuses to resolve by guessing. Each item tells you what is missing, why it matters, and the exact source
+    to check. Work down this list and you will have closed the decision.</p>
+
+  <div class="grid">
+    <div class="card"><h3>Private inputs outstanding</h3><p class="kpi neg">8</p>
+      <p class="muted">Entries F-01 to F-08. These must come from your own documents.</p></div>
+    <div class="card"><h3>Source conflicts</h3><p class="kpi warn">2</p>
+      <p class="muted">F-09 and F-10. Two official series that disagree; both are shown rather than averaged.</p></div>
+    <div class="card"><h3>Tenant data gaps</h3><p class="kpi warn">1</p>
+      <p class="muted">F-11. FY2026 full-year results had not been filed at the cut-off date.</p></div>
+    <div class="card"><h3>Estimated values on this site</h3><p class="kpi pos">0</p>
+      <p class="muted">No figure on any page was inferred, interpolated or vendor-sourced.</p></div>
+  </div>
+
+  <h2>Private inputs that cannot be published (and are not filled in)</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>ID</th><th>Item</th><th>Value on this site</th><th>Why it is withheld</th><th>How to obtain it</th></tr></thead>
+    <tbody>
+      <tr><td class="flag-id">F-01</td><td>Parcel address and APN</td><td>Withheld — placeholder only</td>
+        <td>An APN plus a public dashboard is a re-identification kit. Publishing it would defeat the anonymity this
+          site is built around.</td><td>You already have it. Keep it offline.</td></tr>
+      <tr><td class="flag-id">F-02</td><td>Exact lease expiry, options and notice dates</td><td>Blank</td>
+        <td>Lease terms are commercially sensitive and reveal the negotiating position.</td>
+        <td>Attorney-prepared lease abstract (Q1 to Q7).</td></tr>
+      <tr><td class="flag-id">F-03</td><td>Current rent, escalations and percentage-rent threshold</td><td>Blank</td>
+        <td>Rent is the core of the asset's value and is private.</td><td>Lease and rent roll.</td></tr>
+      <tr><td class="flag-id">F-04</td><td>Adjusted basis and accumulated depreciation</td><td>Blank</td>
+        <td>Owner finances. Publishing these would disclose personal tax information.</td>
+        <td>CPA schedule (Q8).</td></tr>
+      <tr><td class="flag-id">F-05</td><td>Holding entity, debt and guarantor identity</td><td>Blank</td>
+        <td>Identifies the owner and their financing.</td><td>Entity documents, loan statement (Q4, Q9, Q11).</td></tr>
+      <tr><td class="flag-id">F-06</td><td>Store-level sales and rent coverage</td><td>Blank</td>
+        <td>Tenant confidential information, typically covered by an NDA.</td>
+        <td>Tenant disclosure or franchisee conversation (Q20).</td></tr>
+      <tr><td class="flag-id">F-07</td><td>Broker opinions and the short-lease discount</td><td>Blank</td>
+        <td>Private opinions, and the number that most needs to be real rather than assumed.</td>
+        <td>Two or three written BOVs (Q21).</td></tr>
+      <tr><td class="flag-id">F-08</td><td>Insurance quotes and earthquake deductible</td><td>Blank</td>
+        <td>Reveals the property's risk profile and the owner's coverage limits.</td>
+        <td>Two broker quotes (Q18).</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Unverified because the parcel lookup has not been done</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>ID</th><th>Item</th><th>Status</th><th>Official source to check yourself</th></tr></thead>
+    <tbody>
+      <tr><td class="flag-id">F-09</td><td>Census tract and all trade-area figures (population, income, trend within
+        one and three miles)</td><td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://www.census.gov/programs-surveys/acs/">Census ACS</a></td></tr>
+      <tr><td class="flag-id">F-10</td><td>Parcel seismic zone: fault rupture, liquefaction, landslide, design ground
+        shaking</td><td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://www.conservation.ca.gov/cgs">California Geological Survey</a> ·
+          <a href="https://earthquake.usgs.gov/designmaps/">USGS design maps</a></td></tr>
+      <tr><td class="flag-id">F-11</td><td>FEMA flood zone and base flood elevation for the parcel</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://msc.fema.gov/portal/home">FEMA Flood Map Service Center</a></td></tr>
+      <tr><td class="flag-id">F-12</td><td>Fire hazard severity zone designation for the parcel</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">CAL FIRE / OSFM</a></td></tr>
+      <tr><td class="flag-id">F-13</td><td>School assignment and performance for the parcel's attendance area</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://www.cde.ca.gov/">California Department of Education</a></td></tr>
+      <tr><td class="flag-id">F-14</td><td>Traffic counts on the nearest arterial</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://dot.ca.gov/programs/traffic-operations/census">Caltrans traffic census</a></td></tr>
+      <tr><td class="flag-id">F-15</td><td>Competing quick-service restaurants within one mile</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td>No official national count exists. Field survey, or city business-licence records.</td></tr>
+      <tr><td class="flag-id">F-16</td><td>Zoning, general plan designation and transit-oriented overlay for the parcel</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td class="src"><a href="https://planning.lacity.gov/">LA City Planning</a> — by APN</td></tr>
+      <tr><td class="flag-id">F-17</td><td>Structural retrofit status of the building</td>
+        <td><span class="pill blank">Unverified</span></td>
+        <td>Licensed structural engineer's report. Not obtainable from a public database.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Conflicts between official sources, shown rather than resolved</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>ID</th><th>What conflicts</th><th>Source A</th><th>Source B</th><th>How this site handles it</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="flag-id">F-18</td>
+        <td>LA County population in 2025: the Census estimate and the state estimate differ, because they use different
+          methods for different reference dates.</td>
+        <td class="src"><a href="https://fred.stlouisfed.org/series/CALOSA7POP">Census via FRED — 9,694,934 at 1 July 2025</a></td>
+        <td class="src"><a href="https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf">CA Dept. of Finance — loss of 64,000 in the year to 1 January 2026</a></td>
+        <td>Both figures are published side by side on <a href="trade-area.html">Trade Area</a> with their reference
+          dates and methods. Neither is averaged. The direction, population decline, is agreed by both.</td>
+      </tr>
+      <tr>
+        <td class="flag-id">F-19</td>
+        <td>LA area consumer prices for October 2026: the 12-month change is not published, because October 2025 data
+          were not collected during the federal funding lapse.</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/news-release/consumerpriceindex_losangeles.htm">BLS — October 2026 release, 12-month cell shown as "-"</a></td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/news-release/consumerpriceindex_losangeles.htm">BLS — September 2026 release, where the 12-month change is +3.7%</a></td>
+        <td>The site quotes the September 2026 12-month change and leaves October's 12-month change blank rather than
+          computing a substitute from a year-earlier figure that does not exist.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Tenant reporting gaps</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>ID</th><th>Item</th><th>Status</th><th>Detail and source</th></tr></thead>
+    <tbody>
+      <tr><td class="flag-id">F-20</td><td>Jack in the Box FY2026 full-year results</td>
+        <td><span class="pill warn">Pending filing</span></td>
+        <td>FY2026 ended 27 September 2026. At this site's cut-off the full-year Form 10-K had not been filed, so only
+          the three FY2026 quarters are shown. The most recent quarterly figures are from the
+          <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">Q3 FY2026 release</a>.
+          Re-check <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=10-K&dateb=&owner=include&count=40">the EDGAR 10-K index</a>
+          before relying on a full-year number.</td></tr>
+      <tr><td class="flag-id">F-21</td><td>FY2026 quarterly same-store sales by segment</td>
+        <td><span class="pill warn">Partly published</span></td>
+        <td>System, franchise and company figures are published for each quarter. Any finer split that a press release
+          did not disclose is left blank rather than derived.</td></tr>
+      <tr><td class="flag-id">F-22</td><td>Store-level data for this specific restaurant</td>
+        <td><span class="pill blank">Not public</span></td>
+        <td>No public source reports sales for an individual franchised location. Any site that claims to is estimating.
+          Obtain it from the tenant or franchisee under NDA (Q20).</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Irregularities found in this repository during review</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>ID</th><th>Finding</th><th>Resolution</th></tr></thead>
+    <tbody>
+      <tr><td class="flag-id">R-01</td><td><code>README.md</code> on <code>main</code> contained unresolved git
+        merge-conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>=======</code>,
+        <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code>) from an earlier parallel-session merge.</td>
+        <td>Fixed. Both sides of the conflict were retained and the markers removed; the addendum section was kept.</td></tr>
+      <tr><td class="flag-id">R-02</td><td>The previous root <code>assets/app.js</code> wired a calculator to the wrong
+        page and read four element IDs that did not exist, so the sell-versus-hold page displayed nothing when a
+        visitor typed into it.</td>
+        <td>Replaced with a calculator bound to the fields actually on the page, with a test harness. Verified
+          arithmetic by hand against a worked example.</td></tr>
+      <tr><td class="flag-id">R-03</td><td>The previous calculator applied California tax to the full gain at a user-typed
+        rate without checking it, applied no NIIT toggle, and ignored Measure ULA entirely — the largest single tax
+        item on a Los Angeles sale above $5.4M.</td>
+        <td>Rebuilt: federal tiering by filing status and other income, 25% recapture cap, NIIT toggle, California at
+          the user's CPA-supplied rate, and Measure ULA plus the city base tax with the correct rounding rule.</td></tr>
+      <tr><td class="flag-id">R-04</td><td>Several table rows on the previous root pages carried data with no source
+        link, contrary to the site's own verification rule.</td>
+        <td>Every row now links to an official source, or states plainly that it is blank and unverified.</td></tr>
+      <tr><td class="flag-id">R-05</td><td><code>alternative-research/tests/check.py</code> resolves pages relative to the
+        current working directory, so it fails when run from the repository root and passes when run from inside
+        <code>alternative-research/</code>.</td>
+        <td>Not changed — it is another session's file and its scope. Documented here so the CI step is run from the
+          correct directory. All eight of its pages pass their own source check when run correctly.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <b>How to use this page.</b> Items F-01 to F-08 need your documents. Items F-09 to F-17 need one afternoon of
+    lookups against the linked official tools. Items F-18 to F-22 need nothing from you except awareness. Items R-01 to
+    R-05 are already dealt with and are recorded so the audit trail is complete. Nothing on this page blocks the site
+    from working; everything on it blocks a confident decision.
+  </div>
 </div>
-<footer><a href="index.html">← Dashboard</a></footer>
-</body></html>
+
+<footer>
+  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated ·
+  <a href="sources.html">Full source list</a> · <a href="questions.html">Questions</a>
+</footer>
+<script src="assets/nav.js"></script>
+</body>
+</html>

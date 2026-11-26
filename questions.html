@@ -1,27 +1,222 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Open Questions — Missing-Info Discovery Plan</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Questions — What Must Be Answered Before Any Decision</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Open questions &amp; discovery plan</small></div>
-<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a class="active" href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
+<header class="top">
+  <div class="brand">Jack in the Box · Central Los Angeles
+    <small>Questions, answers and the plan to close each gap</small></div>
+  <nav class="main" id="site-nav" aria-label="Primary"></nav>
+</header>
+
 <div class="wrap">
-<h1>Questions that must be answered before any decision</h1>
-<p>No manual input is required on this public site. Each question below has a <b>discovery suggestion</b> — how to obtain the answer privately with authorised advisers. Answers are recorded only as “obtained on [date] by [role]” — contents stay offline.</p>
-<table><thead><tr><th>#</th><th>Question</th><th>Discovery suggestion</th><th>Status</th></tr></thead><tbody>
-<tr><td>Q1</td><td>Exact lease expiry date and option structure?</td><td>Commission private lease abstract; reconcile with notice calendar.</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q2</td><td>Notice deadlines for renewal / termination?</td><td>Same abstract; diary all notice dates with counsel.</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q3</td><td>Current NNN rent, escalations, percentage rent, guarantor?</td><td>Lease + rent roll + estoppels (private).</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q4</td><td>Remodel / capex obligations on renewal?</td><td>Lease abstract + franchise remodel scope (private).</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q5</td><td>Parcel APN and Census tracts for trade area?</td><td>Secure workflow only; then pull ACS tract data.</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q6</td><td>Parcel seismic / flood / fire zone status?</td><td>FEMA MSC + USGS + CAL FIRE lookups offline.</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q7</td><td>Insurance availability and cost (property / quake / flood / BI)?</td><td>Broker quotes (private).</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q8</td><td>Owner basis, depreciation, entity, CA tax position?</td><td>CPA computation (private); feed calculator.</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q9</td><td>Broker value + short-lease discount from real quotes?</td><td>2–3 broker opinions (private).</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q10</td><td>Competitor QSRs and traffic within 1 mile?</td><td>Field survey + Caltrans/City counts (private).</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q11</td><td>School assignment and local planning changes?</td><td>LAUSD / City Planning (private).</td><td><span class="pill warn">Open</span></td></tr>
-<tr><td>Q12</td><td>Financing / 1031 / estate constraints?</td><td>Adviser review (private).</td><td><span class="pill warn">Open</span></td></tr>
-</tbody></table>
-<div class="callout"><b>Rule:</b> Until Q1–Q9 are answered with verified/private-attested inputs, the sell-vs-hold calculator remains a sensitivity tool only. Do not commit to a sale or renewal.</div>
+  <h1>What still has to be answered before you can decide</h1>
+  <p>Twenty-two questions. For each one: whether it is answered today, what the answer would change, and exactly how to
+    get it. Nothing here asks you to type anything into this site. These are questions for your attorney, your CPA,
+    your broker and your insurer, and the answers stay in your private workspace.</p>
+
+  <div class="callout info">
+    <b>Read the "what it changes" column first.</b> If an answer would not change the decision, it is not worth paying
+    for. Every question below is on this list because the answer could flip the sell-versus-renew conclusion, change
+    the price by a material amount, or create a legal exposure.
+  </div>
+
+  <h2>Already answered from official sources</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>#</th><th>Question</th><th>Answer</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td>Is the tenant growing or shrinking?</td>
+        <td>Shrinking. 2,136 restaurants at FY2025 year-end and 2,115 at Q3 FY2026, from 2,191 at FY2024 year-end.
+          86 closures in FY2025.</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC 10-K FY2025</a></td></tr>
+      <tr><td>A2</td><td>Is the tenant's sales trend improving or deteriorating?</td>
+        <td>Deteriorating through FY2025 then partially recovering: −4.2% for FY2025, then −6.7%, −3.8% and −1.1% in the
+          three quarters of FY2026. Still negative.</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">SEC Q3 FY2026 release</a></td></tr>
+      <tr><td>A3</td><td>Is the local population growing?</td>
+        <td>No. LA County lost about 64,000 residents in the year to January 2026 and is down 3.2% since the 2020 Census.</td>
+        <td class="src"><a href="https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf">CA DOF E-1</a> ·
+          <a href="https://www.census.gov/quickfacts/losangelescountycalifornia">Census QuickFacts</a></td></tr>
+      <tr><td>A4</td><td>Is the local job market growing?</td>
+        <td>Barely. Metro payrolls are +0.5% year on year with unemployment at 4.4%.</td>
+        <td class="src"><a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS</a></td></tr>
+      <tr><td>A5</td><td>Is the tenant's labour cost rising?</td>
+        <td>Yes, structurally. The California fast-food wage floor is $20.00/hour under AB 1228, and the tenant reports
+          7.6% wage inflation in FY2025 attributed primarily to it.</td>
+        <td class="src"><a href="https://www.dir.ca.gov/dlse/Fast-Food-Minimum-Wage-FAQ.htm">CA DIR</a> ·
+          <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC 10-K FY2025</a></td></tr>
+      <tr><td>A6</td><td>What does a sale cost in tax?</td>
+        <td>Federal long-term capital gains at 0/15/20%, 25% on unrecaptured §1250 gain, 3.8% NIIT above the threshold,
+          California at ordinary rates with no preferential capital-gain rate.</td>
+        <td class="src"><a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a> ·
+          <a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB</a></td></tr>
+      <tr><td>A7</td><td>Is there an extra local transfer tax?</td>
+        <td>Inside the City of Los Angeles, yes: a 0.45% base tax plus Measure ULA at 4% over $5.4M and 5.5% at or
+          above $10.9M, charged on gross price.</td>
+        <td class="src"><a href="https://finance.lacity.gov/faq/measure-ula">LA Office of Finance</a></td></tr>
+      <tr><td>A8</td><td>How exposed is the region to earthquakes?</td>
+        <td>60% chance of a ≥M6.7 quake within 30 years; 46% at ≥M7.0. The region is characterised by USGS as facing the
+          greatest seismic risk of any part of the United States.</td>
+        <td class="src"><a href="https://www.usgs.gov/faqs/what-probability-earthquake-will-occur-los-angeles-area-san-francisco-bay-area">USGS</a></td></tr>
+      <tr><td>A9</td><td>Where does the tenant earn its rent from?</td>
+        <td>Franchise rental revenue fell to $332.7M in FY2025 from $347.2M, driven by a $16.5M drop in percentage rent.</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC 10-K FY2025</a></td></tr>
+      <tr><td>A10</td><td>How much of the tenant's system depends on California?</td>
+        <td>941 of 2,136 restaurants, about 44%, with roughly 70% of the system in California and Texas combined.</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC 10-K FY2025</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Open: the lease</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>#</th><th>Question</th><th>What it changes</th><th>How to answer it</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Q1</td><td>What is the exact expiry date, and does the tenant hold options to extend?</td>
+        <td>The whole timeline. An option the tenant controls changes who has leverage; a fixed expiry gives you the
+          choice.</td><td>Lease abstract from a real estate attorney.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q2</td><td>What are the notice windows for renewal, termination and rent review, and what happens if one is missed?</td>
+        <td>A missed notice can forfeit an option entirely, or auto-extend a lease you wanted to end. This is the single
+          largest avoidable risk in the whole file.</td><td>Same abstract, with every date diarised.</td>
+        <td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q3</td><td>What is the current rent, the escalation formula, and any percentage-rent clause with its threshold?</td>
+        <td>Drives both the hold value and the price a buyer will pay. Percentage rent has been falling system-wide, so
+          a stale threshold is worth renegotiating.</td><td>Lease plus rent roll.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q4</td><td>Is there a guaranty, and who is behind it — the corporate entity or a single-asset franchisee?</td>
+        <td>Determines whether the rent claim survives a tenant failure. A franchisee guaranty is worth far less than a
+          corporate one.</td><td>Lease, guaranty and tenant entity documents; a credit check on the guarantor.</td>
+        <td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q5</td><td>Who pays for roof, structure, parking lot and code upgrades, and are there remodel obligations on renewal?</td>
+        <td>In an NNN lease the answer is not automatic. A hidden capital obligation can wipe out a year of rent.</td>
+        <td>Lease maintenance and alteration clauses, read by counsel.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q6</td><td>Does the lease restrict assignment, change of use, or sale of the property?</td>
+        <td>Affects how easily you can sell and what a buyer can do with the site afterwards.</td>
+        <td>Lease assignment and transfer clauses.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q7</td><td>What are the holdover, abatement and condemnation provisions?</td>
+        <td>Governs what happens if the tenant stays past expiry, if a casualty stops business, or if a public project
+          takes part of the site.</td><td>Lease casualty and condemnation clauses.</td><td><span class="pill bad">Open</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Open: the money</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>#</th><th>Question</th><th>What it changes</th><th>How to answer it</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Q8</td><td>What is the adjusted basis and how much depreciation has been taken?</td>
+        <td>The entire sale calculation. Recapture at 25% on every dollar of depreciation can dominate the tax bill.</td>
+        <td>CPA-prepared schedule from the depreciation records.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q9</td><td>What entity holds the property, and what is the effective California rate on a sale?</td>
+        <td>An entity sale, an instalment sale or a §1031 exchange produce very different after-tax numbers.</td>
+        <td>CPA and attorney, based on the holding entity.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q10</td><td>Would the sale price cross the $5.4M or $10.9M Measure ULA threshold?</td>
+        <td>A price just above a threshold triggers a step change in tax; a price just below avoids it. This is a
+          legitimate structuring consideration, and a large one.</td>
+        <td>Broker price range plus the LA Office of Finance rate table.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q11</td><td>Is there debt on the property, and would it be repaid or assumed?</td>
+        <td>Affects net proceeds, and a prepayment penalty can be material.</td><td>Loan statement and payoff letter.</td>
+        <td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q12</td><td>Is there a §1031 replacement identified, and is the 45-day window feasible?</td>
+        <td>The exchange is only worth doing if a replacement exists. Without one, the deadlines create risk rather
+          than save tax.</td><td>Attorney and qualified intermediary, before listing.</td>
+        <td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q13</td><td>Do you need liquidity from this asset within a defined period?</td>
+        <td>If yes, the decision is largely made and the question becomes timing, not whether.</td>
+        <td>Your own answer, with your adviser.</td><td><span class="pill warn">Owner input</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Open: the parcel</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>#</th><th>Question</th><th>What it changes</th><th>How to answer it</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Q14</td><td>What is the APN, and which Census tracts and block groups contain the parcel?</td>
+        <td>Unlocks every trade-area figure and therefore the local demand case.</td>
+        <td>County recorder plus the Census geocoder, in a private session.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q15</td><td>Is the parcel in a fault-rupture, liquefaction or landslide zone?</td>
+        <td>Construction restrictions, disclosure duties on sale, retrofit cost.</td>
+        <td>California Geological Survey hazard-zone maps, by APN.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q16</td><td>What is the FEMA flood zone, and is flood insurance required?</td>
+        <td>A special hazard area makes cover mandatory for a federally backed loan and can cap rent during
+          reconstruction.</td><td>FEMA Flood Map Service Center, by address.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q17</td><td>What is the state fire hazard severity zone designation?</td>
+        <td>Insurability and premium, and increasingly a buyer's first screening question.</td>
+        <td>CAL FIRE / OSFM FHSZ viewer, by address.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q18</td><td>What would property, earthquake, flood and business-interruption cover actually cost, on what deductible?</td>
+        <td>A direct deduction from the hold case, and a diligence item for any buyer.</td>
+        <td>Two independent broker quotes, with deductibles in dollars.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q19</td><td>What zoning applies, and could the site support a higher-value use?</td>
+        <td>This is the land-value upside that makes holding interesting. Without it, the renewal case rests only on
+          rent.</td><td>LA City Planning, by APN, plus a local land-use adviser.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q20</td><td>What is the store actually selling, and does it cover the rent?</td>
+        <td>The rent-coverage ratio decides whether the tenant renews voluntarily or uses the renewal to extract a
+          concession.</td><td>Tenant sales disclosure or a franchisee conversation, under NDA.</td>
+        <td><span class="pill bad">Open</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Open: the market</h2>
+  <div class="scroll">
+  <table data-nodata="1">
+    <thead><tr><th>#</th><th>Question</th><th>What it changes</th><th>How to answer it</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Q21</td><td>What would this asset sell for today, and what discount applies because the lease is short?</td>
+        <td>The numerator of the whole sell case. Without a written quote the discount is an assumption, and this site
+          refuses to supply one.</td><td>Two or three written broker opinions stating both a long-lease and short-lease
+          value.</td><td><span class="pill bad">Open</span></td></tr>
+      <tr><td>Q22</td><td>What rent would the market pay on renewal, and what would a replacement tenant pay?</td>
+        <td>Sets the value of your alternative if the tenant declines, and therefore your negotiating position.</td>
+        <td>Broker market-rent opinion for comparable boxes in Central LA.</td><td><span class="pill bad">Open</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>How to close these quickly</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>One attorney call</h3>
+      <p class="muted">Closes Q1 to Q7. Ask for a written abstract, not an oral summary, and ask specifically about
+        every notice date and whether missing one forfeits anything.</p>
+    </div>
+    <div class="card">
+      <h3>One CPA call</h3>
+      <p class="muted">Closes Q8, Q9, Q11 and most of Q12. Ask for the after-tax proceeds at two or three price points,
+        including one just below a Measure ULA threshold.</p>
+    </div>
+    <div class="card">
+      <h3>One afternoon of lookups</h3>
+      <p class="muted">Closes Q14 to Q17 and Q19 using the official tools linked on <a href="hazards.html">Hazards</a>
+        and <a href="trade-area.html">Trade Area</a>. Free, and it removes most of the uncertainty about hazard.</p>
+    </div>
+    <div class="card">
+      <h3>Two broker conversations</h3>
+      <p class="muted">Closes Q10, Q21 and Q22, and gives you Q20 in practice. Ask for written opinions, dated, with the
+        short-lease discount stated explicitly.</p>
+    </div>
+  </div>
+
+  <div class="callout danger">
+    <b>What "answered" means.</b> An answer counts when a named professional has put it in writing and you have filed
+    it. A verbal indication from a broker is not an answer; neither is a Zillow estimate, a county assessor's
+    roll value, or a figure from a data vendor. Those inputs are how people end up selling a good asset at a bad price
+    or renewing into a rent the store cannot cover.
+  </div>
 </div>
-<footer><a href="index.html">← Dashboard</a></footer>
-</body></html>
+
+<footer>
+  Anonymous decision workspace · Official sources only · Unverified values are blank, never estimated ·
+  <a href="sources.html">Full source list</a> · <a href="flagged.html">Flagged for Review</a>
+</footer>
+<script src="assets/nav.js"></script>
+</body>
+</html>
