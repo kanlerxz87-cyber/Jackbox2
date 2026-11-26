@@ -354,3 +354,24 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
+
+## Session c137f15b — Final verification & integration (2026-11-26)
+
+- **Session ID:** `c137f15b`
+- **Branch:** `arena/c137f15b-jackbox2` (branched from `main` @ `58407b8`)
+- **Scope claimed:** `README.md` (conflict-marker fix), `COORDINATION.md` (this entry), repo-wide verification (read-only checks + test runs). No dashboard content changes unless a verification failure requires a fix; any fix will be logged here.
+- **Privacy rule:** No personal identifiers, APN, lease files, or owner finances on public site. Placeholders only. Publish only anonymous aggregate findings.
+- **Verification rule:** Every table row links to an official source. Unverified = blank + flagged. Never infer.
+
+### Task board (c137f15b)
+
+| ID | Task | Status | Owner | Files touched |
+|----|------|--------|-------|---------------|
+| C-01 | Claim session + fix README merge-conflict markers committed to main | in progress | c137f15b | `README.md`, `COORDINATION.md` |
+| C-02 | Full test suite re-run (all dashboards) | unclaimed | c137f15b | read-only |
+| C-03 | Live-site + official-source spot verification | unclaimed | c137f15b | read-only |
+| C-04 | Privacy scan + W-01–W-10 coverage audit | unclaimed | c137f15b | read-only |
+| C-05 | PR → merge → Pages deploy confirmation | unclaimed | c137f15b | repo-wide |
+
+### Log (c137f15b)
+- 2026-11-26 — Claimed C-01–C-05. Found `README.md` lines 52–60 contain leftover merge-conflict markers (`<<<<<<< HEAD` / `=======` / `>>>>>>> origin/main`) committed to `main` at `58407b8`. Fixing by keeping both sides (addendum text retained, markers removed). No other sessions active on this branch.
