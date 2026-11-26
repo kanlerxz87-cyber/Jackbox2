@@ -20,11 +20,13 @@ jobs:
         run: python3 tools/check.py
       - name: Privacy-first dashboard integrity (links, provenance, source allowlist, privacy patterns)
         run: python3 privacy-first/tests/check.py
+      - name: Repo-wide links, conflict markers, PII scan, and root table provenance
+        run: python3 tests/check_repo.py
       - name: Root dashboard integrity (row provenance, links, anchors, official hosts, privacy, offline calculator)
         run: python3 tests/check_root.py
       - name: Root calculator engine (tax tiers, Measure ULA thresholds, city transfer-tax rounding)
         run: node tests/calc_root.test.js
       - name: Alternative research dashboard integrity
         run: cd alternative-research && python3 tests/check.py
-      - name: Central LA 2026 dashboard integrity
-        run: cd central-la-2026 && node scripts/verify_site.mjs
+      - name: Central LA 2026 dashboard static and runtime verification
+        run: cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs

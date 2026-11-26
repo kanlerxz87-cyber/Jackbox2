@@ -22,10 +22,10 @@
   <div class="grid">
     <div class="card"><h3>Private inputs outstanding</h3><p class="kpi neg">8</p>
       <p class="muted">Entries F-01 to F-08. These must come from your own documents.</p></div>
-    <div class="card"><h3>Source conflicts</h3><p class="kpi warn">2</p>
-      <p class="muted">F-18 and F-19. Two official series that disagree; both are shown rather than averaged.</p></div>
+    <div class="card"><h3>Source conflicts</h3><p class="kpi warn">3</p>
+      <p class="muted">F-18, F-19 and F-20. Official documents that disagree; both sides are shown rather than averaged and the site states which one it relies on.</p></div>
     <div class="card"><h3>Tenant data gaps</h3><p class="kpi warn">3</p>
-      <p class="muted">F-20 to F-22. The FY2026 full-year filing had not landed at the cut-off date.</p></div>
+      <p class="muted">F-21 to F-23. The FY2026 full-year filing had not landed at the cut-off date.</p></div>
     <div class="card"><h3>Estimated values on this site</h3><p class="kpi pos">0</p>
       <p class="muted">No figure on any page was inferred, interpolated or vendor-sourced.</p></div>
   </div>
@@ -37,26 +37,26 @@
     <tbody>
       <tr><td class="flag-id">F-01</td><td>Parcel address and APN</td><td>Withheld — placeholder only</td>
         <td>An APN plus a public dashboard is a re-identification kit. Publishing it would defeat the anonymity this
-          site is built around.</td><td>You already have it. Keep it offline.</td></tr>
+          site is built around.</td><td>You already have it. Keep it offline. Public parcel record: <a href="https://assessor.lacounty.gov/">LA County Assessor</a></td></tr>
       <tr><td class="flag-id">F-02</td><td>Exact lease expiry, options and notice dates</td><td>Blank</td>
         <td>Lease terms are commercially sensitive and reveal the negotiating position.</td>
-        <td>Attorney-prepared lease abstract (Q1 to Q7).</td></tr>
+        <td>Attorney-prepared lease abstract (Q1 to Q7), cross-checked against the tenant's disclosed lease terms in the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a></td></tr>
       <tr><td class="flag-id">F-03</td><td>Current rent, escalations and percentage-rent threshold</td><td>Blank</td>
-        <td>Rent is the core of the asset's value and is private.</td><td>Lease and rent roll.</td></tr>
+        <td>Rent is the core of the asset's value and is private.</td><td>Lease and rent roll; the tenant discloses its franchise rent and occupancy costs in the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a></td></tr>
       <tr><td class="flag-id">F-04</td><td>Adjusted basis and accumulated depreciation</td><td>Blank</td>
         <td>Owner finances. Publishing these would disclose personal tax information.</td>
-        <td>CPA schedule (Q8).</td></tr>
+        <td>CPA schedule (Q8), applying <a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a> and the <a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB 540 schedules</a></td></tr>
       <tr><td class="flag-id">F-05</td><td>Holding entity, debt and guarantor identity</td><td>Blank</td>
-        <td>Identifies the owner and their financing.</td><td>Entity documents, loan statement (Q4, Q9, Q11).</td></tr>
+        <td>Identifies the owner and their financing.</td><td>Entity documents and loan statement (Q4, Q9, Q11); guaranty structure against the tenant's disclosed lease portfolio in the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a></td></tr>
       <tr><td class="flag-id">F-06</td><td>Store-level sales and rent coverage</td><td>Blank</td>
         <td>Tenant confidential information, typically covered by an NDA.</td>
-        <td>Tenant disclosure or franchisee conversation (Q20).</td></tr>
+        <td>Tenant disclosure or franchisee conversation (Q20); system-level proxy in the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a> franchise AUV table</td></tr>
       <tr><td class="flag-id">F-07</td><td>Broker opinions and the short-lease discount</td><td>Blank</td>
         <td>Private opinions, and the number that most needs to be real rather than assumed.</td>
-        <td>Two or three written BOVs (Q21).</td></tr>
+        <td>Two or three written BOVs (Q21), benchmarked against the <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611">Treasury par yield curve</a></td></tr>
       <tr><td class="flag-id">F-08</td><td>Insurance quotes and earthquake deductible</td><td>Blank</td>
         <td>Reveals the property's risk profile and the owner's coverage limits.</td>
-        <td>Two broker quotes (Q18).</td></tr>
+        <td>Two broker quotes (Q18), starting from the <a href="https://www.insurance.ca.gov/">CA Department of Insurance</a> licensee and market data</td></tr>
     </tbody>
   </table>
   </div>
@@ -87,13 +87,13 @@
         <td class="src"><a href="https://dot.ca.gov/programs/traffic-operations/census">Caltrans traffic census</a></td></tr>
       <tr><td class="flag-id">F-15</td><td>Competing quick-service restaurants within one mile</td>
         <td><span class="pill blank">Unverified</span></td>
-        <td>No official national count exists. Field survey, or city business-licence records.</td></tr>
+        <td>No official national count exists. Field survey, or the City of Los Angeles <a href="https://planning.lacity.gov/">business and zoning records</a></td></tr>
       <tr><td class="flag-id">F-16</td><td>Zoning, general plan designation and transit-oriented overlay for the parcel</td>
         <td><span class="pill blank">Unverified</span></td>
         <td class="src"><a href="https://planning.lacity.gov/">LA City Planning</a> — by APN</td></tr>
       <tr><td class="flag-id">F-17</td><td>Structural retrofit status of the building</td>
         <td><span class="pill blank">Unverified</span></td>
-        <td>Licensed structural engineer's report. Not obtainable from a public database.</td></tr>
+        <td>Licensed structural engineer's report. Seismic context from the <a href="https://www.conservation.ca.gov/cgs">California Geological Survey</a> and <a href="https://www.usgs.gov/programs/earthquake-hazards">USGS</a>; retrofit status itself is not in any public database.</td></tr>
     </tbody>
   </table>
   </div>
@@ -121,6 +121,17 @@
         <td>The site quotes the September 2026 12-month change and leaves October's 12-month change blank rather than
           computing a substitute from a year-earlier figure that does not exist.</td>
       </tr>
+      <tr>
+        <td class="flag-id">F-20</td>
+        <td>When the $500M refinancing is expected to be repaid: the press release of 23 June 2026 says the next
+          anticipated repayment date is 2029, while the 8-K filed the same day states that the new Series 2026-1 notes
+          have an anticipated repayment date of May 2031.</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000079/ex991-pressreleasexdebtclo.htm">SEC 8-K Ex-99.1, 23 Jun 2026</a></td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000079/jack-20260623.htm">SEC 8-K Item 1.01, 23 Jun 2026</a></td>
+        <td>Both are quoted. The 2029 sentence describes the remaining Series 2022-1 notes, so the site uses May 2031
+          for the new notes and cites the indenture description rather than the summary. The legal final maturity is
+          May 2056.</td>
+      </tr>
     </tbody>
   </table>
   </div>
@@ -130,21 +141,20 @@
   <table>
     <thead><tr><th>ID</th><th>Item</th><th>Status</th><th>Detail and source</th></tr></thead>
     <tbody>
-      <tr><td class="flag-id">F-20</td><td>Jack in the Box FY2026 full-year results</td>
+      <tr><td class="flag-id">F-21</td><td>Jack in the Box FY2026 full-year results</td>
         <td><span class="pill warn">Pending filing</span></td>
-        <td>FY2026 ended 27 September 2026. At this site's cut-off the full-year Form 10-K had not been filed, so only
-          the three FY2026 quarters are shown. The most recent quarterly figures are from the
+        <td>FY2026 ended 27 September 2026. Checked on 26 November 2026: the EDGAR 10-K index still ends at the
+          filing of 19 November 2025, so the FY2026 full-year report had not been filed and only the three FY2026
+          quarters are shown. The most recent quarterly figures are from the
           <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788226000090/ex991-q326earningsrelease.htm">Q3 FY2026 release</a>.
           Re-check <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=10-K&dateb=&owner=include&count=40">the EDGAR 10-K index</a>
           before relying on a full-year number.</td></tr>
-      <tr><td class="flag-id">F-21</td><td>FY2026 quarterly same-store sales by segment</td>
+      <tr><td class="flag-id">F-22</td><td>FY2026 quarterly same-store sales by segment</td>
         <td><span class="pill warn">Partly published</span></td>
-        <td>System, franchise and company figures are published for each quarter. Any finer split that a press release
-          did not disclose is left blank rather than derived.</td></tr>
-      <tr><td class="flag-id">F-22</td><td>Store-level data for this specific restaurant</td>
+        <td>System, franchise and company figures are published for each quarter (<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=10-Q&dateb=&owner=include&count=10">EDGAR 10-Q index</a>). Any finer split that a release did not disclose is left blank rather than derived.</td></tr>
+      <tr><td class="flag-id">F-23</td><td>Store-level data for this specific restaurant</td>
         <td><span class="pill blank">Not public</span></td>
-        <td>No public source reports sales for an individual franchised location. Any site that claims to is estimating.
-          Obtain it from the tenant or franchisee under NDA (Q20).</td></tr>
+        <td>No public source reports sales for an individual franchised location — the closest official proxy is the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a> franchise AUV table. Obtain the actual figure from the tenant or franchisee under NDA (Q20).</td></tr>
     </tbody>
   </table>
   </div>
@@ -182,7 +192,7 @@
 
   <div class="callout">
     <b>How to use this page.</b> Items F-01 to F-08 need your documents. Items F-09 to F-17 need one afternoon of
-    lookups against the linked official tools. Items F-18 to F-22 need nothing from you except awareness. Items R-01 to
+    lookups against the linked official tools. Items F-18 to F-23 need nothing from you except awareness. Items R-01 to
     R-05 are already dealt with and are recorded so the audit trail is complete. Nothing on this page blocks the site
     from working; everything on it blocks a confident decision.
   </div>

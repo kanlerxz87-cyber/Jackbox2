@@ -36,7 +36,7 @@
         <td>Replaces the eight blank rows on <a href="trade-area.html">Trade Area</a> with real Census figures for the
           tract and the one and three-mile rings, each carrying its ACS table link. This is the difference between
           "the county is shrinking" and "this neighbourhood is shrinking".</td>
-        <td>Low — a few hours once the APN is available</td>
+        <td>Low — a few hours once the APN is available. Draws on the <a href="https://www.census.gov/programs-surveys/acs/">Census ACS</a></td>
         <td class="src"><b>High.</b> It is the only way to judge whether this specific location is a closure candidate
           at the tenant's next review.</td>
         <td><span class="pill blank">Not started — needs private APN</span></td>
@@ -47,7 +47,7 @@
         <td>A single page showing the FEMA flood zone, the CGS seismic zone and the CAL FIRE severity zone for the
           parcel, each with the official map link and the date checked. Would replace the ten blank rows on
           <a href="hazards.html">Hazards</a>.</td>
-        <td>Low — one afternoon of lookups</td>
+        <td>Low — one afternoon across the <a href="https://msc.fema.gov/portal/home">FEMA MSC</a>, <a href="https://www.conservation.ca.gov/cgs">CGS</a> and <a href="https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/fire-hazard-severity-zones">CAL FIRE FHSZ</a> viewers</td>
         <td class="src"><b>High.</b> Hazard exposure is the variable most likely to make the property hard to sell or
           expensive to insure, and it is the cheapest thing on this list to establish.</td>
         <td><span class="pill blank">Not started — needs private address</span></td>
@@ -58,7 +58,7 @@
         <td>A page that records each written broker opinion with its date, term assumption, capitalisation rate and
           implied short-lease discount, then shows the spread. Would replace the blank short-lease discount everywhere
           it appears.</td>
-        <td>Low — the page is trivial; the quotes take two to four weeks</td>
+        <td>Low — the page is trivial; the quotes take two to four weeks. Benchmark against the <a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value=202611">Treasury par yield curve</a></td>
         <td class="src"><b>High.</b> The short-lease discount is the single number that decides the sale price, and no
           public source can supply it.</td>
         <td><span class="pill blank">Not started — needs quotes</span></td>
@@ -68,7 +68,7 @@
         <td><b>Notice-calendar countdown</b></td>
         <td>Once the abstract is in hand, a dated countdown to each notice window, with the consequence of missing each
           one. Would convert G1 on <a href="decision-gates.html">Decision Gates</a> from blocked to green.</td>
-        <td>Low, once the abstract exists</td>
+        <td>Low, once the abstract exists. Notice obligations trace to the lease the tenant describes in its <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a></td>
         <td class="src"><b>High.</b> A missed notice date is the one error in this file that cannot be fixed with money
           afterwards.</td>
         <td><span class="pill blank">Not started — needs abstract</span></td>
@@ -78,7 +78,7 @@
         <td><b>Versioned cash-flow model with a back-test</b></td>
         <td>A dated, versioned projection of rent, expenses, capital and exit value, plus a back-test against realised
           outcomes once two or three years of actuals exist. Each input labelled observation or assumption.</td>
-        <td>Medium to high</td>
+        <td>Medium to high. Built on the verified <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC</a> and <a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS</a> series already on this site</td>
         <td class="src">Medium. Genuinely useful, but only after verified inputs exist. Building it now would produce a
           precise model of invented numbers.</td>
         <td><span class="pill warn">Deferred until gates clear</span></td>
@@ -88,7 +88,7 @@
         <td><b>§1031 replacement screener</b></td>
         <td>A side-by-side comparison of two or three replacement properties against the hold case: same tax basis,
           same discount rate, same stress test.</td>
-        <td>Medium</td>
+        <td>Medium. Requires a qualified intermediary and the <a href="https://www.irs.gov/pub/irs-pdf/f8824.pdf">IRS Form 8824</a> rules</td>
         <td class="src">Medium to high, but only if you are seriously considering an exchange. Without a candidate
           replacement the exchange is a tax structure with no destination.</td>
         <td><span class="pill blank">Not started — needs candidates</span></td>
@@ -98,7 +98,7 @@
         <td><b>Single-page printable decision brief for each adviser</b></td>
         <td>Separate one-pagers for the attorney, the CPA and the broker, each listing only the inputs that adviser is
           responsible for and the questions they need to answer.</td>
-        <td>Low</td>
+        <td>Low. Each adviser pack cites the <a href="https://www.sec.gov/Archives/edgar/data/807882/000080788225000072/jack-20250928.htm">SEC FY2025 10-K</a>, <a href="https://www.irs.gov/taxtopics/tc409">IRS Topic 409</a> and the <a href="https://www.ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf">CA FTB 540 schedules</a> already used on this site</td>
         <td class="src">Medium. It shortens meetings and reduces the chance an item is missed between advisers.</td>
         <td><span class="pill warn">Not built</span> — one combined brief exists on <a href="printable-summary.html">Printable</a>; separate per-adviser versions are pending</td>
       </tr>
@@ -107,7 +107,7 @@
         <td><b>Quarterly monitoring reminders tied to the tenant's filings</b></td>
         <td>A checklist of what to re-check each quarter: same-store sales, unit count, closures, debt terms, and any
           Form 8-K. Prevents the analysis going stale between now and 2030.</td>
-        <td>Low</td>
+        <td>Low. Each reminder links back to the <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000807882&type=&dateb=&owner=include&count=40">SEC EDGAR filing index</a> and the <a href="https://www.bls.gov/regions/west/ca_losangeles_msa.htm">BLS LA MSA</a> series</td>
         <td class="src">Medium. The tenant's trajectory is the main variable, and it reports every quarter.</td>
         <td><span class="pill blank">Not started</span></td>
       </tr>

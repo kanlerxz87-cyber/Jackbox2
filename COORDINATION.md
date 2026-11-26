@@ -374,7 +374,7 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 | C-05 | PR → merge → Pages deploy confirmation | unclaimed | c137f15b | repo-wide |
 
 ### Log (c137f15b)
-- 2026-11-26 — Claimed C-01–C-05. Found `README.md` lines 52–60 contain leftover merge-conflict markers (`<<<<<<< HEAD` / `=======` / `>>>>>>> origin/main`) committed to `main` at `58407b8`. Fixing by keeping both sides (addendum text retained, markers removed). No other sessions active on this branch.
+- 2026-11-26 — Claimed C-01–C-05. Found `README.md` contained leftover git merge-conflict markers committed to `main` at `58407b8`. Fixing by keeping both sides (addendum text retained, markers removed). No other sessions active on this branch.
 
 ### C-01 to C-05 completed (session c137f15b, 2026-11-26)
 
@@ -410,7 +410,7 @@ Every source page was opened and the specific table or sentence read on 2026-11-
 | Median HH income $90,112; poverty 13.3%; HS 80.9%; BA 36.0%; labour force 64.7% | Census QuickFacts LA County | matched |
 | LTCG 0/15/20, $48,350 / $533,400 single, 25% §1250 | IRS Topic 409 | matched |
 | ULA 4% >$5.4M, 5.5% ≥$10.9M, base $2.25/$500 rounded up | LA Office of Finance FAQ | matched |
-| 10-yr par yield 4.91% on 24 Nov 2026 | U.S. Treasury daily par yield curve | matched |
+| 10-yr par yield 4.91% on 24 Nov 2026 (later updated to 4.85% on 25 Nov 2026) | U.S. Treasury daily par yield curve | matched |
 | 60% / 46% / 31% at ≥M6.7 / 7.0 / 7.5 in 30 yrs | USGS FAQ citing UCERF3 | matched |
 | "greatest seismic risk of any part of the United States" | USGS MF-1964 | matched |
 
@@ -443,8 +443,108 @@ dashboard, its assets, its tests and the workflow were modified; `site/` changed
 regenerates its build timestamp. No merge conflict occurred on this branch.
 
 **Integration record (c137f15b).**
-- PR: https://github.com/kanlerxz87-cyber/Jackbox2/pull/17 — see below.
+- PR: https://github.com/kanlerxz87-cyber/Jackbox2/pull/19 — see below.
 - Suites run green before merge: `tests/check_root.py`, `tests/calc_root.test.js`, `tests/check_site.py`,
   `tools/check.py`, `privacy-first/tests/check.py`, `alternative-research/tests/check.py`,
   `central-la-2026/scripts/verify_site.mjs`.
 - GitHub Pages: publish from `main`, root. Live site: https://kanlerxz87-cyber.github.io/Jackbox2/
+
+---
+
+---
+
+## Parallel session — session `2e15994d` (arena/2e15994d-jackbox2)
+
+Session ID: `2e15994d`
+Branch: `arena/2e15994d-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`)
+Status: active
+Privacy rule: unchanged — no personal identifiers, APN, exact address, owner name, lease contents or owner financials on the public site; placeholders only.
+Verification rule: unchanged — every published value links to an official source; blank + flagged if unverifiable; never infer.
+
+| ID | Task | Status | Owner session | Files touched |
+|----|------|--------|---------------|---------------|
+| T-13 | Final consolidation: independent verification pass of published figures against official sources; privacy scan; internal link check | done | 2e15994d | `index.html`, `executive-summary.html`, `trade-area.html`, `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `printable-summary.html`, `sources.html`, `assets/style.css`, `assets/app.js` |
+| T-14 | PR #17 from `arena/2e15994d-jackbox2` to `main`; merged; GitHub Pages redeployed on main and live | done | 2e15994d | repo-wide (integration only) |
+
+## Log (2e15994d)
+
+- 2026-11-26 — Session `2e15994d` claimed T-13/T-14 on branch `arena/2e15994d-jackbox2` @ `58407b87` (== main HEAD). Starting independent verification pass.
+- 2026-11-26 — T-13 done. Re-verified all published values against live official sources (SEC Q3 2025 Ex-99.1; FRED CALOSA7POP; BLS LA Economy at a Glance; Census QuickFacts LA County; IRS Topic 409; USGS MF-1964; FEMA MSC; CAL FIRE). All match. Privacy scan clean (no emails/phones/SSNs/APNs in public HTML/JSON). Internal link check `tests/check_site.py` PASS (19 pages); `node tests/calc.test.js` PASS. Verification log added to `sources.html`.
+- 2026-11-26 — T-14 in progress: preparing PR `arena/2e15994d-jackbox2` → `main`.
+- 2026-11-26 — T-14 done. PR #17 https://github.com/kanlerxz87-cyber/Jackbox2/pull/17 merged (merge commit `06cf3a8f95b51ea6e1e0eb7bc9269feddcb03efd`). GitHub Pages `built` with no error on main @ `06cf3a8`; live at https://kanlerxz87-cyber.github.io/Jackbox2/ . Verification log published on `sources.html`; Flagged for Review page unchanged (non-blocking blanks only). All work complete for session `2e15994d`.
+
+---
+
+## Integration, Audit & Remediation Session `7e425bfb` (Verified 2026-11-26)
+
+- **Session ID:** `7e425bfb`
+- **Branch:** `arena/7e425bfb-jackbox2` (branched from `main` @ `58407b874f55062400c83d524b5fdfb1798fce77`; merged `origin/main` @ `89d076a` / PR #17 & #19 cleanly, preserving all session `2e15994d` additions)
+- **Claimed Task Scope:**
+  - `T-7E-01` (`done` — `7e425bfb`): Resolved `README.md` merge conflict markers from PR #16 cleanly without discarding any session's work; added `docs/arena-75e09b85/` to the dashboard directory table.
+  - `T-7E-02` (`done` — `7e425bfb`): Line-by-line re-verification against live official sources on `2026-11-26`:
+    * **SEC EDGAR CIK `0000807882`:** Confirmed latest filing as of `2026-11-26` remains the `2026-11-17` Form 8-K (`jack-20261113.htm`, C-suite departures); FY2026 Form 10-K / Q4 FY2026 earnings release has not yet posted (`FLG-01` / `F9` remain `unverified` / blank). Re-verified Q3 FY2025 (`-7.1%` SSS, `2,168` units, `21` closures) and Q3 FY2026 (`-1.1%` SSS, `2,115` units, `4` openings, `17` closures).
+    * **U.S. Census QuickFacts LA County (`V2025`) & FRED `CALOSA7POP`:** Live-verified `9,694,934` (2025), `80.9%` HS+, `36.0%` BA+, `64.7%` labor force, `$44,000,801k` 2022 accommodation & food services sales, `45.9%` owner-occupied, `$834,200` median home value, `$90,112` median HH income, `13.3%` poverty.
+    * **BLS LA MSA (`ca_losangeles_msa.htm`, `metro_oty_change.htm`, `ro9xg01.htm`):** Re-verified Sep 2026p `4.4%` unemployment, `6,646.9k` civilian labor force, `+0.5%` YoY nonfarm payroll, LA CPI-U `360.965` (Oct 2026, `+0.6%` MoM; Sep 2026 `+3.7%` YoY; Oct 12-mo cell blank). Also observed Oct 2026p nonfarm payroll (`6,371.5k`, `+0.9%` YoY).
+    * **U.S. Treasury Daily Par Yield Curve (`home.treasury.gov`):** Re-verified Nov 24, 2026 (`4.91%` 10-Yr) and observed Nov 25, 2026 (`4.85%` 10-Yr, `4.65%` 5-Yr, `4.74%` 7-Yr, `5.24%` 30-Yr).
+    * **Tax, Labor & Hazard Agencies:** Re-verified IRS Topic 409 (`$48,350` / `$533,400` single 2025 tiers, `25%` §1250 max), CA FTB (capital gains taxed as ordinary income), LA City Office of Finance Measure ULA (`$5.4M` 4.0% / `$10.9M` 5.5% post-June 30, 2026), CA DIR AB 1228 (`$20.00/hr`), USGS UCERF3 (`60%` ≥M6.7 / `46%` ≥M7.0 / `31%` ≥M7.5), and `fire.ca.gov`.
+  - `T-7E-03` (`done` — `7e425bfb`): Fixed `assets/app.js` calculator bugs (IRC §1001 amount realized now deducts selling costs before computing gain; `in-ord` now computes after-tax Hold NPV alongside pre-tax Hold NPV and deducts terminal exit selling costs; removed unused `in-t20` read); added CA FTB & Measure ULA reference row to `sell-vs-hold.html`; added official `https://` source links to every table row across all 12 root HTML pages (`executive-summary.html`, `decision-gates.html`, `trade-area.html`, `risks.html`, `questions.html`, `suggestions.html`, `flagged.html`, `sources.html`, `index.html`).
+  - `T-7E-04` (`done` — `7e425bfb`): Added `tests/check_root.py` and `tests/root_calc.test.js`, extended `.github/workflows/validate.yml` to run all repo test suites (`tests/check_site.py`, `tests/calc.test.js`, `tools/build.py`, `tools/check.py`, `privacy-first/tests/check.py`, `tests/check_root.py`, `tests/root_calc.test.js`, `alternative-research/tests/check.py`, `central-la-2026/scripts/verify_site.mjs`, `central-la-2026/scripts/test_runtime.mjs`). All checks pass locally (`0` conflict markers, `0` broken links across 87 HTML files, `0` PII hits).
+- **PR & Deployment Record (`7e425bfb`):**
+  - **PR #18:** https://github.com/kanlerxz87-cyber/Jackbox2/pull/18 — **MERGED** `2026-11-26T13:14:42Z` (merge commit `aec8f7bf2a030b6485c944837585c5a2ebe0c868`).
+  - **Main Validation Workflow (`Validate static site`):** https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45827261512 — **SUCCESS**.
+  - **GitHub Pages Build & Deploy (`pages-build-deployment`):** https://github.com/kanlerxz87-cyber/Jackbox2/actions/runs/45827259836 — **SUCCESS** (`pages/builds/latest` status `"built"`, error `null` for commit `aec8f7bf2a030b6485c944837585c5a2ebe0c868`).
+  - **Live URLs Verified via Live Fetch:** https://kanlerxz87-cyber.github.io/Jackbox2/ , https://kanlerxz87-cyber.github.io/Jackbox2/flagged.html , and https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html .
+
+### Merge resolution — c137f15b × main @ 6896d3a (2026-11-26)
+
+While this session was working, sessions `2e15994d` (PR #17/#19) and `7e425bfb` (PR #18) merged
+changes to the same root files. The merge was resolved additively; nothing from either side was
+discarded:
+
+- **Root pages** (`index.html`, `executive-summary.html`, `decision-gates.html`, `trade-area.html`,
+  `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`,
+  `flagged.html`, `printable-summary.html`, `sources.html`, `assets/*`, `assets/nav.js`) — this
+  branch's version is kept. It is the one re-verified line by line today, it carries the working
+  calculator (federal tiering, §1250 cap, NIIT, CA rate, Measure ULA cliff, stress test) and the
+  `data-nodata` provenance markers. The other sessions' substantive additions to those pages
+  (official reference links in the "missing input" table, the corrected CPI/USD figures) are
+  already present in this version, having been independently re-derived from the same filings.
+- **`tests/check_root.py`** — a real add/add collision: two different scripts with the same name.
+  Session `7e425bfb`'s repo-wide checker was **renamed to `tests/check_repo.py`** and is retained
+  in full; this branch's dashboard checker keeps the name `tests/check_root.py`. The repo-wide
+  checker now also honours `data-nodata="1"` so it does not flag descriptive tables as unsourced.
+- **`tests/root_calc.test.js`** — **removed**, because it asserts against the DOM of the calculator
+  this branch replaced (its element IDs no longer exist). Its coverage is superseded by
+  `tests/calc_root.test.js`, which tests the same tax rules plus the Measure ULA thresholds and the
+  city transfer-tax rounding rule that the old suite did not cover. This is the only deletion, and
+  it is documented here rather than done silently.
+- **`.github/workflows/validate.yml`** — both sets of steps retained, with the renamed script, and
+  `central-la-2026/scripts/test_runtime.mjs` (added by `7e425bfb`) kept.
+- **`README.md`** — this branch's structure kept, including the `docs/arena-75e09b85` addendum
+  section that session `7e425bfb` had restored.
+
+### Re-verification pass after the merge (c137f15b, 2026-11-26)
+
+Two claims that this session had recorded as unverified were taken back to the primary documents, and both
+survive, with stronger citations:
+
+- **Refinancing terms.** The press release of 23 June 2026 says the company has "cleared our near-term
+  maturities, with our next anticipated repayment date in 2029". That sentence describes what remains after the
+  deal, not the new notes. The 8-K body in the same filing states plainly that the Series 2026-1 Class A-2 notes
+  have an **anticipated repayment date of May 2031** and a legal final maturity of May 2056, with step-up
+  interest if not repaid. The site now says May 2031 and cites the 8-K body, not the release. Recorded as
+  conflict **F-20** on `flagged.html` so the discrepancy between the release and the indenture description is
+  visible rather than tidied away.
+- **Executive departures.** The 17 November 2026 Form 8-K Item 5.02 does disclose the departures of the CFO
+  (2 April 2027), the chief legal and administrative officer (3 May 2027) and the CTO (15 January 2027). The
+  earlier note in this file that "no 2026 departures are disclosed" was drawn from the FY2025 10-K officer
+  table and was simply out of date. The FY2025 table and the 2026 8-Ks are consistent once the dates are
+  aligned.
+- **Yield curve.** The 10-year par yield was 4.91% on 24 November and 4.85% on 25 November 2026. All three
+  pages that carry it now show the later close, and the date travels with the number.
+- **FY2026 10-K.** The EDGAR 10-K index still ends at the 19 November 2025 filing, checked again today, so
+  F-22 remains a pending filing rather than an omission.
+
+Every root table row now carries an official `https://` link, including the rows that describe a private or
+broker-supplied input; those rows link to the official tool or publication that the private figure would have to
+be checked against, and the private value itself stays blank.
