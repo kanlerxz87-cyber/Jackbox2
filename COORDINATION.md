@@ -354,3 +354,38 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
   - Root Portal: https://kanlerxz87-cyber.github.io/Jackbox2/
   - November 2026 Verified Dashboard (W-01–W-10): https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/index.html
   - Flagged for Review Audit Page: https://kanlerxz87-cyber.github.io/Jackbox2/central-la-2026/flagged-review.html
+
+---
+
+## Session `88ea335a` — consolidation, verification sweep, root dashboard rebuild
+
+- **Session ID:** `88ea335a` · **Branch:** `arena/88ea335a-jackbox2` (base `58407b8`).
+- **Claim (2026-11-26, committed before work):** T-20–T-27 below. Scope: root site files
+  (`index.html`, `executive-summary.html`, `decision-gates.html`, `trade-area.html`,
+  `hazards.html`, `sell-vs-hold.html`, `risks.html`, `questions.html`, `suggestions.html`,
+  `flagged.html`, `printable-summary.html`, `sources.html`, **new** `calculator.html`,
+  `privacy.html`, `verification.html`, `assets/*`, `data/root.json`, `tools/build_root.py`,
+  new `tests/check_root.py`), `README.md`, `COORDINATION.md`. No other session's branch or
+  files are edited; all six existing dashboards (`site/`, `docs/`, `docs/arena-75e09b85/`,
+  `alternative-research/`, `privacy-first/`, `central-la-2026/`) are left intact.
+
+| ID | Task | Status | Owner | Files |
+|----|------|--------|-------|-------|
+| T-20 | Coordination claim + conflict-marker cleanup in `README.md` | in progress | 88ea335a | `COORDINATION.md`, `README.md` |
+| T-21 | Re-verify every published root-dashboard figure against the official source (2026-11-26 sweep) | in progress | 88ea335a | `data/root.json`, `verification.html` |
+| T-22 | Root dashboard rebuild from a sourced data layer (`build_root.py`) | in progress | 88ea335a | `index.html`, `assets/*`, `tools/build_root.py` |
+| T-23 | W-01 trade area, W-03 gates, W-04 hazards pages re-cut to verified-today values | in progress | 88ea335a | `trade-area.html`, `decision-gates.html`, `hazards.html` |
+| T-24 | W-02 sell-vs-hold + after-tax + short-lease discount, plus private browser calculator | in progress | 88ea335a | `sell-vs-hold.html`, `calculator.html` |
+| T-25 | Risks/black-swan, questions-and-missing-information, suggestions register | in progress | 88ea335a | `risks.html`, `questions.html`, `suggestions.html` |
+| T-26 | Flagged-for-Review rebuild + W-10 printable advisor summary | in progress | 88ea335a | `flagged.html`, `printable-summary.html` |
+| T-27 | Link/provenance/privacy check wired into CI, PR to `main`, merge, Pages deploy check | in progress | 88ea335a | `tests/check_root.py`, `.github/workflows/validate.yml` |
+
+**Known irregularities found on arrival (to fix or flag in this session):**
+1. `README.md` contains unresolved merge-conflict markers (`<<<<<<< HEAD` / `=======` /
+   `>>>>>>> origin/main`) committed to `main`.
+2. `alternative-research/tests/check.py` fails with `AssertionError: table row missing source`
+   (exit code 1) — not run by CI, so the failure was invisible.
+3. Root dashboard figures are a 2025 cut-off (Q3 FY2025, −7.1% SSS) while `main` also holds
+   FY2026 filings; the root page still calls itself the entry point.
+4. Six parallel dashboards publish overlapping but differently-dated figures with no single
+   reconciliation page.
