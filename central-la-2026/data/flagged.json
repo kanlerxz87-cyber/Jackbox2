@@ -69,10 +69,12 @@
       "category": "Cross-Agency Data Divergence",
       "severity": "Medium",
       "item": "LA County & City Population Estimate Divergence (U.S. Census V2025 vs. CA DOF Jan 2026 E-1)",
-      "currentStatus": "FLAGGED FOR RECONCILIATION",
-      "details": "U.S. Census QuickFacts shows LA County July 1, 2025 population at 9,694,934 (-3.2% vs. 2020) and marks LA City V2025 as NA (V2024: 3,878,704). CA Dept. of Finance E-1 (May 2026) estimates LA County Jan 1, 2026 at 9,837,286 (-0.6% YoY) and LA City at 3,806,201 (-0.9% YoY).",
-      "manualReviewAction": "Note methodological difference (CA DOF uses housing-unit/driver-license/birth-death records; Census PEP uses federal IRS/Medicare/immigration models). Both confirm negative recent momentum.",
-      "sourceUrl": "https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf"
+      "currentStatus": "FLAGGED — DIFFERENT DATES / METHODS; DO NOT COMPARE DIRECTLY",
+      "details": "Current QuickFacts shows July 1, 2025 V2025 population of 9,694,934 for LA County and 3,869,089 for LA City. CA DOF E-1 shows Jan 1, 2026 values of 9,837,286 (-0.6% YoY) and 3,806,201 (-0.9% YoY), respectively. These dates and estimation methods differ; CA DOF explicitly says the series generally should not be compared directly. Keep the series separate and do not treat their difference as a same-date discrepancy.",
+      "manualReviewAction": "For trend work, select one official series and retain its vintage/date consistently; record the other series only as contextual cross-check, with CA DOF’s comparability warning.",
+      "sourceUrl": "https://dof.ca.gov/media/docs/forecasting/Demographics/estimates/E-1_2026_Press_Release.pdf",
+      "sourceUrl2": "https://www.census.gov/quickfacts/losangelescountycalifornia",
+      "sourceUrl3": "https://www.census.gov/quickfacts/losangelescitycalifornia"
     },
     {
       "flagId": "FLG-08",
