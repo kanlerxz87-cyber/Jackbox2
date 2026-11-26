@@ -39,6 +39,7 @@ estimated, interpolated or copied from another dashboard.
 | `sources.html` | Official source register and the hierarchy applied |
 | `printable-summary.html` | One page for advisers |
 | `privacy.html` | What is published, what is withheld, how the layers are separated |
+| `audit/index.html` | Offline publication-integrity audit, remediation record, and source-review boundary |
 
 ## Build and check
 
@@ -64,7 +65,7 @@ They do not agree on every figure because they were built at different cut-off d
 | Location | What it is | Cut-off it states |
 |---|---|---|
 | `central-la-2026/index.html` | Eleven-page refresh with notice calendar and local calculator | Verified through 25 November 2026; FY2026 Q1–Q3 |
-| `site/index.html` | Analytical dashboard generated from `data/` by `tools/build.py` | FY2025 fourth-quarter and full-year release |
+| `site/index.html` | Archived analytical dashboard generated from `data/` by `tools/build.py`; it carries an in-page no-decision notice and links back to the current dashboard | FY2025 fourth-quarter and full-year release |
 | `docs/index.html` | Session fb776066 pages | FY2025 filings |
 | `docs/arena-75e09b85/index.html` | Session 75e09b85 pages | FY2025 filings |
 | `privacy-first/index.html` | Conservative no-fabrication framework | Framework only |
@@ -103,6 +104,8 @@ node    tests/root_calc.test.js    # legacy root calculator
 python3 tests/check_site.py        # analytical dashboard links and provenance
 node    tests/calc.test.js         # analytical dashboard calculator
 python3 tools/build.py && python3 tools/check.py
+python3 tools/public_site_audit.py
+python3 tests/test_public_site_audit.py
 python3 privacy-first/tests/check.py
 cd alternative-research && python3 tests/check.py
 cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs
