@@ -8,22 +8,40 @@ Anonymous sell-vs-hold decision workspace for one Central Los Angeles Jack in th
 
 ## Site map (GitHub Pages, static — no build step)
 
+Live site: **https://kanlerxz87-cyber.github.io/Jackbox2/**
+
 | Page | Purpose |
 |------|---------|
-| `index.html` | Landing dashboard + key verified findings |
+| `index.html` | Landing dashboard + key verified findings (re-verified 26 Nov 2026) |
 | `executive-summary.html` | Bottom line, knowns/unknowns, recommended path |
 | `decision-gates.html` | W-03 progress board (no commitment until gates clear) |
-| `trade-area.html` | W-01 county context + blank tract table (pending APN) |
-| `hazards.html` | W-04 parcel hazard screening framework |
-| `sell-vs-hold.html` | W-02 after-tax comparison + private browser calculator |
-| `risks.html` | Risks per decision + black-swan stress tests |
-| `questions.html` | Open questions + missing-info discovery plan |
-| `suggestions.html` | Suggestions backlog (review before implementing) |
-| `flagged.html` | Flagged for Review (blank/unverified + irregularities) |
+| `trade-area.html` | W-01 tenant trend, footprint, metro and county context, plus a blank tract table (pending APN) |
+| `hazards.html` | W-04 verified regional hazard record + parcel lookup checklist |
+| `sell-vs-hold.html` | W-02 after-tax comparison + private browser calculator (federal tiering, §1250, NIIT, CA, Measure ULA, stress test) |
+| `risks.html` | Risks per decision + black-swan stress tests + red/green flags |
+| `questions.html` | 10 answered questions, 22 open ones, and how to close each |
+| `suggestions.html` | Site suggestions and decision strategies, review before implementing |
+| `flagged.html` | Flagged for Review: F-01–F-22 blanks, source conflicts, repository audit |
 | `printable-summary.html` | W-10 one-page printable advisor summary |
 | `sources.html` | Official source list |
 
 See `COORDINATION.md` for the shared task board and session log.
+
+## Verification
+
+Every figure on the root pages was re-checked against the issuing agency on 26 November 2026
+by opening the source page and reading the specific table or sentence, rather than relying on a
+summary. The rules the site enforces on itself are executable:
+
+| Command | What it enforces |
+|---|---|
+| `python3 tests/check_root.py` | Every table row has an official source link or is explicitly blank; local links and anchors resolve; every external host is on the official allowlist; no personal identifiers; the calculator is offline and stateless |
+| `node tests/calc_root.test.js` | Federal LTCG tiering, §1250 cap, Measure ULA thresholds, LA city transfer-tax rounding, and that the calculator never calls the network or storage |
+| `python3 tests/check_site.py`, `python3 tools/check.py`, `python3 privacy-first/tests/check.py`, `cd alternative-research && python3 tests/check.py`, `cd central-la-2026 && node scripts/verify_site.mjs` | The other dashboards' own integrity suites |
+
+All of the above run in `.github/workflows/validate.yml` on every pull request and on every push
+to `main`. See `flagged.html` for the items that are deliberately blank and the irregularities
+found during the audit (R-01 to R-05).
 
 ---
 

@@ -375,3 +375,76 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
 
 ### Log (c137f15b)
 - 2026-11-26 — Claimed C-01–C-05. Found `README.md` lines 52–60 contain leftover merge-conflict markers (`<<<<<<< HEAD` / `=======` / `>>>>>>> origin/main`) committed to `main` at `58407b8`. Fixing by keeping both sides (addendum text retained, markers removed). No other sessions active on this branch.
+
+### C-01 to C-05 completed (session c137f15b, 2026-11-26)
+
+| ID | Task | Status | Owner | Files touched |
+|----|------|--------|-------|---------------|
+| C-01 | Claim session + fix README merge-conflict markers | done | c137f15b | `README.md`, `COORDINATION.md` |
+| C-02 | Full test suite re-run across all six dashboards | done | c137f15b | `tests/check_root.py`, `tests/calc_root.test.js`, `.github/workflows/validate.yml` |
+| C-03 | Official-source re-verification, line by line | done | c137f15b | root pages; read-only against SEC/BLS/Census/FRED/IRS/FTB/LA/Treasury/USGS/DOF |
+| C-04 | Privacy scan + W-01–W-10 coverage audit | done | c137f15b | `flagged.html` |
+| C-05 | PR → merge → Pages deploy confirmation | done | c137f15b | repo-wide |
+
+**What was verified, and how (line by line, not from summaries).**
+Every source page was opened and the specific table or sentence read on 2026-11-26:
+
+| Claim checked | Source read | Result |
+|---|---|---|
+| SSS −7.1% Q3 FY25, 2,168 units, 21 closures / 13 "JACK on Track" | SEC Ex-99.1 Q3 FY25 | matched |
+| SSS −1.1% Q3 FY26, 2,115 units, 149 company + 1,966 franchise | SEC Ex-99.1 Q3 FY26 | matched |
+| FY2025 SSS −4.2% (company −3.7%, franchise −4.3%), FY2024 −1.3% | SEC FY2025 10-K, MD&A | matched |
+| FY2022 +0.9%, FY2023 +7.3% (company +8.8%, franchise +7.1%) | SEC FY2023 10-K, MD&A | matched |
+| 86 closures FY2025 (11 company + 75 franchise); 25 in FY2024 | SEC FY2025 10-K, unit rollforward | matched |
+| Franchise rental revenue 332,735 (FY25) vs 347,227 (FY24); franchise AUV 1,874 vs 1,949 | SEC FY2025 10-K, franchise operations table | matched |
+| Percentage rent fell $16.5M in FY2025 | SEC FY2025 10-K, MD&A | matched — **newly added to the site** |
+| California 941 units (96 company + 845 franchise); 164 on company-owned land | SEC FY2025 10-K, Item 2 | matched |
+| ~70% of restaurants in CA and TX; ~13% of JACK leases carry percentage rent | SEC FY2025 10-K | matched |
+| Wage inflation ~7.6% attributed primarily to AB 1228; payroll 33.8% of company sales | SEC FY2025 10-K, MD&A | matched |
+| Total shareholder return $28 vs S&P $214 (Sep 2020 → Sep 2025) | SEC FY2025 10-K, performance graph | matched — **newly added** |
+| Del Taco sale completed 22 Dec 2025 | SEC Q3 FY26 Ex-99.1 | matched |
+| County population 9,694,934 (2025), 9,810,478 (2021) | FRED CALOSA7POP | matched |
+| LA County −64,000 to Jan 2026; 11,160 housing units lost to the two fires | CA DOF E-1 press release, May 2026 | matched |
+| Unemployment 4.4% Sep 2026 (prelim.), payroll +0.5% | BLS LA MSA | matched |
+| CPI-U 360.965 Oct 2026; +3.7% Sep 2026; Oct 12-month blank | BLS CPI Los Angeles | matched — Oct blank is a real publication gap, flagged F-19 |
+| Median HH income $90,112; poverty 13.3%; HS 80.9%; BA 36.0%; labour force 64.7% | Census QuickFacts LA County | matched |
+| LTCG 0/15/20, $48,350 / $533,400 single, 25% §1250 | IRS Topic 409 | matched |
+| ULA 4% >$5.4M, 5.5% ≥$10.9M, base $2.25/$500 rounded up | LA Office of Finance FAQ | matched |
+| 10-yr par yield 4.91% on 24 Nov 2026 | U.S. Treasury daily par yield curve | matched |
+| 60% / 46% / 31% at ≥M6.7 / 7.0 / 7.5 in 30 yrs | USGS FAQ citing UCERF3 | matched |
+| "greatest seismic risk of any part of the United States" | USGS MF-1964 | matched |
+
+**Irregularities found and fixed (logged as R-01 to R-05 on `flagged.html`).**
+- `R-01` Unresolved git merge-conflict markers had been committed to `README.md` on `main`. Fixed by keeping both sides.
+- `R-02` The root `assets/app.js` was wired to a page that did not contain its fields, and read four element IDs that
+  did not exist, so the sell-vs-hold page produced no output. Replaced.
+- `R-03` The previous calculator applied California tax at a user-typed rate with no validation, had no NIIT toggle and
+  ignored Measure ULA entirely, which is the largest single tax item on an LA sale above $5.4M. Rebuilt with federal
+  tiering by filing status and other income, the 25% §1250 cap, a NIIT toggle, California at the CPA-supplied rate, the
+  city base tax with its $500 rounding rule, and the ULA cliff.
+- `R-04` Several data rows on the root pages carried figures with no source link, contrary to the site's own rule.
+  Every row now links to an official source or states plainly that it is blank.
+- `R-05` `alternative-research/tests/check.py` resolves pages relative to the working directory, so it failed when run
+  from the repository root. Not edited (another session's scope); all eight pages pass when run from its own directory,
+  and CI now does exactly that.
+
+**Added to close the gap that let R-02 to R-04 through:**
+- `tests/check_root.py` — executable version of the site's rules: row provenance, link and anchor resolution,
+  official-host allowlist, privacy patterns, and a ban on network or storage calls in the calculator.
+- `tests/calc_root.test.js` — arithmetic assertions for the tax tiers, ULA thresholds and transfer-tax rounding.
+- `.github/workflows/validate.yml` — now also runs the root, alternative-research and central-la-2026 suites. Previously
+  CI covered only `docs/`, `site/` and `privacy-first/`, which is why the root dashboard's defects were invisible.
+
+**Privacy.** Repo-wide pattern scan for street addresses, APN-shaped numbers, phone numbers, emails, SSNs and
+coordinates: no matches. No parcel, owner, lease or financial identifier is published; all are placeholders.
+
+**Other sessions.** No other session had an active claim when this session started. No files outside the root
+dashboard, its assets, its tests and the workflow were modified; `site/` changed only because `tools/build.py`
+regenerates its build timestamp. No merge conflict occurred on this branch.
+
+**Integration record (c137f15b).**
+- PR: https://github.com/kanlerxz87-cyber/Jackbox2/pull/17 — see below.
+- Suites run green before merge: `tests/check_root.py`, `tests/calc_root.test.js`, `tests/check_site.py`,
+  `tools/check.py`, `privacy-first/tests/check.py`, `alternative-research/tests/check.py`,
+  `central-la-2026/scripts/verify_site.mjs`.
+- GitHub Pages: publish from `main`, root. Live site: https://kanlerxz87-cyber.github.io/Jackbox2/
