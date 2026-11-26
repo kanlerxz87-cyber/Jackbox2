@@ -114,9 +114,9 @@ ARCHIVAL_NOTICE = """
   <p><b>ARCHIVED ANALYTICAL WORKSPACE — NOT A CURRENT RECOMMENDATION.</b>
   This directory is retained for audit history. It may use an earlier evidence cutoff
   and includes process/register tables that are not parcel-specific evidence. Do not
-  use it to select a sale, renewal, hold, or price. The current public dashboard keeps
-  private inputs blank and selects no winner: <a href="../central-la-2026/index.html">open the Central LA 2026 workspace</a>.
-  Review active gaps at <a href="../central-la-2026/flagged-review.html">Flagged for Review</a> and the
+  use it to select a sale, renewal, hold, or price. The consolidated current workspace
+  keeps private inputs blank and selects no winner: <a href="../index.html">open the current dashboard</a>.
+  Review active gaps at <a href="../flagged.html">Flagged for Review</a> and the
   <a href="../audit/index.html">publication audit</a>.</p>
 </div>
 """

@@ -158,7 +158,7 @@ for page in SITE.glob("*.html"):
     t = page.read_text(encoding="utf-8")
     if "ARCHIVED ANALYTICAL WORKSPACE" not in t:
         fails.append(f"{page.name}: missing archival no-decision notice")
-    if "../central-la-2026/index.html" not in t:
+    if "../index.html" not in t:
         fails.append(f"{page.name}: missing link to current dashboard")
 
 # every page must carry the privacy statement

@@ -9,9 +9,10 @@ This tool deliberately separates three things that are often conflated:
   for private property facts, a secure adviser workflow).
 
 It makes no network request and never treats a linked URL as proof of an underlying
-fact. The designated current public decision surface is ``central-la-2026/``. Older
-self-contained dashboards remain published for traceability and are reported as
-archival limitations rather than silently promoted as current evidence.
+fact. The designated current public decision surface is the consolidated root
+workspace generated from ``data/root.json``. Older self-contained dashboards remain
+published for traceability and are reported as archival limitations rather than
+silently promoted as current evidence.
 """
 from __future__ import annotations
 
@@ -73,6 +74,10 @@ class Ref:
 @dataclass
 class TableRow:
     line: int
+    # A table explicitly marked `nosource` is a register, method, legend, or archive
+    # that carries no evidence value. It is disclosed separately rather than being
+    # counted as an unsourced evidence row.
+    source_required: bool = True
     hrefs: list[str] = field(default_factory=list)
 
 
@@ -84,6 +89,7 @@ class PageParser(HTMLParser):
         self.refs: list[Ref] = []
         self.ids: set[str] = set()
         self.tbody_depth = 0
+        self.table_source_required: list[bool] = []
         self.current_row: TableRow | None = None
         self.rows: list[TableRow] = []
 
@@ -96,10 +102,14 @@ class PageParser(HTMLParser):
                 self.refs.append(Ref(tag, attr, values[attr] or "", self.getpos()[0]))
                 if self.current_row is not None and attr == "href":
                     self.current_row.hrefs.append(values[attr] or "")
-        if tag == "tbody":
+        if tag == "table":
+            classes = set((values.get("class") or "").split())
+            self.table_source_required.append("nosource" not in classes)
+        elif tag == "tbody":
             self.tbody_depth += 1
         elif tag == "tr" and self.tbody_depth:
-            self.current_row = TableRow(self.getpos()[0])
+            required = self.table_source_required[-1] if self.table_source_required else True
+            self.current_row = TableRow(self.getpos()[0], source_required=required)
 
     def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         # HTMLParser does not call handle_starttag for self-closing tags.
@@ -111,6 +121,8 @@ class PageParser(HTMLParser):
             self.current_row = None
         elif tag == "tbody":
             self.tbody_depth = max(0, self.tbody_depth - 1)
+        elif tag == "table" and self.table_source_required:
+            self.table_source_required.pop()
 
 
 def is_official_url(url: str) -> bool:
@@ -123,8 +135,10 @@ def is_official_url(url: str) -> bool:
 
 def dashboard_key(path: Path) -> str:
     rel = path.relative_to(ROOT)
+    # The top-level pages are one consolidated, generated current workspace. Earlier
+    # standalone dashboards live in their own directories and are classified below.
     if len(rel.parts) == 1:
-        return "root-current" if rel.name == "index.html" else "root-legacy"
+        return "root-current"
     first = rel.parts[0]
     if first == "audit":
         return "audit-metadata"
@@ -192,6 +206,7 @@ def main() -> int:
     source_rows: Counter[str] = Counter()
     official_rows: Counter[str] = Counter()
     nonofficial_rows: dict[str, list[tuple[Path, int]]] = defaultdict(list)
+    register_rows: Counter[str] = Counter()
 
     all_text = iter_public_text_files()
     for path in all_text:
@@ -210,8 +225,11 @@ def main() -> int:
             continue
         parsed_pages[path.resolve()] = parser
         key = dashboard_key(path)
-        source_rows[key] += len(parser.rows)
         for row in parser.rows:
+            if not row.source_required:
+                register_rows[key] += 1
+                continue
+            source_rows[key] += 1
             if any(is_official_url(url) for url in row.hrefs):
                 official_rows[key] += 1
             else:
@@ -254,28 +272,35 @@ def main() -> int:
                 if fragment not in target_parser.ids:
                     errors.append(f"[BROKEN ANCHOR] {path.relative_to(ROOT)}:{ref.line} -> {url}")
 
-    # The current root portal must not promote the archived analytical copy or pick a
-    # decision winner. The current Central LA dashboard is separately runtime-tested
-    # by CI because most of its rows are client-side rendered.
+    # The consolidated root is the designated current workspace. It must retain its
+    # source-ledger/flag routes and no-winner control. Older dashboards may be linked
+    # only from the clearly labelled archive section, not as a primary decision route.
     root_index = ROOT / "index.html"
     root_text = root_index.read_text(encoding="utf-8")
-    if 'href="site/index.html"' in root_text:
-        errors.append("[CURRENT ROUTE] root index promotes archived site/index.html")
+    if "data/root.json" not in root_text:
+        errors.append("[CURRENT ROUTE] root index does not identify the consolidated data layer")
+    if "No winner selected" not in root_text:
+        errors.append("[CURRENT ROUTE] root index is missing the explicit no-winner control")
     if re.search(r"\b(?:recommend(?:ed|ation)?|favor(?:s|ed)?)\s+(?:selling|sell|renew(?:al)?)\b", root_text, re.I):
         errors.append("[CURRENT ROUTE] root index appears to select a sale/renewal outcome")
-    if "central-la-2026/index.html" not in root_text or "central-la-2026/flagged-review.html" not in root_text:
-        errors.append("[CURRENT ROUTE] root index does not expose the current dashboard and flags")
+    for required_route in ("verification.html", "flagged.html", "privacy.html"):
+        if required_route not in root_text:
+            errors.append(f"[CURRENT ROUTE] root index does not expose {required_route}")
+    archive_at = root_text.find('id="archive"')
+    for archived_href in ("site/index.html", "central-la-2026/index.html"):
+        link_at = root_text.find(f'href="{archived_href}"')
+        if link_at >= 0 and (archive_at < 0 or link_at < archive_at):
+            errors.append(f"[CURRENT ROUTE] root index promotes {archived_href} outside its archive section")
 
-    # Only the designated current surface and the independent alternative are held
-    # to full static-row coverage here. Historical root/docs/privacy artifacts are
-    # retained for traceability and explicitly reported below when they contain
-    # workflow rows rather than direct evidence rows.
-    required_current = ("root-current", "central-la-2026", "alternative-research")
-    for key in required_current:
+    # The consolidated root and the two independently verified dashboard surfaces
+    # are held to full evidence-row coverage. Explicit `nosource` tables are counted
+    # below as process/register rows, never as evidence rows.
+    required_verified_surfaces = ("root-current", "central-la-2026", "alternative-research")
+    for key in required_verified_surfaces:
         missing = nonofficial_rows.get(key, [])
         if missing:
             examples = ", ".join(f"{p.relative_to(ROOT)}:{line}" for p, line in missing[:5])
-            errors.append(f"[TABLE PROVENANCE] {key} has {len(missing)} static tbody row(s) without an official URL: {examples}")
+            errors.append(f"[TABLE PROVENANCE] {key} has {len(missing)} static evidence row(s) without an official URL: {examples}")
 
     for page in (ROOT / "site").glob("*.html"):
         text = page.read_text(encoding="utf-8")
@@ -283,8 +308,8 @@ def main() -> int:
             errors.append(f"[ARCHIVE MARKER] {page.relative_to(ROOT)} lacks the archival no-decision notice")
 
     # These are transparent limitations, not a disguised pass/fail condition. The
-    # affected artifacts are marked archival and are not promoted by the root portal.
-    for key in ("root-legacy", "site", "docs", "privacy-first"):
+    # affected artifacts are marked archival and are not promoted by the root dashboard.
+    for key in ("site", "docs", "privacy-first"):
         if nonofficial_rows.get(key):
             warnings.append(
                 f"{key}: {len(nonofficial_rows[key])} of {source_rows[key]} static table row(s) lack a direct official URL; "
@@ -296,6 +321,10 @@ def main() -> int:
     print("Static table-row provenance (direct official URL / total):")
     for key in sorted(source_rows):
         print(f"  - {key}: {official_rows[key]}/{source_rows[key]}")
+    if register_rows:
+        print("Explicitly labelled register/method/archive rows (not evidence rows):")
+        for key in sorted(register_rows):
+            print(f"  - {key}: {register_rows[key]}")
     if warnings:
         print("Known archival limitations:")
         for item in warnings:

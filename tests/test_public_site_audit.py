@@ -17,6 +17,7 @@ if result.returncode:
     raise SystemExit(result.stdout + result.stderr)
 if "PUBLIC SITE AUDIT: PASS" not in result.stdout:
     raise SystemExit("Audit completed without its expected PASS marker.\n" + result.stdout)
-if "root-current:" not in result.stdout or "central-la-2026:" not in result.stdout:
-    raise SystemExit("Audit did not report the current public surfaces.\n" + result.stdout)
+for surface in ("root-current:", "central-la-2026:", "alternative-research:"):
+    if surface not in result.stdout:
+        raise SystemExit("Audit did not report all required verified surfaces.\n" + result.stdout)
 print("Public-site audit regression: OK")

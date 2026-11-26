@@ -33,6 +33,11 @@ jobs:
       - name: Analytical dashboard integrity (links, official-source allowlist, privacy patterns)
         run: python3 tools/check.py
 
+      - name: Audit public Pages tree (privacy, links, anchors, provenance)
+        run: python3 tools/public_site_audit.py
+      - name: Regression-test public Pages audit entry point
+        run: python3 tests/test_public_site_audit.py
+
       # Independent dashboards retained from parallel sessions
       - name: Privacy-first dashboard integrity (links, provenance, source allowlist, privacy patterns)
         run: python3 privacy-first/tests/check.py
