@@ -35,6 +35,7 @@ ALLOWED_HOSTS = {
     "www.ftb.ca.gov",
     "www.dir.ca.gov",
     "dof.ca.gov",
+    "dot.ca.gov",
     "fred.stlouisfed.org",
     "www.fema.gov", "msc.fema.gov",
     "www.usgs.gov", "earthquake.usgs.gov",
