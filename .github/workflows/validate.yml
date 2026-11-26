@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Consolidated dashboard provenance, links and privacy
+        run: python3 tests/check_root.py
+      - name: Test private root calculator
+        run: node tests/calc_root.test.js
       - name: Verify local links, table references and data
         run: python3 tests/check_site.py
       - name: Test calculator

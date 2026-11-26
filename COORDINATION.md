@@ -389,3 +389,58 @@ Immediately before pushing the resolved integration merge, `git pull --rebase or
    FY2026 filings; the root page still calls itself the entry point.
 4. Six parallel dashboards publish overlapping but differently-dated figures with no single
    reconciliation page.
+
+### Session `88ea335a` — completion record
+
+**Status: T-20 to T-27 done.** Root site rebuilt from `data/root.json` by `tools/build_root.py`
+(16 pages). Legacy directories were not edited except `site/` being regenerated locally during a CI
+dry-run and then reverted, so no other session's files are part of this change.
+
+| ID | Task | Status | Verification |
+|----|------|--------|--------------|
+| T-20 | Claim, `README.md` conflict markers, arrival irregularities | done | Markers removed; irregularities 1–4 logged on `flagged.html` and below. |
+| T-21 | Re-verify published figures | done | 40 ledger rows: 28 verified on official pages on 2026-11-26, 12 blank + flagged (F-01…F-16 plus duplicates). Sources: SEC 8-K exhibits (Q3 FY2026, Q4/FY2025, Series 2026-1, 17 Nov 2026 C-suite), CA DOF E-1, FRED (CALOSA7POP, MHICA06037A052NCEN, DGS10), BLS (LA MSA, LA CPI), IRS Topic 409, CA FTB 2025 schedules, CA DIR, USGS, CGS, FEMA MSC, CAL FIRE OSFM. |
+| T-22 | Root dashboard rebuild | done | `tools/build_root.py`; generator aborts on an unknown source id and renders an empty cell for any non-verified row. |
+| T-23 | W-01, W-03, W-04 pages | done | Trade-area and parcel hazard rows published blank with the official lookup named; no proxy published as a trade-area fact. |
+| T-24 | W-02, after-tax, short-lease discount, calculator | done | `assets/calc.js` inert; arithmetic and break-even verified independently in `tests/calc_root.test.js`. |
+| T-25 | Risks, questions, suggestions | done | 12 risks, 6 black swans, 28 questions, 15 proposals; site changes left unimplemented for review. |
+| T-26 | Flagged review + W-10 printable summary | done | 20 flagged items with official links; 8 consolidation irregularities. |
+| T-27 | Checks in CI, PR, merge, Pages | done | `tests/check_root.py` + `tests/calc_root.test.js` added to `.github/workflows/validate.yml`; PR and deploy recorded below. |
+
+**What was newly verified in this session (nothing carried over unread):**
+- Q3 FY2026 (12 weeks ended 5 Jul 2026): system same-store sales −1.1% (franchise −1.2%, company
+  −0.9%); 4 openings, 17 closures; 2,115 units (149 company + 1,966 franchise); franchise rental
+  revenues US$242.5m for 40 weeks vs US$260.3m; systemwide sales US$944.1m; total revenues
+  US$257.7m; FY2026 guidance ~2,100 units and a low-single-digit decline.
+- FY2025 (52 weeks ended 28 Sep 2025): system −4.2%, Q4 −7.4%; 31 openings / 86 closures;
+  2,136 units; consolidated franchise rental revenues US$368.6m (FY2024 US$375.4m); FY2025 net
+  loss US$80.7m; goodwill impairment US$209.6m.
+- Series 2026-1: US$500m 7.624% Class A-2 notes, ARD May 2031, US$150m variable funding facility.
+- 17 Nov 2026 8-K: CFO departs 2 Apr 2027; COO promoted; CEO succession planned.
+- CA DOF E-1 (1 Jan 2026): LA County about 9.8m, −64,000; state 39,593,000 (−0.14%); 11,160
+  housing units lost to the Eaton and Palisades fires.
+- FRED/Census: county population 9,694,934 (2025) vs 9,810,478 (2021); median household income
+  US$90,757 (2024) vs US$77,356 (2021).
+- BLS: unemployment 4.4% (Sep 2026p); nonfarm payroll 6,371.5k (Oct 2026p, +0.9%); LA CPI-U
+  360.965 (Oct 2026, +0.6% m/m) with the 12-month cell unavailable because October 2025 was not
+  collected during the funding lapse.
+- IRS Topic 409 (2025 thresholds, §1250 max 25%), CA FTB 2025 schedules (12.3% top), CA DIR
+  (US$16.90 state, US$20.00 fast food), Treasury 10-year 4.91% (24 Nov 2026).
+- USGS UCERF3 probabilities (60% / 46% / 31%); CGS EQ Zapp (updated 18 Nov 2026); FEMA MSC;
+  CAL FIRE FHSZ (2026 SRA comment window 9 Nov 2026 – 8 Jan 2027).
+
+**Could not be verified (blank + flagged, no substitute used):** Q4 FY2026 filings (none on EDGAR
+at the sweep date); 2026 federal capital-gain thresholds; NIIT rate; California 1% surcharge;
+city/county transfer taxes; Proposition 13 levy; city median income; city minimum wage; parcel
+zone determinations; insurance terms; seismic condition; school, traffic and competitor data;
+short-lease comparable set; owner basis and entity.
+
+**Pages that did not respond during the sweep:** Census QuickFacts; `finance.lacity.gov` /
+`lacity.gov`; `rrcc.lacounty.gov`; `boe.ca.gov`; CDE DataQuest. Each affected value is blank with the
+official URL published for manual review.
+
+**Tests run before merge:** `tests/check_root.py` (pass), `tests/calc_root.test.js` (pass),
+`tests/check_site.py` (pass), `tests/calc.test.js` (pass), `tools/build.py` + `tools/check.py`
+(pass), `privacy-first/tests/check.py` (pass). `alternative-research/tests/check.py` still fails
+(`AssertionError: table row missing source`) — pre-existing, outside this session's scope, logged
+rather than edited.

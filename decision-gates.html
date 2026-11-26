@@ -1,22 +1,88 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Decision Gates — W-03 Progress Board</title><link rel="stylesheet" href="assets/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decision gates — Jack in the Box, Central Los Angeles</title>
+<meta name="description" content="Verified, source-linked decision workspace for one anonymous single-tenant net-lease restaurant parcel in Central Los Angeles. Aggregate findings only; no personal data.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="assets/style.css">
+</head>
 <body>
-<header class="top"><div class="brand">Jack in the Box · Central Los Angeles<small>Decision-gate progress board (W-03)</small></div>
-<nav class="main"><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive Summary</a><a class="active" href="decision-gates.html">Decision Gates</a><a href="trade-area.html">Trade Area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs Hold</a><a href="risks.html">Risks</a><a href="questions.html">Open Questions</a><a href="suggestions.html">Suggestions</a><a href="flagged.html">Flagged for Review</a><a href="printable-summary.html">Printable Summary</a><a href="sources.html">Sources</a></nav></header>
-<div class="wrap">
-<h1>Decision gates — no commitment until all gates clear</h1>
-<p class="muted">Status reflects verified evidence on this public site. Private documents (lease, tax, APN) are never published.</p>
-<table><thead><tr><th>Gate</th><th>Requirement</th><th>Status</th><th>Evidence / next step</th></tr></thead><tbody>
-<tr><td><b>G1 · Lease abstract + notice calendar</b></td><td>Private abstract reconciled with notice dates before any sale/renewal commitment.</td><td><span class="pill warn">Blocked — private</span></td><td>Commission abstract; publish only the resulting date range. See <a href="questions.html">Q1–Q4</a>.</td></tr>
-<tr><td><b>G2 · Trade-area figures (W-01)</b></td><td>City/county proxies replaced with Census-tract trade-area data.</td><td><span class="pill warn">In progress</span></td><td>County context verified; tract pull pending APN in secure workflow. <a href="trade-area.html">Trade Area</a></td></tr>
-<tr><td><b>G3 · Parcel hazards (W-04)</b></td><td>Actual zone status for earthquake, fire, flood (not regional context).</td><td><span class="pill warn">In progress</span></td><td>Official lookup tools identified; parcel lookup pending. <a href="hazards.html">Hazards</a></td></tr>
-<tr><td><b>G4 · After-tax sell-vs-hold (W-02)</b></td><td>One after-tax number vs hold case, from verified tax rules + verified inputs.</td><td><span class="pill info">Tool ready, inputs pending</span></td><td>Browser calculator live; needs basis/depreciation/CPA rates. <a href="sell-vs-hold.html">Calculator</a></td></tr>
-<tr><td><b>G5 · Short-lease discount from real quotes</b></td><td>Discount priced from broker quotes, not assumed.</td><td><span class="pill blank">Unverified</span></td><td>Blank until quotes obtained (private). Flagged.</td></tr>
-<tr><td><b>G6 · Risk &amp; black-swan stress</b></td><td>Rent loss + repairs + exit liquidity stressed together.</td><td><span class="pill info">Framework ready</span></td><td>Scenario table published. <a href="risks.html">Risks</a></td></tr>
-<tr><td><b>G7 · Advisor printable (W-10)</b></td><td>One-page anonymous summary for advisers.</td><td><span class="pill ok">Done</span></td><td><a href="printable-summary.html">Printable summary</a></td></tr>
-</tbody></table>
-<div class="callout danger"><b>Rule:</b> A sale or renewal commitment made before G1–G5 clear would be based on unverified inputs. This board stays red/amber until each gate has an official-source link or a private-document attestation (date + preparer, no contents published).</div>
+<header class="site">
+  <div class="bar">
+    <div class="brand">
+      <strong>Jack in the Box · Central Los Angeles</strong>
+      <span>Single-tenant net lease · expiry window 2030–2035 (per owner brief, unverified)</span>
+      <span class="tag">Anonymous</span>
+    </div>
+  </div>
+  <nav class="groups" aria-label="Site sections"><div class="grp"><span class="lbl">Decide</span><a href="index.html">Dashboard</a><a href="executive-summary.html">Executive summary</a><a href="decision-gates.html" aria-current="page">Decision gates</a><a href="verification.html">Verification ledger</a><a href="requirements.html">Requirements</a><a href="flagged.html">Flagged for review</a></div><div class="grp"><span class="lbl">Analyse</span><a href="trade-area.html">Trade area</a><a href="hazards.html">Hazards</a><a href="sell-vs-hold.html">Sell vs hold</a><a href="calculator.html">Private calculator</a><a href="risks.html">Risks</a></div><div class="grp"><span class="lbl">Workspace</span><a href="questions.html">Questions</a><a href="suggestions.html">Suggestions</a><a href="sources.html">Sources</a><a href="printable-summary.html">Printable summary</a><a href="privacy.html">Privacy</a></div></nav>
+</header>
+<main>
+<div class="hero">
+  <p class="eyebrow">Decision support · aggregate findings only · verified 2026-11-26</p>
+  <h1>Decision gates</h1>
+  <p>Seven gates in order, each with the evidence required to clear it and the evidence in hand. Nothing is committed while a gate is open.</p>
+  
 </div>
-<footer><a href="index.html">← Dashboard</a></footer>
-</body></html>
+
+<div class="callout">
+  <b>Rule of the board.</b> A gate clears only on evidence, never on opinion, and no gate may be skipped.
+  Value work (G5) and tax work (G6) may run in parallel with the lease work, but the comparison in G7 cannot
+  be signed until every earlier gate is closed. Three gates are blocked for one reason: the private inputs
+  are not in this repository and must not be.
+</div>
+
+<h2>The board</h2>
+<div class="tablewrap"><table><thead><tr><th>Gate</th><th>Question the gate must answer</th><th>Status</th><th>Evidence required to clear it</th><th>Evidence in hand</th></tr></thead><tbody><tr><td><b>G1</b></td><td><b>Lease and title facts</b><br><span class="small muted">What exactly does the lease say about expiry, options, notice, rent, escalations and assignment?</span></td><td><span class="pill bad">Blocked</span></td><td class="small">Executed lease and amendments abstracted; estoppel certificate obtained from the tenant; title preliminary report and exceptions reviewed; notice calendar reconciled against the abstract.</td><td class="small">None in the public record. The expiry window 2030–2035 is the owner&#x27;s brief and is unverified.</td></tr><tr><td><b>G2</b></td><td><b>Tenant credit and renewal intent</b><br><span class="small muted">Will the tenant renew, at what rent, and can it perform through the term?</span></td><td><span class="pill warn">Open</span></td><td class="small">Written renewal indication from the tenant; franchisee-level financials for the operating entity; review of the securitisation covenants that constrain closure and rent decisions.</td><td class="small">Verified: FY2025 net loss, 86 closures, franchise rental revenue down 6.8% over the first 40 weeks of FY2026, US$500 million refinancing at 7.624%, CFO transition. None of this is parcel-specific.</td></tr><tr><td><b>G3</b></td><td><b>Trade-area evidence</b><br><span class="small muted">What do the three-mile and ten-minute drive-time rings around this parcel actually show?</span></td><td><span class="pill bad">Blocked</span></td><td class="small">Census tracts selected and documented; ACS five-year estimates pulled for each indicator; traffic counts from the city or state; competitor and school inventory mapped.</td><td class="small">County and metro aggregates only. These are context, not trade-area figures.</td></tr><tr><td><b>G4</b></td><td><b>Hazard and insurance screening</b><br><span class="small muted">Which hazard zones is this parcel in, and what does cover cost?</span></td><td><span class="pill bad">Blocked</span></td><td class="small">CGS zone result, FEMA flood zone and base flood elevation, fire hazard severity zone, engineering opinion, insurance quotes with deductibles and exclusions, loss-of-rent cover.</td><td class="small">Regional probabilities verified; parcel statuses unknown.</td></tr><tr><td><b>G5</b></td><td><b>Valuation evidence</b><br><span class="small muted">What would a buyer actually pay for this lease today, and what is the short-lease discount?</span></td><td><span class="pill bad">Blocked</span></td><td class="small">At least three written broker opinions of value with short-lease comparables; verified cap rates; reconciliation of the discount against actual quotes rather than a modelled assumption.</td><td class="small">No transaction evidence in the public record. Treasury yield verified as a reference only.</td></tr><tr><td><b>G6</b></td><td><b>Tax and ownership position</b><br><span class="small muted">What is the after-tax number for selling, on this owner&#x27;s facts?</span></td><td><span class="pill bad">Blocked</span></td><td class="small">Adjusted basis, depreciation history, holding entity, state residency, net investment income exposure, transfer-tax computation, and any exchange capacity confirmed by the accountant.</td><td class="small">Federal and state rate rules verified; the owner-specific inputs are private by design.</td></tr><tr><td><b>G7</b></td><td><b>Decision memo and stress test</b><br><span class="small muted">Which branch survives the base case, the downside case and a black swan?</span></td><td><span class="pill info">Pending</span></td><td class="small">After-tax sell proceeds compared with hold net present value under base, downside and black swan assumptions, with observations and assumptions labelled separately and a documented decision date.</td><td class="small">Not started, because the inputs are missing. The calculator exists to run this the day the inputs arrive.</td></tr></tbody></table></div>
+
+<h2>Order of work</h2>
+<ol><li><b>G1 — Lease and title facts</b>: What exactly does the lease say about expiry, options, notice, rent, escalations and assignment? <span class="pill gate">Blocked</span></li><li><b>G2 — Tenant credit and renewal intent</b>: Will the tenant renew, at what rent, and can it perform through the term? <span class="pill gate">Open</span></li><li><b>G3 — Trade-area evidence</b>: What do the three-mile and ten-minute drive-time rings around this parcel actually show? <span class="pill gate">Blocked</span></li><li><b>G4 — Hazard and insurance screening</b>: Which hazard zones is this parcel in, and what does cover cost? <span class="pill gate">Blocked</span></li><li><b>G5 — Valuation evidence</b>: What would a buyer actually pay for this lease today, and what is the short-lease discount? <span class="pill gate">Blocked</span></li><li><b>G6 — Tax and ownership position</b>: What is the after-tax number for selling, on this owner&#x27;s facts? <span class="pill gate">Blocked</span></li><li><b>G7 — Decision memo and stress test</b>: Which branch survives the base case, the downside case and a black swan? <span class="pill gate">Pending</span></li></ol>
+
+<h2>What clearing each gate actually looks like</h2>
+<div class="tablewrap"><table><thead><tr><th>Gate</th><th>Artefact that closes it</th><th>Who produces it</th><th>What would reopen it</th></tr></thead><tbody>
+<tr><td>G1</td><td>Signed lease abstract, estoppel certificate, title preliminary report, dated notice calendar</td><td>Owner's counsel and title company</td><td>An amendment, a side letter, or a notice served by either party</td></tr>
+<tr><td>G2</td><td>Written renewal indication plus store-level financial statements for the operating entity</td><td>Tenant, through the owner's broker</td><td>A closure announcement, a downgrade, or a restructuring filing</td></tr>
+<tr><td>G3</td><td>Tract list with the selection rule, two matched ACS vintages, traffic counts, competitor inventory</td><td>Analyst in the secure workspace</td><td>A boundary change or a new ACS vintage that breaks comparability</td></tr>
+<tr><td>G4</td><td>Four dated zone determinations, an engineering opinion, two insurance quotes and a FAIR Plan comparison</td><td>Consulting engineer, insurance broker</td><td>A map revision, a non-renewal notice, or a new fire hazard zone map</td></tr>
+<tr><td>G5</td><td>Three signed broker opinions with a short-lease comparable set, plus a re-leasing and conversion study</td><td>Brokers, contractor, appraiser</td><td>A material rate move or a comparable sale at a very different cap rate</td></tr>
+<tr><td>G6</td><td>After-tax computation signed by the accountant, with basis, depreciation, entity, residency and transfer taxes</td><td>Owner's accountant and escrow officer</td><td>A change in tax law, residency, entity structure or exchange plan</td></tr>
+<tr><td>G7</td><td>Two-page decision memo with base, downside and black swan cases and a decision date</td><td>Owner with advisers</td><td>Any input in G1–G6 changing by more than the stated tolerance</td></tr>
+</tbody></table></div>
+
+<h2>Why the gates are in this order</h2>
+<p>The lease comes first because it is the only gate where delay destroys value by default: a notice date can
+pass while the analysis is still running. The tenant and the valuation come next because they set the range.
+Hazard and insurance come before the tax work only because an uninsurable asset changes the question being
+asked, not just the number. The tax work is last among the inputs because it needs the sale price, and the
+sale price needs the valuation.</p>
+
+<h2>Status meanings</h2>
+<div class="tablewrap"><table><thead><tr><th>Status</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><span class="pill bad">Blocked</span></td><td>Cannot start without a private document or a secure lookup. Not a judgement about difficulty.</td></tr>
+<tr><td><span class="pill warn">Open</span></td><td>Work can start now, partly from public filings and partly from a private approach to the tenant.</td></tr>
+<tr><td><span class="pill info">Pending</span></td><td>Depends on earlier gates. Starting it early would mean guessing inputs.</td></tr>
+</tbody></table></div>
+
+</main>
+
+<footer class="site"><div class="inner">
+  <p><b>Privacy.</b> No owner name, entity, street address, parcel number, lease file or owner
+  financial record appears on this site. Identifiers are replaced with placeholders and the
+  underlying records stay in an access-controlled internal workspace. Only aggregate,
+  non-identifying findings are published. <a href="privacy.html">Privacy and workspace rules</a>.</p>
+  <p><b>Verification.</b> Every published figure links to the official page that printed it and was
+  read during the sweep dated 2026-11-26. Where a value could not be confirmed it is left blank
+  and listed on <a href="flagged.html">Flagged for review</a>. No value is inferred, estimated or
+  copied from another dashboard. <a href="verification.html">Verification ledger</a>.</p>
+  <p><b>No winner selected.</b> Nothing here recommends selling or renewing. The evidence needed to
+  price either branch is not yet in hand, and this site does not forecast. It is not legal, tax,
+  appraisal or investment advice; engage licensed advisers before acting.</p>
+  <p class="noprint">Consolidated workspace, session 88ea335a, generated from <code>data/root.json</code>.
+  Earlier parallel dashboards are kept in <a href="index.html#archive">the archive</a> with their cut-off dates.</p>
+</div></footer>
+
+
+</body>
+</html>
