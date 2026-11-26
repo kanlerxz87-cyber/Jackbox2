@@ -225,7 +225,7 @@
         "item": "Probability of renewal",
         "input": "assumption",
         "value": "",
-        "note": "ASSUMPTION. Anchor it on tenant evidence: FY2025 closures 86 units, FY2026 guidance 50 to 100 more, leverage 7.33x, same-store sales -4.2% (TH-09, TH-11, TH-19, TH-01). A renewal probability above roughly 50% is hard to defend on that evidence."
+        "note": "No probability is estimated. Company-wide disclosures do not establish this location's renewal likelihood. Obtain a written tenant indication and have advisers document any scenario assumptions; test a range without presenting it as a forecast."
       },
       {
         "line": 6,
@@ -264,7 +264,7 @@
   },
   "short_lease_discount": {
     "status": "unverified-blocked",
-    "what_it_should_measure": "The percentage spread a buyer demands on a ground lease with under 10 years of term versus the same lease with 20+ years. It is the single most powerful valuation input for this asset and it is not observable in any official dataset.",
+    "what_it_should_measure": "Compare observed sale pricing for otherwise comparable ground leases with different remaining terms. Relative importance cannot be established until a verified comp set, lease abstract and other valuation inputs exist; no official dataset identified for a ready-made discount.",
     "attempted_sources": "Commercial data providers (CoStar, Reonomy, Crexi, RCA) hold the quote data but are paywalled and are not official government sources, so they cannot satisfy the verification rule.",
     "value": "",
     "flag": "I-04",
@@ -273,6 +273,6 @@
       "Ask two brokers with QSR net-lease books for anonymised spread data behind a confidentiality undertaking, then have the owner's adviser confirm it against closed sales in the same county.",
       "Check the county recorder for recorded transfers of comparable Jack in the Box parcels and pull the documentary transfer tax, which reveals the recorded price. That is an official route to a real comp."
     ],
-    "official_comp_route": "Los Angeles County Registrar-Recorder/County Clerk grant deed index plus the documentary transfer tax stamp. This is public record and is the only way to build a verified comp set without buying data."
+    "official_comp_route": "Ask a qualified adviser to research recorded transactions through the Los Angeles County Registrar-Recorder/County Clerk and independently verify consideration and comparability. Recorded transfers may not reveal full economics or lease terms, so deed data alone may be insufficient."
   }
 }

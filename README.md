@@ -84,3 +84,30 @@ Session claims, evidence logs, handoffs and merge records are in [`COORDINATION.
 Contributions are welcome, subject to the two rules above: no identifiers, and no unsourced figure.
 
 Nothing here is legal, tax, appraisal or investment advice.
+
+## Repository status after consolidation
+
+The three navigation groups above are the single entry point. Independently built dashboards are preserved in
+`central-la-2026/`, `site/`, `docs/`, `docs/arena-75e09b85/`, `privacy-first/` and `alternative-research/`.
+They are separately maintained outputs with their own cut-off dates and their own flagged pages — not a
+synchronised copy of this site. Do not assume a figure in one applies to another; the
+[verification ledger](verification.html) states the period for every value published here.
+
+## Full check set
+
+```bash
+python3 tests/check_dashboard.py   # this site: provenance, links, privacy, calculator
+node    tests/calc_root.test.js    # this site's calculator arithmetic and inertness
+python3 tests/check_root.py        # repo-wide: conflict markers, every local link, PII, root tables
+node    tests/root_calc.test.js    # legacy root calculator
+python3 tests/check_site.py        # analytical dashboard links and provenance
+node    tests/calc.test.js         # analytical dashboard calculator
+python3 tools/build.py && python3 tools/check.py
+python3 privacy-first/tests/check.py
+cd alternative-research && python3 tests/check.py
+cd central-la-2026 && node scripts/verify_site.mjs && node scripts/test_runtime.mjs
+```
+
+A passing check establishes structure, provenance wiring and the absence of identifier patterns. It does not
+prove that an external page still says what it said on the check date, which is why every row carries its
+own date.

@@ -153,6 +153,39 @@ for page in SITE.glob("*.html"):
     if "<nav" not in page.read_text(encoding="utf-8"):
         warns.append(f"{page.name}: no navigation")
 
+# ------------------------------------------------------------------ C. decision integrity and generated markup
+expected_no_winner = {
+    "index.html": "No winner can be selected yet",
+    "decision.html": "No sell-or-renew winner can be selected",
+    "print.html": "No sale, renewal or letter-of-intent winner is selected",
+}
+for filename, marker in expected_no_winner.items():
+    text = (SITE / filename).read_text(encoding="utf-8")
+    if marker not in text:
+        fails.append(f"{filename}: missing explicit no-winner decision status")
+
+for page in SITE.glob("*.html"):
+    text = page.read_text(encoding="utf-8")
+    if page.name != "calculator.html":
+        for phrase in ("weight of argument favours selling", "favours selling", "lean if forced today", "above roughly 50% is hard to defend", "the hold case is a bet", "removes the growth argument from the hold case"):
+            if phrase.lower() in text.lower():
+                fails.append(f"{page.name}: unsupported directional recommendation -> {phrase}")
+    if re.search(r"<tr>\s*<tr|</tr>\s*</tr>", text, re.I):
+        fails.append(f"{page.name}: nested table row markup")
+
+risk_html = (SITE / "risks.html").read_text(encoding="utf-8")
+risk_table = re.search(r"<h2>Risk register by decision path</h2>.*?<tbody>(.*?)</tbody>", risk_html, re.S)
+if not risk_table:
+    fails.append("risks.html: risk register table missing")
+else:
+    for idx, row in enumerate(re.findall(r"<tr>(.*?)</tr>", risk_table.group(1), re.S), 1):
+        if not re.search(r'href="(?:https://|flagged\.html)', row):
+            fails.append(f"risks.html: risk row {idx} has no official-source link or explicit flagged route")
+
+readme = (ROOT / "README.md").read_text(encoding="utf-8")
+if re.search(r"^(<<<<<<<|=======|>>>>>>>)", readme, re.M):
+    fails.append("README.md: unresolved merge-conflict marker")
+
 # ------------------------------------------------------------------ report
 print(f"pages checked: {len(PAGES)}  assets: {len(ASSETS)}  source ids: {len(sources)}")
 if warns:
